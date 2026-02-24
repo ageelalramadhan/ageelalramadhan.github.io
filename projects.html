@@ -4,27 +4,46 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Projects | Ageel Alramadhan</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <nav>
-    <a href="index.html">Home</a> |
-    <a href="about.html">About</a> |
-    <a href="projects.html">Projects</a> |
-    <a href="contact.html">Contact</a> |
-    <a href="resume.html">Resume</a>
-  </nav>
+  <!-- Top Nav -->
+  <header class="nav">
+    <div class="container">
+      <a class="brand" href="index.html">Ageel</a>
 
-  <h1>Projects</h1>
+      <nav class="navlinks">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a class="active" href="projects.html">Projects</a>
+        <a href="contact.html">Contact</a>
+        <a href="Ageel-Alramadhan-Resume.pdf" target="_blank" rel="noopener">Resume</a>
+      </nav>
+    </div>
+  </header>
 
-  <h2>Instacart Market Basket Analysis</h2>
-  <p>
-    Exploratory data analysis project examining customer purchasing behavior,
-    product popularity, and ordering patterns to generate business insights.
-  </p>
+  <!-- Page Content -->
+  <main class="container">
+    <section class="card">
+      <h1>Projects</h1>
 
-  <p>
-    <a href="instacart-case-study.html">View Full Case Study</a>
-  </p>
+      <div class="project">
+        <div>
+          <h3>Instacart Market Basket Analysis</h3>
+          <p>
+            Exploratory data analysis examining customer purchasing behavior,
+            product popularity, and ordering patterns to generate actionable
+            business insights.
+          </p>
 
+          <a class="button" href="instacart-case-study.html">
+            View Full Case Study
+          </a>
+        </div>
+      </div>
+
+    </section>
+  </main>
 </body>
 </html>
