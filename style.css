@@ -5,6 +5,7 @@
   --muted:#6b7280;       /* gray */
   --bg:#ffffff;
   --border:#e5e7eb;      /* light gray */
+  --activebg:#1f7a4d;    /* active tab bg */
 }
 
 *{ box-sizing:border-box; }
@@ -24,21 +25,60 @@ body{
   padding:40px 20px;
 }
 
-/* ===== Navigation ===== */
-nav{
-  margin-bottom:40px;
+.card{
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:18px;
+  background:#fff;
 }
 
-nav a{
+/* ===== Top Nav Bar ===== */
+.nav{
+  border-bottom:1px solid var(--border);
+  background:#fff;
+}
+
+.nav .container{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding-top:14px;
+  padding-bottom:14px;
+}
+
+.brand{
+  font-weight:800;
+  letter-spacing:0.2px;
+  color:var(--text);
   text-decoration:none;
-  color:var(--accent);
-  font-weight:600;
-  margin-right:22px;
-  font-size:15px;
 }
 
-nav a:hover{
-  text-decoration:underline;
+.navlinks{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+/* Normal tab */
+.navlinks a{
+  text-decoration:none;
+  color:var(--text);
+  font-weight:600;
+  font-size:14px;
+  padding:8px 12px;
+  border-radius:10px;
+}
+
+/* Hover tab */
+.navlinks a:hover{
+  background:#f3f4f6;
+}
+
+/* Active tab (THIS is what you want) */
+.navlinks a.active{
+  background:var(--activebg);
+  color:#ffffff;
 }
 
 /* ===== Typography ===== */
@@ -75,7 +115,7 @@ a{
   color:var(--accent);
 }
 
-/* ===== Button Style ===== */
+/* ===== Button Style (used on homepage / projects) ===== */
 .button{
   display:inline-block;
   background:var(--accent);
@@ -89,17 +129,6 @@ a{
 
 .button:hover{
   opacity:0.9;
-}
-
-/* ===== Project list (for projects page later) ===== */
-.project{
-  padding:18px 0;
-  border-top:1px solid var(--border);
-}
-
-.project:first-of-type{
-  border-top:none;
-  padding-top:0;
 }
 
 /* ===== Responsive ===== */
