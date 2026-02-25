@@ -135,3 +135,54 @@ a{
 @media (max-width:640px){
   h1{ font-size:28px; }
 }
+
+/* ===== Project Switcher (case study pages) ===== */
+.project-switcher{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  align-items:center;
+
+  /* balanced spacing between navbar and card */
+  margin: 0 0 20px 0;
+}
+
+/* pill-style navigation (NOT CTA buttons) */
+.switcher-link{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:6px 14px;
+  border-radius:999px;
+
+  font-size:13px;
+  font-weight:600;
+  text-decoration:none;
+
+  color: var(--muted);
+  background:#f9fafb;
+  border:1px solid var(--border);
+
+  transition: all 0.15s ease;
+}
+
+.switcher-link:hover{
+  background:#eef2f7;
+  color: var(--text);
+  border-color:#d1d5db;
+}
+
+/* Active project (clearly different) */
+.switcher-link.is-active{
+  background: var(--activebg);
+  border-color: var(--activebg);
+  color:#ffffff;
+  cursor: default;
+}
+
+.switcher-link.is-active:hover{
+  background: var(--activebg);
+  border-color: var(--activebg);
+  color:#ffffff;
+}
