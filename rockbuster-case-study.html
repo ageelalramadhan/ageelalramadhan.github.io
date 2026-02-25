@@ -5,6 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Rockbuster Strategy Analysis (SQL) | Ageel Alramadhan</title>
   <link rel="stylesheet" href="style.css">
+
+  <!-- Match sizing used in other case studies -->
+  <style>
+    .case-image{
+      display:block;
+      width:100%;
+      max-width:600px;
+      height:auto;
+      margin:10px auto 6px auto;
+      border:1px solid var(--border);
+      border-radius:10px;
+      background:#fff;
+    }
+    figure.case-figure{
+      margin:12px auto 18px auto;
+      text-align:center;
+      max-width:620px;
+    }
+    figure.case-figure figcaption{
+      font-size:13px;
+      color:var(--muted);
+      margin-top:6px;
+    }
+  </style>
 </head>
 
 <body>
@@ -23,10 +47,8 @@
     </div>
   </header>
 
-  <!-- Page Content -->
   <main class="container">
 
-    <!-- Project Switcher (outside the card) -->
     <nav class="project-switcher" aria-label="Project switcher">
       <a class="switcher-link" href="instacart-case-study.html">Instacart</a>
       <a class="switcher-link" href="citi-bike-case-study.html">Citi Bike</a>
@@ -34,8 +56,11 @@
     </nav>
 
     <section class="card">
+
       <h1>Rockbuster Strategy Analysis (SQL)</h1>
-      <h2>SQL • Tableau • Revenue analysis • Market prioritization</h2>
+      <p class="small">
+        SQL • Tableau • Revenue analysis • Market prioritization
+      </p>
 
       <h3>Project Overview</h3>
       <p>
@@ -47,69 +72,64 @@
       <h3>Problem</h3>
       <p>
         Rockbuster needed a clearer picture of which films and customer segments generate the most revenue,
-        where demand is strongest, and how to prioritize markets. The business challenge was to use data
-        to make strategic decisions instead of relying on assumptions.
+        where demand is strongest, and how to prioritize markets.
       </p>
 
       <h3>Data</h3>
       <p>
         The dataset includes customer data, rentals, payments, film information, inventory,
-        and geographic location fields. All analysis was completed using SQL queries to join tables,
-        aggregate metrics, and uncover patterns in revenue and customer behavior.
+        and geographic location fields. Analysis was completed using SQL queries and visualized in Tableau.
       </p>
 
       <h3>Process</h3>
       <ul>
-        <li>Explored schema and identified primary/foreign key relationships across tables</li>
-        <li>Built SQL joins across customer, payment, rental, film, and location tables</li>
-        <li>Calculated revenue by film, category, and customer segment</li>
-        <li>Analyzed customer distribution and revenue concentration by country/city</li>
-        <li>Translated findings into clear business recommendations</li>
+        <li>Joined relational tables using SQL</li>
+        <li>Calculated revenue by customer, film, and geography</li>
+        <li>Identified revenue concentration patterns</li>
+        <li>Translated findings into business recommendations</li>
       </ul>
 
       <h3>Key Insights</h3>
       <ul>
         <li>Revenue is concentrated in a small subset of customers and locations</li>
-        <li>A limited number of film categories and titles generate a large share of total revenue</li>
-        <li>High-value customers are clustered in specific markets, enabling targeted retention strategy</li>
-        <li>Geographic analysis highlights markets with strong demand and expansion potential</li>
+        <li>A limited number of markets drive a large share of total revenue</li>
+        <li>High-value customers are clustered geographically</li>
       </ul>
 
-      <h2>Geography Concentrates Revenue Potential</h2>
-      <img
-        src="rockbuster-top-countries.png"
-        alt="Top countries by Rockbuster revenue"
-        class="case-image"
-      >
-      <p>
-        Revenue clusters in a small number of countries, suggesting that market prioritization should focus on
-        the highest-performing regions instead of spreading resources evenly across all markets.
-      </p>
+      <h3>Geographic Revenue Concentration</h3>
+      <figure class="case-figure">
+        <img
+          src="rockbuster-top-countries.png"
+          alt="Top countries by Rockbuster revenue"
+          class="case-image">
+        <figcaption>
+          Revenue clusters in a small number of countries, supporting focused market prioritization.
+        </figcaption>
+      </figure>
+
+      <h3>Customer Revenue Concentration</h3>
+      <figure class="case-figure">
+        <img
+          src="rockbuster-top-customers.png"
+          alt="Top customers by Rockbuster revenue"
+          class="case-image">
+        <figcaption>
+          A small segment of customers contributes disproportionately to total revenue,
+          indicating strong opportunity for retention-focused strategies.
+        </figcaption>
+      </figure>
 
       <h3>Recommendations</h3>
       <ul>
-        <li>Prioritize retention campaigns for high-value customer segments</li>
-        <li>Focus marketing and inventory investment on top-performing categories/titles</li>
-        <li>Target expansion or partnerships in markets with concentrated demand</li>
-        <li>Improve reporting cadence using standardized SQL queries for recurring insights</li>
+        <li>Prioritize high-value customer retention campaigns</li>
+        <li>Focus investment on top-performing markets</li>
+        <li>Standardize recurring SQL reports for ongoing performance tracking</li>
       </ul>
-
-      <h2>A Small Customer Segment Drives Disproportionate Revenue</h2>
-      <img
-        src="rockbuster-top-customers.png"
-        alt="Top customers by Rockbuster revenue"
-        class="case-image"
-      >
-      <p>
-        The customer revenue distribution is highly uneven. Rockbuster can improve results by identifying
-        high-value segments and tailoring retention, loyalty incentives, and customer reactivation strategies.
-      </p>
 
       <h3>Conclusion</h3>
       <p>
-        This analysis demonstrates how SQL can directly support strategic decision-making by identifying
-        what drives revenue and where growth opportunities exist. The findings provide a foundation for
-        Rockbuster’s market prioritization, customer retention, and content strategy.
+        This project demonstrates how SQL analysis and Tableau visualization can directly
+        inform strategic decision-making by identifying revenue concentration and growth opportunities.
       </p>
 
     </section>
