@@ -6,45 +6,53 @@
   <title>NYC Citi Bike Dashboard (2022) | Ageel Alramadhan</title>
   <link rel="stylesheet" href="style.css">
 
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FV6Q6EKYZ1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FV6Q6EKYZ1');
+  </script>
+
   <!-- Page-only styling for charts (so you don't need to touch style.css) -->
-<style>
-  .case-image{
-    display:block;
-    width:100%;
-    max-width:600px;
-    height:auto;
-    margin:10px auto 6px auto;
-    border:1px solid var(--border);
-    border-radius:10px;
-    background:#fff;
-  }
+  <style>
+    .case-image{
+      display:block;
+      width:100%;
+      max-width:600px;
+      height:auto;
+      margin:10px auto 6px auto;
+      border:1px solid var(--border);
+      border-radius:10px;
+      background:#fff;
+    }
 
-  figure.case-figure{
-    margin:12px auto 18px auto;
-    text-align:center;
-    max-width:620px;
-  }
+    figure.case-figure{
+      margin:12px auto 18px auto;
+      text-align:center;
+      max-width:620px;
+    }
 
-  figure.case-figure figcaption{
-    font-size:13px;
-    color:var(--muted);
-    margin-top:6px;
-  }
+    figure.case-figure figcaption{
+      font-size:13px;
+      color:var(--muted);
+      margin-top:6px;
+    }
 
-  .insight-block{
-    margin-top:18px;
-    padding-top:16px;
-    border-top:1px solid var(--border);
-  }
+    .insight-block{
+      margin-top:18px;
+      padding-top:16px;
+      border-top:1px solid var(--border);
+    }
 
-  /* Match Rockbuster hierarchy */
-  .insight-block h2{
-    font-size:18px;
-    margin:18px 0 8px 0;
-  }
-</style>
+    /* Match Rockbuster hierarchy */
+    .insight-block h2{
+      font-size:18px;
+      margin:18px 0 8px 0;
+    }
+  </style>
 </head>
-
 <body>
   <!-- Top Nav -->
   <header class="nav">
