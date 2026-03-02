@@ -1,194 +1,201 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>NYC Citi Bike Dashboard (2022) | Ageel Alramadhan</title>
-  <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NYC Citi Bike Dashboard (2022) | Ageel Alramadhan</title>
+    <link rel="stylesheet" href="style.css" />
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FV6Q6EKYZ1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-FV6Q6EKYZ1');
-  </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FV6Q6EKYZ1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-FV6Q6EKYZ1");
+    </script>
 
-  <!-- Page-only styling for charts (so you don't need to touch style.css) -->
-  <style>
-    .case-image{
-      display:block;
-      width:100%;
-      max-width:600px;
-      height:auto;
-      margin:10px auto 6px auto;
-      border:1px solid var(--border);
-      border-radius:10px;
-      background:#fff;
-    }
+    <!-- Page-only styling for charts -->
+    <style>
+      .case-image {
+        display: block;
+        width: 100%;
+        max-width: 600px;
+        height: auto;
+        margin: 10px auto 6px auto;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        background: #fff;
+      }
 
-    figure.case-figure{
-      margin:12px auto 18px auto;
-      text-align:center;
-      max-width:620px;
-    }
+      figure.case-figure {
+        margin: 12px auto 18px auto;
+        text-align: center;
+        max-width: 620px;
+      }
 
-    figure.case-figure figcaption{
-      font-size:13px;
-      color:var(--muted);
-      margin-top:6px;
-    }
+      figure.case-figure figcaption {
+        font-size: 13px;
+        color: var(--muted);
+        margin-top: 6px;
+      }
 
-    .insight-block{
-      margin-top:18px;
-      padding-top:16px;
-      border-top:1px solid var(--border);
-    }
+      .insight-block {
+        margin-top: 18px;
+        padding-top: 16px;
+        border-top: 1px solid var(--border);
+      }
 
-    /* Match Rockbuster hierarchy */
-    .insight-block h2{
-      font-size:18px;
-      margin:18px 0 8px 0;
-    }
-  </style>
-</head>
-<body>
-  <!-- Top Nav -->
-  <header class="nav">
-    <div class="container">
-      <a class="brand" href="index.html">Ageel</a>
+      .insight-block h2 {
+        font-size: 18px;
+        margin: 18px 0 8px 0;
+      }
+    </style>
+  </head>
 
-      <nav class="navlinks">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a class="active" href="projects.html">Projects</a>
-        <a href="contact.html">Contact</a>
-        <a href="Ageel-Alramadhan-Resume.pdf" target="_blank" rel="noopener">Resume</a>
-      </nav>
-    </div>
-  </header>
+  <body>
+    <!-- Top Nav -->
+    <header class="nav">
+      <div class="container">
+        <a class="brand" href="index.html">Ageel</a>
 
-  <!-- Page Content -->
-  <main class="container">
+        <nav class="navlinks">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a class="active" href="projects.html">Projects</a>
+          <a href="contact.html">Contact</a>
+          <a
+            href="Ageel-Alramadhan-Resume.pdf"
+            target="_blank"
+            rel="noopener"
+            onclick="gtag('event','resume_click',{event_category:'navigation',event_label:'resume_nav'});"
+          >
+            Resume
+          </a>
+        </nav>
+      </div>
+    </header>
 
-    <!-- Project Switcher (outside the card) -->
-    <div class="project-switcher">
-      <a class="switcher-link" href="instacart-case-study.html">Instacart</a>
-      <span class="switcher-link is-active" aria-current="page">Citi Bike</span>
-      <a class="switcher-link" href="rockbuster-case-study.html">Rockbuster</a>
-    </div>
-
-    <section class="card">
-
-      <h1>NYC Citi Bike Dashboard (2022)</h1>
-      <p class="small">
-        Python • Pandas/NumPy • Data storytelling • Operational recommendations
-      </p>
-
-      <h3>Project Overview</h3>
-      <p>
-        This project analyzes Citi Bike usage patterns in New York City during 2022
-        to support operational decision-making around bike supply, rebalancing, and
-        seasonal demand planning. The goal was to translate trip-level data into
-        actionable operational recommendations.
-      </p>
-
-      <h3>Business Problem</h3>
-      <p>
-        Citi Bike demand fluctuates by location, time of day, and season.
-        The objective was identifying high-demand stations, understanding seasonal
-        usage patterns, and determining how operations should adapt to reduce empty
-        docks and unavailable bikes.
-      </p>
-
-      <h3>Data</h3>
-      <p>
-        The dataset included Citi Bike trip data for 2022 and corresponding
-        weather data for seasonal comparison. Analysis was performed using
-        Python (Pandas, NumPy) with visualizations built for an interactive
-        Streamlit dashboard.
-      </p>
-
-      <h3>Process</h3>
-      <ul>
-        <li>Cleaned and validated trip data (dates, station names, ride durations)</li>
-        <li>Aggregated trips by station, day, and month</li>
-        <li>Merged daily trip counts with temperature data</li>
-        <li>Ranked top 10 highest-demand stations</li>
-        <li>Built dashboard views (stations, seasonality, maps, recommendations)</li>
-      </ul>
-
-      <h3>Key Insights</h3>
-      <ul>
-        <li>Demand is heavily concentrated in central Manhattan stations</li>
-        <li>Trips increase significantly during warmer months and decline sharply in winter</li>
-        <li>Peak demand aligns with predictable commuting windows</li>
-        <li>Winter demand averages roughly half of summer demand levels</li>
-      </ul>
-
-      <!-- Visuals / Evidence (cleanly separated) -->
-      <div class="insight-block">
-        <h2>Visual Evidence</h2>
-        <p class="small">A few key charts from the dashboard that support the insights above.</p>
-
-        <h2>1) Seasonality drives demand</h2>
-        <figure class="case-figure">
-          <img
-            src="citi-monthly-trends.png"
-            alt="Average daily Citi Bike rides per month (2022)"
-            class="case-image"
-          />
-          <figcaption>
-            Ridership peaks in summer and drops sharply in winter, supporting seasonal staffing
-            and fleet allocation decisions.
-          </figcaption>
-        </figure>
-
-        <h2>2) Temperature strongly influences ridership</h2>
-        <figure class="case-figure">
-          <img
-            src="citi-trip-vs-temp.png"
-            alt="Daily Citi Bike trips vs average temperature (2022)"
-            class="case-image"
-          />
-          <figcaption>
-            Trips rise with warmer temperatures, supporting weather-aware planning for capacity
-            and rebalancing.
-          </figcaption>
-        </figure>
-
-        <h2>3) Highest-demand stations are concentrated in Manhattan</h2>
-        <figure class="case-figure">
-          <img
-            src="popular-stations-citibike.png"
-            alt="Top Citi Bike start stations (2022)"
-            class="case-image"
-          />
-          <figcaption>
-            Highest-demand stations cluster in central Manhattan, indicating where more frequent rebalancing
-            and higher dock capacity can reduce shortages.
-          </figcaption>
-        </figure>
+    <!-- Page Content -->
+    <main class="container">
+      <!-- Project Switcher -->
+      <div class="project-switcher">
+        <a class="switcher-link" href="instacart-case-study.html">Instacart</a>
+        <span class="switcher-link is-active" aria-current="page">Citi Bike</span>
+        <a class="switcher-link" href="rockbuster-case-study.html">Rockbuster</a>
       </div>
 
-      <h3>Recommendations</h3>
-      <ul>
-        <li>Increase rebalancing frequency at high-demand Manhattan stations</li>
-        <li>Scale staffing and operations seasonally (summer vs winter)</li>
-        <li>Implement targeted early-morning and mid-day rebalancing cycles</li>
-        <li>Use spatial hotspot data to evaluate expansion corridors</li>
-      </ul>
+      <section class="card">
+        <h1>NYC Citi Bike Dashboard (2022)</h1>
+        <p class="small">
+          Python • Pandas/NumPy • Data storytelling • Operational recommendations
+        </p>
 
-      <h3>Conclusion</h3>
-      <p>
-        This analysis demonstrates how time-series trends, spatial clustering,
-        and demand concentration can guide operational efficiency in mobility
-        systems. By aligning supply decisions with observed demand patterns,
-        Citi Bike can improve reliability and optimize resource allocation.
-      </p>
+        <h3>Project Overview</h3>
+        <p>
+          This project analyzes Citi Bike usage patterns in New York City during 2022
+          to support operational decision-making around bike supply, rebalancing,
+          and seasonal demand planning. The goal was to translate trip-level data
+          into actionable operational recommendations.
+        </p>
 
-    </section>
-  </main>
-</body>
+        <h3>Business Problem</h3>
+        <p>
+          Citi Bike demand fluctuates by location, time of day, and season.
+          The objective was identifying high-demand stations, understanding
+          seasonal usage patterns, and determining how operations should adapt
+          to reduce empty docks and unavailable bikes.
+        </p>
+
+        <h3>Data</h3>
+        <p>
+          The dataset included Citi Bike trip data for 2022 and corresponding
+          weather data for seasonal comparison. Analysis was performed using
+          Python (Pandas, NumPy) with visualizations built for an interactive
+          Streamlit dashboard.
+        </p>
+
+        <h3>Process</h3>
+        <ul>
+          <li>Cleaned and validated trip data (dates, station names, ride durations)</li>
+          <li>Aggregated trips by station, day, and month</li>
+          <li>Merged daily trip counts with temperature data</li>
+          <li>Ranked top 10 highest-demand stations</li>
+          <li>Built dashboard views (stations, seasonality, maps, recommendations)</li>
+        </ul>
+
+        <h3>Key Insights</h3>
+        <ul>
+          <li>Demand is heavily concentrated in central Manhattan stations</li>
+          <li>Trips increase significantly during warmer months and decline sharply in winter</li>
+          <li>Peak demand aligns with predictable commuting windows</li>
+          <li>Winter demand averages roughly half of summer demand levels</li>
+        </ul>
+
+        <div class="insight-block">
+          <h2>Visual Evidence</h2>
+          <p class="small">
+            A few key charts from the dashboard that support the insights above.
+          </p>
+
+          <h2>1) Seasonality drives demand</h2>
+          <figure class="case-figure">
+            <img
+              src="citi-monthly-trends.png"
+              alt="Average daily Citi Bike rides per month (2022)"
+              class="case-image"
+            />
+            <figcaption>
+              Ridership peaks in summer and drops sharply in winter, supporting
+              seasonal staffing and fleet allocation decisions.
+            </figcaption>
+          </figure>
+
+          <h2>2) Temperature strongly influences ridership</h2>
+          <figure class="case-figure">
+            <img
+              src="citi-trip-vs-temp.png"
+              alt="Daily Citi Bike trips vs average temperature (2022)"
+              class="case-image"
+            />
+            <figcaption>
+              Trips rise with warmer temperatures, supporting weather-aware
+              planning for capacity and rebalancing.
+            </figcaption>
+          </figure>
+
+          <h2>3) Highest-demand stations are concentrated in Manhattan</h2>
+          <figure class="case-figure">
+            <img
+              src="popular-stations-citibike.png"
+              alt="Top Citi Bike start stations (2022)"
+              class="case-image"
+            />
+            <figcaption>
+              Highest-demand stations cluster in central Manhattan, indicating
+              where more frequent rebalancing and higher dock capacity can reduce shortages.
+            </figcaption>
+          </figure>
+        </div>
+
+        <h3>Recommendations</h3>
+        <ul>
+          <li>Increase rebalancing frequency at high-demand Manhattan stations</li>
+          <li>Scale staffing and operations seasonally (summer vs winter)</li>
+          <li>Implement targeted early-morning and mid-day rebalancing cycles</li>
+          <li>Use spatial hotspot data to evaluate expansion corridors</li>
+        </ul>
+
+        <h3>Conclusion</h3>
+        <p>
+          This analysis demonstrates how time-series trends, spatial clustering,
+          and demand concentration can guide operational efficiency in mobility
+          systems. By aligning supply decisions with observed demand patterns,
+          Citi Bike can improve reliability and optimize resource allocation.
+        </p>
+      </section>
+    </main>
+  </body>
 </html>
