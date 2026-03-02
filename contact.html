@@ -1,66 +1,75 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Contact | Ageel Alramadhan</title>
-  <link rel="stylesheet" href="style.css" />
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Contact | Ageel Alramadhan</title>
+    <link rel="stylesheet" href="style.css" />
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FV6Q6EKYZ1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag("js", new Date());
-    gtag("config", "G-FV6Q6EKYZ1");
-  </script>
-</head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FV6Q6EKYZ1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-FV6Q6EKYZ1");
+    </script>
+  </head>
 
-<body>
-  <!-- Top Nav -->
-  <header class="nav">
-    <div class="container">
-      <a class="brand" href="index.html">Ageel</a>
+  <body>
+    <!-- Top Nav -->
+    <header class="nav">
+      <div class="container">
+        <a class="brand" href="index.html">Ageel</a>
 
-      <nav class="navlinks">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="projects.html">Projects</a>
-        <a class="active" href="contact.html">Contact</a>
-        <a href="Ageel-Alramadhan-Resume.pdf" target="_blank" rel="noopener">Resume</a>
-      </nav>
-    </div>
-  </header>
+        <nav class="navlinks">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="projects.html">Projects</a>
+          <a class="active" href="contact.html">Contact</a>
+          <a
+            href="Ageel-Alramadhan-Resume.pdf"
+            target="_blank"
+            rel="noopener"
+            onclick="gtag('event','resume_click',{event_category:'navigation',event_label:'resume_nav'});"
+          >
+            Resume
+          </a>
+        </nav>
+      </div>
+    </header>
 
-  <!-- Page Content -->
-  <main class="container">
-    <section class="card">
-      <h1>Contact</h1>
+    <!-- Page Content -->
+    <main class="container">
+      <section class="card">
+        <h1>Contact</h1>
 
-      <p>I’m open to Data Analyst opportunities and collaborations.</p>
+        <p>I’m open to Data Analyst opportunities and collaborations.</p>
 
-      <p>
-        <strong>Email:</strong><br />
-        <a
-          href="mailto:akeeldsr@gmail.com"
-          onclick="gtag('event','email_click',{event_category:'contact',event_label:'email'});"
-        >
-          akeeldsr@gmail.com
-        </a>
-      </p>
+        <p>
+          <strong>Email:</strong><br />
+          <a
+            href="mailto:akeeldsr@gmail.com"
+            onclick="gtag('event','email_click',{event_category:'contact',event_label:'email'});"
+          >
+            akeeldsr@gmail.com
+          </a>
+        </p>
 
-      <p>
-        <strong>LinkedIn:</strong><br />
-        <a
-          href="https://www.linkedin.com/in/ageel-alramadhan/"
-          target="_blank"
-          rel="noopener"
-          onclick="gtag('event','linkedin_click',{event_category:'contact',event_label:'linkedin_profile'});"
-        >
-          linkedin.com/in/ageel-alramadhan
-        </a>
-      </p>
-    </section>
-  </main>
-</body>
+        <p>
+          <strong>LinkedIn:</strong><br />
+          <a
+            href="https://www.linkedin.com/in/ageel-alramadhan/"
+            target="_blank"
+            rel="noopener"
+            onclick="gtag('event','linkedin_click',{event_category:'contact',event_label:'linkedin_profile'});"
+          >
+            linkedin.com/in/ageel-alramadhan
+          </a>
+        </p>
+      </section>
+    </main>
+  </body>
 </html>
