@@ -1,98 +1,117 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Projects | Ageel Alramadhan</title>
-  <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Projects | Ageel Alramadhan</title>
+    <link rel="stylesheet" href="style.css" />
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FV6Q6EKYZ1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-FV6Q6EKYZ1');
-  </script>
-</head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FV6Q6EKYZ1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-FV6Q6EKYZ1");
+    </script>
+  </head>
 
-<body>
-  <!-- Top Nav -->
-  <header class="nav">
-    <div class="container">
-      <a class="brand" href="index.html">Ageel</a>
+  <body>
+    <!-- Top Nav -->
+    <header class="nav">
+      <div class="container">
+        <a class="brand" href="index.html">Ageel</a>
 
-      <nav class="navlinks">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a class="active" href="projects.html">Projects</a>
-        <a href="contact.html">Contact</a>
-        <a href="Ageel-Alramadhan-Resume.pdf" target="_blank" rel="noopener">Resume</a>
-      </nav>
-    </div>
-  </header>
+        <nav class="navlinks">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a class="active" href="projects.html">Projects</a>
+          <a href="contact.html">Contact</a>
+          <a
+            href="Ageel-Alramadhan-Resume.pdf"
+            target="_blank"
+            rel="noopener"
+            onclick="gtag('event','resume_click',{event_category:'navigation',event_label:'resume_nav'});"
+          >
+            Resume
+          </a>
+        </nav>
+      </div>
+    </header>
 
-  <!-- Page Content -->
-  <main class="container">
-<section class="card">
-  <h1>Projects</h1>
+    <!-- Page Content -->
+    <main class="container">
+      <section class="card">
+        <h1>Projects</h1>
 
-  <!-- Instacart -->
-  <div class="project">
-    <div>
-      <h3>Instacart Market Basket Analysis</h3>
-      <p class="small">
-        Python • Pandas • NumPy • Behavioral segmentation • Reorder analysis
-      </p>
-      <p>
-        Exploratory data analysis examining customer purchasing behavior,
-        product popularity, and ordering patterns to generate actionable
-        business insights.
-      </p>
+        <!-- Instacart -->
+        <div class="project">
+          <div>
+            <h3>Instacart Market Basket Analysis</h3>
+            <p class="small">
+              Python • Pandas • NumPy • Behavioral segmentation • Reorder analysis
+            </p>
+            <p>
+              Exploratory data analysis examining customer purchasing behavior, product popularity,
+              and ordering patterns to generate actionable business insights.
+            </p>
 
-      <a class="button" href="instacart-case-study.html">
-        View Full Case Study
-      </a>
-    </div>
-  </div>
+            <a
+              class="button"
+              href="instacart-case-study.html"
+              onclick="gtag('event','case_study_click',{event_category:'projects',event_label:'instacart'});"
+            >
+              View Full Case Study
+            </a>
+          </div>
+        </div>
 
-  <!-- Citi Bike -->
-  <div class="project">
-    <div>
-      <h3>NYC Citi Bike Dashboard (2022)</h3>
-      <p class="small">
-        Python • Pandas • Time-series analysis • Operational insights
-      </p>
-      <p>
-        Interactive dashboard analyzing trip patterns, seasonality, and 
-        station-level demand to support bike supply and rebalancing decisions.
-      </p>
+        <!-- Citi Bike -->
+        <div class="project">
+          <div>
+            <h3>NYC Citi Bike Dashboard (2022)</h3>
+            <p class="small">
+              Python • Pandas • Time-series analysis • Operational insights
+            </p>
+            <p>
+              Interactive dashboard analyzing trip patterns, seasonality, and station-level demand
+              to support bike supply and rebalancing decisions.
+            </p>
 
-      <a class="button" href="citi-bike-case-study.html">
-        View Full Case Study
-      </a>
-    </div>
-  </div>
+            <a
+              class="button"
+              href="citi-bike-case-study.html"
+              onclick="gtag('event','case_study_click',{event_category:'projects',event_label:'citi_bike'});"
+            >
+              View Full Case Study
+            </a>
+          </div>
+        </div>
 
-  <!-- Rockbuster -->
-  <div class="project">
-    <div>
-      <h3>Rockbuster Strategy Analysis (SQL)</h3>
-      <p class="small">
-        SQL • Tableau • Revenue concentration • Market prioritization
-      </p>
-      <p>
-        SQL-based analysis of customer revenue concentration and geographic 
-        demand to guide expansion and retention strategy.
-      </p>
+        <!-- Rockbuster -->
+        <div class="project">
+          <div>
+            <h3>Rockbuster Strategy Analysis (SQL)</h3>
+            <p class="small">
+              SQL • Tableau • Revenue concentration • Market prioritization
+            </p>
+            <p>
+              SQL-based analysis of customer revenue concentration and geographic demand to guide
+              expansion and retention strategy.
+            </p>
 
-      <a class="button" href="rockbuster-case-study.html">
-        View Full Case Study
-      </a>
-    </div>
-  </div>
-
-</section>
-  </main>
-</body>
+            <a
+              class="button"
+              href="rockbuster-case-study.html"
+              onclick="gtag('event','case_study_click',{event_category:'projects',event_label:'rockbuster'});"
+            >
+              View Full Case Study
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
 </html>
