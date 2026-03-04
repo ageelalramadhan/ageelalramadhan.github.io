@@ -4,10 +4,20 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Contact | Ageel Alramadhan</title>
+
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="consent.css" />
 
-
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FV6Q6EKYZ1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-FV6Q6EKYZ1");
+    </script>
   </head>
 
   <body>
@@ -35,7 +45,8 @@
 
     <!-- Page Content -->
     <main class="container">
-      <section class="card">
+      <!-- Force the card to use the same full column width everywhere -->
+      <section class="card" style="width: 100%; max-width: 920px; margin: 0;">
         <h1>Contact</h1>
 
         <p>I’m open to Data Analyst opportunities and collaborations.</p>
@@ -65,35 +76,32 @@
     </main>
 
     <!-- Footer -->
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-left">
-      <a href="impressum.html">Impressum</a>
-      <span class="separator">|</span>
-      <a href="datenschutz.html">Datenschutzerklärung</a>
-    </div>
+    <footer class="footer">
+      <div class="footer-inner">
+        <div class="footer-left">
+          <a href="impressum.html">Impressum</a>
+          <span class="separator">|</span>
+          <a href="datenschutz.html">Datenschutzerklärung</a>
+        </div>
 
-    <div class="footer-right">
-      © 2026 Ageel Alramadhan
-    </div>
-  </div>
-</footer>
+        <div class="footer-right">© 2026 Ageel Alramadhan</div>
+      </div>
+    </footer>
 
     <!-- Cookie Banner -->
-<div id="cookie-banner" class="cookie-banner" style="display:none;">
-  <div class="cookie-inner">
-    <p>
-      Diese Website verwendet Google Analytics, um die Nutzung zu analysieren.
-      Sie können zustimmen oder ablehnen.
-    </p>
-    <div class="cookie-actions">
-      <button class="cookie-btn" data-cookie-reject>Ablehnen</button>
-      <button class="cookie-btn primary" data-cookie-accept>Akzeptieren</button>
+    <div id="cookie-banner" class="cookie-banner" style="display: none;">
+      <div class="cookie-inner">
+        <p>
+          Diese Website verwendet Google Analytics, um die Nutzung zu analysieren.
+          Sie können zustimmen oder ablehnen.
+        </p>
+        <div class="cookie-actions">
+          <button class="cookie-btn" data-cookie-reject>Ablehnen</button>
+          <button class="cookie-btn primary" data-cookie-accept>Akzeptieren</button>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
 
-<script src="consent.js"></script>
-    
+    <script src="consent.js"></script>
   </body>
 </html>
