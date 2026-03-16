@@ -32,6 +32,16 @@
         color: var(--muted);
         margin-top: 6px;
       }
+
+      pre.sql-block {
+        background: #f6f8fa;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 14px;
+        overflow-x: auto;
+        font-size: 13px;
+        margin: 12px 0 18px 0;
+      }
     </style>
   </head>
 
@@ -96,6 +106,65 @@
           <li>Identified revenue concentration patterns</li>
           <li>Translated findings into business recommendations</li>
         </ul>
+
+        <h3>Example SQL Queries</h3>
+
+        <p><strong>Query 1: Identify top revenue customers and their location</strong></p>
+
+<pre class="sql-block">
+SELECT
+  cu.customer_id,
+  cu.first_name,
+  cu.last_name,
+  co.country,
+  ci.city,
+  SUM(p.amount) AS total_amount_paid
+FROM customer AS cu
+JOIN address AS a
+  ON cu.address_id = a.address_id
+JOIN city AS ci
+  ON a.city_id = ci.city_id
+JOIN country AS co
+  ON ci.country_id = co.country_id
+JOIN payment AS p
+  ON cu.customer_id = p.customer_id
+GROUP BY
+  cu.customer_id,
+  cu.first_name,
+  cu.last_name,
+  co.country,
+  ci.city
+ORDER BY total_amount_paid DESC
+LIMIT 5;
+</pre>
+
+        <p class="small">
+          This query joins customer, payment, and geographic tables to calculate total revenue per customer
+          and identify the highest-value customers and where they are located.
+        </p>
+
+        <p><strong>Query 2: Customer distribution by country</strong></p>
+
+<pre class="sql-block">
+SELECT
+  co.country,
+  COUNT(DISTINCT cu.customer_id) AS customer_count
+FROM customer AS cu
+JOIN address AS a
+  ON cu.address_id = a.address_id
+JOIN city AS ci
+  ON a.city_id = ci.city_id
+JOIN country AS co
+  ON ci.country_id = co.country_id
+GROUP BY co.country
+ORDER BY customer_count DESC
+LIMIT 10;
+</pre>
+
+        <p class="small">
+          This query aggregates customers by country to identify geographic markets with the largest
+          customer base and potential revenue opportunities.
+        </p>
 
         <h3>Key Insights</h3>
         <ul>
