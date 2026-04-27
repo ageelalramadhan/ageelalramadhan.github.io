@@ -4,57 +4,47 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Ageel Alramadhan | Data Analyst</title>
-
+    <meta name="description" content="Ageel Alramadhan — Data Analyst specializing in SQL, Python, and business insights. View portfolio projects and case studies." />
+    <meta name="author" content="Ageel Alramadhan" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Ageel Alramadhan | Data Analyst" />
+    <meta property="og:description" content="Data Analyst specializing in SQL, Python, and business insights. View portfolio projects and case studies." />
+    <meta property="og:url" content="https://ageelalramadhan.github.io/" />
+    <meta property="og:image" content="https://ageelalramadhan.github.io/og-image.png" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="consent.css" />
-
   </head>
-
   <body>
-    <!-- Top Nav -->
     <header class="nav">
       <div class="container">
         <a class="brand" href="index.html">Ageel</a>
-
-        <nav class="navlinks">
+        <button class="nav-toggle" aria-label="Toggle navigation" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="navlinks" aria-label="Main navigation">
           <a class="active" href="index.html">Home</a>
           <a href="about.html">About</a>
           <a href="projects.html">Projects</a>
           <a href="contact.html">Contact</a>
-          <a
-            href="Ageel-Alramadhan-Resume.pdf"
-            target="_blank"
-            rel="noopener"
-            onclick="gtag('event','resume_click',{event_category:'navigation',event_label:'resume_nav'});"
-          >
-            Resume
-          </a>
+          <a href="Ageel-Alramadhan-Resume.pdf" target="_blank" rel="noopener noreferrer"
+            onclick="gtag('event','resume_click',{event_category:'navigation',event_label:'resume_nav'});">Resume</a>
         </nav>
       </div>
     </header>
-
-    <!-- Page Content -->
     <main class="container">
       <section class="card">
         <h1>Ageel Alramadhan</h1>
         <h2>Data Analyst | SQL • Python • Business Insights</h2>
-
-        <p>
-          Hi, I’m Ageel. I analyze performance data, challenge assumptions,
-          and turn messy datasets into decision-ready insights.
-        </p>
-
+        <p>Hi, I'm Ageel. I analyze performance data, challenge assumptions,
+          and turn messy datasets into decision-ready insights.</p>
         <a class="button" href="projects.html">View my projects</a>
-
-        <p class="small" style="margin-top: 20px;">
-          <a href="https://linkedin.com/in/ageel-alramadhan" target="_blank" rel="noopener">
-            Connect with me on LinkedIn
-          </a>
+        <p class="small mt-20">
+          <a href="https://linkedin.com/in/ageel-alramadhan" target="_blank" rel="noopener noreferrer">
+            Connect with me on LinkedIn</a>
         </p>
       </section>
     </main>
-
-    <!-- Footer -->
     <footer class="footer">
       <div class="footer-inner">
         <div class="footer-left">
@@ -62,28 +52,18 @@
           <span class="separator">|</span>
           <a href="datenschutz.html">Datenschutzerklärung</a>
         </div>
-
-        <div class="footer-right">
-          © 2026 Ageel Alramadhan
-        </div>
+        <div class="footer-right">© 2026 Ageel Alramadhan</div>
       </div>
     </footer>
-
-    <!-- Cookie Banner -->
     <div id="cookie-banner" class="cookie-banner" style="display:none;">
       <div class="cookie-inner">
-        <p>
-          Diese Website verwendet Google Analytics, um die Nutzung zu analysieren.
-          Sie können zustimmen oder ablehnen.
-        </p>
+        <p>Diese Website verwendet Google Analytics, um die Nutzung zu analysieren. Sie können zustimmen oder ablehnen.</p>
         <div class="cookie-actions">
           <button class="cookie-btn" data-cookie-reject>Ablehnen</button>
           <button class="cookie-btn primary" data-cookie-accept>Akzeptieren</button>
         </div>
       </div>
     </div>
-
     <script src="consent.js"></script>
-
   </body>
 </html>

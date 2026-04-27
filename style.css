@@ -241,3 +241,108 @@ a{
 .separator{
   color:var(--muted);
 }
+
+/* ===== Case Study Pages ===== */
+.case-image {
+  display: block;
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  margin: 10px auto 6px auto;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+}
+
+figure.case-figure {
+  margin: 12px auto 18px auto;
+  text-align: center;
+  max-width: 620px;
+}
+
+figure.case-figure figcaption {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+.insight-block {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.insight-block h2 {
+  font-size: 18px;
+  margin: 18px 0 8px 0;
+}
+
+pre.sql-block {
+  background: #f6f8fa;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  overflow-x: auto;
+  font-size: 13px;
+  margin: 12px 0 18px 0;
+}
+
+/* ===== Utility ===== */
+.mt-20 { margin-top: 20px; }
+
+/* ===== Project cards on projects.html ===== */
+.project {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.project:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* ===== Mobile nav ===== */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: all 0.2s;
+}
+
+@media (max-width: 640px) {
+  h1 { font-size: 28px; }
+
+  .nav-toggle { display: flex; }
+
+  .navlinks {
+    display: none;
+    position: absolute;
+    top: 56px;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    flex-direction: column;
+    gap: 4px;
+    padding: 10px 16px;
+    z-index: 100;
+  }
+
+  .navlinks.open { display: flex; }
+
+  .nav .container {
+    position: relative;
+  }
+}

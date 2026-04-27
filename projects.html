@@ -4,137 +4,89 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Projects | Ageel Alramadhan</title>
+    <meta name="description" content="Data analytics portfolio projects by Ageel Alramadhan — Instacart market basket analysis, NYC Citi Bike dashboard, and Rockbuster SQL strategy analysis." />
+    <meta name="author" content="Ageel Alramadhan" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Projects | Ageel Alramadhan" />
+    <meta property="og:description" content="Data analytics portfolio — Instacart, Citi Bike, and Rockbuster case studies using Python, SQL, and Tableau." />
+    <meta property="og:url" content="https://ageelalramadhan.github.io/projects.html" />
+    <meta property="og:image" content="https://ageelalramadhan.github.io/og-image.png" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="consent.css" />
-
   </head>
-
   <body>
-    <!-- Top Nav -->
     <header class="nav">
       <div class="container">
         <a class="brand" href="index.html">Ageel</a>
-
-        <nav class="navlinks">
+        <button class="nav-toggle" aria-label="Toggle navigation" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="navlinks" aria-label="Main navigation">
           <a href="index.html">Home</a>
           <a href="about.html">About</a>
           <a class="active" href="projects.html">Projects</a>
           <a href="contact.html">Contact</a>
-          <a
-            href="Ageel-Alramadhan-Resume.pdf"
-            target="_blank"
-            rel="noopener"
-            onclick="gtag('event','resume_click',{event_category:'navigation',event_label:'resume_nav'});"
-          >
-            Resume
-          </a>
+          <a href="Ageel-Alramadhan-Resume.pdf" target="_blank" rel="noopener noreferrer"
+            onclick="gtag('event','resume_click',{event_category:'navigation',event_label:'resume_nav'});">Resume</a>
         </nav>
       </div>
     </header>
-
-    <!-- Page Content -->
     <main class="container">
       <section class="card">
         <h1>Projects</h1>
 
-        <!-- Instacart -->
         <div class="project">
-          <div>
-            <h3>Instacart Market Basket Analysis</h3>
-            <p class="small">
-              Python • Pandas • NumPy • Behavioral segmentation • Reorder analysis
-            </p>
-            <p>
-              Exploratory data analysis examining customer purchasing behavior, product popularity,
-              and ordering patterns to generate actionable business insights.
-            </p>
-
-            <a
-              class="button"
-              href="instacart-case-study.html"
-              onclick="gtag('event','case_study_click',{event_category:'projects',event_label:'instacart'});"
-            >
-              View Full Case Study
-            </a>
-          </div>
+          <h3>Instacart Market Basket Analysis</h3>
+          <p class="small">Python • Pandas • NumPy • Behavioral segmentation • Reorder analysis</p>
+          <p>Exploratory data analysis examining customer purchasing behavior, product popularity,
+            and ordering patterns to generate actionable business insights.</p>
+          <a class="button" href="instacart-case-study.html"
+            onclick="gtag('event','case_study_click',{event_category:'projects',event_label:'instacart'});">
+            View Full Case Study</a>
         </div>
 
-        <!-- Citi Bike -->
         <div class="project">
-          <div>
-            <h3>NYC Citi Bike Dashboard (2022)</h3>
-            <p class="small">
-              Python • Pandas • Time-series analysis • Operational insights
-            </p>
-            <p>
-              Interactive dashboard analyzing trip patterns, seasonality, and station-level demand
-              to support bike supply and rebalancing decisions.
-            </p>
-
-            <a
-              class="button"
-              href="citi-bike-case-study.html"
-              onclick="gtag('event','case_study_click',{event_category:'projects',event_label:'citi_bike'});"
-            >
-              View Full Case Study
-            </a>
-          </div>
+          <h3>NYC Citi Bike Dashboard (2022)</h3>
+          <p class="small">Python • Pandas • Time-series analysis • Operational insights</p>
+          <p>Interactive dashboard analyzing trip patterns, seasonality, and station-level demand
+            to support bike supply and rebalancing decisions.</p>
+          <a class="button" href="citi-bike-case-study.html"
+            onclick="gtag('event','case_study_click',{event_category:'projects',event_label:'citi_bike'});">
+            View Full Case Study</a>
         </div>
 
-        <!-- Rockbuster -->
         <div class="project">
-          <div>
-            <h3>Rockbuster Strategy Analysis (SQL)</h3>
-            <p class="small">
-              SQL • Tableau • Revenue concentration • Market prioritization
-            </p>
-            <p>
-              SQL-based analysis of customer revenue concentration and geographic demand to guide
-              expansion and retention strategy.
-            </p>
-
-            <a
-              class="button"
-              href="rockbuster-case-study.html"
-              onclick="gtag('event','case_study_click',{event_category:'projects',event_label:'rockbuster'});"
-            >
-              View Full Case Study
-            </a>
-          </div>
+          <h3>Rockbuster Strategy Analysis (SQL)</h3>
+          <p class="small">SQL • Tableau • Revenue concentration • Market prioritization</p>
+          <p>SQL-based analysis of customer revenue concentration and geographic demand to guide
+            expansion and retention strategy.</p>
+          <a class="button" href="rockbuster-case-study.html"
+            onclick="gtag('event','case_study_click',{event_category:'projects',event_label:'rockbuster'});">
+            View Full Case Study</a>
         </div>
+
       </section>
     </main>
-
-    <!-- Footer -->
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-left">
-      <a href="impressum.html">Impressum</a>
-      <span class="separator">|</span>
-      <a href="datenschutz.html">Datenschutzerklärung</a>
+    <footer class="footer">
+      <div class="footer-inner">
+        <div class="footer-left">
+          <a href="impressum.html">Impressum</a>
+          <span class="separator">|</span>
+          <a href="datenschutz.html">Datenschutzerklärung</a>
+        </div>
+        <div class="footer-right">© 2026 Ageel Alramadhan</div>
+      </div>
+    </footer>
+    <div id="cookie-banner" class="cookie-banner" style="display:none;">
+      <div class="cookie-inner">
+        <p>Diese Website verwendet Google Analytics, um die Nutzung zu analysieren. Sie können zustimmen oder ablehnen.</p>
+        <div class="cookie-actions">
+          <button class="cookie-btn" data-cookie-reject>Ablehnen</button>
+          <button class="cookie-btn primary" data-cookie-accept>Akzeptieren</button>
+        </div>
+      </div>
     </div>
-
-    <div class="footer-right">
-      © 2026 Ageel Alramadhan
-    </div>
-  </div>
-</footer>
-
-    <!-- Cookie Banner -->
-<div id="cookie-banner" class="cookie-banner" style="display:none;">
-  <div class="cookie-inner">
-    <p>
-      Diese Website verwendet Google Analytics, um die Nutzung zu analysieren.
-      Sie können zustimmen oder ablehnen.
-    </p>
-    <div class="cookie-actions">
-      <button class="cookie-btn" data-cookie-reject>Ablehnen</button>
-      <button class="cookie-btn primary" data-cookie-accept>Akzeptieren</button>
-    </div>
-  </div>
-</div>
-
-<script src="consent.js"></script>
-    
+    <script src="consent.js"></script>
   </body>
 </html>
