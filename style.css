@@ -7,13 +7,13 @@
 
 :root {
   /* Sidebar */
-  --sidebar-bg: #0f1117;
+  --sidebar-bg: #1e2638;
   --sidebar-width: 220px;
-  --sidebar-text: #a0a8b8;
+  --sidebar-text: #c9d3e0;
   --sidebar-active: #ffffff;
-  --sidebar-active-bg: rgba(255,255,255,0.08);
-  --sidebar-border: rgba(255,255,255,0.07);
-  --sidebar-accent: #00c97a;
+  --sidebar-active-bg: rgba(255,255,255,0.10);
+  --sidebar-border: rgba(255,255,255,0.10);
+  --sidebar-accent: #3dd68c;
 
   /* Content area */
   --bg: #f4f5f7;
@@ -25,8 +25,8 @@
   --accent-dark: #007a4a;
 
   /* Metric cards */
-  --card-1: #0f1117;
-  --card-2: #1a2332;
+  --card-1: #1e2638;
+  --card-2: #253044;
   --card-3: #0d2218;
 
   /* Fonts */
@@ -93,7 +93,7 @@ html, body {
 .sidebar-section-label {
   font-size: 10px;
   font-family: var(--font-mono);
-  color: rgba(160,168,184,0.45);
+  color: rgba(200,215,230,0.50);
   letter-spacing: 1.2px;
   text-transform: uppercase;
   padding: 0 20px 6px;
@@ -142,7 +142,7 @@ html, body {
 .sidebar-footer a {
   display: block;
   font-size: 12px;
-  color: rgba(160,168,184,0.5);
+  color: rgba(200,215,230,0.65);
   text-decoration: none;
   padding: 3px 0;
   transition: color 0.15s;
@@ -253,7 +253,7 @@ html, body {
   margin-top: 4px;
 }
 
-.metric-card.dark .metric-sub { color: rgba(160,168,184,0.5); }
+.metric-card.dark .metric-sub { color: rgba(200,215,230,0.65); }
 
 /* ===== PANEL / CARD ===== */
 .panel {
