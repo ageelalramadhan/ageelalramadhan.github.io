@@ -1,10 +1,11 @@
-/* Cookie Banner (minimal + consistent with site) */
+/* Cookie Banner */
 .cookie-banner {
   position: fixed;
-  left: 20px;
   right: 20px;
   bottom: 20px;
+  left: auto;
   z-index: 9999;
+  max-width: 420px;
 }
 
 .cookie-banner .cookie-inner {
