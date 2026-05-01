@@ -1,14 +1,14 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Contact | Ageel Alramadhan</title>
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="consent.css" />
+  <link rel="stylesheet" href="consent.css"/>
   
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -16,19 +16,19 @@
     html{scroll-behavior:smooth;}
     body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
 
-    /* ── NAV ── */
+    /* NAV */
     nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(15,15,15,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;gap:20px;}
     .nav-logo{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--accent);text-decoration:none;letter-spacing:1px;flex-shrink:0;}
     .nav-center{display:flex;gap:28px;list-style:none;align-items:center;}
-    .nav-center a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;letter-spacing:0.5px;transition:color 0.2s;}
+    .nav-center a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;transition:color 0.2s;}
     .nav-center a:hover{color:var(--text);}
     .nav-right{display:flex;gap:12px;align-items:center;flex-shrink:0;}
-    .nav-lang{font-size:12px;color:var(--muted);text-decoration:none;border:1px solid var(--border);padding:5px 12px;transition:all 0.2s;font-family:'JetBrains Mono',monospace;}
+    .nav-lang{font-size:12px;color:var(--muted);text-decoration:none;border:1px solid var(--border);padding:5px 12px;transition:all 0.2s;font-family:'JetBrains Mono',monospace;white-space:nowrap;}
     .nav-lang:hover{border-color:var(--accent);color:var(--accent);}
-    .nav-back{font-size:12px;color:var(--muted);text-decoration:none;font-family:'JetBrains Mono',monospace;transition:color 0.2s;}
+    .nav-back{font-size:12px;color:var(--muted);text-decoration:none;font-family:'JetBrains Mono',monospace;transition:color 0.2s;white-space:nowrap;}
     .nav-back:hover{color:var(--text);}
 
-    /* ── FOOTER ── */
+    /* FOOTER */
     footer{background:var(--bg2);border-top:1px solid var(--border);padding:36px 40px;}
     .footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;}
     .footer-brand{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--accent);margin-bottom:8px;}
@@ -37,13 +37,13 @@
     .footer-links a{color:var(--muted);text-decoration:none;font-size:13px;font-family:'JetBrains Mono',monospace;transition:color 0.2s;}
     .footer-links a:hover{color:var(--accent);}
 
-    /* ── BACK TO TOP ── */
+    /* BACK TO TOP */
     .back-top{position:fixed;bottom:28px;right:28px;z-index:200;width:44px;height:44px;background:var(--accent);color:#0f0f0f;border:none;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s,transform 0.2s;border-radius:50%;}
     .back-top.visible{opacity:1;pointer-events:auto;}
     .back-top:hover{transform:translateY(-3px);}
 
-    /* ── BTN ── */
-    .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;font-family:'JetBrains Mono',monospace;font-size:13px;text-decoration:none;transition:all 0.2s;cursor:pointer;border:none;white-space:nowrap;}
+    /* BTNS */
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;font-family:'JetBrains Mono',monospace;font-size:14px;text-decoration:none;transition:all 0.2s;cursor:pointer;border:none;white-space:nowrap;}
     .btn-accent{background:var(--accent);color:#0f0f0f;font-weight:600;}
     .btn-accent:hover{background:#4df0a0;transform:translateY(-1px);}
     .btn-outline{background:transparent;color:var(--text);border:1px solid var(--border);}
@@ -58,24 +58,24 @@
     .page-wrap{max-width:900px;margin:0 auto;padding:100px 40px 80px;}
     .page-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:12px;}
     .page-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,56px);letter-spacing:2px;margin-bottom:8px;}
-    .page-subtitle{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);margin-bottom:48px;padding-bottom:32px;border-bottom:1px solid var(--border);}
-    .content-block{font-size:15px;color:#c0c0c0;line-height:1.8;}
-    .content-block h2{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:1px;color:var(--text);margin:40px 0 12px;}
-    .content-block h3{font-size:16px;font-weight:600;color:var(--text);margin:28px 0 10px;}
+    .page-subtitle{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--muted);margin-bottom:48px;padding-bottom:32px;border-bottom:1px solid var(--border);}
+    .content-block{font-size:16px;color:#c0c0c0;line-height:1.8;}
+    .content-block h2{font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:1px;color:var(--text);margin:44px 0 14px;}
+    .content-block h3{font-size:17px;font-weight:600;color:var(--text);margin:30px 0 10px;}
     .content-block p{margin-bottom:16px;}
     .content-block a{color:var(--accent);text-decoration:none;}
     .content-block a:hover{text-decoration:underline;}
     .content-block ul{margin:0 0 20px 20px;}
-    .content-block li{margin-bottom:6px;}
+    .content-block li{margin-bottom:8px;}
     .content-block strong{color:var(--text);}
     .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:32px;}
     .contact-item{display:flex;flex-direction:column;gap:6px;padding:20px;background:var(--surface);border:1px solid var(--border);transition:border-color 0.2s;text-decoration:none;}
     .contact-item:hover{border-color:var(--accent);}
     .contact-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
-    .contact-value{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent);}
+    .contact-value{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--accent);}
     .about-hero{display:grid;grid-template-columns:200px 1fr;gap:40px;align-items:start;margin-bottom:48px;}
     .about-photo{width:200px;height:200px;border-radius:50%;object-fit:cover;object-position:center top;border:2px solid var(--accent);display:block;}
-    .skill-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--border);font-size:15px;}
+    .skill-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--border);font-size:16px;}
     .skill-row:last-child{border-bottom:none;}
     .skill-tools{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent);}
     .two-col{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin:32px 0;}
@@ -85,8 +85,8 @@
     .proj-item{background:var(--surface);border:1px solid var(--border);padding:20px;text-decoration:none;color:inherit;display:block;transition:border-color 0.2s;}
     .proj-item:hover{border-color:var(--accent);}
     .proj-item-type{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:6px;}
-    .proj-item-title{font-size:15px;font-weight:600;margin-bottom:6px;}
-    .proj-item-tools{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);}
+    .proj-item-title{font-size:16px;font-weight:600;margin-bottom:6px;color:var(--text);}
+    .proj-item-tools{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);}
     .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-bottom:40px;}
     .stat-box{background:var(--surface);border:1px solid var(--border);padding:24px;text-align:center;}
     .stat-num{font-family:'Bebas Neue',sans-serif;font-size:40px;color:var(--accent);line-height:1;margin-bottom:6px;}
@@ -105,7 +105,7 @@
     <li><a href="contact.html">Contact</a></li>
   </ul>
   <div class="nav-right">
-    <a href="Ageel-Alramadhan-Resume.pdf" target="_blank" rel="noopener" class="nav-lang">↓ CV</a>
+    
     <a href="contact-de.html" class="nav-lang">🇩🇪 Deutsch</a>
   </div>
 </nav>
@@ -114,7 +114,7 @@
   <h1 class="page-title">Contact</h1>
   <div class="page-subtitle">Open to Data Analyst roles in Hamburg & across Germany</div>
   <div class="content-block">
-<p>Actively seeking positions in data analytics, business intelligence, or related fields. Bilingual in English and German (B1–B2). Feel free to reach out.</p>
+<p>Actively seeking positions in data analytics, business intelligence, or related fields. Bilingual in English and German (B1–B2).</p>
 <div style="margin-bottom:32px;display:flex;gap:12px;flex-wrap:wrap;">
   <a href="Ageel-Alramadhan-Resume.pdf" target="_blank" rel="noopener" class="btn btn-accent">↓ CV (English)</a>
   <a href="Ageel-Alramadhan-Lebenslauf.pdf" target="_blank" rel="noopener" class="btn btn-outline">↓ Lebenslauf (DE)</a>
@@ -138,24 +138,17 @@
       <a href="about.html">About</a>
       <a href="projects.html">Projects</a>
       <a href="contact.html">Contact</a>
-      <a href="Ageel-Alramadhan-Resume.pdf" target="_blank" rel="noopener">↓ CV</a>
       <a href="https://www.linkedin.com/in/ageel-alramadhan/" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://github.com/ageelalramadhan" target="_blank" rel="noopener">GitHub</a>
       <a href="impressum-en.html">Legal Notice</a>
       <a href="datenschutz-en.html">Privacy Policy</a>
-      <a href="index-de.html">🇩🇪 Deutsch</a>
     </div>
   </div>
 </footer>
 <button class="back-top" id="back-top" aria-label="Back to top">↑</button>
 <div id="cookie-banner" class="cookie-banner" style="display:none;">
-  <div class="cookie-inner">
-    <p>This website uses Google Analytics. You can accept or decline.</p>
-    <div class="cookie-actions">
-      <button class="cookie-btn" data-cookie-reject>Decline</button>
-      <button class="cookie-btn primary" data-cookie-accept>Accept</button>
-    </div>
-  </div>
+  <div class="cookie-inner"><p>This website uses Google Analytics. You can accept or decline.</p>
+  <div class="cookie-actions"><button class="cookie-btn" data-cookie-reject>Decline</button><button class="cookie-btn primary" data-cookie-accept>Accept</button></div></div>
 </div>
 <script src="consent.js"></script>
 <script>

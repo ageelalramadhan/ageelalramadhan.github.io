@@ -1,33 +1,33 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Instacart Market Basket Analysis | Ageel Alramadhan</title>
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="consent.css" />
+  <link rel="stylesheet" href="consent.css"/>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     :root{--bg:#0f0f0f;--bg2:#161616;--surface:#1e1e1e;--border:#2e2e2e;--text:#f0f0f0;--muted:#888;--accent:#3dd68c;--accent2:#00d4ff;}
     html{scroll-behavior:smooth;}
     body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
 
-    /* ── NAV ── */
+    /* NAV */
     nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(15,15,15,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;gap:20px;}
     .nav-logo{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--accent);text-decoration:none;letter-spacing:1px;flex-shrink:0;}
     .nav-center{display:flex;gap:28px;list-style:none;align-items:center;}
-    .nav-center a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;letter-spacing:0.5px;transition:color 0.2s;}
+    .nav-center a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;transition:color 0.2s;}
     .nav-center a:hover{color:var(--text);}
     .nav-right{display:flex;gap:12px;align-items:center;flex-shrink:0;}
-    .nav-lang{font-size:12px;color:var(--muted);text-decoration:none;border:1px solid var(--border);padding:5px 12px;transition:all 0.2s;font-family:'JetBrains Mono',monospace;}
+    .nav-lang{font-size:12px;color:var(--muted);text-decoration:none;border:1px solid var(--border);padding:5px 12px;transition:all 0.2s;font-family:'JetBrains Mono',monospace;white-space:nowrap;}
     .nav-lang:hover{border-color:var(--accent);color:var(--accent);}
-    .nav-back{font-size:12px;color:var(--muted);text-decoration:none;font-family:'JetBrains Mono',monospace;transition:color 0.2s;}
+    .nav-back{font-size:12px;color:var(--muted);text-decoration:none;font-family:'JetBrains Mono',monospace;transition:color 0.2s;white-space:nowrap;}
     .nav-back:hover{color:var(--text);}
 
-    /* ── FOOTER ── */
+    /* FOOTER */
     footer{background:var(--bg2);border-top:1px solid var(--border);padding:36px 40px;}
     .footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;}
     .footer-brand{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--accent);margin-bottom:8px;}
@@ -36,13 +36,13 @@
     .footer-links a{color:var(--muted);text-decoration:none;font-size:13px;font-family:'JetBrains Mono',monospace;transition:color 0.2s;}
     .footer-links a:hover{color:var(--accent);}
 
-    /* ── BACK TO TOP ── */
+    /* BACK TO TOP */
     .back-top{position:fixed;bottom:28px;right:28px;z-index:200;width:44px;height:44px;background:var(--accent);color:#0f0f0f;border:none;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s,transform 0.2s;border-radius:50%;}
     .back-top.visible{opacity:1;pointer-events:auto;}
     .back-top:hover{transform:translateY(-3px);}
 
-    /* ── BTN ── */
-    .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;font-family:'JetBrains Mono',monospace;font-size:13px;text-decoration:none;transition:all 0.2s;cursor:pointer;border:none;white-space:nowrap;}
+    /* BTNS */
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;font-family:'JetBrains Mono',monospace;font-size:14px;text-decoration:none;transition:all 0.2s;cursor:pointer;border:none;white-space:nowrap;}
     .btn-accent{background:var(--accent);color:#0f0f0f;font-weight:600;}
     .btn-accent:hover{background:#4df0a0;transform:translateY(-1px);}
     .btn-outline{background:transparent;color:var(--text);border:1px solid var(--border);}
@@ -60,25 +60,25 @@
     .page-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,5vw,60px);letter-spacing:2px;line-height:1;margin-bottom:14px;}
     .page-subtitle{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);margin-bottom:28px;}
     .switcher{display:flex;gap:4px;flex-wrap:wrap;}
-    .switcher a,.switcher span{padding:7px 16px;font-family:'JetBrains Mono',monospace;font-size:12px;text-decoration:none;border:1px solid var(--border);color:var(--muted);transition:all 0.2s;letter-spacing:0.5px;}
+    .switcher a,.switcher span{padding:8px 18px;font-family:'JetBrains Mono',monospace;font-size:13px;text-decoration:none;border:1px solid var(--border);color:var(--muted);transition:all 0.2s;}
     .switcher a:hover{border-color:var(--accent);color:var(--accent);}
     .switcher span.active{background:var(--accent);color:#0f0f0f;border-color:var(--accent);font-weight:600;}
     .case-body{max-width:900px;margin:0 auto;padding:60px 40px 100px;}
     .tools-box{background:var(--bg2);border:1px solid var(--border);padding:20px 24px;margin-bottom:40px;}
     .tools-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
     .tools-value{font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--accent);margin-bottom:8px;}
-    .tools-box p{font-size:14px;color:var(--muted);}
-    .case-body h2{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:1px;margin:48px 0 14px;}
-    .case-body h3{font-size:17px;font-weight:600;margin:32px 0 10px;}
-    .case-body p{font-size:15px;color:#c0c0c0;line-height:1.8;margin-bottom:16px;}
+    .tools-box p{font-size:15px;color:#b0b0b0;}
+    .case-body h2{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:1px;margin:48px 0 14px;color:var(--text);}
+    .case-body h3{font-size:18px;font-weight:600;margin:32px 0 10px;color:var(--text);}
+    .case-body p{font-size:16px;color:#c0c0c0;line-height:1.8;margin-bottom:16px;}
     .case-body ul{margin:0 0 20px 20px;}
-    .case-body li{font-size:15px;color:#c0c0c0;line-height:1.8;margin-bottom:6px;}
+    .case-body li{font-size:16px;color:#c0c0c0;line-height:1.8;margin-bottom:8px;}
     .case-body strong{color:var(--text);}
     .case-figure{margin:20px 0 28px;}
     .case-figure img{width:100%;display:block;border:1px solid var(--border);}
-    .case-figure figcaption{font-size:13px;color:var(--muted);margin-top:10px;font-style:italic;line-height:1.6;}
+    .case-figure figcaption{font-size:14px;color:var(--muted);margin-top:10px;font-style:italic;line-height:1.6;}
     pre.sql-block{background:var(--surface);border:1px solid var(--border);padding:20px 24px;font-family:'JetBrains Mono',monospace;font-size:13px;color:#c0c0c0;overflow-x:auto;line-height:1.7;margin:16px 0 24px;white-space:pre;}
-    .btn-link{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;font-family:'JetBrains Mono',monospace;font-size:13px;text-decoration:none;background:var(--accent);color:#0f0f0f;font-weight:600;margin:16px 0;transition:all 0.2s;}
+    .btn-link{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;font-family:'JetBrains Mono',monospace;font-size:14px;text-decoration:none;background:var(--accent);color:#0f0f0f;font-weight:600;margin:16px 0;transition:all 0.2s;}
     .btn-link:hover{background:#4df0a0;}
     @media(max-width:768px){.page-hero{padding:80px 20px 40px;}.case-body{padding:40px 20px 60px;}}</style>
 </head>
@@ -88,11 +88,11 @@
   <ul class="nav-center">
     <li><a href="index.html">Home</a></li>
     <li><a href="about.html">About</a></li>
-    <li><a href="projects.html">All Projects</a></li>
+    <li><a href="projects.html">Projects</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
   <div class="nav-right">
-    <a href="index.html#projects" class="nav-back">← Back to Portfolio</a>
+    <a href="index.html#projects" class="nav-back">← Portfolio</a>
     <a href="instacart-case-study-de.html" class="nav-lang">🇩🇪 Deutsch</a>
   </div>
 </nav>
@@ -116,9 +116,9 @@
 <h3>Project Overview</h3><p>Analysis of Instacart customer purchasing behavior to uncover patterns in ordering frequency, product popularity, and customer segmentation.</p>
 <h3>Key Insights</h3><ul><li>High-frequency customers account for a disproportionate share of total orders</li><li>Ordering activity is concentrated during predictable daily windows</li><li>Revenue is structurally tied to repeat behavior rather than customer volume alone</li></ul>
 <h2>1) Order Frequency Drives Disproportionate Value</h2>
-<figure class="case-figure"><img src="instacart-order-frequency.png" alt="Customers by Order Frequency" /><figcaption>A small group of high-frequency customers generates the majority of orders.</figcaption></figure>
+<figure class="case-figure"><img src="instacart-order-frequency.png" alt="Customers by Order Frequency"/><figcaption>A small group of high-frequency customers generates the majority of orders.</figcaption></figure>
 <h2>2) Ordering Activity is Time-Concentrated</h2>
-<figure class="case-figure"><img src="instacart-orders-by-hour.png" alt="Orders by Hour of Day" /><figcaption>Orders peak between late morning and early evening.</figcaption></figure>
+<figure class="case-figure"><img src="instacart-orders-by-hour.png" alt="Orders by Hour of Day"/><figcaption>Orders peak between late morning and early evening.</figcaption></figure>
 <h3>Conclusion</h3><p>Prioritizing high-frequency customers and aligning operations with peak activity windows improves retention, marketing efficiency, and customer lifetime value.</p>
 </div>
 <footer>
@@ -132,24 +132,17 @@
       <a href="about.html">About</a>
       <a href="projects.html">Projects</a>
       <a href="contact.html">Contact</a>
-      <a href="Ageel-Alramadhan-Resume.pdf" target="_blank" rel="noopener">↓ CV</a>
       <a href="https://www.linkedin.com/in/ageel-alramadhan/" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://github.com/ageelalramadhan" target="_blank" rel="noopener">GitHub</a>
       <a href="impressum-en.html">Legal Notice</a>
       <a href="datenschutz-en.html">Privacy Policy</a>
-      <a href="instacart-case-study-de.html">🇩🇪 Deutsch</a>
     </div>
   </div>
 </footer>
 <button class="back-top" id="back-top" aria-label="Back to top">↑</button>
 <div id="cookie-banner" class="cookie-banner" style="display:none;">
-  <div class="cookie-inner">
-    <p>This website uses Google Analytics. You can accept or decline.</p>
-    <div class="cookie-actions">
-      <button class="cookie-btn" data-cookie-reject>Decline</button>
-      <button class="cookie-btn primary" data-cookie-accept>Accept</button>
-    </div>
-  </div>
+  <div class="cookie-inner"><p>This website uses Google Analytics. You can accept or decline.</p>
+  <div class="cookie-actions"><button class="cookie-btn" data-cookie-reject>Decline</button><button class="cookie-btn primary" data-cookie-accept>Accept</button></div></div>
 </div>
 <script src="consent.js"></script>
 <script>
