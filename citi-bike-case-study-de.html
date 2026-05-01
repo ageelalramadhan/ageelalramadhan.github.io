@@ -14,13 +14,46 @@
     :root{--bg:#0f0f0f;--bg2:#161616;--surface:#1e1e1e;--border:#2e2e2e;--text:#f0f0f0;--muted:#888;--accent:#3dd68c;--accent2:#00d4ff;}
     html{scroll-behavior:smooth;}
     body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
-    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(15,15,15,0.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;}
-    .nav-logo{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--accent);text-decoration:none;letter-spacing:1px;}
-    .nav-right{display:flex;gap:16px;align-items:center;}
-    .nav-back{font-size:13px;color:var(--muted);text-decoration:none;transition:color 0.2s;}
-    .nav-back:hover{color:var(--text);}
-    .nav-lang{font-size:13px;color:var(--muted);text-decoration:none;border:1px solid var(--border);padding:5px 12px;transition:all 0.2s;}
+
+    /* ── NAV ── */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(15,15,15,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;gap:20px;}
+    .nav-logo{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--accent);text-decoration:none;letter-spacing:1px;flex-shrink:0;}
+    .nav-center{display:flex;gap:28px;list-style:none;align-items:center;}
+    .nav-center a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;letter-spacing:0.5px;transition:color 0.2s;}
+    .nav-center a:hover{color:var(--text);}
+    .nav-right{display:flex;gap:12px;align-items:center;flex-shrink:0;}
+    .nav-lang{font-size:12px;color:var(--muted);text-decoration:none;border:1px solid var(--border);padding:5px 12px;transition:all 0.2s;font-family:'JetBrains Mono',monospace;}
     .nav-lang:hover{border-color:var(--accent);color:var(--accent);}
+    .nav-back{font-size:12px;color:var(--muted);text-decoration:none;font-family:'JetBrains Mono',monospace;transition:color 0.2s;}
+    .nav-back:hover{color:var(--text);}
+
+    /* ── FOOTER ── */
+    footer{background:var(--bg2);border-top:1px solid var(--border);padding:36px 40px;}
+    .footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;}
+    .footer-brand{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--accent);margin-bottom:8px;}
+    .footer-copy{font-size:13px;color:var(--muted);font-family:'JetBrains Mono',monospace;}
+    .footer-links{display:flex;flex-wrap:wrap;gap:20px;justify-content:flex-end;}
+    .footer-links a{color:var(--muted);text-decoration:none;font-size:13px;font-family:'JetBrains Mono',monospace;transition:color 0.2s;}
+    .footer-links a:hover{color:var(--accent);}
+
+    /* ── BACK TO TOP ── */
+    .back-top{position:fixed;bottom:28px;right:28px;z-index:200;width:44px;height:44px;background:var(--accent);color:#0f0f0f;border:none;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s,transform 0.2s;border-radius:50%;}
+    .back-top.visible{opacity:1;pointer-events:auto;}
+    .back-top:hover{transform:translateY(-3px);}
+
+    /* ── BTN ── */
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;font-family:'JetBrains Mono',monospace;font-size:13px;text-decoration:none;transition:all 0.2s;cursor:pointer;border:none;white-space:nowrap;}
+    .btn-accent{background:var(--accent);color:#0f0f0f;font-weight:600;}
+    .btn-accent:hover{background:#4df0a0;transform:translateY(-1px);}
+    .btn-outline{background:transparent;color:var(--text);border:1px solid var(--border);}
+    .btn-outline:hover{border-color:var(--accent);color:var(--accent);}
+
+    @media(max-width:900px){
+      nav{padding:0 20px;}
+      .nav-center{display:none;}
+      .footer-inner{grid-template-columns:1fr;}
+      .footer-links{justify-content:flex-start;}
+    }
     .page-hero{padding:100px 40px 52px;background:var(--bg2);border-bottom:1px solid var(--border);}
     .page-hero-inner{max-width:900px;margin:0 auto;}
     .page-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:16px;}
@@ -47,17 +80,19 @@
     pre.sql-block{background:var(--surface);border:1px solid var(--border);padding:20px 24px;font-family:'JetBrains Mono',monospace;font-size:13px;color:#c0c0c0;overflow-x:auto;line-height:1.7;margin:16px 0 24px;white-space:pre;}
     .btn-link{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;font-family:'JetBrains Mono',monospace;font-size:13px;text-decoration:none;background:var(--accent);color:#0f0f0f;font-weight:600;margin:16px 0;transition:all 0.2s;}
     .btn-link:hover{background:#4df0a0;}
-    footer{background:var(--bg2);border-top:1px solid var(--border);padding:28px 40px;text-align:center;}
-    footer p{font-size:13px;color:var(--muted);font-family:'JetBrains Mono',monospace;}
-    footer a{color:var(--accent);text-decoration:none;}
-    @media(max-width:768px){nav{padding:0 20px;}.page-hero{padding:80px 20px 40px;}.case-body{padding:40px 20px 60px;}}
-</style>
+    @media(max-width:768px){.page-hero{padding:80px 20px 40px;}.case-body{padding:40px 20px 60px;}}</style>
 </head>
 <body>
 <nav>
   <a href="index-de.html" class="nav-logo">ageel.alramadhan</a>
+  <ul class="nav-center">
+    <li><a href="index-de.html">Start</a></li>
+    <li><a href="about-de.html">Über mich</a></li>
+    <li><a href="projects-de.html">Alle Projekte</a></li>
+    <li><a href="contact-de.html">Kontakt</a></li>
+  </ul>
   <div class="nav-right">
-    <a href="index-de.html#projects" class="nav-back">← Zurück zu Projekten</a>
+    <a href="index-de.html#projects" class="nav-back">← Zurück</a>
     <a href="citi-bike-case-study.html" class="nav-lang">🇬🇧 English</a>
   </div>
 </nav>
@@ -77,49 +112,38 @@
   </div>
 </div>
 <div class="case-body">
-<div class="tools-box">
-  <div class="tools-label">Tools & Bibliotheken</div>
-  <div class="tools-value">Python · Pandas · NumPy · Plotly · Streamlit · Kepler.gl</div>
-  <p><strong>Datensatz:</strong> ~1,7 Millionen Fahrtdatensätze von NYC Citi Bike (2022). Start-/Endstation, Koordinaten, Dauer, Fahrertyp.</p>
-</div>
-<h3>Projektübersicht</h3>
-<p>Dieses Projekt analysiert Citi-Bike-Nutzungsmuster in New York City im Jahr 2022, um operative Entscheidungen zu Fahrradversorgung, Umverteilung und saisonaler Nachfrageplanung zu unterstützen.</p>
-<h3>Geschäftsproblem</h3>
-<p>Die Nachfrage nach Citi Bike schwankt je nach Standort, Tageszeit und Jahreszeit. Ziel war die Identifikation von Hochnachfrage-Stationen und saisonalen Mustern zur Optimierung des Betriebs.</p>
-<h3>Vorgehen</h3>
-<ul>
-  <li>Bereinigung und Validierung der Fahrtdaten</li>
-  <li>Aggregation nach Station, Tag und Monat</li>
-  <li>Zusammenführung mit Temperaturdaten</li>
-  <li>Ranking der Top 10 nachfragestärksten Stationen</li>
-  <li>Aufbau eines interaktiven Streamlit-Dashboards</li>
-</ul>
-<h3>Wichtigste Erkenntnisse</h3>
-<ul>
-  <li>Nachfrage konzentriert sich stark auf Stationen in Midtown Manhattan</li>
-  <li>Fahrten nehmen in den Sommermonaten deutlich zu und fallen im Winter stark ab</li>
-  <li>Spitzennachfrage fällt mit vorhersehbaren Pendelzeiten zusammen</li>
-  <li>Winternachfrage liegt durchschnittlich bei etwa der Hälfte der Sommernachfrage</li>
-</ul>
+<div class="tools-box"><div class="tools-label">Tools & Bibliotheken</div><div class="tools-value">Python · Pandas · NumPy · Plotly · Streamlit · Kepler.gl</div><p><strong>Datensatz:</strong> ~1,7 Millionen Fahrtdatensätze von NYC Citi Bike (2022).</p></div>
+<h3>Projektübersicht</h3><p>Analyse von Citi-Bike-Nutzungsmustern 2022 zur Unterstützung operativer Entscheidungen zu Fahrradversorgung, Umverteilung und saisonaler Nachfrageplanung.</p>
+<h3>Wichtigste Erkenntnisse</h3><ul><li>Nachfrage konzentriert sich stark auf Stationen in Midtown Manhattan</li><li>Fahrten steigen in Sommermonaten deutlich und fallen im Winter stark ab</li><li>Winternachfrage liegt bei etwa der Hälfte der Sommernachfrage</li></ul>
 <h2>1) Saisonalität treibt Nachfrage</h2>
-<figure class="case-figure">
-  <img src="citi-monthly-trends.png" alt="Durchschnittliche tägliche Citi-Bike-Fahrten pro Monat (2022)" />
-  <figcaption>Nutzung steigt im Sommer und fällt im Winter stark ab — unterstützt saisonale Personal- und Flottenplanung.</figcaption>
-</figure>
-<h2>2) Temperatur beeinflusst Nutzung stark</h2>
-<figure class="case-figure">
-  <img src="citi-trip-vs-temp.png" alt="Tägliche Fahrten vs. Durchschnittstemperatur (2022)" />
-  <figcaption>Fahrten steigen mit wärmeren Temperaturen — wetterbasierte Kapazitätsplanung wird unterstützt.</figcaption>
-</figure>
-<h2>3) Nachfragestärkste Stationen in Manhattan</h2>
-<figure class="case-figure">
-  <img src="popular-stations-citibike.png" alt="Top Citi Bike Startstationen (2022)" />
-  <figcaption>Höchste Nachfrage konzentriert sich in Midtown Manhattan — dort reduziert häufigere Umverteilung Engpässe.</figcaption>
-</figure>
-<h3>Fazit</h3>
-<p>Zeitreihentrends, räumliche Häufung und Nachfragekonzentration ermöglichen effizientere operative Entscheidungen in Mobilitätssystemen.</p>
+<figure class="case-figure"><img src="citi-monthly-trends.png" alt="Monatliche Citi Bike Nutzung 2022" /><figcaption>Nutzung steigt im Sommer und fällt im Winter stark ab.</figcaption></figure>
+<h2>2) Temperatur beeinflusst Nutzung</h2>
+<figure class="case-figure"><img src="citi-trip-vs-temp.png" alt="Fahrten vs. Temperatur" /><figcaption>Fahrten steigen mit wärmeren Temperaturen.</figcaption></figure>
+<h2>3) Nachfrage konzentriert sich in Manhattan</h2>
+<figure class="case-figure"><img src="popular-stations-citibike.png" alt="Top Citi Bike Stationen" /><figcaption>Höchste Nachfrage in Midtown Manhattan.</figcaption></figure>
+<h3>Fazit</h3><p>Betriebsentscheidungen an beobachteten Nachfragemustern auszurichten verbessert Zuverlässigkeit und Ressourceneffizienz.</p>
 </div>
-<footer><p>© 2026 Ageel Alramadhan · <a href="index-de.html">Back to Portfolio</a></p></footer>
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">ageel.alramadhan</div>
+      <div class="footer-copy">© 2026 Ageel Alramadhan · Datenanalyst · Hamburg</div>
+    </div>
+    <div class="footer-links">
+      <a href="index-de.html">Start</a>
+      <a href="about-de.html">Über mich</a>
+      <a href="projects-de.html">Projekte</a>
+      <a href="contact-de.html">Kontakt</a>
+      <a href="Ageel-Alramadhan-Lebenslauf.pdf" target="_blank" rel="noopener">↓ Lebenslauf</a>
+      <a href="https://www.linkedin.com/in/ageel-alramadhan/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/ageelalramadhan" target="_blank" rel="noopener">GitHub</a>
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutzerklärung</a>
+      <a href="index.html">🇬🇧 English</a>
+    </div>
+  </div>
+</footer>
+<button class="back-top" id="back-top" aria-label="Back to top">↑</button>
 <div id="cookie-banner" class="cookie-banner" style="display:none;">
   <div class="cookie-inner">
     <p>Diese Website verwendet Google Analytics. Sie können zustimmen oder ablehnen.</p>
@@ -130,5 +154,9 @@
   </div>
 </div>
 <script src="consent.js"></script>
+<script>
+  const btn = document.getElementById('back-top');
+  window.addEventListener('scroll', () => btn.classList.toggle('visible', window.scrollY > 300));
+  btn.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));</script>
 </body>
 </html>

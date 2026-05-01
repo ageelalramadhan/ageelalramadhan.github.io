@@ -14,13 +14,46 @@
     :root{--bg:#0f0f0f;--bg2:#161616;--surface:#1e1e1e;--border:#2e2e2e;--text:#f0f0f0;--muted:#888;--accent:#3dd68c;--accent2:#00d4ff;}
     html{scroll-behavior:smooth;}
     body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
-    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(15,15,15,0.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;}
-    .nav-logo{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--accent);text-decoration:none;letter-spacing:1px;}
-    .nav-right{display:flex;gap:16px;align-items:center;}
-    .nav-back{font-size:13px;color:var(--muted);text-decoration:none;transition:color 0.2s;}
-    .nav-back:hover{color:var(--text);}
-    .nav-lang{font-size:13px;color:var(--muted);text-decoration:none;border:1px solid var(--border);padding:5px 12px;transition:all 0.2s;}
+
+    /* ── NAV ── */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(15,15,15,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;gap:20px;}
+    .nav-logo{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--accent);text-decoration:none;letter-spacing:1px;flex-shrink:0;}
+    .nav-center{display:flex;gap:28px;list-style:none;align-items:center;}
+    .nav-center a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;letter-spacing:0.5px;transition:color 0.2s;}
+    .nav-center a:hover{color:var(--text);}
+    .nav-right{display:flex;gap:12px;align-items:center;flex-shrink:0;}
+    .nav-lang{font-size:12px;color:var(--muted);text-decoration:none;border:1px solid var(--border);padding:5px 12px;transition:all 0.2s;font-family:'JetBrains Mono',monospace;}
     .nav-lang:hover{border-color:var(--accent);color:var(--accent);}
+    .nav-back{font-size:12px;color:var(--muted);text-decoration:none;font-family:'JetBrains Mono',monospace;transition:color 0.2s;}
+    .nav-back:hover{color:var(--text);}
+
+    /* ── FOOTER ── */
+    footer{background:var(--bg2);border-top:1px solid var(--border);padding:36px 40px;}
+    .footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;}
+    .footer-brand{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--accent);margin-bottom:8px;}
+    .footer-copy{font-size:13px;color:var(--muted);font-family:'JetBrains Mono',monospace;}
+    .footer-links{display:flex;flex-wrap:wrap;gap:20px;justify-content:flex-end;}
+    .footer-links a{color:var(--muted);text-decoration:none;font-size:13px;font-family:'JetBrains Mono',monospace;transition:color 0.2s;}
+    .footer-links a:hover{color:var(--accent);}
+
+    /* ── BACK TO TOP ── */
+    .back-top{position:fixed;bottom:28px;right:28px;z-index:200;width:44px;height:44px;background:var(--accent);color:#0f0f0f;border:none;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s,transform 0.2s;border-radius:50%;}
+    .back-top.visible{opacity:1;pointer-events:auto;}
+    .back-top:hover{transform:translateY(-3px);}
+
+    /* ── BTN ── */
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;font-family:'JetBrains Mono',monospace;font-size:13px;text-decoration:none;transition:all 0.2s;cursor:pointer;border:none;white-space:nowrap;}
+    .btn-accent{background:var(--accent);color:#0f0f0f;font-weight:600;}
+    .btn-accent:hover{background:#4df0a0;transform:translateY(-1px);}
+    .btn-outline{background:transparent;color:var(--text);border:1px solid var(--border);}
+    .btn-outline:hover{border-color:var(--accent);color:var(--accent);}
+
+    @media(max-width:900px){
+      nav{padding:0 20px;}
+      .nav-center{display:none;}
+      .footer-inner{grid-template-columns:1fr;}
+      .footer-links{justify-content:flex-start;}
+    }
     .page-hero{padding:100px 40px 52px;background:var(--bg2);border-bottom:1px solid var(--border);}
     .page-hero-inner{max-width:900px;margin:0 auto;}
     .page-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:16px;}
@@ -47,17 +80,19 @@
     pre.sql-block{background:var(--surface);border:1px solid var(--border);padding:20px 24px;font-family:'JetBrains Mono',monospace;font-size:13px;color:#c0c0c0;overflow-x:auto;line-height:1.7;margin:16px 0 24px;white-space:pre;}
     .btn-link{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;font-family:'JetBrains Mono',monospace;font-size:13px;text-decoration:none;background:var(--accent);color:#0f0f0f;font-weight:600;margin:16px 0;transition:all 0.2s;}
     .btn-link:hover{background:#4df0a0;}
-    footer{background:var(--bg2);border-top:1px solid var(--border);padding:28px 40px;text-align:center;}
-    footer p{font-size:13px;color:var(--muted);font-family:'JetBrains Mono',monospace;}
-    footer a{color:var(--accent);text-decoration:none;}
-    @media(max-width:768px){nav{padding:0 20px;}.page-hero{padding:80px 20px 40px;}.case-body{padding:40px 20px 60px;}}
-</style>
+    @media(max-width:768px){.page-hero{padding:80px 20px 40px;}.case-body{padding:40px 20px 60px;}}</style>
 </head>
 <body>
 <nav>
   <a href="index-de.html" class="nav-logo">ageel.alramadhan</a>
+  <ul class="nav-center">
+    <li><a href="index-de.html">Start</a></li>
+    <li><a href="about-de.html">Über mich</a></li>
+    <li><a href="projects-de.html">Alle Projekte</a></li>
+    <li><a href="contact-de.html">Kontakt</a></li>
+  </ul>
   <div class="nav-right">
-    <a href="index-de.html#projects" class="nav-back">← Zurück zu Projekten</a>
+    <a href="index-de.html#projects" class="nav-back">← Zurück</a>
     <a href="textmining-case-study.html" class="nav-lang">🇬🇧 English</a>
   </div>
 </nav>
@@ -77,15 +112,8 @@
   </div>
 </div>
 <div class="case-body">
-<div class="tools-box">
-  <div class="tools-label">Tools & Bibliotheken</div>
-  <div class="tools-value">Python · Selenium · NLTK · TextBlob · spaCy · NetworkX · NER</div>
-  <p><strong>Datensatz:</strong> 100 Wikipedia-Artikelzusammenfassungen per Scraping gesammelt. Textkorpus von ~80.000 Token durch vollständige NLP-Pipeline verarbeitet.</p>
-</div>
-<h3>Projektübersicht</h3>
-<p>Dieses End-to-End-NLP-Projekt scrapt einen Wikipedia-Artikel über wichtige Ereignisse des 20. Jahrhunderts, führt Textmining und linguistische Analyse durch und nutzt Named Entity Recognition (NER), um Länder-Co-Occurences zu extrahieren und einen interaktiven Netzwerkgraph zu erstellen.</p>
-<h3>Die Pipeline</h3>
-<p>Das Projekt deckt die vollständige Data-Science-Pipeline ab: Scraping, Bereinigung, linguistische Analyse, Entity-Extraktion, Beziehungsmodellierung und Netzwerkgraph-Konstruktion.</p>
+<div class="tools-box"><div class="tools-label">Tools & Bibliotheken</div><div class="tools-value">Python · Selenium · NLTK · TextBlob · spaCy · NetworkX · NER</div><p><strong>Datensatz:</strong> 100 Wikipedia-Artikelzusammenfassungen, ~80.000 Token durch vollständige NLP-Pipeline.</p></div>
+<h3>Projektübersicht</h3><p>End-to-End NLP-Pipeline: Web-Scraping historischer Wikipedia-Texte, Named Entity Recognition und Netzwerkgraph-Visualisierung geopolitischer Co-Occurrence-Muster des 20. Jahrhunderts.</p>
 <h3>Phase 1 — Web-Scraping mit Selenium</h3>
 <pre class="sql-block">from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -97,35 +125,34 @@ driver.quit()
 
 with open("20th_century_key_events.txt", "w") as f:
     f.write(text)</pre>
-<h3>Phase 2 — Textmining mit NLTK & TextBlob</h3>
-<ul>
-  <li>Worthäufigkeitsanalyse — vor und nach Stoppwortentfernung zeigten "Krieg", "Welt" und "Sowjet" Dominanz</li>
-  <li>Part-of-Speech (POS)-Tagging mit TextBlob</li>
-  <li>Extraktion der Top-15-Nomen zur Identifikation historisch bedeutsamer Themen</li>
-</ul>
-<h3>Phase 3 — Named Entity Recognition mit spaCy</h3>
-<p>Verwendung von spaCys <code>en_core_web_sm</code>-Modell zur Extraktion geopolitischer Entitäten (GPE-Tags). Aliase wurden normalisiert — "UK", "U.K." und "Britain" wurden zu "United Kingdom" zusammengefasst.</p>
-<h3>Wichtigste Erkenntnisse</h3>
-<ul>
-  <li>Nach Stoppwortentfernung dominieren: "Krieg", "Welt", "Sowjet", "Vereinigt", "Staaten"</li>
-  <li>USA, Sowjetunion, Deutschland und Großbritannien bildeten den dichtesten Cluster</li>
-  <li>Co-Occurrence-Muster spiegeln bekannte geopolitische Beziehungen wider</li>
-  <li>Alias-Normalisierung war entscheidend</li>
-</ul>
+<h3>Wichtigste Erkenntnisse</h3><ul><li>Häufigste Wörter nach Stoppwortentfernung: "Krieg", "Welt", "Sowjet", "Vereinigt", "Staaten"</li><li>USA, Sowjetunion, Deutschland und UK bildeten dichtesten Cluster</li><li>Alias-Normalisierung war entscheidend</li></ul>
 <h2>Community-Detection-Netzwerk</h2>
-<figure class="case-figure">
-  <img src="textmining-community-network.png" alt="Community-Detection-Netzwerkgraph nach geopolitischem Cluster eingefärbt" />
-  <figcaption>Community-Detection zeigt drei geopolitische Cluster, die realen Bündnisstrukturen des 20. Jahrhunderts widerspiegeln.</figcaption>
-</figure>
+<figure class="case-figure"><img src="textmining-community-network.png" alt="Community-Detection-Netzwerk" /><figcaption>Drei geopolitische Cluster — spiegeln reale Bündnisstrukturen des 20. Jahrhunderts wider.</figcaption></figure>
 <h2>Vollständiger Co-Occurrence-Graph</h2>
-<figure class="case-figure">
-  <img src="textmining-interactive-network.png" alt="Vollständiges Länder-Co-Occurrence-Netzwerk" />
-  <figcaption>21 Länder, 53 Verbindungen. Das dichte Zentrum aus Deutschland, UK, Sowjetunion, Frankreich, Russland, USA, Japan, China und Indien zeigt die am häufigsten zusammen erwähnten Nationen.</figcaption>
-</figure>
-<h3>Fazit</h3>
-<p>Dieses Projekt zeigt die vollständige NLP-Pipeline von rohen Webdaten bis zur Erkenntnis. Die Netzwerkvisualisierung macht die abstrakte Frage — "welche Länder waren im 20. Jahrhundert am stärksten historisch verbunden?" — durch die Graphstruktur sofort intuitiv beantwortbar.</p>
+<figure class="case-figure"><img src="textmining-interactive-network.png" alt="Vollständiges Co-Occurrence-Netzwerk" /><figcaption>21 Länder, 53 Verbindungen. Dichtes Zentrum aus historisch eng verbundenen Nationen.</figcaption></figure>
+<h3>Fazit</h3><p>Die Netzwerkvisualisierung macht die abstrakte Frage — welche Länder waren im 20. Jahrhundert am stärksten verbunden? — durch die Graphstruktur sofort beantwortbar.</p>
 </div>
-<footer><p>© 2026 Ageel Alramadhan · <a href="index-de.html">Back to Portfolio</a></p></footer>
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">ageel.alramadhan</div>
+      <div class="footer-copy">© 2026 Ageel Alramadhan · Datenanalyst · Hamburg</div>
+    </div>
+    <div class="footer-links">
+      <a href="index-de.html">Start</a>
+      <a href="about-de.html">Über mich</a>
+      <a href="projects-de.html">Projekte</a>
+      <a href="contact-de.html">Kontakt</a>
+      <a href="Ageel-Alramadhan-Lebenslauf.pdf" target="_blank" rel="noopener">↓ Lebenslauf</a>
+      <a href="https://www.linkedin.com/in/ageel-alramadhan/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/ageelalramadhan" target="_blank" rel="noopener">GitHub</a>
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutzerklärung</a>
+      <a href="index.html">🇬🇧 English</a>
+    </div>
+  </div>
+</footer>
+<button class="back-top" id="back-top" aria-label="Back to top">↑</button>
 <div id="cookie-banner" class="cookie-banner" style="display:none;">
   <div class="cookie-inner">
     <p>Diese Website verwendet Google Analytics. Sie können zustimmen oder ablehnen.</p>
@@ -136,5 +163,9 @@ with open("20th_century_key_events.txt", "w") as f:
   </div>
 </div>
 <script src="consent.js"></script>
+<script>
+  const btn = document.getElementById('back-top');
+  window.addEventListener('scroll', () => btn.classList.toggle('visible', window.scrollY > 300));
+  btn.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));</script>
 </body>
 </html>

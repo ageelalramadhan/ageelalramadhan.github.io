@@ -14,13 +14,46 @@
     :root{--bg:#0f0f0f;--bg2:#161616;--surface:#1e1e1e;--border:#2e2e2e;--text:#f0f0f0;--muted:#888;--accent:#3dd68c;--accent2:#00d4ff;}
     html{scroll-behavior:smooth;}
     body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
-    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(15,15,15,0.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;}
-    .nav-logo{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--accent);text-decoration:none;letter-spacing:1px;}
-    .nav-right{display:flex;gap:16px;align-items:center;}
-    .nav-back{font-size:13px;color:var(--muted);text-decoration:none;transition:color 0.2s;}
-    .nav-back:hover{color:var(--text);}
-    .nav-lang{font-size:13px;color:var(--muted);text-decoration:none;border:1px solid var(--border);padding:5px 12px;transition:all 0.2s;}
+
+    /* ── NAV ── */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(15,15,15,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;gap:20px;}
+    .nav-logo{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--accent);text-decoration:none;letter-spacing:1px;flex-shrink:0;}
+    .nav-center{display:flex;gap:28px;list-style:none;align-items:center;}
+    .nav-center a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;letter-spacing:0.5px;transition:color 0.2s;}
+    .nav-center a:hover{color:var(--text);}
+    .nav-right{display:flex;gap:12px;align-items:center;flex-shrink:0;}
+    .nav-lang{font-size:12px;color:var(--muted);text-decoration:none;border:1px solid var(--border);padding:5px 12px;transition:all 0.2s;font-family:'JetBrains Mono',monospace;}
     .nav-lang:hover{border-color:var(--accent);color:var(--accent);}
+    .nav-back{font-size:12px;color:var(--muted);text-decoration:none;font-family:'JetBrains Mono',monospace;transition:color 0.2s;}
+    .nav-back:hover{color:var(--text);}
+
+    /* ── FOOTER ── */
+    footer{background:var(--bg2);border-top:1px solid var(--border);padding:36px 40px;}
+    .footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;}
+    .footer-brand{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--accent);margin-bottom:8px;}
+    .footer-copy{font-size:13px;color:var(--muted);font-family:'JetBrains Mono',monospace;}
+    .footer-links{display:flex;flex-wrap:wrap;gap:20px;justify-content:flex-end;}
+    .footer-links a{color:var(--muted);text-decoration:none;font-size:13px;font-family:'JetBrains Mono',monospace;transition:color 0.2s;}
+    .footer-links a:hover{color:var(--accent);}
+
+    /* ── BACK TO TOP ── */
+    .back-top{position:fixed;bottom:28px;right:28px;z-index:200;width:44px;height:44px;background:var(--accent);color:#0f0f0f;border:none;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s,transform 0.2s;border-radius:50%;}
+    .back-top.visible{opacity:1;pointer-events:auto;}
+    .back-top:hover{transform:translateY(-3px);}
+
+    /* ── BTN ── */
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;font-family:'JetBrains Mono',monospace;font-size:13px;text-decoration:none;transition:all 0.2s;cursor:pointer;border:none;white-space:nowrap;}
+    .btn-accent{background:var(--accent);color:#0f0f0f;font-weight:600;}
+    .btn-accent:hover{background:#4df0a0;transform:translateY(-1px);}
+    .btn-outline{background:transparent;color:var(--text);border:1px solid var(--border);}
+    .btn-outline:hover{border-color:var(--accent);color:var(--accent);}
+
+    @media(max-width:900px){
+      nav{padding:0 20px;}
+      .nav-center{display:none;}
+      .footer-inner{grid-template-columns:1fr;}
+      .footer-links{justify-content:flex-start;}
+    }
     .page-hero{padding:100px 40px 52px;background:var(--bg2);border-bottom:1px solid var(--border);}
     .page-hero-inner{max-width:900px;margin:0 auto;}
     .page-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:16px;}
@@ -47,17 +80,19 @@
     pre.sql-block{background:var(--surface);border:1px solid var(--border);padding:20px 24px;font-family:'JetBrains Mono',monospace;font-size:13px;color:#c0c0c0;overflow-x:auto;line-height:1.7;margin:16px 0 24px;white-space:pre;}
     .btn-link{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;font-family:'JetBrains Mono',monospace;font-size:13px;text-decoration:none;background:var(--accent);color:#0f0f0f;font-weight:600;margin:16px 0;transition:all 0.2s;}
     .btn-link:hover{background:#4df0a0;}
-    footer{background:var(--bg2);border-top:1px solid var(--border);padding:28px 40px;text-align:center;}
-    footer p{font-size:13px;color:var(--muted);font-family:'JetBrains Mono',monospace;}
-    footer a{color:var(--accent);text-decoration:none;}
-    @media(max-width:768px){nav{padding:0 20px;}.page-hero{padding:80px 20px 40px;}.case-body{padding:40px 20px 60px;}}
-</style>
+    @media(max-width:768px){.page-hero{padding:80px 20px 40px;}.case-body{padding:40px 20px 60px;}}</style>
 </head>
 <body>
 <nav>
   <a href="index.html" class="nav-logo">ageel.alramadhan</a>
+  <ul class="nav-center">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="projects.html">All Projects</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
   <div class="nav-right">
-    <a href="index.html#projects" class="nav-back">← Back to Projects</a>
+    <a href="index.html#projects" class="nav-back">← Back to Portfolio</a>
     <a href="influenza-case-study-de.html" class="nav-lang">🇩🇪 Deutsch</a>
   </div>
 </nav>
@@ -77,62 +112,50 @@
   </div>
 </div>
 <div class="case-body">
-<div class="tools-box">
-  <div class="tools-label">Tools & Libraries</div>
-  <div class="tools-value">Excel · Tableau · Statistical Analysis · Spatial Visualization</div>
-  <p><strong>Dataset:</strong> CDC influenza mortality records (2009–2017) across all 50 U.S. states. ~6,000 rows with variables including age group, state, season, and death count.</p>
-</div>
-<h3>Project Overview</h3>
-<p>This project analyzes U.S. influenza mortality data across all 50 states from 2009 to 2017, examining whether mortality rates changed over time and how population size affects observed death counts.</p>
-<h3>Business Question</h3>
-<p>Did U.S. influenza mortality rates change significantly between 2009 and 2017? And how does population size influence the raw death counts observed across states? Understanding the difference between raw deaths and mortality rates is critical for fair cross-state comparison.</p>
-<h3>Process</h3>
-<ul>
-  <li>Cleaned and validated mortality and population data in Excel</li>
-  <li>Calculated mortality rates per 100,000 for fair cross-state comparison</li>
-  <li>Compared mortality rate periods: 2009–2014 vs 2015–2017</li>
-  <li>Analyzed death distribution by age group</li>
-  <li>Built a two-sheet Tableau story — temporal trend chart and spatial U.S. map</li>
-</ul>
-<h3>Key Findings</h3>
-<ul>
-  <li>No statistically significant change in influenza mortality rate — stable at approximately 0.012%</li>
-  <li>Strong positive correlation between state population and total deaths (r ≈ 0.96) — larger states have more deaths due to exposure, not higher risk</li>
-  <li>Adults aged 75+ account for the largest share of influenza deaths</li>
-  <li><strong>Mortality rate is the correct metric for cross-state comparison — raw death counts are misleading</strong></li>
-</ul>
-<h2>Figure 1 — Temporal Trend in U.S. Influenza Deaths (2009–2017)</h2>
-<figure class="case-figure">
-  <img src="influenza-tableau-1.png" alt="Line chart of U.S. influenza deaths by year 2009 to 2017" />
-  <figcaption>Annual influenza deaths remained broadly stable with no significant upward or downward trend across the study period.</figcaption>
-</figure>
-<h2>Figure 2 — Spatial Distribution of Mortality Rate per 100k by State</h2>
-<figure class="case-figure">
-  <img src="influenza-tableau-2.png" alt="U.S. choropleth map of influenza mortality rate per 100,000 by state" />
-  <figcaption>The choropleth map shows mortality rate per 100,000 population with bubble size encoding total population. Darker red = higher per-capita risk, independent of raw death counts.</figcaption>
-</figure>
+<div class="tools-box"><div class="tools-label">Tools & Libraries</div><div class="tools-value">Excel · Tableau · Statistical Analysis · Spatial Visualization</div><p><strong>Dataset:</strong> CDC influenza mortality records (2009–2017) across all 50 U.S. states. ~6,000 rows.</p></div>
+<h3>Project Overview</h3><p>Analysis of U.S. influenza mortality across all 50 states from 2009–2017. The core insight: <strong>mortality rate, not raw death counts</strong>, is the correct metric for cross-state comparison.</p>
+<h3>Key Findings</h3><ul><li>No statistically significant change in mortality rate — stable at ~0.012%</li><li>Strong correlation between state population and total deaths (r ≈ 0.96)</li><li>Adults aged 75+ account for the largest share of deaths</li></ul>
+<h2>Figure 1 — Temporal Trend (2009–2017)</h2>
+<figure class="case-figure"><img src="influenza-tableau-1.png" alt="U.S. influenza deaths by year" /><figcaption>Annual deaths remained broadly stable — no significant trend across the study period.</figcaption></figure>
+<h2>Figure 2 — Spatial Distribution by State</h2>
+<figure class="case-figure"><img src="influenza-tableau-2.png" alt="U.S. choropleth map mortality rate" /><figcaption>Mortality rate per 100,000 population. Darker red = higher per-capita risk, independent of raw counts.</figcaption></figure>
 <p><a href="https://public.tableau.com/app/profile/a.a5244/viz/Exercise2_7InfluenzaSpatialAnalysis20092017_AA/InfluenzaStoryAkeelAlramadhan" target="_blank" rel="noopener" class="btn-link">View Interactive Story on Tableau →</a></p>
-<h3>Why Mortality Rate Matters</h3>
-<p>Raw death counts are heavily influenced by population size. California and Texas have high death totals not because they are riskier, but because they have far more people. Switching to mortality rate per 100,000 removes this bias and reveals true per-capita risk across states.</p>
-<h3>Recommendations</h3>
-<ul>
-  <li>Direct prevention resources toward adults aged 65+ as the highest-risk group</li>
-  <li>Use mortality rate rather than raw counts for cross-state staffing and supply decisions</li>
-  <li>Monitor state-level trends annually — stability at the national level can mask local spikes</li>
-</ul>
-<h3>Conclusion</h3>
-<p>This project demonstrates how statistical framing — choosing mortality rate over raw counts — fundamentally changes what the data says. Correct metric selection is a critical analytical skill with direct policy implications.</p>
+<h3>Conclusion</h3><p>Choosing mortality rate over raw counts fundamentally changes what the data says — a critical analytical distinction with direct policy implications.</p>
 </div>
-<footer><p>© 2026 Ageel Alramadhan · <a href="index.html">Back to Portfolio</a></p></footer>
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">ageel.alramadhan</div>
+      <div class="footer-copy">© 2026 Ageel Alramadhan · Data Analyst · Hamburg</div>
+    </div>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
+      <a href="Ageel-Alramadhan-Resume.pdf" target="_blank" rel="noopener">↓ CV</a>
+      <a href="https://www.linkedin.com/in/ageel-alramadhan/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/ageelalramadhan" target="_blank" rel="noopener">GitHub</a>
+      <a href="impressum-en.html">Legal Notice</a>
+      <a href="datenschutz-en.html">Privacy Policy</a>
+      <a href="index-de.html">🇩🇪 Deutsch</a>
+    </div>
+  </div>
+</footer>
+<button class="back-top" id="back-top" aria-label="Back to top">↑</button>
 <div id="cookie-banner" class="cookie-banner" style="display:none;">
   <div class="cookie-inner">
-    <p>Diese Website verwendet Google Analytics. Sie können zustimmen oder ablehnen.</p>
+    <p>This website uses Google Analytics. You can accept or decline.</p>
     <div class="cookie-actions">
-      <button class="cookie-btn" data-cookie-reject>Ablehnen</button>
-      <button class="cookie-btn primary" data-cookie-accept>Akzeptieren</button>
+      <button class="cookie-btn" data-cookie-reject>Decline</button>
+      <button class="cookie-btn primary" data-cookie-accept>Accept</button>
     </div>
   </div>
 </div>
 <script src="consent.js"></script>
+<script>
+  const btn = document.getElementById('back-top');
+  window.addEventListener('scroll', () => btn.classList.toggle('visible', window.scrollY > 300));
+  btn.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));</script>
 </body>
 </html>
