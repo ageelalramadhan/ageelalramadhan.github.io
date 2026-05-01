@@ -4,137 +4,128 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Über mich | Ageel Alramadhan</title>
-  <meta name="description" content="Datenanalyst mit Hintergrund im Performance Marketing — SQL, Python, Tableau, NLP." />
-  <meta name="author" content="Ageel Alramadhan" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Über mich | Ageel Alramadhan" />
-  <meta property="og:description" content="Datenanalyst mit Hintergrund im Performance Marketing — SQL, Python, Tableau, NLP." />
-  <meta property="og:url" content="https://ageelalramadhan.github.io/about-de.html" />
-  <meta property="og:image" content="https://ageelalramadhan.github.io/og-image.png" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="consent.css" />
+  
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    :root{--bg:#0f0f0f;--bg2:#161616;--surface:#1e1e1e;--border:#2e2e2e;--text:#f0f0f0;--muted:#888;--accent:#3dd68c;--accent2:#00d4ff;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(15,15,15,0.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;}
+    .nav-logo{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--accent);text-decoration:none;letter-spacing:1px;}
+    .nav-links{display:flex;gap:24px;list-style:none;align-items:center;}
+    .nav-links a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;transition:color 0.2s;}
+    .nav-links a:hover,.nav-links a.active{color:var(--text);}
+    .nav-lang{font-size:13px;color:var(--muted);text-decoration:none;border:1px solid var(--border);padding:5px 12px;transition:all 0.2s;}
+    .nav-lang:hover{border-color:var(--accent);color:var(--accent);}
+    .page-wrap{max-width:900px;margin:0 auto;padding:100px 40px 80px;}
+    .page-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:12px;}
+    .page-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,56px);letter-spacing:2px;margin-bottom:8px;}
+    .page-subtitle{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);margin-bottom:48px;padding-bottom:32px;border-bottom:1px solid var(--border);}
+    .content-block{font-size:15px;color:#c0c0c0;line-height:1.8;}
+    .content-block h2{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:1px;color:var(--text);margin:40px 0 12px;}
+    .content-block h3{font-size:16px;font-weight:600;color:var(--text);margin:28px 0 10px;}
+    .content-block p{margin-bottom:16px;}
+    .content-block a{color:var(--accent);text-decoration:none;}
+    .content-block a:hover{text-decoration:underline;}
+    .content-block ul{margin:0 0 20px 20px;}
+    .content-block li{margin-bottom:6px;}
+    .content-block strong{color:var(--text);}
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:40px;}
+    .contact-item{display:flex;flex-direction:column;gap:6px;padding:20px;background:var(--surface);border:1px solid var(--border);transition:border-color 0.2s;text-decoration:none;}
+    .contact-item:hover{border-color:var(--accent);}
+    .contact-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+    .contact-value{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent);}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;font-family:'JetBrains Mono',monospace;font-size:13px;text-decoration:none;transition:all 0.2s;border:none;cursor:pointer;margin-right:12px;margin-top:8px;}
+    .btn-accent{background:var(--accent);color:#0f0f0f;font-weight:600;}
+    .btn-accent:hover{background:#4df0a0;}
+    .btn-outline{background:transparent;color:var(--text);border:1px solid var(--border);}
+    .btn-outline:hover{border-color:var(--accent);color:var(--accent);}
+    .about-hero{display:grid;grid-template-columns:180px 1fr;gap:40px;align-items:start;margin-bottom:48px;}
+    .about-photo{width:180px;height:180px;object-fit:cover;object-position:center top;border:2px solid var(--accent);display:block;}
+    .skill-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--border);font-size:14px;}
+    .skill-row:last-child{border-bottom:none;}
+    .skill-tools{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent);}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin:32px 0;}
+    .col-block{background:var(--surface);border:1px solid var(--border);padding:24px;}
+    .col-block h3{font-size:13px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:16px;}
+    .projects-list{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:32px;}
+    .proj-item{background:var(--surface);border:1px solid var(--border);padding:20px;text-decoration:none;color:inherit;display:block;transition:border-color 0.2s;}
+    .proj-item:hover{border-color:var(--accent);}
+    .proj-item-type{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:6px;}
+    .proj-item-title{font-size:15px;font-weight:600;margin-bottom:6px;}
+    .proj-item-tools{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);}
+    .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-bottom:40px;}
+    .stat-box{background:var(--surface);border:1px solid var(--border);padding:24px;text-align:center;}
+    .stat-num{font-family:'Bebas Neue',sans-serif;font-size:40px;color:var(--accent);line-height:1;margin-bottom:6px;}
+    .stat-lbl{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);}
+    .revoke-btn{background:none;border:1px solid var(--border);padding:10px 18px;cursor:pointer;font-size:14px;color:var(--text);font-family:'JetBrains Mono',monospace;transition:all 0.2s;}
+    .revoke-btn:hover{border-color:var(--accent);color:var(--accent);}
+    footer{background:var(--bg2);border-top:1px solid var(--border);padding:28px 40px;text-align:center;}
+    footer p{font-size:13px;color:var(--muted);font-family:'JetBrains Mono',monospace;}
+    footer a{color:var(--accent);text-decoration:none;}
+    @media(max-width:768px){nav{padding:0 20px;}.nav-links{display:none;}.page-wrap{padding:80px 20px 60px;}.about-hero{grid-template-columns:1fr;}.two-col,.contact-grid,.projects-list,.stats-row{grid-template-columns:1fr;}}
+</style>
 </head>
 <body>
-<div class="layout">
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-brand">
-      <a href="index-de.html" class="brand-name">Ageel Alramadhan</a>
-      <span class="brand-role">data_analyst.portfolio</span>
-    </div>
-    <div class="sidebar-section">
-      <div class="sidebar-section-label">Navigation</div>
-      <a href="index-de.html" class="sidebar-link">
-        <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1L1 6v9h5V10h4v5h5V6L8 1z"/></svg>
-        Übersicht
-      </a>
-      <a href="about-de.html" class="sidebar-link active">
-        <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="5" r="3"/><path d="M2 14c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg>
-        Über mich
-      </a>
-      <a href="projects-de.html" class="sidebar-link">
-        <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><rect x="1" y="3" width="14" height="10" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5 7h6M5 10h4"/></svg>
-        Projekte
-      </a>
-      <a href="contact-de.html" class="sidebar-link">
-        <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2 3h12a1 1 0 011 1v8a1 1 0 01-1 1H2a1 1 0 01-1-1V4a1 1 0 011-1zm6 5l6-4H2l6 4z"/></svg>
-        Kontakt
-      </a>
-    </div>
-    <div class="sidebar-footer">
-      <a href="Ageel-Alramadhan-Lebenslauf.pdf" target="_blank" rel="noopener noreferrer"
-        onclick="gtag('event','resume_click',{event_category:'navigation',event_label:'sidebar_de'});">↓ Lebenslauf (PDF)</a>
-      <a href="https://linkedin.com/in/ageel-alramadhan" target="_blank" rel="noopener noreferrer">LinkedIn →</a>
-      <a href="impressum.html">Impressum</a>
-      <a href="datenschutz.html">Datenschutzerklärung</a>
-    </div>
-  </aside>
-  <div class="main">
-    <header class="mobile-header">
-      <a href="index-de.html" class="mobile-brand">Ageel</a>
-      <button class="nav-toggle" aria-label="Navigation umschalten" onclick="document.getElementById('sidebar').classList.toggle('open')">
-        <span></span><span></span><span></span>
-      </button>
-    </header>
-    <div class="page-header">
-      <div>
-        <div class="page-title">Über mich</div>
-        <div class="page-subtitle">Hintergrund · Kenntnisse · Tools</div>
-      </div>
-      <div class="header-actions"><a href="about.html" class="button-outline" style="font-size:14px;padding:7px 16px;">🇬🇧 English</a></div>
-    </div>
-    <div class="content">
-
-      <div class="panel">
-        <div class="panel-header"><span class="panel-title">Profil</span></div>
-        <div class="panel-body">
-          <div class="about-intro">
-            <img src="profile.png" alt="Ageel Alramadhan" class="profile-photo profile-photo--large" />
-            <div>
-              <p style="font-size:16px;color:#374151;max-width:600px;line-height:1.8;margin-bottom:12px;">
-                Ich bin Datenanalyst mit einem Hintergrund im Performance Marketing. Der Wechsel in die Datenanalyse
-                war für mich naheliegend, weil ich schon immer wissen wollte, warum sich Performance verändert —
-                nicht nur, dass sie sich verändert. Ich hinterfrage Annahmen, validiere Hypothesen und übersetze
-                unstrukturierte Daten in klare, entscheidungsreife Erkenntnisse.
-              </p>
-              <p style="font-size:16px;color:#374151;max-width:600px;line-height:1.8;">
-                Mein Ansatz verbindet Marketing-Know-how mit strukturierter Analyse,
-                um messbaren Geschäftsmehrwert zu schaffen. Der Fokus liegt auf Wachstum,
-                Kundenverhalten und KPI-Bewegungen.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="about-grid">
-        <div class="panel">
-          <div class="panel-header"><span class="panel-title">Technische Kenntnisse</span></div>
-          <div class="panel-body" style="padding:0 20px;">
-            <ul class="skill-list">
-              <li>Datenbankabfragen <span class="skill-level">SQL · PostgreSQL</span></li>
-              <li>Datenanalyse &amp; Scripting <span class="skill-level">Python · Pandas · NumPy</span></li>
-              <li>NLP &amp; Textmining <span class="skill-level">spaCy · NLTK · TextBlob</span></li>
-              <li>Datenvisualisierung <span class="skill-level">Tableau · Matplotlib · Plotly</span></li>
-              <li>Web Scraping <span class="skill-level">Selenium · BeautifulSoup</span></li>
-              <li>Dashboarding <span class="skill-level">Streamlit · Tableau</span></li>
-              <li>Tabellenkalkulation <span class="skill-level">Excel · Pivot-Tabellen</span></li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="panel">
-          <div class="panel-header"><span class="panel-title">Analysebereiche</span></div>
-          <div class="panel-body" style="padding:0 20px;">
-            <ul class="skill-list">
-              <li>Verhaltens-Segmentierung <span class="skill-level" style="font-size:18px;">✓</span></li>
-              <li>Zeitreihenanalyse <span class="skill-level" style="font-size:18px;">✓</span></li>
-              <li>Räumliche Visualisierung <span class="skill-level" style="font-size:18px;">✓</span></li>
-              <li>Textmining & NLP <span class="skill-level" style="font-size:18px;">✓</span></li>
-              <li>Netzwerkgraph-Analyse <span class="skill-level" style="font-size:18px;">✓</span></li>
-              <li>Statistische Vergleiche <span class="skill-level" style="font-size:18px;">✓</span></li>
-              <li>Umsatz- & Marktanalyse <span class="skill-level" style="font-size:18px;">✓</span></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="panel">
-        <div class="panel-header"><span class="panel-title"> PROJEKTE </span></div>
-        <div class="panel-body">
-          <p style="font-size:14px;color:#374151;margin-bottom:16px;">
-            Jedes Projekt verbindet Tools mit echten analytischen Entscheidungen — sehen Sie sich die Arbeiten im Bereich <a href="projects-de.html" style="color:var(--accent);">Projekte</a> an.
-          </p>
-          <div style="display:flex;gap:10px;flex-wrap:wrap;">
-            <a href="projects-de.html" class="button">Alle Projekte anzeigen</a>
-            <a href="contact-de.html" class="button-outline">Kontakt aufnehmen</a>
-          </div>
-        </div>
-      </div>
-
+<nav>
+  <a href="index-de.html" class="nav-logo">ageel.alramadhan</a>
+  <ul class="nav-links"><li><a href="index-de.html" class="">Start</a></li><li><a href="index-de.html#projects" class="">Projekte</a></li><li><a href="index-de.html#contact" class="">Kontakt</a></li></ul>
+  <a href="about.html" class="nav-lang">🇬🇧 English</a>
+</nav>
+<div class="page-wrap">
+  <div class="page-eyebrow">Hintergrund</div>
+  <h1 class="page-title">Über mich</h1>
+  <div class="page-subtitle">Performance Marketing · Datenanalyse · Hamburg</div>
+  <div class="content-block">
+<div class="about-hero">
+  <img src="profile.png" alt="Ageel Alramadhan" class="about-photo" />
+  <div>
+    <p>Ich bin Datenanalyst mit einem Hintergrund im Performance Marketing. Der Wechsel in die Datenanalyse war für mich naheliegend, weil ich schon immer wissen wollte, <strong>warum sich Performance verändert</strong> — nicht nur, dass sie sich verändert.</p>
+    <p>Ich verbinde Marketing-Know-how mit strukturierter Analyse, um messbaren Geschäftsmehrwert zu schaffen. Der Fokus liegt auf <strong>Wachstum, Kundenverhalten und KPI-Bewegungen</strong>.</p>
+    <p>DEKRA-zertifiziert · AfA-zugelassen · 1221 UE · Standort Hamburg · Offen für Stellen deutschlandweit.</p>
+    <div style="margin-top:24px;">
+      <a href="Ageel-Alramadhan-Lebenslauf.pdf" target="_blank" rel="noopener" class="btn btn-accent">↓ Lebenslauf</a>
+      <a href="https://www.linkedin.com/in/ageel-alramadhan/" target="_blank" rel="noopener" class="btn btn-outline">LinkedIn</a>
     </div>
   </div>
 </div>
+<h2>Technische Kenntnisse</h2>
+<div class="skill-row"><span>SQL / PostgreSQL</span><span class="skill-tools">Datenbankabfragen · Joins · CTEs</span></div>
+<div class="skill-row"><span>Python</span><span class="skill-tools">Pandas · NumPy · Matplotlib · Scipy</span></div>
+<div class="skill-row"><span>NLP & Textmining</span><span class="skill-tools">spaCy · NLTK · TextBlob · NetworkX</span></div>
+<div class="skill-row"><span>Datenvisualisierung</span><span class="skill-tools">Tableau · Plotly · Matplotlib · Kepler.gl</span></div>
+<div class="skill-row"><span>Dashboarding</span><span class="skill-tools">Streamlit · Tableau</span></div>
+<div class="skill-row"><span>Web Scraping</span><span class="skill-tools">Selenium · BeautifulSoup</span></div>
+<div class="skill-row"><span>Tabellenkalkulation</span><span class="skill-tools">Excel · Pivot-Tabellen · Statistische Analyse</span></div>
+<h2>Analysebereiche</h2>
+<div class="two-col">
+  <div class="col-block">
+    <h3>Methoden</h3>
+    <div class="skill-row"><span>Verhaltens-Segmentierung</span><span class="skill-tools">✓</span></div>
+    <div class="skill-row"><span>Zeitreihenanalyse</span><span class="skill-tools">✓</span></div>
+    <div class="skill-row"><span>Statistischer Vergleich</span><span class="skill-tools">✓</span></div>
+    <div class="skill-row"><span>Regressionsanalyse</span><span class="skill-tools">✓</span></div>
+  </div>
+  <div class="col-block">
+    <h3>Bereiche</h3>
+    <div class="skill-row"><span>Geodaten-Visualisierung</span><span class="skill-tools">✓</span></div>
+    <div class="skill-row"><span>Netzwerkgraph-Analyse</span><span class="skill-tools">✓</span></div>
+    <div class="skill-row"><span>Umsatz- & Marktanalyse</span><span class="skill-tools">✓</span></div>
+    <div class="skill-row"><span>Public-Health-Analytik</span><span class="skill-tools">✓</span></div>
+  </div>
+</div>
+<h2>Sprachen</h2>
+<div class="skill-row"><span>Englisch</span><span class="skill-tools">Fließend</span></div>
+<div class="skill-row"><span>Arabisch</span><span class="skill-tools">Muttersprache</span></div>
+<div class="skill-row"><span>Deutsch</span><span class="skill-tools">B1–B2</span></div>
+  </div>
+</div>
+<footer><p>© 2026 Ageel Alramadhan · <a href="index-de.html">Portfolio</a></p></footer>
 <div id="cookie-banner" class="cookie-banner" style="display:none;">
   <div class="cookie-inner">
     <p>Diese Website verwendet Google Analytics. Sie können zustimmen oder ablehnen.</p>

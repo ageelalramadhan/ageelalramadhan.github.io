@@ -3,134 +3,129 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Textmining & NLP — 20. Jahrhundert | Ageel Alramadhan</title>
-  <meta name="description" content="End-to-End NLP-Pipeline: Web-Scraping, Textmining, NER mit spaCy und Netzwerkgraph-Visualisierung." />
-  <meta name="author" content="Ageel Alramadhan" />
-  <meta property="og:title" content="Textmining & NLP — 20. Jahrhundert | Ageel Alramadhan" />
-  <meta property="og:description" content="End-to-End NLP-Pipeline: Web-Scraping, Textmining, NER mit spaCy und Netzwerkgraph-Visualisierung." />
-  <meta property="og:url" content="https://ageelalramadhan.github.io/textmining-case-study-de.html" />
-  <meta property="og:image" content="https://ageelalramadhan.github.io/og-image.png" />
+  <title>Textmining & NLP im 20. Jahrhundert | Ageel Alramadhan</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="consent.css" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    :root{--bg:#0f0f0f;--bg2:#161616;--surface:#1e1e1e;--border:#2e2e2e;--text:#f0f0f0;--muted:#888;--accent:#3dd68c;--accent2:#00d4ff;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(15,15,15,0.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;}
+    .nav-logo{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--accent);text-decoration:none;letter-spacing:1px;}
+    .nav-right{display:flex;gap:16px;align-items:center;}
+    .nav-back{font-size:13px;color:var(--muted);text-decoration:none;transition:color 0.2s;}
+    .nav-back:hover{color:var(--text);}
+    .nav-lang{font-size:13px;color:var(--muted);text-decoration:none;border:1px solid var(--border);padding:5px 12px;transition:all 0.2s;}
+    .nav-lang:hover{border-color:var(--accent);color:var(--accent);}
+    .page-hero{padding:100px 40px 52px;background:var(--bg2);border-bottom:1px solid var(--border);}
+    .page-hero-inner{max-width:900px;margin:0 auto;}
+    .page-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:16px;}
+    .page-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,5vw,60px);letter-spacing:2px;line-height:1;margin-bottom:14px;}
+    .page-subtitle{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);margin-bottom:28px;}
+    .switcher{display:flex;gap:4px;flex-wrap:wrap;}
+    .switcher a,.switcher span{padding:7px 16px;font-family:'JetBrains Mono',monospace;font-size:12px;text-decoration:none;border:1px solid var(--border);color:var(--muted);transition:all 0.2s;letter-spacing:0.5px;}
+    .switcher a:hover{border-color:var(--accent);color:var(--accent);}
+    .switcher span.active{background:var(--accent);color:#0f0f0f;border-color:var(--accent);font-weight:600;}
+    .case-body{max-width:900px;margin:0 auto;padding:60px 40px 100px;}
+    .tools-box{background:var(--bg2);border:1px solid var(--border);padding:20px 24px;margin-bottom:40px;}
+    .tools-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+    .tools-value{font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--accent);margin-bottom:8px;}
+    .tools-box p{font-size:14px;color:var(--muted);}
+    .case-body h2{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:1px;margin:48px 0 14px;}
+    .case-body h3{font-size:17px;font-weight:600;margin:32px 0 10px;}
+    .case-body p{font-size:15px;color:#c0c0c0;line-height:1.8;margin-bottom:16px;}
+    .case-body ul{margin:0 0 20px 20px;}
+    .case-body li{font-size:15px;color:#c0c0c0;line-height:1.8;margin-bottom:6px;}
+    .case-body strong{color:var(--text);}
+    .case-figure{margin:20px 0 28px;}
+    .case-figure img{width:100%;display:block;border:1px solid var(--border);}
+    .case-figure figcaption{font-size:13px;color:var(--muted);margin-top:10px;font-style:italic;line-height:1.6;}
+    pre.sql-block{background:var(--surface);border:1px solid var(--border);padding:20px 24px;font-family:'JetBrains Mono',monospace;font-size:13px;color:#c0c0c0;overflow-x:auto;line-height:1.7;margin:16px 0 24px;white-space:pre;}
+    .btn-link{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;font-family:'JetBrains Mono',monospace;font-size:13px;text-decoration:none;background:var(--accent);color:#0f0f0f;font-weight:600;margin:16px 0;transition:all 0.2s;}
+    .btn-link:hover{background:#4df0a0;}
+    footer{background:var(--bg2);border-top:1px solid var(--border);padding:28px 40px;text-align:center;}
+    footer p{font-size:13px;color:var(--muted);font-family:'JetBrains Mono',monospace;}
+    footer a{color:var(--accent);text-decoration:none;}
+    @media(max-width:768px){nav{padding:0 20px;}.page-hero{padding:80px 20px 40px;}.case-body{padding:40px 20px 60px;}}
+</style>
 </head>
 <body>
-<div class="layout">
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-brand">
-      <a href="index-de.html" class="brand-name">Ageel Alramadhan</a>
-      <span class="brand-role">data_analyst.portfolio</span>
-    </div>
-    <div class="sidebar-section">
-      <div class="sidebar-section-label">Navigation</div>
-      <a href="index-de.html" class="sidebar-link">
-        <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1L1 6v9h5V10h4v5h5V6L8 1z"/></svg>
-        Übersicht
-      </a>
-      <a href="about-de.html" class="sidebar-link">
-        <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="5" r="3"/><path d="M2 14c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg>
-        Über mich
-      </a>
-      <a href="projects-de.html" class="sidebar-link active">
-        <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><rect x="1" y="3" width="14" height="10" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5 7h6M5 10h4"/></svg>
-        Projekte
-      </a>
-      <a href="contact-de.html" class="sidebar-link">
-        <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2 3h12a1 1 0 011 1v8a1 1 0 01-1 1H2a1 1 0 01-1-1V4a1 1 0 011-1zm6 5l6-4H2l6 4z"/></svg>
-        Kontakt
-      </a>
-    </div>
-    <div class="sidebar-footer">
-      <a href="Ageel-Alramadhan-Lebenslauf.pdf" target="_blank" rel="noopener noreferrer"
-        onclick="gtag('event','resume_click',{event_category:'navigation',event_label:'sidebar_de'});">↓ Lebenslauf (PDF)</a>
-      <a href="https://linkedin.com/in/ageel-alramadhan" target="_blank" rel="noopener noreferrer">LinkedIn →</a>
-      <a href="impressum.html">Impressum</a>
-      <a href="datenschutz.html">Datenschutzerklärung</a>
-    </div>
-  </aside>
-  <div class="main">
-    <header class="mobile-header">
-      <a href="index-de.html" class="mobile-brand">Ageel</a>
-      <button class="nav-toggle" aria-label="Navigation umschalten" onclick="document.getElementById('sidebar').classList.toggle('open')">
-        <span></span><span></span><span></span>
-      </button>
-    </header>
-    <div class="page-header">
-      <div>
-        <div class="page-title">Textmining & NLP — 20. Jahrhundert</div>
-        <div class="page-subtitle">Python · spaCy · NLTK · Selenium · NetworkX</div>
-      </div>
-      <div class="header-actions"><a href="textmining-case-study.html" class="button-outline" style="font-size:14px;padding:7px 16px;">🇬🇧 English</a></div>
-    </div>
-    <div class="content">
-      <nav class="project-switcher" aria-label="Projektnavigation">
-        <a class="switcher-link" href="instacart-case-study-de.html">Instacart</a>
-        <a class="switcher-link" href="citi-bike-case-study-de.html">Citi Bike</a>
-        <a class="switcher-link" href="rockbuster-case-study-de.html">Rockbuster</a>
-        <a class="switcher-link" href="influenza-case-study-de.html">Influenza</a>
-        <a class="switcher-link" href="happiness-case-study-de.html">Happiness</a>
-        <span class="switcher-link is-active" aria-current="page">Text Mining</span>
-      </nav>
-      <div class="panel">
-        <div class="panel-body case-content">
-
-          <h3>Projektübersicht</h3>
-          <p>Dieses End-to-End-NLP-Projekt scrapt einen Wikipedia-Artikel über das 20. Jahrhundert, führt Textmining und linguistische Analysen durch und nutzt Named Entity Recognition (NER), um Länderkookkurrenzen zu extrahieren und einen interaktiven Netzwerkgraphen zu erstellen.</p>
-
-        <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:14px 18px;margin-bottom:20px;">
-          <p style="margin:0 0 6px 0;font-size:13px;font-family:var(--font-mono);color:var(--muted);text-transform:uppercase;letter-spacing:0.8px;">Tools &amp; Bibliotheken</p>
-          <p style="margin:0 0 10px 0;font-size:15px;font-family:var(--font-mono);color:var(--text);">Python · Selenium · NLTK · TextBlob · spaCy · NetworkX · NER</p>
-          <p><strong>Datensatz:</strong> 100 Wikipedia-Artikelzusammenfassungen, automatisch per Selenium gescrapt. Textkorpus von ~80.000 Tokens, verarbeitet durch NLP-Pipeline (Tokenisierung, NER, Sentiment, Ko-Okkurrenz-Netzwerk).</p>
-        </div>
-
-
-          <h3>Phase 1 — Web-Scraping mit Selenium</h3>
-          <p>Selenium mit ChromeDriver wurde verwendet, um den vollständigen Text des Wikipedia-Artikels "20. Jahrhundert" programmatisch zu scrapen. Der Rohtext erforderte eine Bereinigung, um Navigationselemente und Metadaten zu entfernen.</p>
-
-          <pre class="sql-block"># Wikipedia-Seitentext mit Selenium scrapen
-from selenium import webdriver
+<nav>
+  <a href="index-de.html" class="nav-logo">ageel.alramadhan</a>
+  <div class="nav-right">
+    <a href="index-de.html#projects" class="nav-back">← Zurück zu Projekten</a>
+    <a href="textmining-case-study.html" class="nav-lang">🇬🇧 English</a>
+  </div>
+</nav>
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-eyebrow">Case Study</div>
+    <h1 class="page-title">Textmining & NLP im 20. Jahrhundert</h1>
+    <div class="page-subtitle">Python · Selenium · NLTK · TextBlob · spaCy · NetworkX</div>
+    <nav class="switcher">
+      <a href="instacart-case-study-de.html">Instacart</a>
+      <a href="citi-bike-case-study-de.html">Citi Bike</a>
+      <a href="rockbuster-case-study-de.html">Rockbuster</a>
+      <a href="influenza-case-study-de.html">Influenza</a>
+      <a href="happiness-case-study-de.html">Happiness</a>
+      <span class="active">Text Mining</span>
+    </nav>
+  </div>
+</div>
+<div class="case-body">
+<div class="tools-box">
+  <div class="tools-label">Tools & Bibliotheken</div>
+  <div class="tools-value">Python · Selenium · NLTK · TextBlob · spaCy · NetworkX · NER</div>
+  <p><strong>Datensatz:</strong> 100 Wikipedia-Artikelzusammenfassungen per Scraping gesammelt. Textkorpus von ~80.000 Token durch vollständige NLP-Pipeline verarbeitet.</p>
+</div>
+<h3>Projektübersicht</h3>
+<p>Dieses End-to-End-NLP-Projekt scrapt einen Wikipedia-Artikel über wichtige Ereignisse des 20. Jahrhunderts, führt Textmining und linguistische Analyse durch und nutzt Named Entity Recognition (NER), um Länder-Co-Occurences zu extrahieren und einen interaktiven Netzwerkgraph zu erstellen.</p>
+<h3>Die Pipeline</h3>
+<p>Das Projekt deckt die vollständige Data-Science-Pipeline ab: Scraping, Bereinigung, linguistische Analyse, Entity-Extraktion, Beziehungsmodellierung und Netzwerkgraph-Konstruktion.</p>
+<h3>Phase 1 — Web-Scraping mit Selenium</h3>
+<pre class="sql-block">from selenium import webdriver
 from selenium.webdriver.common.by import By
 
 driver = webdriver.Chrome()
 driver.get("https://en.wikipedia.org/wiki/20th_century")
 text = driver.find_element(By.ID, "mw-content-text").text
-driver.quit()</pre>
+driver.quit()
 
-          <h3>Phase 2 — Textmining mit NLTK & TextBlob</h3>
-          <ul>
-            <li>Worthäufigkeitsanalyse vor und nach Stoppwortentfernung — "war", "world" und "soviet" dominierten</li>
-            <li>Part-of-Speech-Tagging mit TextBlob zur Identifikation von Nomen, Verben und Eigennamen</li>
-            <li>Extraktion der häufigsten 15 Nomen zur Aufdeckung historischer Kernthemen</li>
-          </ul>
-
-          <h3>Phase 3 — Named Entity Recognition (NER) mit spaCy</h3>
-          <p>spaCys <code>en_core_web_sm</code>-Modell wurde zur Extraktion geopolitischer Entitäten (GPE-Tags) aus jedem Satz eingesetzt. Entitäts-Aliase wurden normalisiert — "UK", "U.K." und "Britain" wurden alle auf "United Kingdom" gemappt.</p>
-
-          <h3>Phase 4 — Länder-Kookkurrenz-Netzwerk</h3>
-          <figure class="case-figure">
-            <img src="textmining-community-network.png" alt="Community-Detection-Netzwerkgraph nach geopolitischem Cluster" class="case-image" style="max-width:100%;" />
-            <figcaption>Die Community-Detection zeigt drei verschiedene geopolitische Cluster — Westliche Alliierte (orange), Mittel-/Osteuropäische Achse (rot) und Nordwest-Europäische Peripherie (blau/grün). Die Cluster spiegeln reale Bündnisstrukturen des 20. Jahrhunderts wider.</figcaption>
-          </figure>
-          <figure class="case-figure">
-            <img src="textmining-interactive-network.png" alt="Vollständiges Länder-Kookkurrenz-Netzwerk" class="case-image" style="max-width:100%;" />
-            <figcaption>Das vollständige Kookkurrenz-Netzwerk zeigt 21 Länder und 53 Verbindungen. Der dichte zentrale Cluster aus Deutschland, UK, Sowjetunion, Frankreich, Russland, USA, Japan, China und Indien spiegelt die am häufigsten gemeinsam erwähnten Nationen wider.</figcaption>
-          </figure>
-
-          <h3>Zentrale Erkenntnisse</h3>
-          <ul>
-            <li>Nach Stoppwortentfernung dominierten "war", "world", "soviet", "united" und "states"</li>
-            <li>USA, Sowjetunion, Deutschland und UK bildeten den dichtesten Cluster</li>
-            <li>Kookkurrenzmuster spiegeln bekannte geopolitische Beziehungen wider</li>
-            <li>Alias-Normalisierung war entscheidend für konsistente Entitätszählung</li>
-          </ul>
-
-          <h3>Fazit</h3>
-          <p>Dieses Projekt demonstriert die vollständige NLP-Pipeline von Rohdaten bis zur Erkenntnis. Die Netzwerkvisualisierung macht eine abstrakte Frage — "Welche Länder waren im 20. Jahrhundert am stärksten historisch verbunden?" — unmittelbar und intuitiv beantwortbar.</p>
-        </div>
-      </div>
-    </div>
-  </div>
+with open("20th_century_key_events.txt", "w") as f:
+    f.write(text)</pre>
+<h3>Phase 2 — Textmining mit NLTK & TextBlob</h3>
+<ul>
+  <li>Worthäufigkeitsanalyse — vor und nach Stoppwortentfernung zeigten "Krieg", "Welt" und "Sowjet" Dominanz</li>
+  <li>Part-of-Speech (POS)-Tagging mit TextBlob</li>
+  <li>Extraktion der Top-15-Nomen zur Identifikation historisch bedeutsamer Themen</li>
+</ul>
+<h3>Phase 3 — Named Entity Recognition mit spaCy</h3>
+<p>Verwendung von spaCys <code>en_core_web_sm</code>-Modell zur Extraktion geopolitischer Entitäten (GPE-Tags). Aliase wurden normalisiert — "UK", "U.K." und "Britain" wurden zu "United Kingdom" zusammengefasst.</p>
+<h3>Wichtigste Erkenntnisse</h3>
+<ul>
+  <li>Nach Stoppwortentfernung dominieren: "Krieg", "Welt", "Sowjet", "Vereinigt", "Staaten"</li>
+  <li>USA, Sowjetunion, Deutschland und Großbritannien bildeten den dichtesten Cluster</li>
+  <li>Co-Occurrence-Muster spiegeln bekannte geopolitische Beziehungen wider</li>
+  <li>Alias-Normalisierung war entscheidend</li>
+</ul>
+<h2>Community-Detection-Netzwerk</h2>
+<figure class="case-figure">
+  <img src="textmining-community-network.png" alt="Community-Detection-Netzwerkgraph nach geopolitischem Cluster eingefärbt" />
+  <figcaption>Community-Detection zeigt drei geopolitische Cluster, die realen Bündnisstrukturen des 20. Jahrhunderts widerspiegeln.</figcaption>
+</figure>
+<h2>Vollständiger Co-Occurrence-Graph</h2>
+<figure class="case-figure">
+  <img src="textmining-interactive-network.png" alt="Vollständiges Länder-Co-Occurrence-Netzwerk" />
+  <figcaption>21 Länder, 53 Verbindungen. Das dichte Zentrum aus Deutschland, UK, Sowjetunion, Frankreich, Russland, USA, Japan, China und Indien zeigt die am häufigsten zusammen erwähnten Nationen.</figcaption>
+</figure>
+<h3>Fazit</h3>
+<p>Dieses Projekt zeigt die vollständige NLP-Pipeline von rohen Webdaten bis zur Erkenntnis. Die Netzwerkvisualisierung macht die abstrakte Frage — "welche Länder waren im 20. Jahrhundert am stärksten historisch verbunden?" — durch die Graphstruktur sofort intuitiv beantwortbar.</p>
 </div>
+<footer><p>© 2026 Ageel Alramadhan · <a href="index-de.html">Back to Portfolio</a></p></footer>
 <div id="cookie-banner" class="cookie-banner" style="display:none;">
   <div class="cookie-inner">
     <p>Diese Website verwendet Google Analytics. Sie können zustimmen oder ablehnen.</p>

@@ -4,130 +4,118 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>US-Influenza-Sterblichkeitsanalyse (2009–2017) | Ageel Alramadhan</title>
-  <meta name="description" content="Statistische Analyse der US-Influenza-Sterblichkeit 2009–2017 — zeitliche Trends und räumliche Visualisierung." />
-  <meta name="author" content="Ageel Alramadhan" />
-  <meta property="og:title" content="US-Influenza-Sterblichkeitsanalyse (2009–2017) | Ageel Alramadhan" />
-  <meta property="og:description" content="Statistische Analyse der US-Influenza-Sterblichkeit 2009–2017 — zeitliche Trends und räumliche Visualisierung." />
-  <meta property="og:url" content="https://ageelalramadhan.github.io/influenza-case-study-de.html" />
-  <meta property="og:image" content="https://ageelalramadhan.github.io/og-image.png" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="consent.css" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    :root{--bg:#0f0f0f;--bg2:#161616;--surface:#1e1e1e;--border:#2e2e2e;--text:#f0f0f0;--muted:#888;--accent:#3dd68c;--accent2:#00d4ff;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(15,15,15,0.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;}
+    .nav-logo{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--accent);text-decoration:none;letter-spacing:1px;}
+    .nav-right{display:flex;gap:16px;align-items:center;}
+    .nav-back{font-size:13px;color:var(--muted);text-decoration:none;transition:color 0.2s;}
+    .nav-back:hover{color:var(--text);}
+    .nav-lang{font-size:13px;color:var(--muted);text-decoration:none;border:1px solid var(--border);padding:5px 12px;transition:all 0.2s;}
+    .nav-lang:hover{border-color:var(--accent);color:var(--accent);}
+    .page-hero{padding:100px 40px 52px;background:var(--bg2);border-bottom:1px solid var(--border);}
+    .page-hero-inner{max-width:900px;margin:0 auto;}
+    .page-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:16px;}
+    .page-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,5vw,60px);letter-spacing:2px;line-height:1;margin-bottom:14px;}
+    .page-subtitle{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);margin-bottom:28px;}
+    .switcher{display:flex;gap:4px;flex-wrap:wrap;}
+    .switcher a,.switcher span{padding:7px 16px;font-family:'JetBrains Mono',monospace;font-size:12px;text-decoration:none;border:1px solid var(--border);color:var(--muted);transition:all 0.2s;letter-spacing:0.5px;}
+    .switcher a:hover{border-color:var(--accent);color:var(--accent);}
+    .switcher span.active{background:var(--accent);color:#0f0f0f;border-color:var(--accent);font-weight:600;}
+    .case-body{max-width:900px;margin:0 auto;padding:60px 40px 100px;}
+    .tools-box{background:var(--bg2);border:1px solid var(--border);padding:20px 24px;margin-bottom:40px;}
+    .tools-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+    .tools-value{font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--accent);margin-bottom:8px;}
+    .tools-box p{font-size:14px;color:var(--muted);}
+    .case-body h2{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:1px;margin:48px 0 14px;}
+    .case-body h3{font-size:17px;font-weight:600;margin:32px 0 10px;}
+    .case-body p{font-size:15px;color:#c0c0c0;line-height:1.8;margin-bottom:16px;}
+    .case-body ul{margin:0 0 20px 20px;}
+    .case-body li{font-size:15px;color:#c0c0c0;line-height:1.8;margin-bottom:6px;}
+    .case-body strong{color:var(--text);}
+    .case-figure{margin:20px 0 28px;}
+    .case-figure img{width:100%;display:block;border:1px solid var(--border);}
+    .case-figure figcaption{font-size:13px;color:var(--muted);margin-top:10px;font-style:italic;line-height:1.6;}
+    pre.sql-block{background:var(--surface);border:1px solid var(--border);padding:20px 24px;font-family:'JetBrains Mono',monospace;font-size:13px;color:#c0c0c0;overflow-x:auto;line-height:1.7;margin:16px 0 24px;white-space:pre;}
+    .btn-link{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;font-family:'JetBrains Mono',monospace;font-size:13px;text-decoration:none;background:var(--accent);color:#0f0f0f;font-weight:600;margin:16px 0;transition:all 0.2s;}
+    .btn-link:hover{background:#4df0a0;}
+    footer{background:var(--bg2);border-top:1px solid var(--border);padding:28px 40px;text-align:center;}
+    footer p{font-size:13px;color:var(--muted);font-family:'JetBrains Mono',monospace;}
+    footer a{color:var(--accent);text-decoration:none;}
+    @media(max-width:768px){nav{padding:0 20px;}.page-hero{padding:80px 20px 40px;}.case-body{padding:40px 20px 60px;}}
+</style>
 </head>
 <body>
-<div class="layout">
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-brand">
-      <a href="index-de.html" class="brand-name">Ageel Alramadhan</a>
-      <span class="brand-role">data_analyst.portfolio</span>
-    </div>
-    <div class="sidebar-section">
-      <div class="sidebar-section-label">Navigation</div>
-      <a href="index-de.html" class="sidebar-link">
-        <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1L1 6v9h5V10h4v5h5V6L8 1z"/></svg>
-        Übersicht
-      </a>
-      <a href="about-de.html" class="sidebar-link">
-        <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="5" r="3"/><path d="M2 14c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg>
-        Über mich
-      </a>
-      <a href="projects-de.html" class="sidebar-link active">
-        <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><rect x="1" y="3" width="14" height="10" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5 7h6M5 10h4"/></svg>
-        Projekte
-      </a>
-      <a href="contact-de.html" class="sidebar-link">
-        <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2 3h12a1 1 0 011 1v8a1 1 0 01-1 1H2a1 1 0 01-1-1V4a1 1 0 011-1zm6 5l6-4H2l6 4z"/></svg>
-        Kontakt
-      </a>
-    </div>
-    <div class="sidebar-footer">
-      <a href="Ageel-Alramadhan-Lebenslauf.pdf" target="_blank" rel="noopener noreferrer"
-        onclick="gtag('event','resume_click',{event_category:'navigation',event_label:'sidebar_de'});">↓ Lebenslauf (PDF)</a>
-      <a href="https://linkedin.com/in/ageel-alramadhan" target="_blank" rel="noopener noreferrer">LinkedIn →</a>
-      <a href="impressum.html">Impressum</a>
-      <a href="datenschutz.html">Datenschutzerklärung</a>
-    </div>
-  </aside>
-  <div class="main">
-    <header class="mobile-header">
-      <a href="index-de.html" class="mobile-brand">Ageel</a>
-      <button class="nav-toggle" aria-label="Navigation umschalten" onclick="document.getElementById('sidebar').classList.toggle('open')">
-        <span></span><span></span><span></span>
-      </button>
-    </header>
-    <div class="page-header">
-      <div>
-        <div class="page-title">US-Influenza-Sterblichkeitsanalyse (2009–2017)</div>
-        <div class="page-subtitle">Excel · Tableau · Statistische Analyse</div>
-      </div>
-      <div class="header-actions"><a href="influenza-case-study.html" class="button-outline" style="font-size:14px;padding:7px 16px;">🇬🇧 English</a></div>
-    </div>
-    <div class="content">
-      <nav class="project-switcher" aria-label="Projektnavigation">
-        <a class="switcher-link" href="instacart-case-study-de.html">Instacart</a>
-        <a class="switcher-link" href="citi-bike-case-study-de.html">Citi Bike</a>
-        <a class="switcher-link" href="rockbuster-case-study-de.html">Rockbuster</a>
-        <span class="switcher-link is-active" aria-current="page">Influenza</span>
-        <a class="switcher-link" href="happiness-case-study-de.html">Happiness</a>
-        <a class="switcher-link" href="textmining-case-study-de.html">Text Mining</a>
-      </nav>
-      <div class="panel">
-        <div class="panel-body case-content">
-
-          <h3>Projektübersicht</h3>
-          <p>Dieses Projekt analysiert US-Influenza-Sterblichkeitsdaten aller 50 Bundesstaaten von 2009 bis 2017 — mit dem Ziel zu untersuchen, ob sich die Sterblichkeitsraten im Zeitverlauf verändert haben und wie die Bevölkerungsgröße die beobachteten Todesfälle beeinflusst.</p>
-
-        <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:14px 18px;margin-bottom:20px;">
-          <p style="margin:0 0 6px 0;font-size:13px;font-family:var(--font-mono);color:var(--muted);text-transform:uppercase;letter-spacing:0.8px;">Tools &amp; Bibliotheken</p>
-          <p style="margin:0 0 10px 0;font-size:15px;font-family:var(--font-mono);color:var(--text);">Excel · Tableau · Statistische Analyse · Räumliche Visualisierung</p>
-          <p><strong>Datensatz:</strong> CDC-Sterblichkeitsdaten zu Grippe (2009–2017) für alle 50 US-Bundesstaaten. ~6.000 Zeilen mit Variablen wie Altersgruppe, Bundesstaat, Saison und Todesfälle.</p>
-        </div>
-
-
-          <h3>Forschungsfrage</h3>
-          <p>Hat sich die US-Influenza-Sterblichkeitsrate zwischen 2009 und 2017 signifikant verändert? Und wie beeinflusst die Bevölkerungsgröße die Rohdaten? Dies ist entscheidend für faire bundesstaatliche Vergleiche und Ressourcenallokation.</p>
-
-          <h3>Zentrale Erkenntnisse</h3>
-          <ul>
-            <li>Keine statistisch signifikante Veränderung der Sterblichkeitsrate — stabil bei ca. 0,012 %</li>
-            <li>Starke positive Korrelation zwischen Bundesstaatsbevölkerung und Todesfällen (r ≈ 0,96)</li>
-            <li>Erwachsene ab 75 Jahren haben den größten Anteil an Influenza-Todesfällen</li>
-            <li>Die Sterblichkeitsrate ist die korrekte Kennzahl für bundesstaatliche Vergleiche</li>
-          </ul>
-
-          <div class="insight-block">
-            <h2>Abbildung 1 — Zeitlicher Verlauf der Influenza-Todesfälle</h2>
-            <figure class="case-figure">
-              <img src="influenza-tableau-1.png" alt="Liniendiagramm US-Influenza-Todesfälle 2009–2017" class="case-image" />
-              <figcaption>Die jährlichen Influenza-Todesfälle blieben weitgehend stabil — kein signifikanter Aufwärts- oder Abwärtstrend im Beobachtungszeitraum.</figcaption>
-            </figure>
-            <h2>Abbildung 2 — Räumliche Verteilung der Sterblichkeitsrate</h2>
-            <figure class="case-figure">
-              <img src="influenza-tableau-2.png" alt="US-Choroplethenkarte der Influenza-Sterblichkeitsrate je 100.000" class="case-image" />
-              <figcaption>Die Choroplethenkarte zeigt die Sterblichkeitsrate je 100.000 Einwohner. Dunklere Bundesstaaten tragen ein höheres Pro-Kopf-Risiko — unabhängig von der absoluten Todesfallzahl.</figcaption>
-            </figure>
-            <p style="margin-top:16px;">
-              <a href="https://public.tableau.com/app/profile/a.a5244/viz/Exercise2_7InfluenzaSpatialAnalysis20092017_AA/InfluenzaStoryAkeelAlramadhan"
-                target="_blank" rel="noopener noreferrer" class="button">
-                Interaktive Tableau-Story ansehen →
-              </a>
-            </p>
-          </div>
-
-          <h3>Warum Sterblichkeitsraten entscheidend sind</h3>
-          <p>Rohe Todesfallzahlen werden stark von der Bevölkerungsgröße beeinflusst. Kalifornien und Texas haben hohe Todesfallzahlen nicht weil sie riskanter sind, sondern weil mehr Menschen dort leben. Die Sterblichkeitsrate je 100.000 Einwohner beseitigt diese Verzerrung und liefert das echte Pro-Kopf-Risiko.</p>
-
-          <h3>Empfehlungen</h3>
-          <ul>
-            <li>Präventionsressourcen auf Erwachsene ab 65 Jahren konzentrieren</li>
-            <li>Sterblichkeitsrate statt Rohdaten für bundesstaatliche Personalentscheidungen verwenden</li>
-            <li>Bundesstaatliche Trends jährlich monitoren — nationale Stabilität kann lokale Spitzen verdecken</li>
-          </ul>
-        </div>
-      </div>
-    </div>
+<nav>
+  <a href="index-de.html" class="nav-logo">ageel.alramadhan</a>
+  <div class="nav-right">
+    <a href="index-de.html#projects" class="nav-back">← Zurück zu Projekten</a>
+    <a href="influenza-case-study.html" class="nav-lang">🇬🇧 English</a>
+  </div>
+</nav>
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-eyebrow">Case Study</div>
+    <h1 class="page-title">US-Influenza-Sterblichkeitsanalyse (2009–2017)</h1>
+    <div class="page-subtitle">Excel · Tableau · Statistische Analyse · Public Health</div>
+    <nav class="switcher">
+      <a href="instacart-case-study-de.html">Instacart</a>
+      <a href="citi-bike-case-study-de.html">Citi Bike</a>
+      <a href="rockbuster-case-study-de.html">Rockbuster</a>
+      <span class="active">Influenza</span>
+      <a href="happiness-case-study-de.html">Happiness</a>
+      <a href="textmining-case-study-de.html">Text Mining</a>
+    </nav>
   </div>
 </div>
+<div class="case-body">
+<div class="tools-box">
+  <div class="tools-label">Tools & Bibliotheken</div>
+  <div class="tools-value">Excel · Tableau · Statistische Analyse · Räumliche Visualisierung</div>
+  <p><strong>Datensatz:</strong> CDC-Influenza-Sterblichkeitsdaten (2009–2017) für alle 50 US-Bundesstaaten. ~6.000 Zeilen mit Altersgruppe, Bundesstaat, Saison und Todesfällen.</p>
+</div>
+<h3>Projektübersicht</h3>
+<p>Dieses Projekt analysiert US-Influenza-Sterblichkeitsdaten aller 50 Bundesstaaten von 2009 bis 2017 — mit Fokus darauf, ob sich die Sterblichkeitsrate verändert hat und wie die Bevölkerungsgröße die beobachteten Todesfälle beeinflusst.</p>
+<h3>Kernfrage</h3>
+<p>Hat sich die US-Influenza-Sterblichkeitsrate zwischen 2009 und 2017 signifikant verändert? Und warum sind rohe Todeszahlen für den Bundesstaatenvergleich irreführend?</p>
+<h3>Vorgehen</h3>
+<ul>
+  <li>Bereinigung und Validierung der Sterblichkeits- und Bevölkerungsdaten in Excel</li>
+  <li>Berechnung der Sterblichkeitsrate pro 100.000 für fairen Vergleich</li>
+  <li>Vergleich der Perioden 2009–2014 vs. 2015–2017</li>
+  <li>Analyse der Todesverteilung nach Altersgruppen</li>
+  <li>Aufbau einer zweiteiligen Tableau-Story</li>
+</ul>
+<h3>Wichtigste Erkenntnisse</h3>
+<ul>
+  <li>Keine statistisch signifikante Veränderung der Sterblichkeitsrate — stabil bei ca. 0,012%</li>
+  <li>Starke positive Korrelation zwischen Staatsbevölkerung und Todesfällen (r ≈ 0,96)</li>
+  <li>Erwachsene ab 75 Jahren haben den größten Anteil an Influenza-Todesfällen</li>
+  <li><strong>Die Sterblichkeitsrate ist die richtige Kennzahl — rohe Todesfälle sind irreführend</strong></li>
+</ul>
+<h2>Abbildung 1 — Zeitlicher Trend der US-Influenza-Todesfälle</h2>
+<figure class="case-figure">
+  <img src="influenza-tableau-1.png" alt="Zeitlicher Verlauf US-Influenza-Todesfälle 2009–2017" />
+  <figcaption>Jährliche Influenza-Todesfälle blieben ohne signifikanten Auf- oder Abwärtstrend stabil.</figcaption>
+</figure>
+<h2>Abbildung 2 — Räumliche Verteilung der Sterblichkeitsrate</h2>
+<figure class="case-figure">
+  <img src="influenza-tableau-2.png" alt="US-Choroplethenkarte Sterblichkeitsrate pro 100.000 nach Bundesstaat" />
+  <figcaption>Die Choroplethenkarte zeigt die Sterblichkeitsrate pro 100.000 Einwohner. Dunkleres Rot = höheres Pro-Kopf-Risiko.</figcaption>
+</figure>
+<p><a href="https://public.tableau.com/app/profile/a.a5244/viz/Exercise2_7InfluenzaSpatialAnalysis20092017_AA/InfluenzaStoryAkeelAlramadhan" target="_blank" rel="noopener" class="btn-link">Interaktive Story auf Tableau ansehen →</a></p>
+<h3>Fazit</h3>
+<p>Die Wahl der richtigen Kennzahl — Sterblichkeitsrate statt roher Todesfälle — verändert grundlegend, was die Daten aussagen. Dies ist eine kritische analytische Fähigkeit mit direkten politischen Implikationen.</p>
+</div>
+<footer><p>© 2026 Ageel Alramadhan · <a href="index-de.html">Back to Portfolio</a></p></footer>
 <div id="cookie-banner" class="cookie-banner" style="display:none;">
   <div class="cookie-inner">
     <p>Diese Website verwendet Google Analytics. Sie können zustimmen oder ablehnen.</p>
