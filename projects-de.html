@@ -17,16 +17,17 @@
     body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
 
     /* NAV */
-    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(15,15,15,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;gap:20px;}
-    .nav-logo{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--accent);text-decoration:none;letter-spacing:1px;flex-shrink:0;}
-    .nav-center{display:flex;gap:28px;list-style:none;align-items:center;}
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(15,15,15,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;}
+    .nav-logo{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--accent);text-decoration:none;letter-spacing:1px;flex-shrink:0;width:160px;}
+    .nav-center{display:flex;gap:28px;list-style:none;align-items:center;position:absolute;left:50%;transform:translateX(-50%);}
     .nav-center a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;transition:color 0.2s;}
     .nav-center a:hover{color:var(--text);}
-    .nav-right{display:flex;gap:12px;align-items:center;flex-shrink:0;}
+    .nav-right{display:flex;gap:12px;align-items:center;flex-shrink:0;width:160px;justify-content:flex-end;}
     .nav-lang{font-size:12px;color:var(--muted);text-decoration:none;border:1px solid var(--border);padding:5px 12px;transition:all 0.2s;font-family:'JetBrains Mono',monospace;white-space:nowrap;}
     .nav-lang:hover{border-color:var(--accent);color:var(--accent);}
     .nav-back{font-size:12px;color:var(--muted);text-decoration:none;font-family:'JetBrains Mono',monospace;transition:color 0.2s;white-space:nowrap;}
     .nav-back:hover{color:var(--text);}
+    @media(max-width:900px){nav{padding:0 20px;}.nav-center{display:none;}}
 
     /* FOOTER */
     footer{background:var(--bg2);border-top:1px solid var(--border);padding:28px 40px;}
