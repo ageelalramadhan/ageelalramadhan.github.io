@@ -99,8 +99,8 @@
 <div class="page-hero">
   <div class="page-hero-inner">
     <div class="page-eyebrow">Case Study</div>
-    <h1 class="page-title">20th Century Text Mining & NLP</h1>
-    <div class="page-subtitle">Python · Selenium · NLTK · TextBlob · spaCy · NetworkX</div>
+    <h1 class="page-title">20th Century Text Mining &amp; NLP</h1>
+    <div class="page-subtitle">Python · Selenium · NLTK · TextBlob · spaCy · NetworkX · Leiden</div>
     <nav class="switcher">
       <a href="instacart-case-study.html">Instacart</a>
       <a href="citi-bike-case-study.html">Citi Bike</a>
@@ -111,36 +111,215 @@
     </nav>
   </div>
 </div>
-<div class="case-body">
-<div class="tools-box"><div class="tools-label">Tools & Libraries</div><div class="tools-value">Python · Selenium · NLTK · TextBlob · spaCy · NetworkX · NER</div><p><strong>Dataset:</strong> 100 Wikipedia article summaries, ~80,000 tokens through full NLP pipeline.</p></div>
-<h3>Project Overview</h3><p>End-to-end NLP pipeline: web scraping historical Wikipedia text, named entity recognition, and network graph visualization of geopolitical co-occurrence patterns across 20th century events.</p>
-<h3>Phase 1 — Web Scraping with Selenium</h3>
-<pre class="sql-block">from selenium import webdriver
-from selenium.webdriver.common.by import By
 
-driver = webdriver.Chrome()
-driver.get("https://en.wikipedia.org/wiki/20th_century")
-text = driver.find_element(By.ID, "mw-content-text").text
+<div class="case-body">
+
+  <!-- TOOLS BOX -->
+  <div class="tools-box">
+    <div class="tools-label">Tools &amp; Libraries</div>
+    <div class="tools-value">Python · Selenium · NLTK · TextBlob · spaCy · NetworkX · cdlib (Leiden)</div>
+    <p><strong>Data source:</strong> Wikipedia — "Key Events of the 20th Century" (scraped via Selenium, ~80,000 tokens after cleaning)</p>
+    <p><strong>Output:</strong> Co-occurrence network of 21 countries across 53 unique geopolitical edges, with community detection and centrality analysis</p>
+  </div>
+
+  <!-- STATS ROW -->
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-bottom:40px;">
+    <div style="background:var(--surface);border:1px solid var(--border);padding:20px;text-align:center;">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:40px;color:var(--accent);line-height:1;">4</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-top:6px;">Notebooks</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);padding:20px;text-align:center;">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:40px;color:var(--accent2);line-height:1;">21</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-top:6px;">Countries Mapped</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);padding:20px;text-align:center;">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:40px;color:#ffd166;line-height:1;">53</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-top:6px;">Network Edges</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);padding:20px;text-align:center;">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:40px;color:#ff4d6d;line-height:1;">4</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-top:6px;">Leiden Communities</div>
+    </div>
+  </div>
+
+  <!-- OVERVIEW -->
+  <h2>Project Overview</h2>
+  <p>This project applies a full NLP pipeline to a Wikipedia article on <strong>Key Events of the 20th Century</strong>. The goal: move from raw web data to a structured, visual representation of which countries were most historically connected — and how their co-occurrence patterns map to real geopolitical alliances and conflicts.</p>
+  <p><strong>Business question:</strong> Which countries were most frequently co-mentioned in 20th century historical events, and does their relationship structure reflect the actual alliances and conflicts of the era?</p>
+
+  <!-- PIPELINE TABLE -->
+  <h3>Pipeline Architecture</h3>
+  <table style="width:100%;border-collapse:collapse;margin-bottom:32px;font-size:14px;">
+    <thead>
+      <tr style="background:var(--accent);color:#0f0f0f;">
+        <th style="padding:10px 14px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:12px;">Step</th>
+        <th style="padding:10px 14px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:12px;">Tool</th>
+        <th style="padding:10px 14px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:12px;">Output</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background:var(--surface);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">1. Web Scraping</td><td style="padding:9px 14px;color:var(--muted);">Selenium + ChromeDriver</td><td style="padding:9px 14px;color:var(--muted);">20th_century_key_events.txt</td></tr>
+      <tr style="background:var(--bg2);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">2. Text Cleaning</td><td style="padding:9px 14px;color:var(--muted);">Custom Python</td><td style="padding:9px 14px;color:var(--muted);">Nav elements removed, clean corpus saved</td></tr>
+      <tr style="background:var(--surface);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">3. Text Mining</td><td style="padding:9px 14px;color:var(--muted);">NLTK + TextBlob</td><td style="padding:9px 14px;color:var(--muted);">Word frequency, POS tags, country mentions</td></tr>
+      <tr style="background:var(--bg2);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">4. NER Extraction</td><td style="padding:9px 14px;color:var(--muted);">spaCy (en_core_web_sm)</td><td style="padding:9px 14px;color:var(--muted);">GPE entity pairs per sentence</td></tr>
+      <tr style="background:var(--surface);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">5. Alias Normalization</td><td style="padding:9px 14px;color:var(--muted);">Custom alias dict</td><td style="padding:9px 14px;color:var(--muted);">UK/Britain/U.K. → United Kingdom</td></tr>
+      <tr style="background:var(--bg2);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">6. Network Building</td><td style="padding:9px 14px;color:var(--muted);">NetworkX</td><td style="padding:9px 14px;color:var(--muted);">Undirected graph: 21 nodes, 53 edges</td></tr>
+      <tr style="background:var(--surface);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">7. Community Detection</td><td style="padding:9px 14px;color:var(--muted);">Leiden (cdlib)</td><td style="padding:9px 14px;color:var(--muted);">4 geopolitical clusters identified</td></tr>
+      <tr style="background:var(--bg2);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">8. Centrality Analysis</td><td style="padding:9px 14px;color:var(--muted);">NetworkX</td><td style="padding:9px 14px;color:var(--muted);">Degree, closeness, betweenness scores</td></tr>
+      <tr style="background:var(--surface);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">9. Visualization</td><td style="padding:9px 14px;color:var(--muted);">Pyvis + Matplotlib</td><td style="padding:9px 14px;color:var(--muted);">Interactive HTML + publication charts</td></tr>
+    </tbody>
+  </table>
+
+  <!-- PHASE 1 -->
+  <h2>Phase 1 — Web Scraping</h2>
+  <p>Selenium with ChromeDriver (headless mode) programmatically scraped the full body text of the Wikipedia article. The raw output included navigation elements — menus, edit links, tool labels — that would corrupt NER results by introducing irrelevant named entities.</p>
+  <pre class="sql-block">options = Options()
+options.add_argument("--headless")
+driver = webdriver.Chrome(executable_path=str(driver_path), options=options)
+driver.get("https://en.wikipedia.org/wiki/Key_events_of_the_20th_century")
+page_text = driver.find_element(By.TAG_NAME, "body").text
 driver.quit()
 
-with open("20th_century_key_events.txt", "w") as f:
-    f.write(text)</pre>
-<h3>Phase 3 — NER with spaCy</h3>
-<pre class="sql-block">import spacy
-nlp = spacy.load("en_core_web_sm")
+# Line-by-line cleaning — remove navigation artifacts
+bad_starts = ("Jump to content", "Main menu", "Search", "Tools", "Edit", "View history")
+clean_lines = [l.strip() for l in page_text.splitlines()
+               if l.strip() and not l.strip().startswith(bad_starts)]
+clean_text = "\n".join(clean_lines)</pre>
+
+  <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);padding:20px 24px;margin:24px 0;">
+    <p style="color:var(--accent);font-weight:600;margin-bottom:6px;">Key Insight</p>
+    <p>Text wrangling is analytical integrity. Navigation artifacts would falsely inflate country counts and create phantom network edges. The cleaning step directly determines the validity of all downstream findings.</p>
+  </div>
+
+  <!-- PHASE 2 -->
+  <h2>Phase 2 — Text Mining &amp; Frequency Analysis</h2>
+  <p>NLTK handled tokenization and stopword removal. TextBlob provided part-of-speech tagging across the full corpus. The contrast between pre- and post-stopword word frequency reveals the article's actual thematic focus.</p>
+
+  <figure class="case-figure">
+    <img src="textmining-word-frequency.png" alt="Word frequency before and after stopword removal" />
+    <figcaption>Figure 1. Word frequency before and after stopword removal. After cleaning, war (151), world (98), soviet (87), and nuclear (58) dominate — confirming the article's geopolitical and conflict-driven focus.</figcaption>
+  </figure>
+
+  <p>A targeted frequency count then tracked 29 countries across the cleaned corpus, providing a first signal about which nations drove 20th century history as narrated in the article.</p>
+
+  <figure class="case-figure">
+    <img src="textmining-country-mentions.png" alt="Country mentions in 20th century article" />
+    <figcaption>Figure 2. Country mention counts. Germany (89), United States (82), France (71), and Soviet Union (68) dominate — consistent with their centrality in WWI, WWII, and the Cold War.</figcaption>
+  </figure>
+
+  <!-- PHASE 3 -->
+  <h2>Phase 3 — Named Entity Recognition</h2>
+  <p>spaCy's <strong>en_core_web_sm</strong> model extracted GPE (Geopolitical Entity) tags sentence by sentence. Any sentence containing two or more countries produced a co-occurrence pair. A custom alias dictionary then normalized entity variants to prevent fragmentation.</p>
+
+  <pre class="sql-block">nlp = spacy.load("en_core_web_sm")
 doc = nlp(clean_text)
+
+alias_map = {
+    "Britain": "United Kingdom", "UK": "United Kingdom", "U.K.": "United Kingdom",
+    "US": "United States", "U.S.": "United States",
+    "the Soviet Union": "Soviet Union", "the United States": "United States",
+}
 
 sentence_entities = []
 for sent in doc.sents:
-    entities = [ent.text for ent in sent.ents if ent.label_ == "GPE"]
-    if len(entities) > 1:
-        sentence_entities.append(entities)</pre>
-<h3>Key Findings</h3><ul><li>Top words after stopword removal: "war", "world", "soviet", "united", "states"</li><li>US, Soviet Union, Germany, and UK formed the most densely connected cluster</li><li>Alias normalization was critical — "US", "U.S.", "United States" must map to one node</li></ul>
-<h2>Community Detection Network</h2>
-<figure class="case-figure"><img src="textmining-community-network.png" alt="Community detection network"/><figcaption>Three distinct geopolitical clusters closely mirroring real 20th century alliance structures.</figcaption></figure>
-<h2>Full Co-Occurrence Graph</h2>
-<figure class="case-figure"><img src="textmining-interactive-network.png" alt="Full co-occurrence network"/><figcaption>21 countries, 53 connections. Dense central cluster reflects historically entangled nations.</figcaption></figure>
-<h3>Conclusion</h3><p>The network visualization makes an abstract question — which countries were most historically connected? — immediately answerable through graph structure.</p>
+    entities = [alias_map.get(e.text.strip(), e.text.strip())
+                for e in sent.ents if e.label_ == "GPE"]
+    filtered = [e for e in entities if e in country_list]
+    if len(filtered) > 1:
+        sentence_entities.append(filtered)</pre>
+
+  <p>The co-occurrence heatmap below quantifies how often each country pair appears in the same sentence — making bilateral relationship strength directly readable:</p>
+
+  <figure class="case-figure">
+    <img src="textmining-heatmap.png" alt="Country co-occurrence heatmap" />
+    <figcaption>Figure 3. Country co-occurrence heatmap. Germany–France, Germany–UK, and Germany–Soviet Union are the strongest pairings — encoding WWI/WWII alliance and conflict structures directly from text.</figcaption>
+  </figure>
+
+  <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent2);padding:20px 24px;margin:24px 0;">
+    <p style="color:var(--accent2);font-weight:600;margin-bottom:6px;">Key Insight — Alias Normalization</p>
+    <p>Without mapping "UK", "U.K.", and "Britain" to a single node, the United Kingdom's network position is artificially fragmented across three separate nodes. Entity resolution is not a preprocessing detail — it is a structural decision that determines graph validity.</p>
+  </div>
+
+  <!-- PHASE 4 -->
+  <h2>Phase 4 — Network Visualization &amp; Community Detection</h2>
+  <p>A NetworkX undirected graph was built from 53 unique country pairs across 21 nodes (density: 0.252, clustering coefficient: 0.552). The Leiden algorithm detected 4 communities that closely mirror real 20th century geopolitical alliance structures.</p>
+
+  <figure class="case-figure">
+    <img src="textmining-community-network.png" alt="Geopolitical co-occurrence network with Leiden communities" />
+    <figcaption>Figure 4. Geopolitical co-occurrence network. Node size = degree centrality. Color = Leiden community. Germany occupies the structural center — highest degree, closeness, and betweenness centrality across all measures.</figcaption>
+  </figure>
+
+  <h3>Community Detection Results</h3>
+  <table style="width:100%;border-collapse:collapse;margin-bottom:32px;font-size:14px;">
+    <thead>
+      <tr style="background:var(--accent2);color:#0f0f0f;">
+        <th style="padding:10px 14px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:12px;">Community</th>
+        <th style="padding:10px 14px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:12px;">Members</th>
+        <th style="padding:10px 14px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:12px;">Historical Interpretation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background:var(--surface);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">Eurasian / Cold War</td><td style="padding:9px 14px;color:var(--muted);">China, India, Japan, Russia, Soviet Union, UK, Finland</td><td style="padding:9px 14px;color:var(--muted);">Cold War dynamics and Eurasian geopolitical interactions</td></tr>
+      <tr style="background:var(--bg2);"><td style="padding:9px 14px;color:#ffd166;font-family:'JetBrains Mono',monospace;font-size:12px;">Central/Northern Europe</td><td style="padding:9px 14px;color:var(--muted);">Austria, Germany, Denmark, Norway, Sweden</td><td style="padding:9px 14px;color:var(--muted);">Central and Northern European relationships — WWI and WWII era</td></tr>
+      <tr style="background:var(--surface);"><td style="padding:9px 14px;color:var(--accent);font-family:'JetBrains Mono',monospace;font-size:12px;">Western/Central Europe</td><td style="padding:9px 14px;color:var(--muted);">Belgium, France, Netherlands, Poland, Hungary</td><td style="padding:9px 14px;color:var(--muted);">Western Allied powers and Central European connections</td></tr>
+      <tr style="background:var(--bg2);"><td style="padding:9px 14px;color:#ff4d6d;font-family:'JetBrains Mono',monospace;font-size:12px;">Western Allied Powers</td><td style="padding:9px 14px;color:var(--muted);">Australia, Canada, United States, Italy</td><td style="padding:9px 14px;color:var(--muted);">Anglo-American alliance structure in major 20th century conflicts</td></tr>
+    </tbody>
+  </table>
+
+  <!-- PHASE 5 -->
+  <h2>Phase 5 — Centrality Analysis</h2>
+  <p>Three centrality measures were computed to identify the most structurally influential countries. Together they form a multi-dimensional picture of geopolitical importance as encoded in 20th century historical text.</p>
+
+  <figure class="case-figure">
+    <img src="textmining-centrality.png" alt="Degree, closeness, and betweenness centrality" />
+    <figcaption>Figure 5. Degree, closeness, and betweenness centrality — top 10 countries. Germany ranks #1 across all three measures by a significant margin, confirming its structural dominance as a geopolitical hub.</figcaption>
+  </figure>
+
+  <table style="width:100%;border-collapse:collapse;margin-bottom:32px;font-size:14px;">
+    <thead>
+      <tr style="background:#ff4d6d;color:#0f0f0f;">
+        <th style="padding:10px 14px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:12px;">Measure</th>
+        <th style="padding:10px 14px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:12px;">Definition</th>
+        <th style="padding:10px 14px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:12px;">#1</th>
+        <th style="padding:10px 14px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:12px;">Interpretation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background:var(--surface);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">Degree</td><td style="padding:9px 14px;color:var(--muted);">Direct connections to other countries</td><td style="padding:9px 14px;color:var(--accent);font-weight:600;">Germany</td><td style="padding:9px 14px;color:var(--muted);">Most bilateral relationships — WWI, WWII, Cold War</td></tr>
+      <tr style="background:var(--bg2);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">Closeness</td><td style="padding:9px 14px;color:var(--muted);">Shortest path to all other nodes</td><td style="padding:9px 14px;color:var(--accent);font-weight:600;">Germany</td><td style="padding:9px 14px;color:var(--muted);">Reaches any country through fewest intermediaries</td></tr>
+      <tr style="background:var(--surface);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">Betweenness</td><td style="padding:9px 14px;color:var(--muted);">Bridge between disconnected clusters</td><td style="padding:9px 14px;color:var(--accent);font-weight:600;">Germany</td><td style="padding:9px 14px;color:var(--muted);">Most shortest paths between any two countries pass through Germany</td></tr>
+    </tbody>
+  </table>
+
+  <!-- FINDINGS -->
+  <h2>Key Findings</h2>
+
+  <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);padding:20px 24px;margin-bottom:8px;">
+    <p style="color:var(--accent);font-weight:600;margin-bottom:6px;">Finding 1 — Text cleaning determines analytical validity.</p>
+    <p>Navigation artifacts from the Wikipedia scrape would corrupt NER results. The cleaning step is a decision about what the analysis measures — not a preprocessing detail.</p>
+  </div>
+  <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent2);padding:20px 24px;margin-bottom:8px;">
+    <p style="color:var(--accent2);font-weight:600;margin-bottom:6px;">Finding 2 — Historical themes recoverable from word frequencies.</p>
+    <p>"War", "Soviet", "nuclear", and "cold" dominate after stopword removal — confirming frequency analysis reveals what the corpus is actually about when properly cleaned.</p>
+  </div>
+  <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid:#ffd166;padding:20px 24px;margin-bottom:8px;">
+    <p style="color:#ffd166;font-weight:600;margin-bottom:6px;">Finding 3 — Alias normalization is essential for valid network construction.</p>
+    <p>Without mapping "UK", "U.K.", "Britain" to one node, the United Kingdom's centrality is artificially fragmented. Entity resolution determines structural graph validity.</p>
+  </div>
+  <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid:#ff4d6d;padding:20px 24px;margin-bottom:8px;">
+    <p style="color:#ff4d6d;font-weight:600;margin-bottom:6px;">Finding 4 — Germany is the structural center of 20th century geopolitics.</p>
+    <p>#1 in degree, closeness, and betweenness centrality. The network independently replicates historical consensus: Germany's role in WWI, WWII, and the Cold War makes it the pivot of the century's most consequential events.</p>
+  </div>
+  <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);padding:20px 24px;margin-bottom:32px;">
+    <p style="color:var(--accent);font-weight:600;margin-bottom:6px;">Finding 5 — Community detection recovers alliance structures from text alone.</p>
+    <p>The four Leiden communities closely mirror 20th century alliance structures — demonstrating that co-occurrence patterns in historical text encode geopolitical reality.</p>
+  </div>
+
+  <!-- DOWNLOAD -->
+  <h2>Full Case Study PDF</h2>
+  <p>Download the complete case study with all charts, pipeline documentation, centrality analysis, and technical appendix.</p>
+  <a href="textmining-case-study.pdf" class="btn-link" download>↓ Download Full Case Study PDF</a>
+
 </div>
 <footer>
   <div class="footer-inner">

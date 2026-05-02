@@ -98,9 +98,9 @@
 </nav>
 <div class="page-hero">
   <div class="page-hero-inner">
-    <div class="page-eyebrow">Case Study</div>
-    <h1 class="page-title">Textmining & NLP im 20. Jahrhundert</h1>
-    <div class="page-subtitle">Python · Selenium · NLTK · TextBlob · spaCy · NetworkX</div>
+    <div class="page-eyebrow">Fallstudie</div>
+    <h1 class="page-title">Textmining &amp; NLP im 20. Jahrhundert</h1>
+    <div class="page-subtitle">Python · Selenium · NLTK · TextBlob · spaCy · NetworkX · Leiden</div>
     <nav class="switcher">
       <a href="instacart-case-study-de.html">Instacart</a>
       <a href="citi-bike-case-study-de.html">Citi Bike</a>
@@ -111,26 +111,155 @@
     </nav>
   </div>
 </div>
+
 <div class="case-body">
-<div class="tools-box"><div class="tools-label">Tools & Bibliotheken</div><div class="tools-value">Python · Selenium · NLTK · TextBlob · spaCy · NetworkX · NER</div><p><strong>Datensatz:</strong> 100 Wikipedia-Artikelzusammenfassungen, ~80.000 Token durch vollständige NLP-Pipeline.</p></div>
-<h3>Projektübersicht</h3><p>End-to-End NLP-Pipeline: Web-Scraping historischer Wikipedia-Texte, Named Entity Recognition und Netzwerkgraph-Visualisierung geopolitischer Co-Occurrence-Muster des 20. Jahrhunderts.</p>
-<h3>Phase 1 — Web-Scraping mit Selenium</h3>
-<pre class="sql-block">from selenium import webdriver
-from selenium.webdriver.common.by import By
 
-driver = webdriver.Chrome()
-driver.get("https://en.wikipedia.org/wiki/20th_century")
-text = driver.find_element(By.ID, "mw-content-text").text
-driver.quit()
+  <div class="tools-box">
+    <div class="tools-label">Tools &amp; Bibliotheken</div>
+    <div class="tools-value">Python · Selenium · NLTK · TextBlob · spaCy · NetworkX · cdlib (Leiden)</div>
+    <p><strong>Datenquelle:</strong> Wikipedia — „Schlüsselereignisse des 20. Jahrhunderts" (per Selenium gescrapt, ~80.000 Token nach Bereinigung)</p>
+    <p><strong>Ergebnis:</strong> Co-Occurrence-Netzwerk mit 21 Ländern, 53 einzigartigen Kanten, Community-Detection und Zentralitätsanalyse</p>
+  </div>
 
-with open("20th_century_key_events.txt", "w") as f:
-    f.write(text)</pre>
-<h3>Wichtigste Erkenntnisse</h3><ul><li>Häufigste Wörter nach Stoppwortentfernung: "Krieg", "Welt", "Sowjet"</li><li>USA, Sowjetunion, Deutschland und UK bildeten dichtesten Cluster</li><li>Alias-Normalisierung war entscheidend</li></ul>
-<h2>Community-Detection-Netzwerk</h2>
-<figure class="case-figure"><img src="textmining-community-network.png" alt="Community-Detection-Netzwerk"/><figcaption>Drei geopolitische Cluster — spiegeln reale Bündnisstrukturen wider.</figcaption></figure>
-<h2>Vollständiger Co-Occurrence-Graph</h2>
-<figure class="case-figure"><img src="textmining-interactive-network.png" alt="Vollständiges Co-Occurrence-Netzwerk"/><figcaption>21 Länder, 53 Verbindungen.</figcaption></figure>
-<h3>Fazit</h3><p>Die Netzwerkvisualisierung macht die abstrakte Frage — welche Länder waren im 20. Jahrhundert am stärksten verbunden? — durch die Graphstruktur sofort beantwortbar.</p>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-bottom:40px;">
+    <div style="background:var(--surface);border:1px solid var(--border);padding:20px;text-align:center;">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:40px;color:var(--accent);line-height:1;">4</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-top:6px;">Notebooks</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);padding:20px;text-align:center;">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:40px;color:var(--accent2);line-height:1;">21</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-top:6px;">Länder erfasst</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);padding:20px;text-align:center;">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:40px;color:#ffd166;line-height:1;">53</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-top:6px;">Netzwerkkanten</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);padding:20px;text-align:center;">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:40px;color:#ff4d6d;line-height:1;">4</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-top:6px;">Leiden-Communities</div>
+    </div>
+  </div>
+
+  <h2>Projektübersicht</h2>
+  <p>Dieses Projekt wendet eine vollständige NLP-Pipeline auf einen Wikipedia-Artikel über <strong>Schlüsselereignisse des 20. Jahrhunderts</strong> an. Ziel: Von rohen Webdaten zu einer strukturierten, visuellen Darstellung davon, welche Länder historisch am stärksten miteinander verbunden waren.</p>
+  <p><strong>Fragestellung:</strong> Welche Länder wurden in 20.-Jahrhundert-Ereignissen am häufigsten gemeinsam erwähnt — und spiegeln ihre Co-Occurrence-Muster reale geopolitische Bündnisse und Konflikte wider?</p>
+
+  <h3>Pipeline-Architektur</h3>
+  <table style="width:100%;border-collapse:collapse;margin-bottom:32px;font-size:14px;">
+    <thead>
+      <tr style="background:var(--accent);color:#0f0f0f;">
+        <th style="padding:10px 14px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:12px;">Schritt</th>
+        <th style="padding:10px 14px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:12px;">Tool</th>
+        <th style="padding:10px 14px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:12px;">Ergebnis</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background:var(--surface);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">1. Web-Scraping</td><td style="padding:9px 14px;color:var(--muted);">Selenium + ChromeDriver</td><td style="padding:9px 14px;color:var(--muted);">20th_century_key_events.txt</td></tr>
+      <tr style="background:var(--bg2);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">2. Textbereinigung</td><td style="padding:9px 14px;color:var(--muted);">Python (zeilenweise Filter)</td><td style="padding:9px 14px;color:var(--muted);">Navigations-Artefakte entfernt, bereinigtes Korpus gespeichert</td></tr>
+      <tr style="background:var(--surface);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">3. Textmining</td><td style="padding:9px 14px;color:var(--muted);">NLTK + TextBlob</td><td style="padding:9px 14px;color:var(--muted);">Worthäufigkeit, POS-Tags, Ländererwähnungen</td></tr>
+      <tr style="background:var(--bg2);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">4. NER-Extraktion</td><td style="padding:9px 14px;color:var(--muted);">spaCy (en_core_web_sm)</td><td style="padding:9px 14px;color:var(--muted);">GPE-Entitätspaare pro Satz</td></tr>
+      <tr style="background:var(--surface);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">5. Alias-Normalisierung</td><td style="padding:9px 14px;color:var(--muted);">Benutzerdefiniertes Dictionary</td><td style="padding:9px 14px;color:var(--muted);">UK/Britain/U.K. → United Kingdom</td></tr>
+      <tr style="background:var(--bg2);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">6. Netzwerkaufbau</td><td style="padding:9px 14px;color:var(--muted);">NetworkX</td><td style="padding:9px 14px;color:var(--muted);">Ungerichteter Graph: 21 Knoten, 53 Kanten</td></tr>
+      <tr style="background:var(--surface);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">7. Community-Detection</td><td style="padding:9px 14px;color:var(--muted);">Leiden (cdlib)</td><td style="padding:9px 14px;color:var(--muted);">4 geopolitische Cluster identifiziert</td></tr>
+      <tr style="background:var(--bg2);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">8. Zentralitätsanalyse</td><td style="padding:9px 14px;color:var(--muted);">NetworkX</td><td style="padding:9px 14px;color:var(--muted);">Degree-, Closeness-, Betweenness-Scores</td></tr>
+      <tr style="background:var(--surface);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">9. Visualisierung</td><td style="padding:9px 14px;color:var(--muted);">Pyvis + Matplotlib</td><td style="padding:9px 14px;color:var(--muted);">Interaktives HTML + Publikationsdiagramme</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Phase 1 — Web-Scraping</h2>
+  <p>Selenium mit ChromeDriver (Headless-Modus) scrapt den vollständigen Artikeltext. Die Rohausgabe enthielt Navigations-Elemente, die NER-Ergebnisse verfälschen würden. Ein zeilenweiser Filter entfernte alle Navigations-Präfixe.</p>
+
+  <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);padding:20px 24px;margin:24px 0;">
+    <p style="color:var(--accent);font-weight:600;margin-bottom:6px;">Wichtige Erkenntnis</p>
+    <p>Textbereinigung ist analytische Integrität. Navigations-Artefakte würden Ländererwähnungen künstlich aufblähen und falsche Netzwerkkanten erzeugen. Dieser Schritt bestimmt die Gültigkeit aller nachgelagerten Befunde.</p>
+  </div>
+
+  <h2>Phase 2 — Textmining &amp; Häufigkeitsanalyse</h2>
+  <p>NLTK übernahm Tokenisierung und Stoppwort-Entfernung. TextBlob lieferte POS-Tagging. Der Kontrast zwischen Wortfrequenz vor und nach Stoppwort-Entfernung zeigt den eigentlichen thematischen Fokus des Artikels.</p>
+
+  <figure class="case-figure">
+    <img src="textmining-word-frequency.png" alt="Worthäufigkeit vor und nach Stoppwort-Entfernung" />
+    <figcaption>Abbildung 1. Worthäufigkeit vor und nach Stoppwort-Entfernung. Nach der Bereinigung dominieren Krieg (151), Welt (98), Sowjet (87) und nuklear (58) — der geopolitische Fokus des Artikels wird sichtbar.</figcaption>
+  </figure>
+
+  <figure class="case-figure">
+    <img src="textmining-country-mentions.png" alt="Ländererwähnungen im 20.-Jahrhundert-Artikel" />
+    <figcaption>Abbildung 2. Ländererwähnungen. Deutschland (89), USA (82), Frankreich (71) und Sowjetunion (68) dominieren — konsistent mit ihrer Zentralrolle in WWI, WWII und dem Kalten Krieg.</figcaption>
+  </figure>
+
+  <h2>Phase 3 — Named Entity Recognition</h2>
+  <p>spaCys <strong>en_core_web_sm</strong>-Modell extrahierte GPE-Tags (Geopolitische Entitäten) satzweise. Jeder Satz mit zwei oder mehr Ländern erzeugte ein Co-Occurrence-Paar. Ein benutzerdefiniertes Alias-Dictionary normalisierte Entitätsvarianten.</p>
+
+  <figure class="case-figure">
+    <img src="textmining-heatmap.png" alt="Länder-Co-Occurrence-Heatmap" />
+    <figcaption>Abbildung 3. Länder-Co-Occurrence-Heatmap. Deutschland–Frankreich, Deutschland–UK und Deutschland–Sowjetunion sind die stärksten Paare — WWI/WWII-Bündnis- und Konfliktstrukturen direkt aus dem Text.</figcaption>
+  </figure>
+
+  <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent2);padding:20px 24px;margin:24px 0;">
+    <p style="color:var(--accent2);font-weight:600;margin-bottom:6px;">Wichtige Erkenntnis — Alias-Normalisierung</p>
+    <p>Ohne Zuordnung von "UK", "U.K." und "Britain" zu einem einzigen Knoten wird die Netzwerkposition des Vereinigten Königreichs künstlich auf drei Knoten aufgeteilt. Entity Resolution ist keine Vorverarbeitungsdetail — es ist eine strukturelle Entscheidung, die die Graph-Gültigkeit bestimmt.</p>
+  </div>
+
+  <h2>Phase 4 — Netzwerkvisualisierung &amp; Community-Detection</h2>
+  <p>Ein ungerichteter NetworkX-Graph wurde aus 53 einzigartigen Länderpaaren über 21 Knoten aufgebaut (Dichte: 0,252, Clustering-Koeffizient: 0,552). Der Leiden-Algorithmus erkannte 4 Communities, die realen geopolitischen Bündnisstrukturen des 20. Jahrhunderts entsprechen.</p>
+
+  <figure class="case-figure">
+    <img src="textmining-community-network.png" alt="Geopolitisches Co-Occurrence-Netzwerk mit Leiden-Communities" />
+    <figcaption>Abbildung 4. Geopolitisches Co-Occurrence-Netzwerk. Knotengröße = Degree-Zentralität. Farbe = Leiden-Community. Deutschland nimmt das strukturelle Zentrum ein — höchste Degree-, Closeness- und Betweenness-Zentralität.</figcaption>
+  </figure>
+
+  <h3>Community-Detection-Ergebnisse</h3>
+  <table style="width:100%;border-collapse:collapse;margin-bottom:32px;font-size:14px;">
+    <thead>
+      <tr style="background:var(--accent2);color:#0f0f0f;">
+        <th style="padding:10px 14px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:12px;">Community</th>
+        <th style="padding:10px 14px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:12px;">Mitglieder</th>
+        <th style="padding:10px 14px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:12px;">Historische Interpretation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background:var(--surface);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">Eurasien / Kalter Krieg</td><td style="padding:9px 14px;color:var(--muted);">China, Indien, Japan, Russland, Sowjetunion, UK, Finnland</td><td style="padding:9px 14px;color:var(--muted);">Kalter-Krieg-Dynamiken und eurasische geopolitische Interaktionen</td></tr>
+      <tr style="background:var(--bg2);"><td style="padding:9px 14px;color:#ffd166;font-family:'JetBrains Mono',monospace;font-size:12px;">Mittel-/Nordeuropa</td><td style="padding:9px 14px;color:var(--muted);">Österreich, Deutschland, Dänemark, Norwegen, Schweden</td><td style="padding:9px 14px;color:var(--muted);">Mittel- und nordeuropäische Beziehungen — WWI und WWII-Ära</td></tr>
+      <tr style="background:var(--surface);"><td style="padding:9px 14px;color:var(--accent);font-family:'JetBrains Mono',monospace;font-size:12px;">West-/Mitteleuropa</td><td style="padding:9px 14px;color:var(--muted);">Belgien, Frankreich, Niederlande, Polen, Ungarn</td><td style="padding:9px 14px;color:var(--muted);">Westliche Alliiertenmächte und mitteleuropäische Verbindungen</td></tr>
+      <tr style="background:var(--bg2);"><td style="padding:9px 14px;color:#ff4d6d;font-family:'JetBrains Mono',monospace;font-size:12px;">Westliche Alliiertenmächte</td><td style="padding:9px 14px;color:var(--muted);">Australien, Kanada, USA, Italien</td><td style="padding:9px 14px;color:var(--muted);">Anglo-amerikanische Bündnisstruktur in wichtigen Konflikten des 20. Jh.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Phase 5 — Zentralitätsanalyse</h2>
+  <p>Drei Zentralitätsmaße wurden berechnet, um die strukturell einflussreichsten Länder zu identifizieren. Zusammen bilden sie ein mehrdimensionales Bild geopolitischer Bedeutung.</p>
+
+  <figure class="case-figure">
+    <img src="textmining-centrality.png" alt="Degree-, Closeness- und Betweenness-Zentralität" />
+    <figcaption>Abbildung 5. Degree-, Closeness- und Betweenness-Zentralität — Top 10 Länder. Deutschland belegt in allen drei Maßen Platz 1 — mit deutlichem Abstand.</figcaption>
+  </figure>
+
+  <h2>Wichtigste Erkenntnisse</h2>
+
+  <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);padding:20px 24px;margin-bottom:8px;">
+    <p style="color:var(--accent);font-weight:600;margin-bottom:6px;">Erkenntnis 1 — Textbereinigung bestimmt analytische Gültigkeit.</p>
+    <p>Navigations-Artefakte würden NER-Ergebnisse korrumpieren. Der Bereinigungsschritt ist eine Entscheidung darüber, was die Analyse misst — kein Vorverarbeitungsdetail.</p>
+  </div>
+  <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent2);padding:20px 24px;margin-bottom:8px;">
+    <p style="color:var(--accent2);font-weight:600;margin-bottom:6px;">Erkenntnis 2 — Historische Themen aus Worthäufigkeiten rekonstruierbar.</p>
+    <p>"Krieg", "Sowjet", "nuklear" und "kalt" dominieren nach Stoppwort-Entfernung — Häufigkeitsanalyse offenbart das eigentliche Thema des Korpus.</p>
+  </div>
+  <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid:#ffd166;padding:20px 24px;margin-bottom:8px;">
+    <p style="color:#ffd166;font-weight:600;margin-bottom:6px;">Erkenntnis 3 — Alias-Normalisierung ist essenziell für valide Netzwerkkonstruktion.</p>
+    <p>Ohne Zusammenführung von "UK", "U.K.", "Britain" zu einem Knoten wird die Zentralität des Vereinigten Königreichs künstlich fragmentiert. Entity Resolution bestimmt die strukturelle Graph-Gültigkeit.</p>
+  </div>
+  <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid:#ff4d6d;padding:20px 24px;margin-bottom:8px;">
+    <p style="color:#ff4d6d;font-weight:600;margin-bottom:6px;">Erkenntnis 4 — Deutschland ist das strukturelle Zentrum der Geopolitik des 20. Jahrhunderts.</p>
+    <p>Platz 1 bei Degree-, Closeness- und Betweenness-Zentralität. Das Netzwerk repliziert historischen Konsens eigenständig: Deutschlands Rolle in WWI, WWII und dem Kalten Krieg macht es zum Dreh- und Angelpunkt des Jahrhunderts.</p>
+  </div>
+  <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);padding:20px 24px;margin-bottom:32px;">
+    <p style="color:var(--accent);font-weight:600;margin-bottom:6px;">Erkenntnis 5 — Community-Detection rekonstruiert Bündnisstrukturen allein aus Text.</p>
+    <p>Die vier Leiden-Communities spiegeln geopolitische Bündnisstrukturen des 20. Jahrhunderts wider — Co-Occurrence-Muster in historischen Texten kodieren geopolitische Realität.</p>
+  </div>
+
+  <h2>Vollständige Fallstudie PDF</h2>
+  <p>Laden Sie die vollständige Fallstudie mit allen Diagrammen, Pipeline-Dokumentation, Zentralitätsanalyse und technischem Anhang herunter.</p>
+  <a href="textmining-case-study.pdf" class="btn-link" download>↓ Vollständige Fallstudie herunterladen (PDF)</a>
+
 </div>
 <footer>
   <div class="footer-inner">
