@@ -100,7 +100,7 @@
   <div class="page-hero-inner">
     <div class="page-eyebrow">Case Study</div>
     <h1 class="page-title">Instacart Market Basket Analysis</h1>
-    <div class="page-subtitle">Python · Pandas · NumPy · Matplotlib · Behavioral Segmentation</div>
+    <div class="page-subtitle">Python · Pandas · NumPy · Matplotlib · Seaborn · Customer Segmentation</div>
     <nav class="switcher">
       <span class="active">Instacart</span>
       <a href="citi-bike-case-study.html">Citi Bike</a>
@@ -111,15 +111,188 @@
     </nav>
   </div>
 </div>
+
 <div class="case-body">
-<div class="tools-box"><div class="tools-label">Tools & Libraries</div><div class="tools-value">Python · Pandas · NumPy · Matplotlib · Behavioral Segmentation</div><p><strong>Dataset:</strong> ~3.4 million rows across 6 tables. ~200,000 unique users, 50,000 products.</p></div>
-<h3>Project Overview</h3><p>Analysis of Instacart customer purchasing behavior to uncover patterns in ordering frequency, product popularity, and customer segmentation.</p>
-<h3>Key Insights</h3><ul><li>High-frequency customers account for a disproportionate share of total orders</li><li>Ordering activity is concentrated during predictable daily windows</li><li>Revenue is structurally tied to repeat behavior rather than customer volume alone</li></ul>
-<h2>1) Order Frequency Drives Disproportionate Value</h2>
-<figure class="case-figure"><img src="instacart-order-frequency.png" alt="Customers by Order Frequency"/><figcaption>A small group of high-frequency customers generates the majority of orders.</figcaption></figure>
-<h2>2) Ordering Activity is Time-Concentrated</h2>
-<figure class="case-figure"><img src="instacart-orders-by-hour.png" alt="Orders by Hour of Day"/><figcaption>Orders peak between late morning and early evening.</figcaption></figure>
-<h3>Conclusion</h3><p>Prioritizing high-frequency customers and aligning operations with peak activity windows improves retention, marketing efficiency, and customer lifetime value.</p>
+
+  <div class="tools-box">
+    <div class="tools-label">Tools &amp; Libraries</div>
+    <div class="tools-value">Python · Pandas · NumPy · Matplotlib · Seaborn · Jupyter</div>
+    <p><strong>Dataset:</strong> Instacart Market Basket — orders, products, customers (~32M order rows, ~206K customers, 49 departments)</p>
+    <p><strong>Output:</strong> Customer segmentation across 5 dimensions: loyalty, spending, age, income, and order frequency</p>
+  </div>
+
+  <div style="display:flex;gap:12px;align-items:center;margin-bottom:40px;padding:20px 24px;background:var(--surface);border:1px solid var(--border);">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="color:var(--text);flex-shrink:0;"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Source Code</div>
+      <a href="https://github.com/ageelalramadhan/Project-4-Instacart-" target="_blank" rel="noopener" style="color:var(--accent);font-family:'JetBrains Mono',monospace;font-size:14px;text-decoration:none;">github.com/ageelalramadhan/Project-4-Instacart- →</a>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-bottom:40px;">
+    <div style="background:var(--surface);border:1px solid var(--border);padding:20px;text-align:center;border-top:3px solid var(--accent);">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:40px;color:var(--accent);line-height:1;">9</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-top:6px;">Notebooks</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);padding:20px;text-align:center;border-top:3px solid var(--accent2);">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:40px;color:var(--accent2);line-height:1;">32M</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-top:6px;">Order Rows</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);padding:20px;text-align:center;border-top:3px solid #ffd166;">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:40px;color:#ffd166;line-height:1;">206K</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-top:6px;">Customers</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);padding:20px;text-align:center;border-top:3px solid #ff4d6d;">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:40px;color:#ff4d6d;line-height:1;">5</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-top:6px;">Segments</div>
+    </div>
+  </div>
+
+  <h2>Project Overview</h2>
+  <p>Instacart needed deeper insight into customer purchasing behavior to improve targeting and marketing. This analysis used order-level transaction data merged with customer demographics to answer four core business questions:</p>
+
+  <table style="width:100%;border-collapse:collapse;margin-bottom:32px;font-size:14px;">
+    <thead><tr style="background:var(--accent);color:#0f0f0f;"><th style="padding:10px 14px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:12px;">#</th><th style="padding:10px 14px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:12px;">Business Question</th><th style="padding:10px 14px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:12px;">Analysis Approach</th></tr></thead>
+    <tbody><tr style="background:var(--surface);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">1</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">When are customers most active? Which times/days drive orders?</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">Order timing analysis + busiest period flags</td></tr><tr style="background:var(--bg2);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">2</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">What distinguishes loyal customers from new ones?</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">Loyalty flag (order count thresholds)</td></tr><tr style="background:var(--surface);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">3</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">How does demographics relate to spending behavior?</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">Age, income, and regional segmentation</td></tr><tr style="background:var(--bg2);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">4</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">Which customer profiles are highest value?</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">Multi-variable profiling (age × income × frequency)</td></tr></tbody>
+  </table>
+
+  <h2>Data Pipeline</h2>
+  <table style="width:100%;border-collapse:collapse;margin-bottom:32px;font-size:14px;">
+    <thead><tr style="background:var(--accent);color:#0f0f0f;"><th style="padding:10px 14px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:12px;">Step</th><th style="padding:10px 14px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:12px;">Notebook</th><th style="padding:10px 14px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:12px;">Action</th></tr></thead>
+    <tbody><tr style="background:var(--surface);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">1. Import</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">4.2</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">Import orders.csv + products.csv, profile and preview</td></tr><tr style="background:var(--bg2);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">2. Wrangling</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">4.3</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">Rename columns, create subsets, export cleaned data</td></tr><tr style="background:var(--surface);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">3. Consistency</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">4.4</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">Fix mixed types, handle 260K missing values</td></tr><tr style="background:var(--bg2);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">4. Merging</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">4.5</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">Merge orders + order_products + products into one dataframe</td></tr><tr style="background:var(--surface);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">5. Derived Vars</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">4.6</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">Create price_label, busiest_day, busiest_period_of_day</td></tr><tr style="background:var(--bg2);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">6. Grouping</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">4.7</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">Loyalty flag, spending flag, order frequency flag</td></tr><tr style="background:var(--surface);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">7. Customers</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">4.8</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">Merge customer demographics (206K customers)</td></tr><tr style="background:var(--bg2);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">8. Viz</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">4.8</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">8 charts: orders, loyalty, prices, demographics</td></tr><tr style="background:var(--surface);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">9. Profiling</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">4.9</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">PII removal, regional segmentation, customer profiles</td></tr></tbody>
+  </table>
+
+  <h2>Data Quality Issues Found &amp; Fixed</h2>
+  <table style="width:100%;border-collapse:collapse;margin-bottom:32px;font-size:14px;">
+    <thead><tr style="background:var(--accent);color:#0f0f0f;"><th style="padding:10px 14px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:12px;">Issue</th><th style="padding:10px 14px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:12px;">Column</th><th style="padding:10px 14px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:12px;">Resolution</th></tr></thead>
+    <tbody><tr style="background:var(--surface);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">Price outlier (max = 99,999)</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">products.prices</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">Flagged as data entry error — labeled High in price_label</td></tr><tr style="background:var(--bg2);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">260,290 missing values</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">days_since_prior_order</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">Expected: first-ever orders have no prior. Filled with 0.</td></tr><tr style="background:var(--surface);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">Mixed data type (object)</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">days_since_prior_order</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">Converted with pd.to_numeric(errors="coerce")</td></tr><tr style="background:var(--bg2);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">Unintuitive column name</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">order_dow</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">Renamed to order_day_of_week for clarity</td></tr><tr style="background:var(--surface);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">PII in customer data</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">first_name, last_name</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">Dropped before profiling and reporting</td></tr></tbody>
+  </table>
+
+  <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent2);padding:20px 24px;margin:24px 0;">
+    <p style="color:var(--accent2);font-weight:600;margin-bottom:6px;">Key Insight — Missing Values</p>
+    <p>260,290 missing values in days_since_prior_order sounds alarming but is expected — these are customers placing their first-ever order. Recognizing this saves you from incorrectly dropping rows. Context determines whether missing = problem.</p>
+  </div>
+
+  <h2>Ordering Behavior — When Do Customers Order?</h2>
+  <p>Three derived variables captured order timing patterns: <strong>price_label</strong> (Low/Mid/High), <strong>busiest_day</strong> (Busy/Average/Slow), and <strong>busiest_period_of_day</strong> (Most/Average/Fewest orders).</p>
+
+  <figure class="case-figure">
+    <img src="instacart-order-hour.png" alt="Figure 1. Order distribution by hour. Peak activity runs 9 AM–4 PM. Instacart is a daytime platform — late-night ordering is minimal. The 10:00 hour is the busiest." />
+    <figcaption>Figure 1. Order distribution by hour. Peak activity runs 9 AM–4 PM. Instacart is a daytime platform — late-night ordering is minimal. The 10:00 hour is the busiest.</figcaption>
+  </figure>
+  <figure class="case-figure">
+    <img src="instacart-price-hour.png" alt="Figure 2. Mean product price by hour of day. Price is stable across all hours — time of day does not influence spending tier selection." />
+    <figcaption>Figure 2. Mean product price by hour of day. Price is stable across all hours — time of day does not influence spending tier selection.</figcaption>
+  </figure>
+
+  <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);padding:20px 24px;margin:24px 0;">
+    <p style="color:var(--accent);font-weight:600;margin-bottom:6px;">Key Insight — Peak Hours</p>
+    <p>Orders peak at 10:00 AM. Promotions timed to 8–10 AM could capture customers at the moment of highest purchase intent. Late-night discount strategies are unlikely to move volume.</p>
+  </div>
+
+  <h2>Customer Loyalty Segmentation</h2>
+  <p>Customers were segmented into three loyalty tiers based on mean order number per user. A spending flag was also derived from average item price per user.</p>
+
+  <table style="width:100%;border-collapse:collapse;margin-bottom:32px;font-size:14px;">
+    <thead><tr style="background:var(--accent);color:#0f0f0f;"><th style="padding:10px 14px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:12px;">Segment</th><th style="padding:10px 14px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:12px;">Condition</th><th style="padding:10px 14px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:12px;">Business Meaning</th></tr></thead>
+    <tbody><tr style="background:var(--surface);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">Loyal Customer</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">mean order_number > 20</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">Long-term, high-engagement users</td></tr><tr style="background:var(--bg2);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">Regular Customer</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">mean order_number 11–20</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">Established but not yet habitual</td></tr><tr style="background:var(--surface);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">New Customer</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">mean order_number ≤ 10</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">Recent or infrequent users</td></tr></tbody>
+  </table>
+
+  <figure class="case-figure">
+    <img src="instacart-loyalty.png" alt="Figure 3. Customer distribution by loyalty category. Regular customers contribute the most orders by volume, but Loyal customers have the highest per-order value." />
+    <figcaption>Figure 3. Customer distribution by loyalty category. Regular customers contribute the most orders by volume, but Loyal customers have the highest per-order value.</figcaption>
+  </figure>
+
+  <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid #ffd166;padding:20px 24px;margin:24px 0;">
+    <p style="color:#ffd166;font-weight:600;margin-bottom:6px;">Key Insight — Loyalty vs Spending</p>
+    <p>Loyal customers are not automatically high spenders — some long-term users habitually buy lower-priced products. Combining loyalty and spending flags creates more actionable segments than either variable alone.</p>
+  </div>
+
+  <h2>Customer Demographics</h2>
+  <p>After merging 206K customer records, four segmentation variables were created to make demographics actionable for marketing strategy.</p>
+
+  <table style="width:100%;border-collapse:collapse;margin-bottom:32px;font-size:14px;">
+    <thead><tr style="background:var(--accent);color:#0f0f0f;"><th style="padding:10px 14px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:12px;">Variable</th><th style="padding:10px 14px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:12px;">Bins</th><th style="padding:10px 14px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:12px;">Labels</th></tr></thead>
+    <tbody><tr style="background:var(--surface);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">age_group</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;"><30 / 30–49 / 50–64 / 65+</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">Young adult / Adult / Middle-aged adult / Senior</td></tr><tr style="background:var(--bg2);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">income_group</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;"><$40k / $40k–$80k / >$80k</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">Low income / Middle income / High income</td></tr><tr style="background:var(--surface);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">family_status</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">0 / 1–2 / 3+ dependents</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">No dependents / Small family / Large family</td></tr><tr style="background:var(--bg2);"><td style="padding:9px 14px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:12px;">order_frequency</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">5–9 / 10–19 / 20+ orders</td><td style="padding:9px 14px;color:var(--muted);font-size:14px;">Low / Medium / High frequency</td></tr></tbody>
+  </table>
+
+  <figure class="case-figure">
+    <img src="instacart-age-group.png" alt="Figure 4. Customer distribution by age group. Adults (30–49) are the largest segment — the core household grocery buyer demographic." />
+    <figcaption>Figure 4. Customer distribution by age group. Adults (30–49) are the largest segment — the core household grocery buyer demographic.</figcaption>
+  </figure>
+  <figure class="case-figure">
+    <img src="instacart-income-group.png" alt="Figure 5. Customer distribution by income group. Middle-income customers dominate, representing the core Instacart demographic." />
+    <figcaption>Figure 5. Customer distribution by income group. Middle-income customers dominate, representing the core Instacart demographic.</figcaption>
+  </figure>
+  <figure class="case-figure">
+    <img src="instacart-age-dependents.png" alt="Figure 6. Average dependents by age. Classic life-stage curve — dependents peak in the 30–50 range and decline as children become independent." />
+    <figcaption>Figure 6. Average dependents by age. Classic life-stage curve — dependents peak in the 30–50 range and decline as children become independent.</figcaption>
+  </figure>
+  <figure class="case-figure">
+    <img src="instacart-age-income.png" alt="Figure 7. Age vs. income scatter. No strong linear correlation — income rises but becomes increasingly variable after 30." />
+    <figcaption>Figure 7. Age vs. income scatter. No strong linear correlation — income rises but becomes increasingly variable after 30.</figcaption>
+  </figure>
+
+  <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent2);padding:20px 24px;margin:24px 0;">
+    <p style="color:var(--accent2);font-weight:600;margin-bottom:6px;">Key Insight — Regional Segmentation</p>
+    <p>State-level analysis is too granular — 50 groups with too little data each. Mapping to 4 U.S. Census regions (Northeast, Midwest, South, West) reduces noise while preserving meaningful geographic variation for strategy.</p>
+  </div>
+
+  <h2>Customer Profiling</h2>
+  <p>Low-activity customers (fewer than 5 orders) were excluded first — removing 1.44 million rows. Each remaining customer was assigned a combined profile:</p>
+  <pre class="sql-block">df_filtered['customer_profile'] = (
+    df_filtered['age_group'].astype(str) + " | " +
+    df_filtered['income_group'].astype(str) + " | " +
+    df_filtered['family_status'].astype(str) + " | " +
+    df_filtered['order_frequency'].astype(str)
+)
+# Example: "Adult | Middle income | Small family | High frequency"</pre>
+
+  <figure class="case-figure">
+    <img src="instacart-order-frequency.png" alt="Figure 8. Customer distribution by order frequency. High-frequency customers (20+ orders) are the largest group — repeat buyers drive Instacart revenue." />
+    <figcaption>Figure 8. Customer distribution by order frequency. High-frequency customers (20+ orders) are the largest group — repeat buyers drive Instacart revenue.</figcaption>
+  </figure>
+  <figure class="case-figure">
+    <img src="instacart-profile-heatmap.png" alt="Figure 9. Customer count by age group × order frequency. Adults and Middle-Aged high-frequency customers are the highest-value segments." />
+    <figcaption>Figure 9. Customer count by age group × order frequency. Adults and Middle-Aged high-frequency customers are the highest-value segments.</figcaption>
+  </figure>
+
+  <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid #ff4d6d;padding:20px 24px;margin:24px 0;">
+    <p style="color:#ff4d6d;font-weight:600;margin-bottom:6px;">Key Insight — Low-Activity Filter</p>
+    <p>Excluding customers with fewer than 5 orders removed 1.44M rows (4.4% of data) but significantly improved signal quality. One-time or near-inactive users behave fundamentally differently and would skew segmentation results if included.</p>
+  </div>
+
+  <h2>Key Findings</h2>
+
+  <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);padding:20px 24px;margin-bottom:8px;">
+    <p style="color:var(--accent);font-weight:600;margin-bottom:6px;">Finding 1 — Orders peak between 9 AM and 4 PM.</p>
+    <p>Instacart is a daytime platform. Promotions and logistics staffing should concentrate on the 9 AM–4 PM window. Peak staffing needed around 10:00–11:00 AM.</p>
+  </div>
+  <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent2);padding:20px 24px;margin-bottom:8px;">
+    <p style="color:var(--accent2);font-weight:600;margin-bottom:6px;">Finding 2 — Product price is stable across all hours.</p>
+    <p>Time-based pricing incentives are unlikely to change spending behavior. Promotions should target segments, not hours.</p>
+  </div>
+  <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid #ffd166;padding:20px 24px;margin-bottom:8px;">
+    <p style="color:#ffd166;font-weight:600;margin-bottom:6px;">Finding 3 — Regular customers generate the most order volume.</p>
+    <p>A loyalty conversion strategy — moving Regular to Loyal — offers the highest revenue upside, as Loyal customers have higher per-order value.</p>
+  </div>
+  <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid #ff4d6d;padding:20px 24px;margin-bottom:8px;">
+    <p style="color:#ff4d6d;font-weight:600;margin-bottom:6px;">Finding 4 — Adults (30–49) are the dominant segment.</p>
+    <p>Marketing campaigns should optimize for family-stage purchasing behavior: household staples, fresh produce, and meal planning.</p>
+  </div>
+  <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);padding:20px 24px;margin-bottom:8px;">
+    <p style="color:var(--accent);font-weight:600;margin-bottom:6px;">Finding 5 — Middle-income customers are the core demographic.</p>
+    <p>Core catalog pricing should remain accessible to Middle income households, while premium placement targets High income segments specifically.</p>
+  </div>
+  <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent2);padding:20px 24px;margin-bottom:8px;">
+    <p style="color:var(--accent2);font-weight:600;margin-bottom:6px;">Finding 6 — High-frequency customers are the largest single group.</p>
+    <p>Retention strategies (subscriptions, loyalty rewards) have a larger addressable base than acquisition campaigns — making them higher ROI.</p>
+  </div>
+
+  <h2>Full Case Study PDF</h2>
+  <p>Download the complete case study with all charts, pipeline documentation, data quality findings, and segmentation analysis.</p>
+  <a href="instacart-case-study.pdf" class="btn-link" download>↓ Download Full Case Study PDF</a>
+
 </div>
 <footer>
   <div class="footer-inner">
