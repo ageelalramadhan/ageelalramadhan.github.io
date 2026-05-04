@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="consent.css"/>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-    :root{--bg:#0f0f0f;--bg2:#161616;--surface:#1e1e1e;--border:#2e2e2e;--text:#f0f0f0;--muted:#888;--accent:#3dd68c;--accent2:#00d4ff;}
+    :root{--bg:#0f0f0f;--bg2:#161616;--surface:#1e1e1e;--border:#2e2e2e;--text:#f0f0f0;--muted:#888;--accent:#3dd68c;--accent2:#00d4ff;--yellow:#ffd166;--pink:#ff4d6d;}
     html{scroll-behavior:smooth;}
     body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
 
@@ -24,8 +24,6 @@
     .nav-right{display:flex;gap:12px;align-items:center;flex-shrink:0;width:160px;justify-content:flex-end;}
     .nav-lang{font-size:12px;color:var(--muted);text-decoration:none;border:1px solid var(--border);padding:5px 12px;transition:all 0.2s;font-family:'JetBrains Mono',monospace;white-space:nowrap;}
     .nav-lang:hover{border-color:var(--accent);color:var(--accent);}
-    .nav-back{font-size:12px;color:var(--muted);text-decoration:none;font-family:'JetBrains Mono',monospace;transition:color 0.2s;white-space:nowrap;}
-    .nav-back:hover{color:var(--text);}
     @media(max-width:900px){nav{padding:0 20px;}.nav-center{display:none;}}
 
     /* FOOTER */
@@ -42,49 +40,108 @@
     .back-top.visible{opacity:1;pointer-events:auto;}
     .back-top:hover{transform:translateY(-3px);}
 
-    /* BTNS */
-    .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;font-family:'JetBrains Mono',monospace;font-size:14px;text-decoration:none;transition:all 0.2s;cursor:pointer;border:none;white-space:nowrap;}
-    .btn-accent{background:var(--accent);color:#0f0f0f;font-weight:600;}
-    .btn-accent:hover{background:#4df0a0;transform:translateY(-1px);}
-    .btn-outline{background:transparent;color:var(--text);border:1px solid var(--border);}
-    .btn-outline:hover{border-color:var(--accent);color:var(--accent);}
-
-    @media(max-width:900px){
-      nav{padding:0 20px;}
-      .nav-center{display:none;}
-      .footer-inner{grid-template-columns:1fr;}
-      .footer-links{justify-content:flex-start;}
-    }
+    /* PAGE HERO (identical across all case studies) */
     .page-hero{padding:100px 40px 52px;background:var(--bg2);border-bottom:1px solid var(--border);}
     .page-hero-inner{max-width:900px;margin:0 auto;}
     .page-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:16px;}
-    .page-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,5vw,60px);letter-spacing:2px;line-height:1;margin-bottom:14px;}
+    .page-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,5vw,60px);letter-spacing:2px;line-height:1;margin-bottom:14px;min-height:120px;}
     .page-subtitle{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);margin-bottom:28px;}
+
+    /* SWITCHER (identical across all) */
     .switcher{display:flex;gap:3px;flex-wrap:wrap;margin-top:16px;position:relative;z-index:1;}
     .switcher a,.switcher span{padding:7px 14px;font-family:'JetBrains Mono',monospace;font-size:13px;text-decoration:none;border:1px solid var(--border);color:var(--muted);transition:all 0.2s;}
     .switcher a:hover{border-color:var(--accent);color:var(--accent);}
     .switcher span.active{background:var(--accent);color:#0f0f0f;border-color:var(--accent);font-weight:600;}
+
+    /* CASE BODY */
     .case-body{max-width:900px;margin:0 auto;padding:60px 40px 100px;}
-    .tools-box{background:var(--bg2);border:1px solid var(--border);padding:20px 24px;margin-bottom:40px;}
-    .tools-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
-    .tools-value{font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--accent);margin-bottom:8px;}
-    .tools-box p{font-size:15px;color:#b0b0b0;}
     .case-body h2{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:1px;margin:48px 0 14px;color:var(--text);}
     .case-body h3{font-size:18px;font-weight:600;margin:32px 0 10px;color:var(--text);}
     .case-body p{font-size:16px;color:#c0c0c0;line-height:1.8;margin-bottom:16px;}
     .case-body ul{margin:0 0 20px 20px;}
     .case-body li{font-size:16px;color:#c0c0c0;line-height:1.8;margin-bottom:8px;}
     .case-body strong{color:var(--text);}
+
+    /* TOOLS BOX */
+    .tools-box{background:var(--bg2);border:1px solid var(--border);padding:20px 24px;margin-bottom:16px;}
+    .tools-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+    .tools-value{font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--accent);margin-bottom:8px;}
+    .tools-box p{font-size:15px;color:#b0b0b0;margin-bottom:6px;}
+    .tools-box p:last-child{margin-bottom:0;}
+
+    /* SOURCE-CODE BOX */
+    .source-box{background:var(--surface);border:1px solid var(--border);padding:14px 20px;margin:16px 0 28px;display:flex;align-items:center;gap:14px;}
+    .source-box svg{flex-shrink:0;color:var(--text);}
+    .source-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+    .source-box a{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--accent);text-decoration:none;}
+    .source-box a:hover{text-decoration:underline;}
+
+    /* STAT TILES (4-column on desktop) */
+    .stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-bottom:40px;}
+    .stat-cell{background:var(--surface);border:1px solid var(--border);padding:20px;text-align:center;}
+    .stat-cell.green{border-top:3px solid var(--accent);}
+    .stat-cell.blue{border-top:3px solid var(--accent2);}
+    .stat-cell.yellow{border-top:3px solid var(--yellow);}
+    .stat-cell.pink{border-top:3px solid var(--pink);}
+    .stat-num{font-family:'Bebas Neue',sans-serif;font-size:40px;line-height:1;}
+    .stat-num.green{color:var(--accent);}
+    .stat-num.blue{color:var(--accent2);}
+    .stat-num.yellow{color:var(--yellow);}
+    .stat-num.pink{color:var(--pink);}
+    .stat-label{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-top:6px;}
+    @media(max-width:600px){.stat-row{grid-template-columns:1fr 1fr;}}
+
+    /* FIGURES */
     .case-figure{margin:20px 0 28px;}
     .case-figure img{width:100%;display:block;border:1px solid var(--border);}
     .case-figure figcaption{font-size:14px;color:var(--muted);margin-top:10px;font-style:italic;line-height:1.6;}
-    pre.sql-block{background:var(--surface);border:1px solid var(--border);padding:20px 24px;font-family:'JetBrains Mono',monospace;font-size:13px;color:#c0c0c0;overflow-x:auto;line-height:1.7;margin:16px 0 24px;white-space:pre;}
-    .btn-link{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;font-family:'JetBrains Mono',monospace;font-size:14px;text-decoration:none;background:var(--accent);color:#0f0f0f;font-weight:600;margin:16px 0;transition:all 0.2s;}
+
+    /* CODE BLOCKS */
+    pre.code-block,pre.sql-block{background:var(--surface);border:1px solid var(--border);padding:20px 24px;font-family:'JetBrains Mono',monospace;font-size:13px;color:#c0c0c0;overflow-x:auto;line-height:1.7;margin:16px 0 24px;white-space:pre;}
+
+    /* PIPELINE TABLE (uniform style for all data tables) */
+    .pipeline-table{width:100%;border-collapse:collapse;margin:16px 0 28px;font-size:14px;}
+    .pipeline-table th{background:var(--accent);color:#0f0f0f;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:1px;padding:10px 14px;text-align:left;}
+    .pipeline-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:#c0c0c0;vertical-align:top;font-size:14px;}
+    .pipeline-table tr:last-child td{border-bottom:none;}
+    .pipeline-table tr:nth-child(even) td{background:var(--bg2);}
+    .pipeline-table tr:nth-child(odd) td{background:var(--surface);}
+    .step-tag{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent2);}
+
+    /* INSIGHT BOX (callout for key insights) */
+    .insight-box{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent2);padding:20px 24px;margin:24px 0;}
+    .insight-box .insight-title{color:var(--accent2);font-weight:600;margin-bottom:6px;}
+    .insight-box.green{border-left-color:var(--accent);}
+    .insight-box.green .insight-title{color:var(--accent);}
+    .insight-box.yellow{border-left-color:var(--yellow);}
+    .insight-box.yellow .insight-title{color:var(--yellow);}
+    .insight-box.pink{border-left-color:var(--pink);}
+    .insight-box.pink .insight-title{color:var(--pink);}
+    .insight-box p{margin-bottom:6px;}
+    .insight-box p:last-child{margin-bottom:0;}
+
+    /* FINDING BOX (numbered findings list) */
+    .finding{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);padding:20px 24px;margin-bottom:8px;}
+    .finding.green{border-left-color:var(--accent);}
+    .finding.blue{border-left-color:var(--accent2);}
+    .finding.yellow{border-left-color:var(--yellow);}
+    .finding.pink{border-left-color:var(--pink);}
+    .finding-title{font-weight:600;margin-bottom:6px;}
+    .finding.green .finding-title{color:var(--accent);}
+    .finding.blue .finding-title{color:var(--accent2);}
+    .finding.yellow .finding-title{color:var(--yellow);}
+    .finding.pink .finding-title{color:var(--pink);}
+    .finding p{margin-bottom:0;}
+
+    /* BUTTONS */
+    .btn-link{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;font-family:'JetBrains Mono',monospace;font-size:14px;text-decoration:none;background:var(--accent);color:#0f0f0f;font-weight:600;margin:16px 8px 16px 0;transition:all 0.2s;}
     .btn-link:hover{background:#4df0a0;}
-    @media(max-width:768px){.page-hero{padding:80px 20px 40px;}.case-body{padding:40px 20px 60px;}}    .btn-outline-link{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:1px;text-decoration:none;color:var(--text);background:transparent;border:1px solid var(--border);transition:all 0.2s;margin-right:8px;}
+    .btn-outline-link{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:1px;text-decoration:none;color:var(--text);background:transparent;border:1px solid var(--border);transition:all 0.2s;margin-right:8px;}
     .btn-outline-link:hover{border-color:var(--accent);color:var(--accent);}
-    .page-title{min-height:120px;}
-</style>
+
+    @media(max-width:768px){.page-hero{padding:80px 20px 40px;}.case-body{padding:40px 20px 60px;}}
+  </style>
+
 </head>
 <body>
 <nav>
@@ -99,11 +156,12 @@
     <a href="happiness-case-study.html" class="nav-lang">🇬🇧 English</a>
   </div>
 </nav>
+
 <div class="page-hero">
   <div class="page-hero-inner">
-    <div class="page-eyebrow">Case Study</div>
+    <div class="page-eyebrow">Fallstudie</div>
     <h1 class="page-title">Globales Glück & Wirtschaftsfaktoren (2019)</h1>
-    <div class="page-subtitle">Python · Pandas · Scipy · Matplotlib · Tableau · Korrelationsanalyse</div>
+    <div class="page-subtitle">Python · Pandas · SciPy · Matplotlib · Tableau · Korrelationsanalyse</div>
     <nav class="switcher">
       <a href="instacart-case-study-de.html">Instacart</a>
       <a href="citi-bike-case-study-de.html">Citi Bike</a>
@@ -114,24 +172,106 @@
     </nav>
   </div>
 </div>
+
 <div class="case-body">
-<div class="tools-box"><div class="tools-label">Tools & Bibliotheken</div><div class="tools-value">Python · Pandas · Scipy · Matplotlib · Tableau · Korrelationsanalyse</div><p><strong>Datensatz:</strong> World Happiness Report 2019 — 156 Länder, 10 Variablen.</p></div>
-<h3>Projektübersicht</h3><p>Was treibt das gemeldete Glück in verschiedenen Ländern? Ist das BIP der wichtigste Treiber — oder spielen soziale Faktoren eine stärkere Rolle?</p>
-<h3>Wichtigste Erkenntnisse</h3><ul><li>BIP pro Kopf zeigt klaren positiven Zusammenhang mit Glück</li><li>Soziale Unterstützung zeigte einen stärkeren und konsistenteren Zusammenhang als BIP allein</li><li>Länder mit ähnlichem Einkommensniveau unterschieden sich stark im Glück</li></ul>
-<h2>Globale Glücksübersicht</h2>
-<figure class="case-figure"><img src="happiness-tableau-map.png" alt="Weltkarte Glückswerte 2019"/><figcaption>Glückswerte nach Land. Nordeuropa und Nordamerika erzielen höchste Werte.</figcaption></figure>
-<p><a href="https://public.tableau.com/app/profile/a.a5244/viz/Achievement6HappinessEconomicFactors/GlobalOverviewofHappiness2019" target="_blank" rel="noopener" class="btn-link">Interaktives Dashboard auf Tableau →</a></p>
-<h3>Fazit</h3><p>Wirtschaftlicher Wohlstand ist wichtig, aber soziale Unterstützung zeigt einen gleich starken oder stärkeren Zusammenhang. Effektive Politik muss beide Dimensionen adressieren.</p>
+  <div class="tools-box">
+    <div class="tools-label">Tools & Bibliotheken</div>
+    <div class="tools-value">Python · Pandas · SciPy · Matplotlib · Seaborn · Tableau · Korrelationsanalyse</div>
+    <p><strong>Datensatz:</strong> World Happiness Report 2019 — 156 Länder, 10 sozioökonomische und Wohlfühl-Variablen</p>
+    <p><strong>Ergebnis:</strong> Korrelations- und Regressionsanalyse zeigt: Soziale Unterstützung sagt Wohlbefinden konsistenter voraus als BIP allein</p>
+  </div>
+  <div class="source-box">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+    <div>
+      <div class="source-label">Quellcode</div>
+      <a href="https://github.com/ageelalramadhan" target="_blank" rel="noopener">github.com/ageelalramadhan →</a>
+    </div>
+  </div>
+  <div class="stat-row">
+    <div class="stat-cell green"><div class="stat-num green">156</div><div class="stat-label">Länder</div></div>
+    <div class="stat-cell blue"><div class="stat-num blue">10</div><div class="stat-label">Variablen</div></div>
+    <div class="stat-cell yellow"><div class="stat-num yellow">2019</div><div class="stat-label">Berichtsjahr</div></div>
+    <div class="stat-cell pink"><div class="stat-num pink">6</div><div class="stat-label">Faktoren analysiert</div></div>
+  </div>
+
+  <h2>Projektübersicht</h2>
+  <p>Was treibt das berichtete Glücksempfinden in verschiedenen Ländern? Ist das BIP der primäre Treiber — oder spielen soziale Faktoren eine stärkere, konsistentere Rolle? Diese Analyse kombiniert Korrelationstests, Regression und Choroplethen-Visualisierung, um wirtschaftliche und soziale Erklärungen für nationales Wohlbefinden zu vergleichen.</p>
+  <p><strong>Geschäftsfrage:</strong> Für politische Entscheidungsträger, die Trade-offs zwischen Wirtschaftswachstum und sozialer Investition abwägen — welcher Faktor sagt Bürgerwohlbefinden zuverlässiger voraus?</p>
+
+  <h2>Methodik</h2>
+  <table class="pipeline-table">
+    <thead><tr><th>Schritt</th><th>Tool</th><th>Aktion</th></tr></thead>
+    <tbody>
+      <tr><td><span class="step-tag">1. Daten laden</span></td><td>Pandas</td><td>World Happiness Report 2019 geladen (156 Länder × 10 Variablen)</td></tr>
+      <tr><td><span class="step-tag">2. Bereinigung</span></td><td>Pandas</td><td>Ländernamen validiert, fehlende Werte geprüft, Variablentypen normalisiert</td></tr>
+      <tr><td><span class="step-tag">3. Korrelationsmatrix</span></td><td>SciPy + Seaborn</td><td>Pearson-Korrelation aller Variablen, als Heatmap visualisiert</td></tr>
+      <tr><td><span class="step-tag">4. Regression</span></td><td>SciPy</td><td>Lineare Regression: Glück ~ BIP, Glück ~ soziale Unterstützung, Glück ~ beide</td></tr>
+      <tr><td><span class="step-tag">5. Kohortenanalyse</span></td><td>Pandas</td><td>Länder mit ähnlichem BIP gruppiert — Glücksvariation innerhalb der Gruppen untersucht</td></tr>
+      <tr><td><span class="step-tag">6. Räumliche Visualisierung</span></td><td>Tableau</td><td>Choroplethenkarte der Glückswerte nach Land</td></tr>
+      <tr><td><span class="step-tag">7. Interpretation</span></td><td>—</td><td>Ergebnisse zu politikrelevanten Takeaways synthetisiert</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Globale Glückskarte</h2>
+  <figure class="case-figure">
+    <img src="happiness-tableau-map.png" alt="Weltchoroplethen-Karte der Glückswerte, 2019"/>
+    <figcaption>Abbildung 1. Glückswerte nach Land, 2019. Nordeuropa und Nordamerika erzielen die höchsten Werte; in Regionen mit ähnlichem Einkommen besteht große Variation.</figcaption>
+  </figure>
+
+  <h2>Die BIP-Geschichte (teilweise wahr)</h2>
+  <p>Das BIP pro Kopf zeigt einen klaren positiven Zusammenhang mit Glück über Länder hinweg — wohlhabendere Nationen berichten im Durchschnitt höheres Wohlbefinden. Aber der Zusammenhang lässt erhebliche unerklärte Varianz übrig, und in diesem Rest liegt die interessantere Geschichte.</p>
+  <div class="insight-box blue">
+    <p class="insight-title">Erkenntnis — BIP ist wichtig, aber nicht die ganze Geschichte</p>
+    <p>Höheres BIP korreliert positiv mit berichtetem Glück, aber Länder mit ähnlichem BIP unterscheiden sich stark im Wohlbefinden. BIP allein kann diese Unterschiede nicht erklären.</p>
+  </div>
+
+  <h2>Soziale Unterstützung — Der stärkere Prädiktor</h2>
+  <p>Wenn soziale Unterstützung zur Regression hinzugefügt wird, erklärt sie zusätzliche Varianz über das BIP hinaus. Wichtiger noch: In Kohorten mit ähnlichem BIP berichten Länder mit stärkerer sozialer Unterstützung konsistent höhere Glückswerte.</p>
+  <div class="insight-box green">
+    <p class="insight-title">Erkenntnis — Soziale Unterstützung ist das stetigere Signal</p>
+    <p>Über Länder mit vergleichbarem Einkommensniveau hinweg sagt soziale Unterstützung Glück konsistenter voraus als BIP allein.</p>
+  </div>
+
+  <h2>Variation innerhalb von Kohorten</h2>
+  <p>Vergleicht man Ländergruppen mit ähnlichem BIP, zeigt sich, dass Glück innerhalb jeder Kohorte deutlich variiert — und diese Variation folgt eng der berichteten sozialen Unterstützung.</p>
+  <div class="insight-box yellow">
+    <p class="insight-title">Erkenntnis — Einkommensgleichheit bedeutet nicht Glücksgleichheit</p>
+    <p>Länder, die bei Einkommensmetriken identisch wirken, produzieren sehr unterschiedliche Glückswerte. Die verbleibende Lücke ist überwiegend sozial, nicht wirtschaftlich.</p>
+  </div>
+
+  <h2>Politische Implikation</h2>
+  <p>Effektive Wohlbefindenspolitik muss beide Dimensionen adressieren. Wirtschaftlicher Wohlstand ist wichtig — aber für Länder oberhalb einer Grundeinkommensschwelle könnte marginale soziale Investition größere Wohlbefindensgewinne erzielen als marginales BIP-Wachstum.</p>
+
+  <h2>Kernergebnisse</h2>
+  <div class="finding green">
+    <p class="finding-title">Ergebnis 1 — BIP pro Kopf korreliert positiv mit Glück.</p>
+    <p>Wohlhabendere Länder berichten höheres durchschnittliches Wohlbefinden, was die grundlegende Einkommens-Glücks-Verbindung bestätigt.</p>
+  </div>
+  <div class="finding blue">
+    <p class="finding-title">Ergebnis 2 — Soziale Unterstützung ist ein stärkerer und konsistenterer Prädiktor als BIP allein.</p>
+    <p>Wenn beide Variablen in die Regression eingehen, trägt soziale Unterstützung bei vergleichbarem Einkommen mehr Erklärungsgewicht.</p>
+  </div>
+  <div class="finding yellow">
+    <p class="finding-title">Ergebnis 3 — Länder mit ähnlichem Einkommen divergieren beim Glück, wenn die soziale Unterstützung variiert.</p>
+    <p>Variation innerhalb von Kohorten folgt sozialer Unterstützung — sogar zuverlässiger als Einkommensvariation.</p>
+  </div>
+  <div class="finding pink">
+    <p class="finding-title">Ergebnis 4 — Effektive Politik braucht ökonomische und soziale Dimensionen.</p>
+    <p>Oberhalb eines Grundeinkommens kann sozialer Investment größere Wohlbefindensrenditen liefern als zusätzliches BIP-Wachstum.</p>
+  </div>
+
+  <h2>Materialien</h2>
+  <a href="https://public.tableau.com/app/profile/a.a5244/viz/Achievement6HappinessEconomicFactors/GlobalOverviewofHappiness2019" target="_blank" rel="noopener" class="btn-link">Interaktives Dashboard auf Tableau ansehen →</a>
+  <a href="https://github.com/ageelalramadhan" target="_blank" rel="noopener" class="btn-outline-link">&lt;/&gt; GitHub-Repository</a>
 </div>
+
 <footer>
   <div class="footer-inner">
     <p class="footer-copy">© 2026 Ageel Alramadhan · Datenanalyst · Hamburg</p>
     <div class="footer-links">
       <a href="contact-de.html">Kontakt</a>
-      <a href="https://www.linkedin.com/in/ageel-alramadhan/" target="_blank" rel="noopener">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:4px"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a>
-      <a href="https://github.com/ageelalramadhan" target="_blank" rel="noopener">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:4px"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</a>
+      <a href="https://www.linkedin.com/in/ageel-alramadhan/" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:4px"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a>
+      <a href="https://github.com/ageelalramadhan" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:4px"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</a>
       <a href="impressum.html">Impressum</a>
       <a href="datenschutz.html">Datenschutzerklärung</a>
     </div>
@@ -146,6 +286,7 @@
 <script>
   const btn = document.getElementById('back-top');
   window.addEventListener('scroll', () => btn.classList.toggle('visible', window.scrollY > 300));
-  btn.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));</script>
+  btn.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
+</script>
 </body>
 </html>

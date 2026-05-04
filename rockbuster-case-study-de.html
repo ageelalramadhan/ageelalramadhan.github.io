@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="consent.css"/>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-    :root{--bg:#0f0f0f;--bg2:#161616;--surface:#1e1e1e;--border:#2e2e2e;--text:#f0f0f0;--muted:#888;--accent:#3dd68c;--accent2:#00d4ff;}
+    :root{--bg:#0f0f0f;--bg2:#161616;--surface:#1e1e1e;--border:#2e2e2e;--text:#f0f0f0;--muted:#888;--accent:#3dd68c;--accent2:#00d4ff;--yellow:#ffd166;--pink:#ff4d6d;}
     html{scroll-behavior:smooth;}
     body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
 
@@ -24,8 +24,6 @@
     .nav-right{display:flex;gap:12px;align-items:center;flex-shrink:0;width:160px;justify-content:flex-end;}
     .nav-lang{font-size:12px;color:var(--muted);text-decoration:none;border:1px solid var(--border);padding:5px 12px;transition:all 0.2s;font-family:'JetBrains Mono',monospace;white-space:nowrap;}
     .nav-lang:hover{border-color:var(--accent);color:var(--accent);}
-    .nav-back{font-size:12px;color:var(--muted);text-decoration:none;font-family:'JetBrains Mono',monospace;transition:color 0.2s;white-space:nowrap;}
-    .nav-back:hover{color:var(--text);}
     @media(max-width:900px){nav{padding:0 20px;}.nav-center{display:none;}}
 
     /* FOOTER */
@@ -42,49 +40,108 @@
     .back-top.visible{opacity:1;pointer-events:auto;}
     .back-top:hover{transform:translateY(-3px);}
 
-    /* BTNS */
-    .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;font-family:'JetBrains Mono',monospace;font-size:14px;text-decoration:none;transition:all 0.2s;cursor:pointer;border:none;white-space:nowrap;}
-    .btn-accent{background:var(--accent);color:#0f0f0f;font-weight:600;}
-    .btn-accent:hover{background:#4df0a0;transform:translateY(-1px);}
-    .btn-outline{background:transparent;color:var(--text);border:1px solid var(--border);}
-    .btn-outline:hover{border-color:var(--accent);color:var(--accent);}
-
-    @media(max-width:900px){
-      nav{padding:0 20px;}
-      .nav-center{display:none;}
-      .footer-inner{grid-template-columns:1fr;}
-      .footer-links{justify-content:flex-start;}
-    }
+    /* PAGE HERO (identical across all case studies) */
     .page-hero{padding:100px 40px 52px;background:var(--bg2);border-bottom:1px solid var(--border);}
     .page-hero-inner{max-width:900px;margin:0 auto;}
     .page-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:16px;}
-    .page-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,5vw,60px);letter-spacing:2px;line-height:1;margin-bottom:14px;}
+    .page-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,5vw,60px);letter-spacing:2px;line-height:1;margin-bottom:14px;min-height:120px;}
     .page-subtitle{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);margin-bottom:28px;}
+
+    /* SWITCHER (identical across all) */
     .switcher{display:flex;gap:3px;flex-wrap:wrap;margin-top:16px;position:relative;z-index:1;}
     .switcher a,.switcher span{padding:7px 14px;font-family:'JetBrains Mono',monospace;font-size:13px;text-decoration:none;border:1px solid var(--border);color:var(--muted);transition:all 0.2s;}
     .switcher a:hover{border-color:var(--accent);color:var(--accent);}
     .switcher span.active{background:var(--accent);color:#0f0f0f;border-color:var(--accent);font-weight:600;}
+
+    /* CASE BODY */
     .case-body{max-width:900px;margin:0 auto;padding:60px 40px 100px;}
-    .tools-box{background:var(--bg2);border:1px solid var(--border);padding:20px 24px;margin-bottom:40px;}
-    .tools-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
-    .tools-value{font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--accent);margin-bottom:8px;}
-    .tools-box p{font-size:15px;color:#b0b0b0;}
     .case-body h2{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:1px;margin:48px 0 14px;color:var(--text);}
     .case-body h3{font-size:18px;font-weight:600;margin:32px 0 10px;color:var(--text);}
     .case-body p{font-size:16px;color:#c0c0c0;line-height:1.8;margin-bottom:16px;}
     .case-body ul{margin:0 0 20px 20px;}
     .case-body li{font-size:16px;color:#c0c0c0;line-height:1.8;margin-bottom:8px;}
     .case-body strong{color:var(--text);}
+
+    /* TOOLS BOX */
+    .tools-box{background:var(--bg2);border:1px solid var(--border);padding:20px 24px;margin-bottom:16px;}
+    .tools-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+    .tools-value{font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--accent);margin-bottom:8px;}
+    .tools-box p{font-size:15px;color:#b0b0b0;margin-bottom:6px;}
+    .tools-box p:last-child{margin-bottom:0;}
+
+    /* SOURCE-CODE BOX */
+    .source-box{background:var(--surface);border:1px solid var(--border);padding:14px 20px;margin:16px 0 28px;display:flex;align-items:center;gap:14px;}
+    .source-box svg{flex-shrink:0;color:var(--text);}
+    .source-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+    .source-box a{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--accent);text-decoration:none;}
+    .source-box a:hover{text-decoration:underline;}
+
+    /* STAT TILES (4-column on desktop) */
+    .stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-bottom:40px;}
+    .stat-cell{background:var(--surface);border:1px solid var(--border);padding:20px;text-align:center;}
+    .stat-cell.green{border-top:3px solid var(--accent);}
+    .stat-cell.blue{border-top:3px solid var(--accent2);}
+    .stat-cell.yellow{border-top:3px solid var(--yellow);}
+    .stat-cell.pink{border-top:3px solid var(--pink);}
+    .stat-num{font-family:'Bebas Neue',sans-serif;font-size:40px;line-height:1;}
+    .stat-num.green{color:var(--accent);}
+    .stat-num.blue{color:var(--accent2);}
+    .stat-num.yellow{color:var(--yellow);}
+    .stat-num.pink{color:var(--pink);}
+    .stat-label{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-top:6px;}
+    @media(max-width:600px){.stat-row{grid-template-columns:1fr 1fr;}}
+
+    /* FIGURES */
     .case-figure{margin:20px 0 28px;}
     .case-figure img{width:100%;display:block;border:1px solid var(--border);}
     .case-figure figcaption{font-size:14px;color:var(--muted);margin-top:10px;font-style:italic;line-height:1.6;}
-    pre.sql-block{background:var(--surface);border:1px solid var(--border);padding:20px 24px;font-family:'JetBrains Mono',monospace;font-size:13px;color:#c0c0c0;overflow-x:auto;line-height:1.7;margin:16px 0 24px;white-space:pre;}
-    .btn-link{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;font-family:'JetBrains Mono',monospace;font-size:14px;text-decoration:none;background:var(--accent);color:#0f0f0f;font-weight:600;margin:16px 0;transition:all 0.2s;}
+
+    /* CODE BLOCKS */
+    pre.code-block,pre.sql-block{background:var(--surface);border:1px solid var(--border);padding:20px 24px;font-family:'JetBrains Mono',monospace;font-size:13px;color:#c0c0c0;overflow-x:auto;line-height:1.7;margin:16px 0 24px;white-space:pre;}
+
+    /* PIPELINE TABLE (uniform style for all data tables) */
+    .pipeline-table{width:100%;border-collapse:collapse;margin:16px 0 28px;font-size:14px;}
+    .pipeline-table th{background:var(--accent);color:#0f0f0f;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:1px;padding:10px 14px;text-align:left;}
+    .pipeline-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:#c0c0c0;vertical-align:top;font-size:14px;}
+    .pipeline-table tr:last-child td{border-bottom:none;}
+    .pipeline-table tr:nth-child(even) td{background:var(--bg2);}
+    .pipeline-table tr:nth-child(odd) td{background:var(--surface);}
+    .step-tag{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent2);}
+
+    /* INSIGHT BOX (callout for key insights) */
+    .insight-box{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent2);padding:20px 24px;margin:24px 0;}
+    .insight-box .insight-title{color:var(--accent2);font-weight:600;margin-bottom:6px;}
+    .insight-box.green{border-left-color:var(--accent);}
+    .insight-box.green .insight-title{color:var(--accent);}
+    .insight-box.yellow{border-left-color:var(--yellow);}
+    .insight-box.yellow .insight-title{color:var(--yellow);}
+    .insight-box.pink{border-left-color:var(--pink);}
+    .insight-box.pink .insight-title{color:var(--pink);}
+    .insight-box p{margin-bottom:6px;}
+    .insight-box p:last-child{margin-bottom:0;}
+
+    /* FINDING BOX (numbered findings list) */
+    .finding{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);padding:20px 24px;margin-bottom:8px;}
+    .finding.green{border-left-color:var(--accent);}
+    .finding.blue{border-left-color:var(--accent2);}
+    .finding.yellow{border-left-color:var(--yellow);}
+    .finding.pink{border-left-color:var(--pink);}
+    .finding-title{font-weight:600;margin-bottom:6px;}
+    .finding.green .finding-title{color:var(--accent);}
+    .finding.blue .finding-title{color:var(--accent2);}
+    .finding.yellow .finding-title{color:var(--yellow);}
+    .finding.pink .finding-title{color:var(--pink);}
+    .finding p{margin-bottom:0;}
+
+    /* BUTTONS */
+    .btn-link{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;font-family:'JetBrains Mono',monospace;font-size:14px;text-decoration:none;background:var(--accent);color:#0f0f0f;font-weight:600;margin:16px 8px 16px 0;transition:all 0.2s;}
     .btn-link:hover{background:#4df0a0;}
-    @media(max-width:768px){.page-hero{padding:80px 20px 40px;}.case-body{padding:40px 20px 60px;}}    .btn-outline-link{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:1px;text-decoration:none;color:var(--text);background:transparent;border:1px solid var(--border);transition:all 0.2s;margin-right:8px;}
+    .btn-outline-link{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:1px;text-decoration:none;color:var(--text);background:transparent;border:1px solid var(--border);transition:all 0.2s;margin-right:8px;}
     .btn-outline-link:hover{border-color:var(--accent);color:var(--accent);}
-    .page-title{min-height:120px;}
-</style>
+
+    @media(max-width:768px){.page-hero{padding:80px 20px 40px;}.case-body{padding:40px 20px 60px;}}
+  </style>
+
 </head>
 <body>
 <nav>
@@ -99,11 +156,12 @@
     <a href="rockbuster-case-study.html" class="nav-lang">🇬🇧 English</a>
   </div>
 </nav>
+
 <div class="page-hero">
   <div class="page-hero-inner">
-    <div class="page-eyebrow">Case Study</div>
+    <div class="page-eyebrow">Fallstudie</div>
     <h1 class="page-title">Rockbuster Strategieanalyse</h1>
-    <div class="page-subtitle">SQL · PostgreSQL · Tableau · Umsatzanalyse</div>
+    <div class="page-subtitle">SQL · PostgreSQL · Tableau · CTEs · Subqueries · Umsatzanalyse</div>
     <nav class="switcher">
       <a href="instacart-case-study-de.html">Instacart</a>
       <a href="citi-bike-case-study-de.html">Citi Bike</a>
@@ -114,26 +172,124 @@
     </nav>
   </div>
 </div>
+
 <div class="case-body">
-<div class="tools-box"><div class="tools-label">Tools & Bibliotheken</div><div class="tools-value">SQL · PostgreSQL · Tableau · Umsatzanalyse</div><p><strong>Datensatz:</strong> Relationale Datenbank mit 15 Tabellen. ~16.000 Filme, ~600 Filialen.</p></div>
-<h3>Projektübersicht</h3><p>SQL-Analyse der Rockbuster-Datenbank zur Identifikation von Umsatztreibern und geografischen Chancen für einen Streaming-Markteinstieg.</p>
-<h3>Wichtigste Erkenntnisse</h3><ul><li>Indien, China und die USA führen beim Kundevolumen</li><li>Stadtebene-Targeting bietet geringen Mehrwert — Länderfokus ist effizienter</li><li>Umsatz konzentriert sich auf wenige Top-Kunden — Kundenbindung hat hohen ROI</li></ul>
-<h2>Top-10-Länder nach Kundenzahl</h2>
-<figure class="case-figure"><img src="rockbuster-tableau-2.png" alt="Top 10 Länder"/><figcaption>Indien (60), China (53) und USA (36) führen.</figcaption></figure>
-<h2>Top-5-Kunden nach Umsatz</h2>
-<figure class="case-figure"><img src="rockbuster-tableau-4.png" alt="Top 5 Kunden"/><figcaption>Umsatz konzentriert sich auf kleine Gruppe — Kundenbindungsmaßnahmen haben hohen ROI.</figcaption></figure>
-<p><a href="https://public.tableau.com/app/profile/a.a5244/viz/RockbusterFindingsTask3_10_17646887206150/Top10Countries" target="_blank" rel="noopener" class="btn-link">Interaktives Dashboard auf Tableau →</a></p>
-<h3>Fazit</h3><p>SQL-Analyse und Tableau-Visualisierung liefern direkt handlungsorientierte Erkenntnisse zur Umsatzkonzentration und Wachstumschancen.</p>
+  <div class="tools-box">
+    <div class="tools-label">Tools & Bibliotheken</div>
+    <div class="tools-value">SQL · PostgreSQL · Tableau · CTEs · Subqueries · Umsatzanalyse</div>
+    <p><strong>Datensatz:</strong> Rockbuster Relationale Datenbank — 15 Tabellen: Filme, Kunden, Verleihe, Zahlungen, Adressen (~16.000 Filme, ~600 Filialen)</p>
+    <p><strong>Ergebnis:</strong> Strategische Empfehlungen zu geografischer Ausrichtung, Kundenkonzentration und werthaltigen Retention-Segmenten</p>
+  </div>
+  <div class="source-box">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+    <div>
+      <div class="source-label">Quellcode</div>
+      <a href="https://github.com/ageelalramadhan" target="_blank" rel="noopener">github.com/ageelalramadhan →</a>
+    </div>
+  </div>
+  <div class="stat-row">
+    <div class="stat-cell green"><div class="stat-num green">15</div><div class="stat-label">DB-Tabellen</div></div>
+    <div class="stat-cell blue"><div class="stat-num blue">16K</div><div class="stat-label">Filme</div></div>
+    <div class="stat-cell yellow"><div class="stat-num yellow">600</div><div class="stat-label">Filialen</div></div>
+    <div class="stat-cell pink"><div class="stat-num pink">5</div><div class="stat-label">Top-Märkte</div></div>
+  </div>
+
+  <h2>Projektübersicht</h2>
+  <p>Die Geschäftsleitung von Rockbuster wollte die Umsatztreiber im internationalen Verleihgeschäft verstehen. Mit SQL auf der 15-tabelligen relationalen Datenbank identifiziert diese Analyse die geografische Umsatzkonzentration, werthaltige Kundensegmente und die richtige Granularität strategischer Entscheidungen.</p>
+  <p><strong>Geschäftsfrage:</strong> Wo ist der Umsatz tatsächlich konzentriert — nach Land, Stadt oder einzelnem Kunden — und welche Segmentierungs-Ebene ist die richtige für die Markteintrittsstrategie?</p>
+
+  <h2>Analyseansatz</h2>
+  <table class="pipeline-table">
+    <thead><tr><th>#</th><th>Frage</th><th>SQL-Technik</th></tr></thead>
+    <tbody>
+      <tr><td><span class="step-tag">1</span></td><td>Welche Länder haben die meisten Kunden?</td><td>JOIN customer → address → city → country, COUNT, GROUP BY</td></tr>
+      <tr><td><span class="step-tag">2</span></td><td>Welche Städte führen innerhalb dieser Länder?</td><td>Gefilterte Subquery auf Top-Länder, COUNT GROUP BY city</td></tr>
+      <tr><td><span class="step-tag">3</span></td><td>Wer sind die umsatzstärksten Kunden?</td><td>JOIN customer + payment, SUM(amount), ORDER BY DESC LIMIT 5</td></tr>
+      <tr><td><span class="step-tag">4</span></td><td>Ist Stadtebene operativ nutzbar?</td><td>Vergleich Länder- vs. Stadtebene-Varianz</td></tr>
+      <tr><td><span class="step-tag">5</span></td><td>Wie konzentriert ist der Top-Kunden-Umsatz?</td><td>Top-N-Analyse auf Zahlungssummen</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Beispielabfrage — Umsatzstärkste Kunden</h2>
+  <pre class="code-block">SELECT cu.customer_id, cu.first_name, cu.last_name,
+       co.country, ci.city, SUM(p.amount) AS total_amount_paid
+FROM customer AS cu
+JOIN address AS a   ON cu.address_id = a.address_id
+JOIN city    AS ci  ON a.city_id     = ci.city_id
+JOIN country AS co  ON ci.country_id = co.country_id
+JOIN payment AS p   ON cu.customer_id = p.customer_id
+GROUP BY cu.customer_id, cu.first_name, cu.last_name, co.country, ci.city
+ORDER BY total_amount_paid DESC
+LIMIT 5;</pre>
+
+  <h2>Geografische Verteilung</h2>
+  <figure class="case-figure">
+    <img src="rockbuster-tableau-2.png" alt="Top 10 Länder nach Kundenzahl"/>
+    <figcaption>Abbildung 1. Top 10 Länder nach Kundenzahl. Indien (60), China (53) und die USA (36) führen — bestätigt den Fokus auf Länderebene.</figcaption>
+  </figure>
+  <figure class="case-figure">
+    <img src="rockbuster-top-countries.png" alt="Heatmap Kundenverteilung nach Land"/>
+    <figcaption>Abbildung 2. Geografische Konzentration ist auf Länderebene aussagekräftig, zerfällt aber auf Stadtebene zu schnell, um operativ nutzbar zu sein.</figcaption>
+  </figure>
+  <div class="insight-box blue">
+    <p class="insight-title">Erkenntnis — Die richtige Granularität wählen</p>
+    <p>Eine Analyse auf Stadtebene zerlegt Kunden in zu viele kleine Gruppen. Die Länderebene ist die richtige Einheit für die Go-to-Market-Planung von Rockbuster.</p>
+  </div>
+
+  <h2>Konzentration des Kundenumsatzes</h2>
+  <figure class="case-figure">
+    <img src="rockbuster-tableau-4.png" alt="Top 5 Kunden nach Gesamtzahlungen"/>
+    <figcaption>Abbildung 3. Top 5 Kunden nach Gesamtzahlungen. Der Umsatz ist auf eine kleine Gruppe konzentriert — Retention-Kampagnen für sie haben überproportionalen ROI.</figcaption>
+  </figure>
+  <figure class="case-figure">
+    <img src="rockbuster-top-customers.png" alt="Verteilung des Customer Lifetime Value"/>
+    <figcaption>Abbildung 4. Die lange Schleppe rechtfertigt ein gestuftes Retention-Programm: White-Glove an der Spitze, automatisiert für den Rest.</figcaption>
+  </figure>
+  <div class="insight-box pink">
+    <p class="insight-title">Erkenntnis — Retention schlägt Akquise an der Spitze</p>
+    <p>Eine kleine Kundenuntermenge trägt überproportional zum Umsatz bei. Premium-Retention-Programme sind kosteneffizienter als Akquise-Skalierung für diese Gruppe.</p>
+  </div>
+
+  <h2>Tableau-Dashboard</h2>
+  <figure class="case-figure">
+    <img src="rockbuster-tableau-1.png" alt="Rockbuster strategisches Dashboard — Länderfokus"/>
+    <figcaption>Abbildung 5. Tableau-Dashboard: Umsatz und Kundenzahl auf Länderebene für Executive-Entscheidungen.</figcaption>
+  </figure>
+  <figure class="case-figure">
+    <img src="rockbuster-tableau-3.png" alt="Rockbuster-Dashboard — Drilldown Kundenkonzentration"/>
+    <figcaption>Abbildung 6. Drilldown-Ansicht: Top-Kundenkonzentration mit prozentualem Umsatzbeitrag.</figcaption>
+  </figure>
+
+  <h2>Kernergebnisse</h2>
+  <div class="finding green">
+    <p class="finding-title">Ergebnis 1 — Das Kundenvolumen konzentriert sich auf drei Länder.</p>
+    <p>Indien, China und die USA führen bei der Kundenzahl — diese drei Märkte sollten internationale Expansionsbudgets verankern.</p>
+  </div>
+  <div class="finding blue">
+    <p class="finding-title">Ergebnis 2 — Stadt-Targeting bietet begrenzten strategischen Wert.</p>
+    <p>Innerhalb der Top-Länder sind Städte zu verteilt, um als primärer Segmentierungsschlüssel zu dienen. Länderfokus produziert klareres Signal für Marketing-Allokation.</p>
+  </div>
+  <div class="finding yellow">
+    <p class="finding-title">Ergebnis 3 — Top 5 Kunden tragen überproportional zum Umsatz bei.</p>
+    <p>Eine kleine Kundengruppe treibt einen großen Anteil aller Zahlungen. Retention für diese Spitze bietet den höchsten ROI.</p>
+  </div>
+  <div class="finding pink">
+    <p class="finding-title">Ergebnis 4 — SQL + Tableau schließt den Kreis von Daten zu Entscheidung.</p>
+    <p>SQL für korrekte Aggregation kombiniert mit Tableau für Executive-Präsentation lässt die Analyse direkt in Geo- und Retention-Entscheidungen einfließen.</p>
+  </div>
+
+  <h2>Materialien</h2>
+  <a href="https://public.tableau.com/app/profile/a.a5244/viz/RockbusterFindingsTask3_10_17646887206150/Top10Countries" target="_blank" rel="noopener" class="btn-link">Interaktives Dashboard auf Tableau ansehen →</a>
+  <a href="https://github.com/ageelalramadhan" target="_blank" rel="noopener" class="btn-outline-link">&lt;/&gt; GitHub-Repository</a>
 </div>
+
 <footer>
   <div class="footer-inner">
     <p class="footer-copy">© 2026 Ageel Alramadhan · Datenanalyst · Hamburg</p>
     <div class="footer-links">
       <a href="contact-de.html">Kontakt</a>
-      <a href="https://www.linkedin.com/in/ageel-alramadhan/" target="_blank" rel="noopener">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:4px"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a>
-      <a href="https://github.com/ageelalramadhan" target="_blank" rel="noopener">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:4px"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</a>
+      <a href="https://www.linkedin.com/in/ageel-alramadhan/" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:4px"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a>
+      <a href="https://github.com/ageelalramadhan" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:4px"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</a>
       <a href="impressum.html">Impressum</a>
       <a href="datenschutz.html">Datenschutzerklärung</a>
     </div>
@@ -148,6 +304,7 @@
 <script>
   const btn = document.getElementById('back-top');
   window.addEventListener('scroll', () => btn.classList.toggle('visible', window.scrollY > 300));
-  btn.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));</script>
+  btn.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
+</script>
 </body>
 </html>

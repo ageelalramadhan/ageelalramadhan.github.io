@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="consent.css"/>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-    :root{--bg:#0f0f0f;--bg2:#161616;--surface:#1e1e1e;--border:#2e2e2e;--text:#f0f0f0;--muted:#888;--accent:#3dd68c;--accent2:#00d4ff;}
+    :root{--bg:#0f0f0f;--bg2:#161616;--surface:#1e1e1e;--border:#2e2e2e;--text:#f0f0f0;--muted:#888;--accent:#3dd68c;--accent2:#00d4ff;--yellow:#ffd166;--pink:#ff4d6d;}
     html{scroll-behavior:smooth;}
     body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
 
@@ -24,8 +24,6 @@
     .nav-right{display:flex;gap:12px;align-items:center;flex-shrink:0;width:160px;justify-content:flex-end;}
     .nav-lang{font-size:12px;color:var(--muted);text-decoration:none;border:1px solid var(--border);padding:5px 12px;transition:all 0.2s;font-family:'JetBrains Mono',monospace;white-space:nowrap;}
     .nav-lang:hover{border-color:var(--accent);color:var(--accent);}
-    .nav-back{font-size:12px;color:var(--muted);text-decoration:none;font-family:'JetBrains Mono',monospace;transition:color 0.2s;white-space:nowrap;}
-    .nav-back:hover{color:var(--text);}
     @media(max-width:900px){nav{padding:0 20px;}.nav-center{display:none;}}
 
     /* FOOTER */
@@ -42,49 +40,108 @@
     .back-top.visible{opacity:1;pointer-events:auto;}
     .back-top:hover{transform:translateY(-3px);}
 
-    /* BTNS */
-    .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;font-family:'JetBrains Mono',monospace;font-size:14px;text-decoration:none;transition:all 0.2s;cursor:pointer;border:none;white-space:nowrap;}
-    .btn-accent{background:var(--accent);color:#0f0f0f;font-weight:600;}
-    .btn-accent:hover{background:#4df0a0;transform:translateY(-1px);}
-    .btn-outline{background:transparent;color:var(--text);border:1px solid var(--border);}
-    .btn-outline:hover{border-color:var(--accent);color:var(--accent);}
-
-    @media(max-width:900px){
-      nav{padding:0 20px;}
-      .nav-center{display:none;}
-      .footer-inner{grid-template-columns:1fr;}
-      .footer-links{justify-content:flex-start;}
-    }
+    /* PAGE HERO (identical across all case studies) */
     .page-hero{padding:100px 40px 52px;background:var(--bg2);border-bottom:1px solid var(--border);}
     .page-hero-inner{max-width:900px;margin:0 auto;}
     .page-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:16px;}
-    .page-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,5vw,60px);letter-spacing:2px;line-height:1;margin-bottom:14px;}
+    .page-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,5vw,60px);letter-spacing:2px;line-height:1;margin-bottom:14px;min-height:120px;}
     .page-subtitle{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);margin-bottom:28px;}
+
+    /* SWITCHER (identical across all) */
     .switcher{display:flex;gap:3px;flex-wrap:wrap;margin-top:16px;position:relative;z-index:1;}
     .switcher a,.switcher span{padding:7px 14px;font-family:'JetBrains Mono',monospace;font-size:13px;text-decoration:none;border:1px solid var(--border);color:var(--muted);transition:all 0.2s;}
     .switcher a:hover{border-color:var(--accent);color:var(--accent);}
     .switcher span.active{background:var(--accent);color:#0f0f0f;border-color:var(--accent);font-weight:600;}
+
+    /* CASE BODY */
     .case-body{max-width:900px;margin:0 auto;padding:60px 40px 100px;}
-    .tools-box{background:var(--bg2);border:1px solid var(--border);padding:20px 24px;margin-bottom:40px;}
-    .tools-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
-    .tools-value{font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--accent);margin-bottom:8px;}
-    .tools-box p{font-size:15px;color:#b0b0b0;}
     .case-body h2{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:1px;margin:48px 0 14px;color:var(--text);}
     .case-body h3{font-size:18px;font-weight:600;margin:32px 0 10px;color:var(--text);}
     .case-body p{font-size:16px;color:#c0c0c0;line-height:1.8;margin-bottom:16px;}
     .case-body ul{margin:0 0 20px 20px;}
     .case-body li{font-size:16px;color:#c0c0c0;line-height:1.8;margin-bottom:8px;}
     .case-body strong{color:var(--text);}
+
+    /* TOOLS BOX */
+    .tools-box{background:var(--bg2);border:1px solid var(--border);padding:20px 24px;margin-bottom:16px;}
+    .tools-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+    .tools-value{font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--accent);margin-bottom:8px;}
+    .tools-box p{font-size:15px;color:#b0b0b0;margin-bottom:6px;}
+    .tools-box p:last-child{margin-bottom:0;}
+
+    /* SOURCE-CODE BOX */
+    .source-box{background:var(--surface);border:1px solid var(--border);padding:14px 20px;margin:16px 0 28px;display:flex;align-items:center;gap:14px;}
+    .source-box svg{flex-shrink:0;color:var(--text);}
+    .source-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+    .source-box a{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--accent);text-decoration:none;}
+    .source-box a:hover{text-decoration:underline;}
+
+    /* STAT TILES (4-column on desktop) */
+    .stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-bottom:40px;}
+    .stat-cell{background:var(--surface);border:1px solid var(--border);padding:20px;text-align:center;}
+    .stat-cell.green{border-top:3px solid var(--accent);}
+    .stat-cell.blue{border-top:3px solid var(--accent2);}
+    .stat-cell.yellow{border-top:3px solid var(--yellow);}
+    .stat-cell.pink{border-top:3px solid var(--pink);}
+    .stat-num{font-family:'Bebas Neue',sans-serif;font-size:40px;line-height:1;}
+    .stat-num.green{color:var(--accent);}
+    .stat-num.blue{color:var(--accent2);}
+    .stat-num.yellow{color:var(--yellow);}
+    .stat-num.pink{color:var(--pink);}
+    .stat-label{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-top:6px;}
+    @media(max-width:600px){.stat-row{grid-template-columns:1fr 1fr;}}
+
+    /* FIGURES */
     .case-figure{margin:20px 0 28px;}
     .case-figure img{width:100%;display:block;border:1px solid var(--border);}
     .case-figure figcaption{font-size:14px;color:var(--muted);margin-top:10px;font-style:italic;line-height:1.6;}
-    pre.sql-block{background:var(--surface);border:1px solid var(--border);padding:20px 24px;font-family:'JetBrains Mono',monospace;font-size:13px;color:#c0c0c0;overflow-x:auto;line-height:1.7;margin:16px 0 24px;white-space:pre;}
-    .btn-link{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;font-family:'JetBrains Mono',monospace;font-size:14px;text-decoration:none;background:var(--accent);color:#0f0f0f;font-weight:600;margin:16px 0;transition:all 0.2s;}
+
+    /* CODE BLOCKS */
+    pre.code-block,pre.sql-block{background:var(--surface);border:1px solid var(--border);padding:20px 24px;font-family:'JetBrains Mono',monospace;font-size:13px;color:#c0c0c0;overflow-x:auto;line-height:1.7;margin:16px 0 24px;white-space:pre;}
+
+    /* PIPELINE TABLE (uniform style for all data tables) */
+    .pipeline-table{width:100%;border-collapse:collapse;margin:16px 0 28px;font-size:14px;}
+    .pipeline-table th{background:var(--accent);color:#0f0f0f;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:1px;padding:10px 14px;text-align:left;}
+    .pipeline-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:#c0c0c0;vertical-align:top;font-size:14px;}
+    .pipeline-table tr:last-child td{border-bottom:none;}
+    .pipeline-table tr:nth-child(even) td{background:var(--bg2);}
+    .pipeline-table tr:nth-child(odd) td{background:var(--surface);}
+    .step-tag{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent2);}
+
+    /* INSIGHT BOX (callout for key insights) */
+    .insight-box{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent2);padding:20px 24px;margin:24px 0;}
+    .insight-box .insight-title{color:var(--accent2);font-weight:600;margin-bottom:6px;}
+    .insight-box.green{border-left-color:var(--accent);}
+    .insight-box.green .insight-title{color:var(--accent);}
+    .insight-box.yellow{border-left-color:var(--yellow);}
+    .insight-box.yellow .insight-title{color:var(--yellow);}
+    .insight-box.pink{border-left-color:var(--pink);}
+    .insight-box.pink .insight-title{color:var(--pink);}
+    .insight-box p{margin-bottom:6px;}
+    .insight-box p:last-child{margin-bottom:0;}
+
+    /* FINDING BOX (numbered findings list) */
+    .finding{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);padding:20px 24px;margin-bottom:8px;}
+    .finding.green{border-left-color:var(--accent);}
+    .finding.blue{border-left-color:var(--accent2);}
+    .finding.yellow{border-left-color:var(--yellow);}
+    .finding.pink{border-left-color:var(--pink);}
+    .finding-title{font-weight:600;margin-bottom:6px;}
+    .finding.green .finding-title{color:var(--accent);}
+    .finding.blue .finding-title{color:var(--accent2);}
+    .finding.yellow .finding-title{color:var(--yellow);}
+    .finding.pink .finding-title{color:var(--pink);}
+    .finding p{margin-bottom:0;}
+
+    /* BUTTONS */
+    .btn-link{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;font-family:'JetBrains Mono',monospace;font-size:14px;text-decoration:none;background:var(--accent);color:#0f0f0f;font-weight:600;margin:16px 8px 16px 0;transition:all 0.2s;}
     .btn-link:hover{background:#4df0a0;}
-    @media(max-width:768px){.page-hero{padding:80px 20px 40px;}.case-body{padding:40px 20px 60px;}}    .btn-outline-link{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:1px;text-decoration:none;color:var(--text);background:transparent;border:1px solid var(--border);transition:all 0.2s;margin-right:8px;}
+    .btn-outline-link{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:1px;text-decoration:none;color:var(--text);background:transparent;border:1px solid var(--border);transition:all 0.2s;margin-right:8px;}
     .btn-outline-link:hover{border-color:var(--accent);color:var(--accent);}
-    .page-title{min-height:120px;}
-</style>
+
+    @media(max-width:768px){.page-hero{padding:80px 20px 40px;}.case-body{padding:40px 20px 60px;}}
+  </style>
+
 </head>
 <body>
 <nav>
@@ -99,11 +156,12 @@
     <a href="influenza-case-study-de.html" class="nav-lang">🇩🇪 Deutsch</a>
   </div>
 </nav>
+
 <div class="page-hero">
   <div class="page-hero-inner">
     <div class="page-eyebrow">Case Study</div>
     <h1 class="page-title">U.S. Influenza Mortality Analysis (2009–2017)</h1>
-    <div class="page-subtitle">Excel · Tableau · Statistical Analysis · Public Health</div>
+    <div class="page-subtitle">Excel · Tableau · Statistical Analysis · Public Health · Spatial Viz</div>
     <nav class="switcher">
       <a href="instacart-case-study.html">Instacart</a>
       <a href="citi-bike-case-study.html">Citi Bike</a>
@@ -114,26 +172,105 @@
     </nav>
   </div>
 </div>
+
 <div class="case-body">
-<div class="tools-box"><div class="tools-label">Tools & Libraries</div><div class="tools-value">Excel · Tableau · Statistical Analysis · Spatial Visualization</div><p><strong>Dataset:</strong> CDC influenza mortality records (2009–2017) across all 50 U.S. states. ~6,000 rows.</p></div>
-<h3>Project Overview</h3><p>Analysis of U.S. influenza mortality across all 50 states from 2009–2017. Core insight: <strong>mortality rate, not raw death counts</strong>, is the correct metric for cross-state comparison.</p>
-<h3>Key Findings</h3><ul><li>No statistically significant change in mortality rate — stable at ~0.012%</li><li>Strong correlation between state population and total deaths (r ≈ 0.96)</li><li>Adults aged 75+ account for the largest share of deaths</li></ul>
-<h2>Figure 1 — Temporal Trend (2009–2017)</h2>
-<figure class="case-figure"><img src="influenza-tableau-1.png" alt="U.S. influenza deaths by year"/><figcaption>Annual deaths remained broadly stable — no significant trend across the study period.</figcaption></figure>
-<h2>Figure 2 — Spatial Distribution by State</h2>
-<figure class="case-figure"><img src="influenza-tableau-2.png" alt="U.S. choropleth map mortality rate"/><figcaption>Mortality rate per 100,000 population. Darker red = higher per-capita risk.</figcaption></figure>
-<p><a href="https://public.tableau.com/app/profile/a.a5244/viz/Exercise2_7InfluenzaSpatialAnalysis20092017_AA/InfluenzaStoryAkeelAlramadhan" target="_blank" rel="noopener" class="btn-link">View Interactive Story on Tableau →</a></p>
-<h3>Conclusion</h3><p>Choosing mortality rate over raw counts fundamentally changes what the data says — a critical analytical distinction with direct policy implications.</p>
+  <div class="tools-box">
+    <div class="tools-label">Tools & Libraries</div>
+    <div class="tools-value">Excel · Tableau · Statistical Analysis · Spatial Visualization</div>
+    <p><strong>Dataset:</strong> CDC influenza mortality records (2009–2017) across all 50 U.S. states. ~6,000 rows.</p>
+    <p><strong>Output:</strong> Story-driven Tableau dashboard demonstrating that mortality rate, not raw counts, is the correct metric for cross-state comparison</p>
+  </div>
+  <div class="source-box">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+    <div>
+      <div class="source-label">Source Code</div>
+      <a href="https://github.com/ageelalramadhan" target="_blank" rel="noopener">github.com/ageelalramadhan →</a>
+    </div>
+  </div>
+  <div class="stat-row">
+    <div class="stat-cell green"><div class="stat-num green">9</div><div class="stat-label">Years Analyzed</div></div>
+    <div class="stat-cell blue"><div class="stat-num blue">50</div><div class="stat-label">U.S. States</div></div>
+    <div class="stat-cell yellow"><div class="stat-num yellow">6K</div><div class="stat-label">Records</div></div>
+    <div class="stat-cell pink"><div class="stat-num pink">0.012%</div><div class="stat-label">Avg Mortality Rate</div></div>
+  </div>
+
+  <h2>Project Overview</h2>
+  <p>Analysis of U.S. influenza mortality across all 50 states from 2009 through 2017. The core insight: <strong>mortality rate, not raw death counts</strong>, is the correct metric for cross-state comparison — a methodological choice that fundamentally changes what the data communicates.</p>
+  <p><strong>Business question:</strong> Are some states more dangerous than others for influenza, and is mortality changing over time?</p>
+
+  <h2>Methodology</h2>
+  <table class="pipeline-table">
+    <thead><tr><th>Step</th><th>Tool</th><th>Action</th></tr></thead>
+    <tbody>
+      <tr><td><span class="step-tag">1. Data Collection</span></td><td>CDC source</td><td>Downloaded 2009–2017 mortality records by state</td></tr>
+      <tr><td><span class="step-tag">2. Cleaning</span></td><td>Excel</td><td>Standardized state names, removed duplicate years, validated row totals</td></tr>
+      <tr><td><span class="step-tag">3. Population Merge</span></td><td>Excel</td><td>Joined annual state population for rate calculations</td></tr>
+      <tr><td><span class="step-tag">4. Rate Calculation</span></td><td>Excel</td><td>deaths_per_100k = (deaths / population) × 100,000</td></tr>
+      <tr><td><span class="step-tag">5. Trend Analysis</span></td><td>Excel + Tableau</td><td>Year-over-year statistical comparison of rates</td></tr>
+      <tr><td><span class="step-tag">6. Spatial Mapping</span></td><td>Tableau</td><td>Choropleth maps for both raw counts and rates</td></tr>
+      <tr><td><span class="step-tag">7. Story Building</span></td><td>Tableau Story</td><td>Narrative dashboard contrasting raw vs rate views</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Temporal Trend (2009–2017)</h2>
+  <p>Annual deaths remained broadly stable across the study period. Statistical testing of year-over-year mortality rates shows no significant change — the rate has hovered consistently around <strong>0.012%</strong> nationally.</p>
+  <figure class="case-figure">
+    <img src="influenza-tableau-1.png" alt="U.S. influenza deaths by year, 2009–2017"/>
+    <figcaption>Figure 1. Annual influenza-related deaths across all U.S. states. Year-over-year variation falls within normal seasonal fluctuation; no significant temporal trend.</figcaption>
+  </figure>
+  <div class="insight-box blue">
+    <p class="insight-title">Key Insight — No significant change over time</p>
+    <p>Year-over-year statistical tests confirm mortality rate has remained essentially flat across 2009–2017. Apparent volume increases reflect population growth, not worsening outcomes.</p>
+  </div>
+
+  <h2>Spatial Distribution by State</h2>
+  <p>Mapping raw death counts produces a misleading picture: California, Texas, and New York appear most dangerous simply because they are the most populous. Switching the metric to mortality rate per 100,000 reveals a fundamentally different geography of risk.</p>
+  <figure class="case-figure">
+    <img src="influenza-tableau-2.png" alt="Mortality rate per 100,000 by state"/>
+    <figcaption>Figure 2. Mortality rate per 100,000 population. Darker red = higher per-capita risk. The pattern is not driven by total population — it reflects genuine state-level variation in age structure, healthcare access, and reporting.</figcaption>
+  </figure>
+  <div class="insight-box pink">
+    <p class="insight-title">Key Insight — Choose the metric, change the answer</p>
+    <p>Choosing mortality rate over raw counts fundamentally changes what the data says — a critical analytical distinction with direct policy implications. Raw counts answer 'where do most deaths happen?' Rates answer 'where is risk highest?' Only the second supports policy.</p>
+  </div>
+
+  <h2>Demographic Pattern</h2>
+  <p>Within every state, adults aged <strong>75 and over</strong> account for the largest share of influenza-related deaths. This is consistent with national CDC reporting and with the underlying biology of influenza severity in elderly populations.</p>
+  <div class="insight-box yellow">
+    <p class="insight-title">Key Insight — Age structure shapes state-level risk</p>
+    <p>States with older population profiles consistently show higher mortality rates. Age-adjusted comparisons would refine the analysis further — without age adjustment, some of the apparent state-level variation is demographic, not behavioural.</p>
+  </div>
+
+  <h2>Key Findings</h2>
+  <div class="finding green">
+    <p class="finding-title">Finding 1 — National mortality rate has been stable.</p>
+    <p>Statistical testing confirms no significant change in U.S. influenza mortality rate from 2009 to 2017. Rate stayed near 0.012%.</p>
+  </div>
+  <div class="finding blue">
+    <p class="finding-title">Finding 2 — Population strongly correlates with raw death counts (r ≈ 0.96).</p>
+    <p>Population alone explains most of the cross-state variation in raw counts — making raw counts useless as a comparative risk metric.</p>
+  </div>
+  <div class="finding yellow">
+    <p class="finding-title">Finding 3 — Mortality rate, not raw counts, is the correct metric for state-by-state comparison.</p>
+    <p>Switching the metric reorders the map of 'most dangerous' states entirely — a critical insight for public-health decision-making.</p>
+  </div>
+  <div class="finding pink">
+    <p class="finding-title">Finding 4 — Adults aged 75+ account for the largest share of deaths.</p>
+    <p>Vaccination campaigns and preventive healthcare prioritization should focus on this demographic for greatest impact.</p>
+  </div>
+
+  <h2>Resources</h2>
+  <a href="https://public.tableau.com/app/profile/a.a5244/viz/Exercise2_7InfluenzaSpatialAnalysis20092017_AA/InfluenzaStoryAkeelAlramadhan" target="_blank" rel="noopener" class="btn-link">View Interactive Story on Tableau →</a>
+  <a href="https://github.com/ageelalramadhan" target="_blank" rel="noopener" class="btn-outline-link">&lt;/&gt; GitHub Repository</a>
 </div>
+
 <footer>
   <div class="footer-inner">
     <p class="footer-copy">© 2026 Ageel Alramadhan · Data Analyst · Hamburg</p>
     <div class="footer-links">
       <a href="contact.html">Contact</a>
-      <a href="https://www.linkedin.com/in/ageel-alramadhan/" target="_blank" rel="noopener">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:4px"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a>
-      <a href="https://github.com/ageelalramadhan" target="_blank" rel="noopener">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:4px"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</a>
+      <a href="https://www.linkedin.com/in/ageel-alramadhan/" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:4px"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a>
+      <a href="https://github.com/ageelalramadhan" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:4px"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</a>
       <a href="impressum-en.html">Legal Notice</a>
       <a href="datenschutz-en.html">Privacy Policy</a>
     </div>
@@ -148,6 +285,7 @@
 <script>
   const btn = document.getElementById('back-top');
   window.addEventListener('scroll', () => btn.classList.toggle('visible', window.scrollY > 300));
-  btn.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));</script>
+  btn.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
+</script>
 </body>
 </html>

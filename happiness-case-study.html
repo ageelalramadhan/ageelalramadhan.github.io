@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="consent.css"/>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-    :root{--bg:#0f0f0f;--bg2:#161616;--surface:#1e1e1e;--border:#2e2e2e;--text:#f0f0f0;--muted:#888;--accent:#3dd68c;--accent2:#00d4ff;}
+    :root{--bg:#0f0f0f;--bg2:#161616;--surface:#1e1e1e;--border:#2e2e2e;--text:#f0f0f0;--muted:#888;--accent:#3dd68c;--accent2:#00d4ff;--yellow:#ffd166;--pink:#ff4d6d;}
     html{scroll-behavior:smooth;}
     body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
 
@@ -24,8 +24,6 @@
     .nav-right{display:flex;gap:12px;align-items:center;flex-shrink:0;width:160px;justify-content:flex-end;}
     .nav-lang{font-size:12px;color:var(--muted);text-decoration:none;border:1px solid var(--border);padding:5px 12px;transition:all 0.2s;font-family:'JetBrains Mono',monospace;white-space:nowrap;}
     .nav-lang:hover{border-color:var(--accent);color:var(--accent);}
-    .nav-back{font-size:12px;color:var(--muted);text-decoration:none;font-family:'JetBrains Mono',monospace;transition:color 0.2s;white-space:nowrap;}
-    .nav-back:hover{color:var(--text);}
     @media(max-width:900px){nav{padding:0 20px;}.nav-center{display:none;}}
 
     /* FOOTER */
@@ -42,49 +40,108 @@
     .back-top.visible{opacity:1;pointer-events:auto;}
     .back-top:hover{transform:translateY(-3px);}
 
-    /* BTNS */
-    .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;font-family:'JetBrains Mono',monospace;font-size:14px;text-decoration:none;transition:all 0.2s;cursor:pointer;border:none;white-space:nowrap;}
-    .btn-accent{background:var(--accent);color:#0f0f0f;font-weight:600;}
-    .btn-accent:hover{background:#4df0a0;transform:translateY(-1px);}
-    .btn-outline{background:transparent;color:var(--text);border:1px solid var(--border);}
-    .btn-outline:hover{border-color:var(--accent);color:var(--accent);}
-
-    @media(max-width:900px){
-      nav{padding:0 20px;}
-      .nav-center{display:none;}
-      .footer-inner{grid-template-columns:1fr;}
-      .footer-links{justify-content:flex-start;}
-    }
+    /* PAGE HERO (identical across all case studies) */
     .page-hero{padding:100px 40px 52px;background:var(--bg2);border-bottom:1px solid var(--border);}
     .page-hero-inner{max-width:900px;margin:0 auto;}
     .page-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:16px;}
-    .page-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,5vw,60px);letter-spacing:2px;line-height:1;margin-bottom:14px;}
+    .page-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,5vw,60px);letter-spacing:2px;line-height:1;margin-bottom:14px;min-height:120px;}
     .page-subtitle{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);margin-bottom:28px;}
+
+    /* SWITCHER (identical across all) */
     .switcher{display:flex;gap:3px;flex-wrap:wrap;margin-top:16px;position:relative;z-index:1;}
     .switcher a,.switcher span{padding:7px 14px;font-family:'JetBrains Mono',monospace;font-size:13px;text-decoration:none;border:1px solid var(--border);color:var(--muted);transition:all 0.2s;}
     .switcher a:hover{border-color:var(--accent);color:var(--accent);}
     .switcher span.active{background:var(--accent);color:#0f0f0f;border-color:var(--accent);font-weight:600;}
+
+    /* CASE BODY */
     .case-body{max-width:900px;margin:0 auto;padding:60px 40px 100px;}
-    .tools-box{background:var(--bg2);border:1px solid var(--border);padding:20px 24px;margin-bottom:40px;}
-    .tools-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
-    .tools-value{font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--accent);margin-bottom:8px;}
-    .tools-box p{font-size:15px;color:#b0b0b0;}
     .case-body h2{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:1px;margin:48px 0 14px;color:var(--text);}
     .case-body h3{font-size:18px;font-weight:600;margin:32px 0 10px;color:var(--text);}
     .case-body p{font-size:16px;color:#c0c0c0;line-height:1.8;margin-bottom:16px;}
     .case-body ul{margin:0 0 20px 20px;}
     .case-body li{font-size:16px;color:#c0c0c0;line-height:1.8;margin-bottom:8px;}
     .case-body strong{color:var(--text);}
+
+    /* TOOLS BOX */
+    .tools-box{background:var(--bg2);border:1px solid var(--border);padding:20px 24px;margin-bottom:16px;}
+    .tools-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+    .tools-value{font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--accent);margin-bottom:8px;}
+    .tools-box p{font-size:15px;color:#b0b0b0;margin-bottom:6px;}
+    .tools-box p:last-child{margin-bottom:0;}
+
+    /* SOURCE-CODE BOX */
+    .source-box{background:var(--surface);border:1px solid var(--border);padding:14px 20px;margin:16px 0 28px;display:flex;align-items:center;gap:14px;}
+    .source-box svg{flex-shrink:0;color:var(--text);}
+    .source-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+    .source-box a{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--accent);text-decoration:none;}
+    .source-box a:hover{text-decoration:underline;}
+
+    /* STAT TILES (4-column on desktop) */
+    .stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-bottom:40px;}
+    .stat-cell{background:var(--surface);border:1px solid var(--border);padding:20px;text-align:center;}
+    .stat-cell.green{border-top:3px solid var(--accent);}
+    .stat-cell.blue{border-top:3px solid var(--accent2);}
+    .stat-cell.yellow{border-top:3px solid var(--yellow);}
+    .stat-cell.pink{border-top:3px solid var(--pink);}
+    .stat-num{font-family:'Bebas Neue',sans-serif;font-size:40px;line-height:1;}
+    .stat-num.green{color:var(--accent);}
+    .stat-num.blue{color:var(--accent2);}
+    .stat-num.yellow{color:var(--yellow);}
+    .stat-num.pink{color:var(--pink);}
+    .stat-label{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-top:6px;}
+    @media(max-width:600px){.stat-row{grid-template-columns:1fr 1fr;}}
+
+    /* FIGURES */
     .case-figure{margin:20px 0 28px;}
     .case-figure img{width:100%;display:block;border:1px solid var(--border);}
     .case-figure figcaption{font-size:14px;color:var(--muted);margin-top:10px;font-style:italic;line-height:1.6;}
-    pre.sql-block{background:var(--surface);border:1px solid var(--border);padding:20px 24px;font-family:'JetBrains Mono',monospace;font-size:13px;color:#c0c0c0;overflow-x:auto;line-height:1.7;margin:16px 0 24px;white-space:pre;}
-    .btn-link{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;font-family:'JetBrains Mono',monospace;font-size:14px;text-decoration:none;background:var(--accent);color:#0f0f0f;font-weight:600;margin:16px 0;transition:all 0.2s;}
+
+    /* CODE BLOCKS */
+    pre.code-block,pre.sql-block{background:var(--surface);border:1px solid var(--border);padding:20px 24px;font-family:'JetBrains Mono',monospace;font-size:13px;color:#c0c0c0;overflow-x:auto;line-height:1.7;margin:16px 0 24px;white-space:pre;}
+
+    /* PIPELINE TABLE (uniform style for all data tables) */
+    .pipeline-table{width:100%;border-collapse:collapse;margin:16px 0 28px;font-size:14px;}
+    .pipeline-table th{background:var(--accent);color:#0f0f0f;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:1px;padding:10px 14px;text-align:left;}
+    .pipeline-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:#c0c0c0;vertical-align:top;font-size:14px;}
+    .pipeline-table tr:last-child td{border-bottom:none;}
+    .pipeline-table tr:nth-child(even) td{background:var(--bg2);}
+    .pipeline-table tr:nth-child(odd) td{background:var(--surface);}
+    .step-tag{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent2);}
+
+    /* INSIGHT BOX (callout for key insights) */
+    .insight-box{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent2);padding:20px 24px;margin:24px 0;}
+    .insight-box .insight-title{color:var(--accent2);font-weight:600;margin-bottom:6px;}
+    .insight-box.green{border-left-color:var(--accent);}
+    .insight-box.green .insight-title{color:var(--accent);}
+    .insight-box.yellow{border-left-color:var(--yellow);}
+    .insight-box.yellow .insight-title{color:var(--yellow);}
+    .insight-box.pink{border-left-color:var(--pink);}
+    .insight-box.pink .insight-title{color:var(--pink);}
+    .insight-box p{margin-bottom:6px;}
+    .insight-box p:last-child{margin-bottom:0;}
+
+    /* FINDING BOX (numbered findings list) */
+    .finding{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);padding:20px 24px;margin-bottom:8px;}
+    .finding.green{border-left-color:var(--accent);}
+    .finding.blue{border-left-color:var(--accent2);}
+    .finding.yellow{border-left-color:var(--yellow);}
+    .finding.pink{border-left-color:var(--pink);}
+    .finding-title{font-weight:600;margin-bottom:6px;}
+    .finding.green .finding-title{color:var(--accent);}
+    .finding.blue .finding-title{color:var(--accent2);}
+    .finding.yellow .finding-title{color:var(--yellow);}
+    .finding.pink .finding-title{color:var(--pink);}
+    .finding p{margin-bottom:0;}
+
+    /* BUTTONS */
+    .btn-link{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;font-family:'JetBrains Mono',monospace;font-size:14px;text-decoration:none;background:var(--accent);color:#0f0f0f;font-weight:600;margin:16px 8px 16px 0;transition:all 0.2s;}
     .btn-link:hover{background:#4df0a0;}
-    @media(max-width:768px){.page-hero{padding:80px 20px 40px;}.case-body{padding:40px 20px 60px;}}    .btn-outline-link{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:1px;text-decoration:none;color:var(--text);background:transparent;border:1px solid var(--border);transition:all 0.2s;margin-right:8px;}
+    .btn-outline-link{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:1px;text-decoration:none;color:var(--text);background:transparent;border:1px solid var(--border);transition:all 0.2s;margin-right:8px;}
     .btn-outline-link:hover{border-color:var(--accent);color:var(--accent);}
-    .page-title{min-height:120px;}
-</style>
+
+    @media(max-width:768px){.page-hero{padding:80px 20px 40px;}.case-body{padding:40px 20px 60px;}}
+  </style>
+
 </head>
 <body>
 <nav>
@@ -99,11 +156,12 @@
     <a href="happiness-case-study-de.html" class="nav-lang">🇩🇪 Deutsch</a>
   </div>
 </nav>
+
 <div class="page-hero">
   <div class="page-hero-inner">
     <div class="page-eyebrow">Case Study</div>
     <h1 class="page-title">Global Happiness & Economic Factors (2019)</h1>
-    <div class="page-subtitle">Python · Pandas · Scipy · Matplotlib · Tableau · Correlation Analysis</div>
+    <div class="page-subtitle">Python · Pandas · SciPy · Matplotlib · Tableau · Correlation Analysis</div>
     <nav class="switcher">
       <a href="instacart-case-study.html">Instacart</a>
       <a href="citi-bike-case-study.html">Citi Bike</a>
@@ -114,24 +172,106 @@
     </nav>
   </div>
 </div>
+
 <div class="case-body">
-<div class="tools-box"><div class="tools-label">Tools & Libraries</div><div class="tools-value">Python · Pandas · Scipy · Matplotlib · Tableau · Correlation Analysis</div><p><strong>Dataset:</strong> World Happiness Report 2019 — 156 countries, 10 variables.</p></div>
-<h3>Project Overview</h3><p>Exploring what drives reported happiness across countries. Is GDP the primary driver — or do social factors play a stronger role?</p>
-<h3>Key Findings</h3><ul><li>GDP per capita shows a clear positive relationship with happiness</li><li>Social support showed a stronger and more consistent relationship than GDP alone</li><li>Countries with similar income levels differed significantly in happiness when social support varied</li></ul>
-<h2>Global Happiness Overview</h2>
-<figure class="case-figure"><img src="happiness-tableau-map.png" alt="World choropleth map 2019"/><figcaption>Happiness scores by country. Northern Europe and North America score highest.</figcaption></figure>
-<p><a href="https://public.tableau.com/app/profile/a.a5244/viz/Achievement6HappinessEconomicFactors/GlobalOverviewofHappiness2019" target="_blank" rel="noopener" class="btn-link">View Interactive Dashboard on Tableau →</a></p>
-<h3>Conclusion</h3><p>Economic prosperity matters, but social support shows an equally strong or stronger relationship with wellbeing. Effective policy needs to address both dimensions.</p>
+  <div class="tools-box">
+    <div class="tools-label">Tools & Libraries</div>
+    <div class="tools-value">Python · Pandas · SciPy · Matplotlib · Seaborn · Tableau · Correlation Analysis</div>
+    <p><strong>Dataset:</strong> World Happiness Report 2019 — 156 countries, 10 socioeconomic and wellbeing variables</p>
+    <p><strong>Output:</strong> Correlation and regression analysis showing that social support predicts wellbeing more consistently than GDP alone</p>
+  </div>
+  <div class="source-box">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+    <div>
+      <div class="source-label">Source Code</div>
+      <a href="https://github.com/ageelalramadhan" target="_blank" rel="noopener">github.com/ageelalramadhan →</a>
+    </div>
+  </div>
+  <div class="stat-row">
+    <div class="stat-cell green"><div class="stat-num green">156</div><div class="stat-label">Countries</div></div>
+    <div class="stat-cell blue"><div class="stat-num blue">10</div><div class="stat-label">Variables</div></div>
+    <div class="stat-cell yellow"><div class="stat-num yellow">2019</div><div class="stat-label">Report Year</div></div>
+    <div class="stat-cell pink"><div class="stat-num pink">6</div><div class="stat-label">Factors Analyzed</div></div>
+  </div>
+
+  <h2>Project Overview</h2>
+  <p>Exploring what drives reported happiness across countries. Is GDP the primary driver — or do social factors play a stronger, more consistent role? This analysis combines correlation testing, regression, and choropleth mapping to compare economic and social explanations of national wellbeing.</p>
+  <p><strong>Business question:</strong> For policymakers facing trade-offs between economic growth and social investment, which factor more reliably predicts citizen wellbeing?</p>
+
+  <h2>Methodology</h2>
+  <table class="pipeline-table">
+    <thead><tr><th>Step</th><th>Tool</th><th>Action</th></tr></thead>
+    <tbody>
+      <tr><td><span class="step-tag">1. Data Loading</span></td><td>Pandas</td><td>Loaded World Happiness Report 2019 (156 countries × 10 variables)</td></tr>
+      <tr><td><span class="step-tag">2. Cleaning</span></td><td>Pandas</td><td>Validated country names, checked for missing values, normalized variable types</td></tr>
+      <tr><td><span class="step-tag">3. Correlation Matrix</span></td><td>SciPy + Seaborn</td><td>Pearson correlation across all variables, visualized as heatmap</td></tr>
+      <tr><td><span class="step-tag">4. Regression</span></td><td>SciPy</td><td>Linear regression: happiness ~ GDP, happiness ~ social support, happiness ~ both</td></tr>
+      <tr><td><span class="step-tag">5. Cohort Analysis</span></td><td>Pandas</td><td>Compared countries grouped by similar GDP — examined within-group happiness variation</td></tr>
+      <tr><td><span class="step-tag">6. Spatial Visualization</span></td><td>Tableau</td><td>Choropleth map of happiness scores by country</td></tr>
+      <tr><td><span class="step-tag">7. Interpretation</span></td><td>—</td><td>Synthesized findings into policy-relevant takeaways</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Global Happiness Map</h2>
+  <figure class="case-figure">
+    <img src="happiness-tableau-map.png" alt="World choropleth map of happiness scores, 2019"/>
+    <figcaption>Figure 1. Happiness scores by country, 2019. Northern Europe and North America score highest; large variation persists across regions with similar income levels.</figcaption>
+  </figure>
+
+  <h2>The GDP Story (Partially True)</h2>
+  <p>GDP per capita does show a clear positive relationship with happiness across countries — wealthier nations report higher wellbeing on average. But the relationship leaves substantial unexplained variance, and that residual is where the more interesting story lives.</p>
+  <div class="insight-box blue">
+    <p class="insight-title">Key Insight — GDP matters, but it isn't the whole story</p>
+    <p>Higher GDP correlates positively with reported happiness, but countries with similar GDP differ widely in wellbeing. GDP alone cannot explain those differences.</p>
+  </div>
+
+  <h2>Social Support — The Stronger Predictor</h2>
+  <p>When social support is added to the regression, it explains additional variance beyond GDP. More importantly, in cohorts of countries with similar GDP levels, those with stronger social support consistently report higher happiness scores.</p>
+  <div class="insight-box green">
+    <p class="insight-title">Key Insight — Social support is the steadier signal</p>
+    <p>Across countries at comparable income levels, social support scores predict happiness more consistently than GDP alone. Wellbeing tracks the strength of social ties as reliably as it tracks income.</p>
+  </div>
+
+  <h2>Within-Cohort Variation</h2>
+  <p>Comparing groups of countries with similar GDP levels reveals that within each cohort, happiness still varies substantially — and that variation tracks closely with reported social support. Two countries with similar incomes can sit far apart on the happiness scale because of differences in social fabric.</p>
+  <div class="insight-box yellow">
+    <p class="insight-title">Key Insight — Income equivalence does not equal happiness equivalence</p>
+    <p>Countries that look identical on income metrics produce very different happiness scores. The remaining gap is largely social, not economic.</p>
+  </div>
+
+  <h2>Policy Implication</h2>
+  <p>Effective wellbeing policy needs to address both dimensions. Economic prosperity matters — but for nations beyond a basic income threshold, marginal social investment may yield larger wellbeing gains than marginal GDP growth.</p>
+
+  <h2>Key Findings</h2>
+  <div class="finding green">
+    <p class="finding-title">Finding 1 — GDP per capita correlates positively with happiness.</p>
+    <p>Wealthier countries report higher average wellbeing, confirming the basic income–happiness link.</p>
+  </div>
+  <div class="finding blue">
+    <p class="finding-title">Finding 2 — Social support is a stronger and more consistent predictor than GDP alone.</p>
+    <p>When both variables enter the regression, social support carries more explanatory weight at comparable income levels.</p>
+  </div>
+  <div class="finding yellow">
+    <p class="finding-title">Finding 3 — Countries with similar incomes diverge on happiness when social support varies.</p>
+    <p>Within-cohort variation in happiness tracks social support — even more reliably than income variation does.</p>
+  </div>
+  <div class="finding pink">
+    <p class="finding-title">Finding 4 — Effective policy needs both economic and social dimensions.</p>
+    <p>Beyond a baseline income, social-fabric investment may produce greater wellbeing returns than additional GDP growth.</p>
+  </div>
+
+  <h2>Resources</h2>
+  <a href="https://public.tableau.com/app/profile/a.a5244/viz/Achievement6HappinessEconomicFactors/GlobalOverviewofHappiness2019" target="_blank" rel="noopener" class="btn-link">View Interactive Dashboard on Tableau →</a>
+  <a href="https://github.com/ageelalramadhan" target="_blank" rel="noopener" class="btn-outline-link">&lt;/&gt; GitHub Repository</a>
 </div>
+
 <footer>
   <div class="footer-inner">
     <p class="footer-copy">© 2026 Ageel Alramadhan · Data Analyst · Hamburg</p>
     <div class="footer-links">
       <a href="contact.html">Contact</a>
-      <a href="https://www.linkedin.com/in/ageel-alramadhan/" target="_blank" rel="noopener">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:4px"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a>
-      <a href="https://github.com/ageelalramadhan" target="_blank" rel="noopener">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:4px"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</a>
+      <a href="https://www.linkedin.com/in/ageel-alramadhan/" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:4px"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a>
+      <a href="https://github.com/ageelalramadhan" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:4px"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</a>
       <a href="impressum-en.html">Legal Notice</a>
       <a href="datenschutz-en.html">Privacy Policy</a>
     </div>
@@ -146,6 +286,7 @@
 <script>
   const btn = document.getElementById('back-top');
   window.addEventListener('scroll', () => btn.classList.toggle('visible', window.scrollY > 300));
-  btn.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));</script>
+  btn.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
+</script>
 </body>
 </html>
