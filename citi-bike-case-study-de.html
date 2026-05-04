@@ -12,7 +12,7 @@
 :root{--bg:#0f0f0f;--bg2:#161616;--surface:#1e1e1e;--border:#2e2e2e;--text:#f0f0f0;--muted:#888;--accent:#3dd68c;--accent2:#00d4ff;}
 html{scroll-behavior:smooth;}
 body{font-family:"Inter",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
-nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(15,15,15,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;}
+nav:not(.switcher){position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(15,15,15,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;}
 .nav-logo{font-family:"JetBrains Mono",monospace;font-size:14px;color:var(--accent);text-decoration:none;letter-spacing:1px;flex-shrink:0;width:160px;}
 .nav-center{display:flex;gap:28px;list-style:none;align-items:center;position:absolute;left:50%;transform:translateX(-50%);}
 .nav-center a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;transition:color 0.2s;}
@@ -133,10 +133,10 @@ pre.code-block{background:var(--surface);border:1px solid var(--border);padding:
   </div>
 
   <div class="stat-row">
-    <div class="stat-cell"><div class="stat-num stat-green">5</div><div class="stat-label">Notebooks</div></div>
-    <div class="stat-cell"><div class="stat-num stat-blue">1,7 Mio.</div><div class="stat-label">Fahrtdatens&#228;tze</div></div>
-    <div class="stat-cell"><div class="stat-num stat-yellow">365</div><div class="stat-label">Tage zusammengef&#252;hrt</div></div>
-    <div class="stat-cell"><div class="stat-num stat-pink">6</div><div class="stat-label">Dashboard-Seiten</div></div>
+    <div class="stat-cell" style="border-top:3px solid var(--accent)"><div class="stat-num stat-green">5</div><div class="stat-label">Notebooks</div></div>
+    <div class="stat-cell" style="border-top:3px solid var(--accent2)"><div class="stat-num stat-blue">1,7 Mio.</div><div class="stat-label">Fahrtdatens&#228;tze</div></div>
+    <div class="stat-cell" style="border-top:3px solid #f0c040"><div class="stat-num stat-yellow">365</div><div class="stat-label">Tage zusammengef&#252;hrt</div></div>
+    <div class="stat-cell" style="border-top:3px solid #ff6b9d"><div class="stat-num stat-pink">6</div><div class="stat-label">Dashboard-Seiten</div></div>
   </div>
 
   <h3>Projekt&#252;bersicht</h3>
