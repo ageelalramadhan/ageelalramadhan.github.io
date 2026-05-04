@@ -46,7 +46,18 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:28px 40p
 .tools-value{font-family:"JetBrains Mono",monospace;font-size:15px;color:var(--accent);margin-bottom:8px;}
 .tools-box p{font-size:15px;color:#b0b0b0;margin-bottom:6px;}
 .tools-box p:last-child{margin-bottom:0;}
-@media(max-width:600px){}
+.source-box{background:var(--bg2);border:1px solid var(--border);padding:14px 20px;margin-bottom:28px;display:flex;align-items:center;gap:14px;}
+.source-box svg{flex-shrink:0;color:var(--muted);}
+.source-label{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:2px;}
+.source-box a{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--accent);text-decoration:none;}
+.source-box a:hover{text-decoration:underline;}
+.stat-row{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border);margin-bottom:40px;}
+.stat-cell{padding:18px 20px;border-right:1px solid var(--border);text-align:center;}
+.stat-cell:last-child{border-right:none;}
+.stat-num{font-family:"Bebas Neue",sans-serif;font-size:40px;line-height:1;margin-bottom:6px;}
+.stat-label{font-family:"JetBrains Mono",monospace;font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);}
+.stat-green{color:var(--accent);}.stat-blue{color:var(--accent2);}.stat-yellow{color:#f0c040;}.stat-pink{color:#ff6b9d;}
+@media(max-width:600px){.stat-row{grid-template-columns:1fr 1fr;}.stat-cell{border-right:none;border-bottom:1px solid var(--border);}.stat-cell:last-child{border-bottom:none;}}
 .case-body h2{font-family:"Bebas Neue",sans-serif;font-size:28px;letter-spacing:1px;margin:52px 0 14px;color:var(--text);}
 .case-body h3{font-size:18px;font-weight:600;margin:36px 0 10px;color:var(--text);}
 .case-body p{font-size:16px;color:#c0c0c0;line-height:1.8;margin-bottom:16px;}
@@ -101,7 +112,7 @@ pre.code-block{background:var(--surface);border:1px solid var(--border);padding:
       <a href="happiness-case-study.html">Happiness</a>
       <span class="active">Text Mining</span>
     </nav>
-  </nav>
+  </div>
 </div>
 <div class="case-body">
 
@@ -112,37 +123,22 @@ pre.code-block{background:var(--surface);border:1px solid var(--border);padding:
     <p><strong>Output:</strong> Co-occurrence network of 21 countries across 53 unique geopolitical edges, with community detection and centrality analysis</p>
   </div>
 
-        <div style="display:flex;gap:12px;align-items:center;margin-bottom:40px;padding:20px 24px;background:var(--surface);border:1px solid var(--border);">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="color:var(--text);flex-shrink:0;"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+    <div class="source-box">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
     <div>
-      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Source Code</div>
-      <a href="https://github.com/ageelalramadhan/20th-century" target="_blank" rel="noopener" style="color:var(--accent);font-family:'JetBrains Mono',monospace;font-size:14px;text-decoration:none;">github.com/ageelalramadhan/20th-century →</a>
-    </div>
-  </div>
+      <div class="source-label">Source Code</div>
       <a href="https://github.com/ageelalramadhan/20th-century-text-mining" target="_blank" rel="noopener">github.com/ageelalramadhan/20th-century-text-mining &rarr;</a>
     </div>
   </div>
 
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-bottom:40px;">
-    <div style="background:var(--surface);border:1px solid var(--border);padding:20px;text-align:center;border-top:3px solid var(--accent);">
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:40px;line-height:1;color:var(--accent);">4</div>
-      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-top:6px;">Notebooks</div>
-    </div>
-    <div style="background:var(--surface);border:1px solid var(--border);padding:20px;text-align:center;border-top:3px solid var(--accent2);">
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:40px;line-height:1;color:var(--accent2);">21</div>
-      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-top:6px;">Countries Mapped</div>
-    </div>
-    <div style="background:var(--surface);border:1px solid var(--border);padding:20px;text-align:center;border-top:3px solid #ffd166;">
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:40px;line-height:1;color:#ffd166;">53</div>
-      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-top:6px;">Network Edges</div>
-    </div>
-    <div style="background:var(--surface);border:1px solid var(--border);padding:20px;text-align:center;border-top:3px solid #ff4d6d;">
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:40px;line-height:1;color:#ff4d6d;">4</div>
-      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-top:6px;">Leiden Communities</div>
-    </div>
+  <div class="stat-row">
+    <div class="stat-cell" style="border-top:3px solid var(--accent)"><div class="stat-num stat-green">4</div><div class="stat-label">Notebooks</div></div>
+    <div class="stat-cell" style="border-top:3px solid var(--accent2)"><div class="stat-num stat-blue">21</div><div class="stat-label">Countries Mapped</div></div>
+    <div class="stat-cell" style="border-top:3px solid #f0c040"><div class="stat-num stat-yellow">53</div><div class="stat-label">Network Edges</div></div>
+    <div class="stat-cell" style="border-top:3px solid #ff6b9d"><div class="stat-num stat-pink">4</div><div class="stat-label">Leiden Communities</div></div>
   </div>
 
-<h3>Project Overview</h3>
+  <h3>Project Overview</h3>
   <p>This project applies a full NLP pipeline to a Wikipedia article on <strong>Key Events of the 20th Century</strong>. The goal: move from raw web data to a structured, visual representation of which countries were most historically connected &mdash; and how their co-occurrence patterns map to real geopolitical alliances and conflicts.</p>
   <p><strong>Business question:</strong> Which countries were most frequently co-mentioned in 20th century historical events, and does their relationship structure reflect the actual alliances and conflicts of the era?</p>
 
@@ -239,7 +235,7 @@ for sent in doc.sents:
 
   <h3>Full Case Study PDF</h3>
   <p>Download the complete case study with all charts, pipeline documentation, centrality analysis, and technical appendix.</p>
-    <a href="textmining-case-study.pdf" class="btn-link" download>&#8595; Download Full Case Study PDF</a>
+  <a href="textmining-case-study.pdf" class="btn-link" download>&#8595; Download Full Case Study PDF</a>
   <a href="https://github.com/ageelalramadhan/20th-century" target="_blank" rel="noopener" class="btn-outline-link">&lt;/&gt; GitHub Repository</a>
 
 </div>
