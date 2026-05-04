@@ -207,12 +207,12 @@
       <tr><td><span class="step-tag">4</span></td><td>Deskriptive Statistik zu Länge, Mietpreis, Wiederbeschaffungswert</td><td>MIN / MAX / AVG · MODE() WITHIN GROUP</td></tr>
       <tr><td><span class="step-tag">5</span></td><td>Top 10 Länder nach Kundenzahl</td><td>4-Tabellen-JOIN: customer → address → city → country</td></tr>
       <tr><td><span class="step-tag">6</span></td><td>Top 10 Städte innerhalb dieser Länder</td><td>Gefilterter JOIN mit IN-Liste der Top-Länder</td></tr>
-      <tr><td><span class="step-tag">7</span></td><td>Top 5 Kunden und ihr Durchschnittsumsatz</td><td>Subquery (Task 3.8), als CTE umgeschrieben (Task 3.9)</td></tr>
+      <tr><td><span class="step-tag">7</span></td><td>Top 5 Kunden und ihr Durchschnittsumsatz</td><td>Subquery, zur besseren Lesbarkeit als CTE umgeschrieben</td></tr>
       <tr><td><span class="step-tag">8</span></td><td>Finales Dashboard — 4 Tabs in Tableau Public</td><td>CSV/XLSX-Exporte → Tableau-Public-Workbook</td></tr>
     </tbody>
   </table>
 
-  <h2>Katalog-Snapshot (Task 3.6)</h2>
+  <h2>Katalog-Snapshot</h2>
   <p>Bevor die Kundenbasis aufgeschlüsselt wurde, habe ich ein numerisch-deskriptives Profil des Filmkatalogs erstellt und Datenqualitätsprüfungen durchgeführt. Keine Spalte in <code>film</code> oder <code>customer</code> enthielt NULL-Werte.</p>
   <figure class="case-figure">
     <img src="rockbuster-tableau-1.png" alt="Tableau-Ansicht der deskriptiven Filmstatistik"/>
@@ -223,7 +223,7 @@
     <p>Der Katalog deckt kurze und abendfüllende Filme über die gesamte $0,99–$4,99-Preisspanne ab. Die Preise sind im Durchschnitt nahezu uniform — Umsatzunterschiede entstehen also dadurch, <em>wer</em> mietet und <em>wie oft</em>, nicht durch Variation im Ticketpreis.</p>
   </div>
 
-  <h2>Geografische Verteilung (Task 3.7)</h2>
+  <h2>Geografische Verteilung</h2>
   <p>Die erste SQL-Technik, die tatsächlich eine strategische Antwort liefert, ist ein Vier-Tabellen-Join, der von <code>customer</code> über <code>address → city → country</code> läuft:</p>
   <pre class="code-block">SELECT
   co.country,
@@ -248,8 +248,8 @@ LIMIT 10;</pre>
     <p>Derselbe JOIN, der eine saubere Rangliste der Länder erzeugt, kollabiert auf Stadtebene zu einer flachen Verteilung mit jeweils einem Kunden. Land ist die analytisch sinnvolle Einheit für Go-to-Market-Planung; Stadt ist zu dünn besetzt, um Marketing-Entscheidungen zu tragen.</p>
   </div>
 
-  <h2>Konzentration des Kundenumsatzes (Task 3.8 — Subquery)</h2>
-  <p>Die nächste Frage — der Durchschnittsumsatz der fünf zahlungsstärksten Kunden — verlagert die Analyse von Joins zu verschachtelter Logik. Die Task-3.7-Abfrage wird als inline Subquery wiederverwendet und mit <code>AVG()</code> umschlossen:</p>
+  <h2>Konzentration des Kundenumsatzes</h2>
+  <p>Die nächste Frage — der Durchschnittsumsatz der fünf zahlungsstärksten Kunden — verlagert die Analyse von Joins zu verschachtelter Logik. Die Länderabfrage wird als inline Subquery wiederverwendet und mit <code>AVG()</code> umschlossen:</p>
   <pre class="code-block">SELECT AVG(top_5.total_amount_paid) AS average
 FROM (
   SELECT
@@ -269,7 +269,7 @@ FROM (
   ORDER BY total_amount_paid DESC
   LIMIT 5
 ) AS top_5;</pre>
-  <p>Ergebnis: <strong>$108,54 Durchschnitt</strong>. In Task 3.9 wird dieselbe Logik als CTE umgeschrieben — gleiche Antwort, sauberere Struktur.</p>
+  <p>Ergebnis: <strong>$108,54 Durchschnitt</strong>. Dieselbe Logik wurde zudem als CTE umgeschrieben — gleiche Antwort, sauberere Struktur.</p>
   <figure class="case-figure">
     <img src="rockbuster-tableau-4.png" alt="Top 5 Kunden nach Gesamtzahlungen"/>
     <figcaption>Abbildung 4. Top 5 Kunden nach Lebenszeit-Umsatz. Zachary Hite führt mit <strong>$134,71</strong>, gefolgt von Julian Vest ($108,73), Glen Talbert ($100,77), Sherri Rhodes ($99,74) und Clinton Buford ($98,76). Alle fünf liegen im Bereich $98–$135.</figcaption>
@@ -299,7 +299,7 @@ FROM (
 
   <h2>Materialien</h2>
   <a href="https://public.tableau.com/app/profile/a.a5244/viz/RockbusterFindingsTask3_10_17646887206150/Top10Countries" target="_blank" rel="noopener" class="btn-link">Interaktives Dashboard auf Tableau ansehen →</a>
-  <a href="https://github.com/ageelalramadhan/rockbuster-sql-strategy-analysis" target="_blank" rel="noopener" class="btn-outline-link">&lt;/&gt; GitHub-Repository (SQL · Daten · ERD)</a>
+  <a href="https://github.com/ageelalramadhan/rockbuster-sql-strategy-analysis" target="_blank" rel="noopener" class="btn-outline-link">&lt;/&gt; GitHub-Repository</a>
   <a href="rockbuster-findings.pdf" target="_blank" rel="noopener" class="btn-outline-link">📄 Abschlussbericht (PDF)</a>
 </div>
 

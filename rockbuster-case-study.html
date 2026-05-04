@@ -207,12 +207,12 @@
       <tr><td><span class="step-tag">4</span></td><td>Descriptive statistics on length, rental rate, replacement cost</td><td>MIN / MAX / AVG · MODE() WITHIN GROUP</td></tr>
       <tr><td><span class="step-tag">5</span></td><td>Top 10 countries by customer count</td><td>4-table JOIN: customer → address → city → country</td></tr>
       <tr><td><span class="step-tag">6</span></td><td>Top 10 cities within those countries</td><td>Filtered JOIN with IN-list of top countries</td></tr>
-      <tr><td><span class="step-tag">7</span></td><td>Top 5 customers and their average spend</td><td>Subquery (Task 3.8), refactored as CTE (Task 3.9)</td></tr>
+      <tr><td><span class="step-tag">7</span></td><td>Top 5 customers and their average spend</td><td>Subquery, refactored as CTE for readability</td></tr>
       <tr><td><span class="step-tag">8</span></td><td>Final dashboard — 4 tabs in Tableau Public</td><td>CSV / XLSX exports → Tableau Public workbook</td></tr>
     </tbody>
   </table>
 
-  <h2>Catalog Snapshot (Task 3.6)</h2>
+  <h2>Catalog Snapshot</h2>
   <p>Before slicing the customer base, I built a numerical descriptive profile of the film catalog and ran data-quality checks. None of the columns in <code>film</code> or <code>customer</code> contained NULLs.</p>
   <figure class="case-figure">
     <img src="rockbuster-tableau-1.png" alt="Tableau view of film descriptive statistics"/>
@@ -223,7 +223,7 @@
     <p>The catalog spans short and full-length films across the full $0.99–$4.99 pricing band. Pricing is essentially uniform on average, so revenue differences come from <em>who is renting</em> and <em>how often</em>, not from variation in ticket size.</p>
   </div>
 
-  <h2>Geographic Distribution (Task 3.7)</h2>
+  <h2>Geographic Distribution</h2>
   <p>The first SQL technique that actually drives a strategic answer is a four-table join walking from <code>customer</code> through <code>address → city → country</code>:</p>
   <pre class="code-block">SELECT
   co.country,
@@ -248,8 +248,8 @@ LIMIT 10;</pre>
     <p>The same JOIN that produces a clean ranked list of countries collapses into a flat distribution of single-customer cities. Country is the analytically meaningful unit for go-to-market planning; city is too sparse to support marketing decisions.</p>
   </div>
 
-  <h2>Customer Revenue Concentration (Task 3.8 — Subquery)</h2>
-  <p>The next question — the average spend of the top 5 highest-paying customers — is where the analysis moves from joins into nested logic. Reusing the Task 3.7 query as an inline subquery and wrapping it in <code>AVG()</code>:</p>
+  <h2>Customer Revenue Concentration</h2>
+  <p>The next question — the average spend of the top 5 highest-paying customers — is where the analysis moves from joins into nested logic. Reusing the country-level query as an inline subquery and wrapping it in <code>AVG()</code>:</p>
   <pre class="code-block">SELECT AVG(top_5.total_amount_paid) AS average
 FROM (
   SELECT
@@ -269,7 +269,7 @@ FROM (
   ORDER BY total_amount_paid DESC
   LIMIT 5
 ) AS top_5;</pre>
-  <p>Result: <strong>$108.54 average</strong>. In Task 3.9 the same logic is rewritten as a CTE for readability — same answer, cleaner structure.</p>
+  <p>Result: <strong>$108.54 average</strong>. The same logic was also rewritten as a CTE for readability — same answer, cleaner structure.</p>
   <figure class="case-figure">
     <img src="rockbuster-tableau-4.png" alt="Top 5 customers by total amount paid"/>
     <figcaption>Figure 4. Top 5 customers by lifetime spend. Zachary Hite leads at <strong>$134.71</strong>, followed by Julian Vest ($108.73), Glen Talbert ($100.77), Sherri Rhodes ($99.74), and Clinton Buford ($98.76). All five sit in the $98–$135 band.</figcaption>
@@ -299,7 +299,7 @@ FROM (
 
   <h2>Resources</h2>
   <a href="https://public.tableau.com/app/profile/a.a5244/viz/RockbusterFindingsTask3_10_17646887206150/Top10Countries" target="_blank" rel="noopener" class="btn-link">View Interactive Dashboard on Tableau →</a>
-  <a href="https://github.com/ageelalramadhan/rockbuster-sql-strategy-analysis" target="_blank" rel="noopener" class="btn-outline-link">&lt;/&gt; GitHub Repository (SQL · Data · ERD)</a>
+  <a href="https://github.com/ageelalramadhan/rockbuster-sql-strategy-analysis" target="_blank" rel="noopener" class="btn-outline-link">&lt;/&gt; GitHub Repository</a>
   <a href="rockbuster-findings.pdf" target="_blank" rel="noopener" class="btn-outline-link">📄 Final Findings (PDF)</a>
 </div>
 
