@@ -175,111 +175,132 @@
 <div class="case-body">
   <div class="tools-box">
     <div class="tools-label">Tools & Libraries</div>
-    <div class="tools-value">SQL · PostgreSQL · Tableau · CTEs · Subqueries · Revenue Analysis</div>
-    <p><strong>Dataset:</strong> Rockbuster relational database — 15 tables: films, customers, rentals, payments, addresses (~16,000 films, ~600 stores)</p>
-    <p><strong>Output:</strong> Strategic recommendations on geographic targeting, customer concentration, and high-value retention segments</p>
+    <div class="tools-value">PostgreSQL · pgAdmin 4 · Tableau Public · Snowflake Schema</div>
+    <p><strong>Dataset:</strong> Rockbuster Stealth relational database — 15 tables (3 fact · 2 bridge · 10 dimension), 1,000 films, 599 customers, 2 stores</p>
+    <p><strong>Output:</strong> Tableau dashboard + executive findings deck answering where revenue actually concentrates and at what level of geographic granularity</p>
   </div>
   <div class="source-box">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
     <div>
       <div class="source-label">Source Code</div>
-      <a href="https://github.com/ageelalramadhan" target="_blank" rel="noopener">github.com/ageelalramadhan →</a>
+      <a href="https://github.com/ageelalramadhan/rockbuster-sql-strategy-analysis" target="_blank" rel="noopener">github.com/ageelalramadhan/rockbuster-sql-strategy-analysis →</a>
     </div>
   </div>
   <div class="stat-row">
     <div class="stat-cell green"><div class="stat-num green">15</div><div class="stat-label">DB Tables</div></div>
-    <div class="stat-cell blue"><div class="stat-num blue">16K</div><div class="stat-label">Films</div></div>
-    <div class="stat-cell yellow"><div class="stat-num yellow">600</div><div class="stat-label">Stores</div></div>
-    <div class="stat-cell pink"><div class="stat-num pink">5</div><div class="stat-label">Top Markets</div></div>
+    <div class="stat-cell blue"><div class="stat-num blue">1,000</div><div class="stat-label">Films</div></div>
+    <div class="stat-cell yellow"><div class="stat-num yellow">599</div><div class="stat-label">Customers</div></div>
+    <div class="stat-cell pink"><div class="stat-num pink">10</div><div class="stat-label">SQL Tasks</div></div>
   </div>
 
   <h2>Project Overview</h2>
-  <p>Rockbuster's leadership needed to understand revenue drivers across an international rental footprint. Using SQL on the company's 15-table relational database, this analysis identifies geographic revenue concentration, top-value customer segments, and the level of granularity at which strategic decisions should be made.</p>
-  <p><strong>Business question:</strong> Where is revenue actually concentrated — by country, by city, or by individual customer — and what is the right unit of segmentation for go-to-market strategy?</p>
+  <p>Rockbuster Stealth, an online video rental service, was preparing to launch a streaming platform and needed an evidence-based view of revenue before allocating the launch budget. The leadership team posed four questions: which films contribute the most and least to revenue, who pays the highest lifetime totals, what does the customer geographic footprint look like, and is that footprint concentrated in a few cities or spread thinly across many?</p>
+  <p>The full analysis was carried out in PostgreSQL against the company's 15-table snowflake schema (3 fact, 2 bridge, 10 dimension tables — see the <a href="rockbuster-erd.png" target="_blank" rel="noopener">ERD</a> and <a href="rockbuster-data-dictionary.pdf" target="_blank" rel="noopener">data dictionary</a>) and surfaced through a four-tab Tableau Public dashboard for executive consumption.</p>
 
-  <h2>Analysis Approach</h2>
+  <h2>Methodology</h2>
   <table class="pipeline-table">
-    <thead><tr><th>#</th><th>Question</th><th>SQL Technique</th></tr></thead>
+    <thead><tr><th>#</th><th>Stage</th><th>Technique</th></tr></thead>
     <tbody>
-      <tr><td><span class="step-tag">1</span></td><td>Which countries have the most customers?</td><td>JOIN customer → address → city → country, COUNT, GROUP BY</td></tr>
-      <tr><td><span class="step-tag">2</span></td><td>Which cities lead within those countries?</td><td>Filtered subquery on top countries, COUNT GROUP BY city</td></tr>
-      <tr><td><span class="step-tag">3</span></td><td>Who are the top revenue customers?</td><td>JOIN customer + payment, SUM(amount), ORDER BY DESC LIMIT 5</td></tr>
-      <tr><td><span class="step-tag">4</span></td><td>Is city-level granularity actionable?</td><td>Comparison of country vs city distribution variance</td></tr>
-      <tr><td><span class="step-tag">5</span></td><td>How concentrated is top-customer revenue?</td><td>Top-N analysis on payment totals</td></tr>
+      <tr><td><span class="step-tag">1</span></td><td>Schema modelling — ERD + data dictionary across all 15 tables</td><td>pgAdmin schema export · snowflake design</td></tr>
+      <tr><td><span class="step-tag">2</span></td><td>Filtering the catalog (titles, length, rate, duration, rating)</td><td>WHERE · ILIKE · IN · BETWEEN</td></tr>
+      <tr><td><span class="step-tag">3</span></td><td>Data-quality scan — null checks across film and customer</td><td>COUNT per column vs COUNT(*)</td></tr>
+      <tr><td><span class="step-tag">4</span></td><td>Descriptive statistics on length, rental rate, replacement cost</td><td>MIN / MAX / AVG · MODE() WITHIN GROUP</td></tr>
+      <tr><td><span class="step-tag">5</span></td><td>Top 10 countries by customer count</td><td>4-table JOIN: customer → address → city → country</td></tr>
+      <tr><td><span class="step-tag">6</span></td><td>Top 10 cities within those countries</td><td>Filtered JOIN with IN-list of top countries</td></tr>
+      <tr><td><span class="step-tag">7</span></td><td>Top 5 customers and their average spend</td><td>Subquery (Task 3.8), refactored as CTE (Task 3.9)</td></tr>
+      <tr><td><span class="step-tag">8</span></td><td>Final dashboard — 4 tabs in Tableau Public</td><td>CSV / XLSX exports → Tableau Public workbook</td></tr>
     </tbody>
   </table>
 
-  <h2>Example Query — Top Revenue Customers</h2>
-  <pre class="code-block">SELECT cu.customer_id, cu.first_name, cu.last_name,
-       co.country, ci.city, SUM(p.amount) AS total_amount_paid
-FROM customer AS cu
-JOIN address AS a   ON cu.address_id = a.address_id
-JOIN city    AS ci  ON a.city_id     = ci.city_id
-JOIN country AS co  ON ci.country_id = co.country_id
-JOIN payment AS p   ON cu.customer_id = p.customer_id
-GROUP BY cu.customer_id, cu.first_name, cu.last_name, co.country, ci.city
-ORDER BY total_amount_paid DESC
-LIMIT 5;</pre>
-
-  <h2>Geographic Distribution</h2>
+  <h2>Catalog Snapshot (Task 3.6)</h2>
+  <p>Before slicing the customer base, I built a numerical descriptive profile of the film catalog and ran data-quality checks. None of the columns in <code>film</code> or <code>customer</code> contained NULLs.</p>
   <figure class="case-figure">
-    <img src="rockbuster-tableau-2.png" alt="Top 10 countries by customer count"/>
-    <figcaption>Figure 1. Top 10 countries by customer count. India (60), China (53), and the US (36) lead — supporting country-level expansion focus over individual-city campaigns.</figcaption>
-  </figure>
-  <figure class="case-figure">
-    <img src="rockbuster-top-countries.png" alt="Country-level customer distribution heatmap"/>
-    <figcaption>Figure 2. Geographic concentration is meaningful at the country level but disperses too quickly at the city level to be actionable as a segmentation key.</figcaption>
+    <img src="rockbuster-tableau-1.png" alt="Tableau view of film descriptive statistics"/>
+    <figcaption>Figure 1. Film catalog descriptive statistics rendered in Tableau. Length runs from 46 to 185 minutes (avg 115); rental rate from $0.99 to $4.99 (avg $2.98); replacement cost from $9.99 to $29.99 (avg $19.98). The most common rating is PG-13.</figcaption>
   </figure>
   <div class="insight-box blue">
-    <p class="insight-title">Key Insight — Choose the Right Granularity</p>
-    <p>City-level analysis fragments customers into too many small groups to support clear strategic action. Country-level segmentation is the right unit for Rockbuster's go-to-market planning.</p>
+    <p class="insight-title">Read — A flexible, mid-priced catalog</p>
+    <p>The catalog spans short and full-length films across the full $0.99–$4.99 pricing band. Pricing is essentially uniform on average, so revenue differences come from <em>who is renting</em> and <em>how often</em>, not from variation in ticket size.</p>
   </div>
 
-  <h2>Customer Revenue Concentration</h2>
+  <h2>Geographic Distribution (Task 3.7)</h2>
+  <p>The first SQL technique that actually drives a strategic answer is a four-table join walking from <code>customer</code> through <code>address → city → country</code>:</p>
+  <pre class="code-block">SELECT
+  co.country,
+  COUNT(DISTINCT cu.customer_id) AS customer_count
+FROM customer AS cu
+JOIN address AS a  ON cu.address_id = a.address_id
+JOIN city    AS ci ON a.city_id     = ci.city_id
+JOIN country AS co ON ci.country_id = co.country_id
+GROUP BY co.country
+ORDER BY customer_count DESC
+LIMIT 10;</pre>
   <figure class="case-figure">
-    <img src="rockbuster-tableau-4.png" alt="Top 5 customers by total payments"/>
-    <figcaption>Figure 3. Top 5 customers by total payments. Revenue is concentrated among a small group — retention campaigns targeting them have outsized ROI.</figcaption>
+    <img src="rockbuster-tableau-2.png" alt="Top 10 countries by customer count"/>
+    <figcaption>Figure 2. Top 10 countries. India (60), China (53) and the United States (36) account for the largest customer bases — together with Japan and Mexico they hold roughly 35% of the total customer pool.</figcaption>
   </figure>
   <figure class="case-figure">
-    <img src="rockbuster-top-customers.png" alt="Distribution of customer lifetime value"/>
-    <figcaption>Figure 4. The long tail of customer value justifies a tiered retention program: white-glove for the top, automated for the rest.</figcaption>
+    <img src="rockbuster-tableau-3.png" alt="Top 10 cities — Aurora is the only city with more than one customer"/>
+    <figcaption>Figure 3. Top 10 cities. <strong>Aurora is the only city with more than one customer (2);</strong> every other city in the list has exactly 1. The same query at city granularity dissolves into noise.</figcaption>
+  </figure>
+  <div class="insight-box yellow">
+    <p class="insight-title">Key Insight — Choose the right granularity</p>
+    <p>The same JOIN that produces a clean ranked list of countries collapses into a flat distribution of single-customer cities. Country is the analytically meaningful unit for go-to-market planning; city is too sparse to support marketing decisions.</p>
+  </div>
+
+  <h2>Customer Revenue Concentration (Task 3.8 — Subquery)</h2>
+  <p>The next question — the average spend of the top 5 highest-paying customers — is where the analysis moves from joins into nested logic. Reusing the Task 3.7 query as an inline subquery and wrapping it in <code>AVG()</code>:</p>
+  <pre class="code-block">SELECT AVG(top_5.total_amount_paid) AS average
+FROM (
+  SELECT
+    cu.customer_id, cu.first_name, cu.last_name,
+    co.country, ci.city,
+    SUM(p.amount) AS total_amount_paid
+  FROM customer AS cu
+  JOIN address AS a  ON cu.address_id = a.address_id
+  JOIN city    AS ci ON a.city_id     = ci.city_id
+  JOIN country AS co ON ci.country_id = co.country_id
+  JOIN payment AS p  ON cu.customer_id = p.customer_id
+  WHERE ci.city IN (
+    'Aurora','Acua','Adana','Adoni','Ahmadnagar',
+    'Akishima','Akron','Allapuzha (Alleppey)','Allende','Alvorada'
+  )
+  GROUP BY cu.customer_id, cu.first_name, cu.last_name, co.country, ci.city
+  ORDER BY total_amount_paid DESC
+  LIMIT 5
+) AS top_5;</pre>
+  <p>Result: <strong>$108.54 average</strong>. In Task 3.9 the same logic is rewritten as a CTE for readability — same answer, cleaner structure.</p>
+  <figure class="case-figure">
+    <img src="rockbuster-tableau-4.png" alt="Top 5 customers by total amount paid"/>
+    <figcaption>Figure 4. Top 5 customers by lifetime spend. Zachary Hite leads at <strong>$134.71</strong>, followed by Julian Vest ($108.73), Glen Talbert ($100.77), Sherri Rhodes ($99.74), and Clinton Buford ($98.76). All five sit in the $98–$135 band.</figcaption>
   </figure>
   <div class="insight-box pink">
-    <p class="insight-title">Key Insight — Retention Beats Acquisition for the Top Tier</p>
-    <p>A small subset of customers contributes disproportionately to revenue. Premium retention programs (concierge service, early access, personalised recommendations) are more cost-effective than scaling acquisition for this group.</p>
+    <p class="insight-title">Key Insight — Retention beats acquisition for the top tier</p>
+    <p>The top 5 customers cluster tightly in the $98–$135 range and average $108.54, well above the typical ticket. Concierge service, early access and personalised recommendations for this segment are cheaper than acquiring equivalent revenue from new customers.</p>
   </div>
-
-  <h2>Tableau Dashboard</h2>
-  <figure class="case-figure">
-    <img src="rockbuster-tableau-1.png" alt="Rockbuster strategic dashboard — country focus"/>
-    <figcaption>Figure 5. Tableau dashboard view: country-level revenue and customer counts, designed for executive decision-making.</figcaption>
-  </figure>
-  <figure class="case-figure">
-    <img src="rockbuster-tableau-3.png" alt="Rockbuster dashboard — customer concentration drilldown"/>
-    <figcaption>Figure 6. Drilldown view: top customer concentration with revenue contribution percentages.</figcaption>
-  </figure>
 
   <h2>Key Findings</h2>
   <div class="finding green">
-    <p class="finding-title">Finding 1 — Customer volume concentrates in three countries.</p>
-    <p>India, China, and the United States lead in customer count — these three markets should anchor international expansion budgets.</p>
+    <p class="finding-title">Finding 1 — Customer volume concentrates in five countries.</p>
+    <p>India (60), China (53), the United States (36), Japan (31), and Mexico (30) anchor the international footprint. These five markets should drive the bulk of regional marketing spend.</p>
   </div>
   <div class="finding blue">
-    <p class="finding-title">Finding 2 — City-level targeting offers limited strategic value.</p>
-    <p>Within the top countries, cities are too dispersed to be useful as a primary segmentation key. Country-level focus produces clearer signal for marketing allocation.</p>
+    <p class="finding-title">Finding 2 — City-level targeting is not actionable.</p>
+    <p>Aurora is the only city with more than one customer; every other city in the top 10 has exactly one. City-level segmentation produces too much noise to drive strategy — country is the right unit.</p>
   </div>
   <div class="finding yellow">
-    <p class="finding-title">Finding 3 — Top 5 customers represent disproportionate revenue.</p>
-    <p>A small group of customers drives a large share of total payments. Retention strategies for this top tier offer the highest ROI.</p>
+    <p class="finding-title">Finding 3 — A small group of repeat renters drives outsized revenue.</p>
+    <p>The top 5 customers each spend $98–$135, averaging $108.54. A premium retention programme aimed at high-value renters is more cost-effective than equivalent acquisition.</p>
   </div>
   <div class="finding pink">
-    <p class="finding-title">Finding 4 — SQL + Tableau closes the loop from data to decision.</p>
-    <p>Combining SQL for accurate aggregation with Tableau for executive presentation lets the analysis directly inform geographic and retention decisions.</p>
+    <p class="finding-title">Finding 4 — Pricing variation is not a revenue lever.</p>
+    <p>Rental rates span $0.99–$4.99 with an average of $2.98 and the catalog skews PG-13. Differences in revenue come from customer behaviour and geography, not from ticket size — so growth comes from <em>who</em> rents, not <em>what</em> they pay per rental.</p>
   </div>
 
   <h2>Resources</h2>
   <a href="https://public.tableau.com/app/profile/a.a5244/viz/RockbusterFindingsTask3_10_17646887206150/Top10Countries" target="_blank" rel="noopener" class="btn-link">View Interactive Dashboard on Tableau →</a>
-  <a href="https://github.com/ageelalramadhan" target="_blank" rel="noopener" class="btn-outline-link">&lt;/&gt; GitHub Repository</a>
+  <a href="https://github.com/ageelalramadhan/rockbuster-sql-strategy-analysis" target="_blank" rel="noopener" class="btn-outline-link">&lt;/&gt; GitHub Repository (SQL · Data · ERD)</a>
+  <a href="rockbuster-findings.pdf" target="_blank" rel="noopener" class="btn-outline-link">📄 Final Findings (PDF)</a>
 </div>
 
 <footer>
