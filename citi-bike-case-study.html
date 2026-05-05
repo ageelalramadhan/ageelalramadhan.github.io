@@ -200,7 +200,7 @@
 
   <h2>Data Pipeline</h2>
   <table class="pipeline-table">
-    <thead><tr><th>Step</th><th>Notebook</th><th>Action</th></tr></thead>
+    <thead><tr><th>Step</th><th>Source</th><th>Action</th></tr></thead>
     <tbody>
       <tr><td><span class="step-tag">1. Acquire</span></td><td>citi_bike_weather_2022</td><td>Downloaded 12 monthly Citi Bike ZIP files + NOAA API weather data via pagination</td></tr>
       <tr><td><span class="step-tag">2. Extract</span></td><td>citi_bike_weather_2022</td><td>Extracted ZIPs with Python's zipfile module; combined all 12 CSVs using generator inside pd.concat()</td></tr>
@@ -209,7 +209,7 @@
       <tr><td><span class="step-tag">5. Merge</span></td><td>citi_bike_weather_2022</td><td>Inner join of daily ride counts with NOAA weather on date → citibike_2022_daily_with_weather.csv</td></tr>
       <tr><td><span class="step-tag">6. Visualize</span></td><td>exercise_2_3 / exercise_2_4</td><td>Matplotlib and Seaborn EDA: time series, dual-axis chart, scatter, distributions</td></tr>
       <tr><td><span class="step-tag">7. Geospatial</span></td><td>exercise_2_5</td><td>Kepler.gl trip origin map — spatial cluster analysis of 2022 ride demand</td></tr>
-      <tr><td><span class="step-tag">8. Dashboard</span></td><td>exercise_2_6</td><td>6-page Streamlit app with Plotly charts, sidebar navigation, cached data loading</td></tr>
+      <tr><td><span class="step-tag">8. Dashboard</span></td><td>exercise_2_6</td><td>7-page Streamlit app with Plotly charts, sidebar navigation, cached data loading</td></tr>
       <tr><td><span class="step-tag">9. Deploy</span></td><td>app_part_2.py</td><td>Deployed to Streamlit Cloud — live at the link below</td></tr>
     </tbody>
   </table>
