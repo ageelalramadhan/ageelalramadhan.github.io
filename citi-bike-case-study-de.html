@@ -214,34 +214,61 @@
     </tbody>
   </table>
 
-  <h2>Streamlit-Dashboard</h2>
-  <p>Die vollständige Analyse wird als deploytes mehrseitiges Streamlit-Dashboard ausgeliefert mit Seitennavigation und Daten-Caching. Die folgenden Abbildungen zeigen die Einführungs-, Stations- und Wetter-Seiten der Live-App.</p>
+  <h2>Saisonalität treibt die Nachfrage</h2>
+  <p>Die durchschnittlichen täglichen Fahrten folgen einem klaren saisonalen Bogen. Die Nutzung steigt von einem Januar-Tief um <strong>33.000 Fahrten/Tag</strong>, erreicht im Spätsommer einen Höhepunkt von rund <strong>115.000 Fahrten/Tag</strong> und fällt mit sinkenden Temperaturen scharf ab. Der Unterschied zwischen Spitze und Tief ist ein 3-facher Multiplikator in der täglichen Nachfrage.</p>
   <figure class="case-figure">
-    <img src="citi-dashboard-1.png" alt="Citi-Bike-Dashboard — Einführungsseite"/>
-    <figcaption>Abbildung 1. Einführungsseite — definiert Umfang, Datenquellen und Navigation.</figcaption>
+    <img src="citi-monthly-trends.png" alt="Durchschnittliche tägliche Citi-Bike-Fahrten pro Monat, 2022"/>
+    <figcaption>Abbildung 1. Durchschnittliche tägliche Fahrten pro Monat. Spitzennachfrage Juni–September; Wintertief etwa die Hälfte der Sommernachfrage.</figcaption>
   </figure>
+  <div class="insight-box green">
+    <p class="insight-title">Erkenntnis — Saisonale Skalierungsbasis</p>
+    <p>Die Winternachfrage (Nov–Apr) liegt im Schnitt bei ~50 % der Sommernachfrage (Jun–Aug). Das quantifiziert direkt, um wieviel Rebalancing-Intensität und Personalplanung im Winter reduziert werden können.</p>
+  </div>
+
+  <h2>Temperatur sagt die tägliche Nutzung voraus</h2>
+  <p>Die Überlagerung der täglichen Fahrtenanzahl mit der NOAA-Durchschnittstemperatur zeigt, dass beide Signale eng zusammenhängen. Kälteeinbrüche führen zu starken Rückgängen; Wärmeperioden treiben die Zahlen zu saisonalen Höchstwerten.</p>
+  <figure class="case-figure">
+    <img src="citi-trip-vs-temp.png" alt="Tägliche Fahrten überlagert mit Tagesdurchschnittstemperatur"/>
+    <figcaption>Abbildung 2. Doppelachse: Fahrten vs. Tagesdurchschnittstemperatur. Die Kurven verlaufen eng — bestätigt Temperatur als primäre Planungsgröße.</figcaption>
+  </figure>
+  <figure class="case-figure">
+    <img src="citi-temp-scatter.png" alt="Streudiagramm: tägliche Fahrten vs. Tagesdurchschnittstemperatur"/>
+    <figcaption>Abbildung 3. Streudiagramm: Fahrten vs. Temperatur. Die Beziehung ist monoton und stark positiv im komfortablen Fahrbereich.</figcaption>
+  </figure>
+  <div class="insight-box blue">
+    <p class="insight-title">Erkenntnis — Temperatur als Planungssignal</p>
+    <p>Die Tagesnutzung verläuft eng mit der Tagesdurchschnittstemperatur. Der Betrieb sollte die Wettervorhersage (nicht nur den Kalendermonat) als Signal für die Skalierung am Folgetag nutzen — besonders in den Übergangszeiten.</p>
+  </div>
 
   <h2>Stationskonzentration: Wo die Nachfrage sitzt</h2>
-  <p>Die Nachfrage ist stark konzentriert. Die Top-10-Startstationen erfassen einen überproportionalen Anteil aller Fahrten — vor allem an Pendler-Knoten und am Hudson-Ufer. W 21 St &amp; 6 Ave führt mit rund <strong>128.000 Fahrten</strong>, der Rest der Top 10 liegt zwischen 94K und 122K.</p>
+  <p>Die Nachfrage ist stark konzentriert. Die Top-10-Startstationen erfassen einen überproportionalen Anteil aller Fahrten — vor allem an Pendler-Knoten und am Hudson-Ufer.</p>
   <figure class="case-figure">
-    <img src="citi-dashboard-2.png" alt="Top 10 beliebteste Citi-Bike-Startstationen, 2022"/>
-    <figcaption>Abbildung 2. Top 10 Startstationen. Die Nachfrage ist stark zu den Top-Stationen verschoben — Rebalancing dort hat hohen Hebel.</figcaption>
+    <img src="popular-stations-citibike.png" alt="Top 10 beliebteste Citi-Bike-Startstationen, 2022"/>
+    <figcaption>Abbildung 4. Top 10 Startstationen. Die Nachfrage ist stark zu den Top-Stationen verschoben — Rebalancing dort hat hohen Hebel.</figcaption>
   </figure>
   <div class="insight-box yellow">
     <p class="insight-title">Erkenntnis — Rebalancing-Hebel ist konzentriert</p>
     <p>Da Fahrtenstarts an wenigen Stationen geclustert sind, erzielen Rebalancing-Teams überproportionale Effekte, wenn sie sich auf die Top-10-Stationen konzentrieren statt gleichmäßig zu verteilen.</p>
   </div>
 
-  <h2>Temperatur sagt die tägliche Nutzung voraus</h2>
-  <p>Die Überlagerung der täglichen Fahrtenanzahl mit der NOAA-Durchschnittstemperatur zeigt, dass beide Signale eng zusammenhängen. Die Nutzung steigt von einem Wintertief um <strong>20K Fahrten/Tag</strong> auf Sommerhochs über <strong>130K Fahrten/Tag</strong>; Kälteeinbrüche führen zu starken Rückgängen, Wärmeperioden treiben die Zahlen zu saisonalen Höchstwerten.</p>
+  <h2>Streamlit-Dashboard — Mehrseitige App</h2>
+  <p>Die vollständige Analyse wird als deploytes 6-seitiges Streamlit-Dashboard ausgeliefert mit Seitennavigation und Daten-Caching. Jede Seite adressiert eine andere Betriebsfrage.</p>
   <figure class="case-figure">
-    <img src="citi-dashboard-3.png" alt="Tägliche Fahrten überlagert mit Tagesdurchschnittstemperatur"/>
-    <figcaption>Abbildung 3. Doppelachse: tägliche Fahrten vs. Durchschnittstemperatur. Die Kurven verlaufen eng — bestätigt Temperatur als primäre Planungsgröße.</figcaption>
+    <img src="citi-dashboard-1.png" alt="Citi-Bike-Dashboard — Einführungsseite"/>
+    <figcaption>Abbildung 5. Einführungsseite — definiert Umfang, Datenquellen und Navigation.</figcaption>
   </figure>
-  <div class="insight-box blue">
-    <p class="insight-title">Erkenntnis — Temperatur als Planungssignal</p>
-    <p>Die Tagesnutzung verläuft eng mit der Tagesdurchschnittstemperatur. Der Betrieb sollte die Wettervorhersage (nicht nur den Kalendermonat) als Signal für die Skalierung am Folgetag nutzen — besonders in den Übergangszeiten.</p>
-  </div>
+  <figure class="case-figure">
+    <img src="citi-dashboard-2.png" alt="Citi-Bike-Dashboard — Trends und Wetter"/>
+    <figcaption>Abbildung 6. Trends und Wetter — interaktive saisonale und Temperatur-Diagramme.</figcaption>
+  </figure>
+  <figure class="case-figure">
+    <img src="citi-dashboard-3.png" alt="Citi-Bike-Dashboard — Top-Stationen"/>
+    <figcaption>Abbildung 7. Top-Stationen — Ranking der nachgefragtesten Ursprünge für die Rebalancing-Planung.</figcaption>
+  </figure>
+  <figure class="case-figure">
+    <img src="citi-dashboard-4.png" alt="Citi-Bike-Dashboard — Empfehlungen"/>
+    <figcaption>Abbildung 8. Empfehlungen — verbindet Evidenz mit operativen Maßnahmen.</figcaption>
+  </figure>
 
   <h2>Kernergebnisse</h2>
   <div class="finding green">
