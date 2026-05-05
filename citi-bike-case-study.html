@@ -214,61 +214,34 @@
     </tbody>
   </table>
 
-  <h2>Seasonality Drives Demand</h2>
-  <p>Average daily rides follow a clear seasonal arc across 2022. Ridership climbs from a January low of around <strong>33,000 rides/day</strong>, peaks at roughly <strong>115,000 rides/day</strong> in late summer, then falls sharply as temperatures drop. The difference between peak and trough is a 3x+ multiplier in daily demand.</p>
+  <h2>Streamlit Dashboard</h2>
+  <p>The full analysis is delivered as a deployed multi-page Streamlit dashboard with sidebar navigation and cached data loading. The figures below show the live app's intro, station concentration, and weather pages.</p>
   <figure class="case-figure">
-    <img src="citi-monthly-trends.png" alt="Average daily Citi Bike rides per month, 2022"/>
-    <figcaption>Figure 1. Average daily rides per month, 2022. Peak demand runs June–September; the winter trough averages roughly half of summer demand.</figcaption>
+    <img src="citi-dashboard-1.png" alt="Citi Bike dashboard — Intro page"/>
+    <figcaption>Figure 1. Dashboard intro page — defines scope, data sources, and dashboard navigation.</figcaption>
   </figure>
-  <div class="insight-box green">
-    <p class="insight-title">Key Insight — Seasonal scaling baseline</p>
-    <p>Winter demand (Nov–Apr) averages ~50% of summer demand (Jun–Aug). This directly quantifies how much redistribution intensity and staffing can be reduced in winter — and how early summer ramp-up should begin.</p>
+
+  <h2>Station Concentration: Where Demand Sits</h2>
+  <p>Trip demand is heavily concentrated. The top 10 starting stations capture a disproportionate share of total trip starts — primarily clustering around major commuting hubs and Hudson River waterfront access points. W 21 St & 6 Ave leads at roughly <strong>128,000 trips</strong>, with the rest of the top 10 sitting between 94K and 122K.</p>
+  <figure class="case-figure">
+    <img src="citi-dashboard-2.png" alt="Top 10 most popular Citi Bike start stations, 2022"/>
+    <figcaption>Figure 2. Top 10 most popular start stations. Demand is heavily skewed toward the top stations — meaning rebalancing has high leverage when concentrated there.</figcaption>
+  </figure>
+  <div class="insight-box yellow">
+    <p class="insight-title">Key Insight — Rebalancing leverage is concentrated</p>
+    <p>Because trip starts cluster heavily at a small set of stations, rebalancing crews can drive disproportionate operational gains by prioritising redistribution to and from the top 10 stations rather than allocating attention uniformly.</p>
   </div>
 
   <h2>Temperature Predicts Daily Ridership</h2>
-  <p>Overlaying daily ride counts with NOAA average temperature shows the two signals track each other closely across the full year. Cold snaps produce sharp drops; warm stretches push counts toward seasonal peaks.</p>
+  <p>Overlaying daily ride counts with NOAA average temperature shows the two signals track each other closely across the full year. Ridership climbs from a winter floor near <strong>20K trips/day</strong> to summer peaks above <strong>130K trips/day</strong>; cold snaps produce sharp drops, warm stretches push counts toward seasonal peaks.</p>
   <figure class="case-figure">
-    <img src="citi-trip-vs-temp.png" alt="Daily rides overlaid with daily average temperature, 2022"/>
-    <figcaption>Figure 2. Dual-axis: rides vs daily average temperature. The two curves track each other closely — supporting temperature as a primary planning input.</figcaption>
-  </figure>
-  <figure class="case-figure">
-    <img src="citi-temp-scatter.png" alt="Daily rides vs daily average temperature scatter plot"/>
-    <figcaption>Figure 3. Scatter: rides vs temperature. The relationship is monotonic and strongly positive across the comfortable riding range.</figcaption>
+    <img src="citi-dashboard-3.png" alt="Daily rides overlaid with daily average temperature, 2022"/>
+    <figcaption>Figure 3. Dual-axis: daily rides vs average temperature. The two curves track each other closely — supporting temperature as a primary planning input.</figcaption>
   </figure>
   <div class="insight-box blue">
     <p class="insight-title">Key Insight — Temperature as a planning signal</p>
     <p>Daily ridership tracks closely with daily average temperature. Operations should use forecast temperature (not just calendar month) as a proximal signal for next-day demand scaling — particularly during shoulder seasons.</p>
   </div>
-
-  <h2>Station Concentration: Where Demand Sits</h2>
-  <p>Trip demand is heavily concentrated. The top 10 starting stations capture a disproportionate share of total trip starts — primarily clustering around major commuting hubs and Hudson River waterfront access points.</p>
-  <figure class="case-figure">
-    <img src="popular-stations-citibike.png" alt="Top 10 most popular Citi Bike start stations, 2022"/>
-    <figcaption>Figure 4. Top 10 most popular start stations. Demand is heavily skewed toward the top stations — meaning rebalancing has high leverage when concentrated there.</figcaption>
-  </figure>
-  <div class="insight-box yellow">
-    <p class="insight-title">Key Insight — Rebalancing leverage is concentrated</p>
-    <p>Because trip starts cluster heavily at a small set of stations, rebalancing crews can drive disproportionate operational gains by prioritizing redistribution to and from the top 10 stations rather than allocating attention uniformly.</p>
-  </div>
-
-  <h2>Streamlit Dashboard — Multi-Page App</h2>
-  <p>The full analysis is delivered as a deployed 6-page Streamlit dashboard with sidebar navigation and cached data loading. Each page targets a different operational question.</p>
-  <figure class="case-figure">
-    <img src="citi-dashboard-1.png" alt="Citi Bike dashboard — Intro page"/>
-    <figcaption>Figure 5. Dashboard intro page — defines scope, data sources, and dashboard navigation.</figcaption>
-  </figure>
-  <figure class="case-figure">
-    <img src="citi-dashboard-2.png" alt="Citi Bike dashboard — Trends and weather"/>
-    <figcaption>Figure 6. Trends and weather page — interactive seasonal and temperature charts.</figcaption>
-  </figure>
-  <figure class="case-figure">
-    <img src="citi-dashboard-3.png" alt="Citi Bike dashboard — Top stations"/>
-    <figcaption>Figure 7. Top stations page — ranking of busiest origins for rebalancing planning.</figcaption>
-  </figure>
-  <figure class="case-figure">
-    <img src="citi-dashboard-4.png" alt="Citi Bike dashboard — Recommendations"/>
-    <figcaption>Figure 8. Recommendations page — ties evidence to operational actions.</figcaption>
-  </figure>
 
   <h2>Key Findings</h2>
   <div class="finding green">
