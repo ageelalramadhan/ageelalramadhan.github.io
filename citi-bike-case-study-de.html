@@ -215,25 +215,25 @@
   </table>
 
   <h2>Saisonalität treibt die Nachfrage</h2>
-  <p>Die durchschnittlichen täglichen Fahrten folgen einem klaren saisonalen Bogen. Die Nutzung steigt von einem Januar-Tief um <strong>33.000 Fahrten/Tag</strong>, erreicht im Spätsommer einen Höhepunkt von rund <strong>115.000 Fahrten/Tag</strong> und fällt mit sinkenden Temperaturen scharf ab. Der Unterschied zwischen Spitze und Tief ist ein 3-facher Multiplikator in der täglichen Nachfrage.</p>
+  <p>Die durchschnittlichen täglichen Fahrten folgen einem klaren saisonalen Bogen. Die Nutzung steigt von einem Januar-Tief um <strong>33.000 Fahrten/Tag</strong>, erreicht im Spätsommer einen Höhepunkt von rund <strong>115.000 Fahrten/Tag</strong> und fällt mit sinkenden Temperaturen scharf ab. Der Sommerschnitt liegt bei <strong>112.153 Fahrten/Tag</strong> gegen einen Winterschnitt von <strong>57.086</strong> — fast die doppelte Spanne.</p>
   <figure class="case-figure">
-    <img src="citi-monthly-trends.png" alt="Durchschnittliche tägliche Citi-Bike-Fahrten pro Monat, 2022"/>
-    <figcaption>Abbildung 1. Durchschnittliche tägliche Fahrten pro Monat. Spitzennachfrage Juni–September; Wintertief etwa die Hälfte der Sommernachfrage.</figcaption>
+    <img src="citi-monthly-trends.png" alt="Durchschnittliche tägliche Citi-Bike-Fahrten pro Monat, 2022, mit Sommer- und Winterdurchschnittslinien"/>
+    <figcaption>Abbildung 1. Durchschnittliche tägliche Fahrten pro Monat, 2022. Balken nach Saison gefärbt; Referenzlinien markieren die Sommer- (~112K) und Winterdurchschnitte (~57K).</figcaption>
   </figure>
   <div class="insight-box green">
     <p class="insight-title">Erkenntnis — Saisonale Skalierungsbasis</p>
-    <p>Die Winternachfrage (Nov–Apr) liegt im Schnitt bei ~50 % der Sommernachfrage (Jun–Aug). Das quantifiziert direkt, um wieviel Rebalancing-Intensität und Personalplanung im Winter reduziert werden können.</p>
+    <p>Die Winternachfrage (Nov–Apr) liegt im Schnitt bei rund der Hälfte der Sommernachfrage (Jun–Aug). Das quantifiziert direkt, wieviel Rebalancing-Intensität und Personalplanung im Winter reduziert werden können — und wie früh die Sommer-Hochlaufphase beginnen sollte.</p>
   </div>
 
   <h2>Temperatur sagt die tägliche Nutzung voraus</h2>
-  <p>Die Überlagerung der täglichen Fahrtenanzahl mit der NOAA-Durchschnittstemperatur zeigt, dass beide Signale eng zusammenhängen. Kälteeinbrüche führen zu starken Rückgängen; Wärmeperioden treiben die Zahlen zu saisonalen Höchstwerten.</p>
+  <p>Die Überlagerung der täglichen Fahrtenanzahl mit der NOAA-Durchschnittstemperatur zeigt, dass beide Signale tagweise über das ganze Jahr eng zusammenlaufen. Die Streudiagramm-Sicht überführt dieselbe Beziehung in eine einzelne Trendlinie: jede zusätzliche Durchschnittstemperatur in °C entspricht einem messbaren Anstieg der erwarteten Nutzung.</p>
   <figure class="case-figure">
-    <img src="citi-trip-vs-temp.png" alt="Tägliche Fahrten überlagert mit Tagesdurchschnittstemperatur"/>
-    <figcaption>Abbildung 2. Doppelachse: Fahrten vs. Tagesdurchschnittstemperatur. Die Kurven verlaufen eng — bestätigt Temperatur als primäre Planungsgröße.</figcaption>
+    <img src="citi-trip-vs-temp.png" alt="Doppelachsen-Zeitreihe: tägliche Citi-Bike-Fahrten überlagert mit Tagesdurchschnittstemperatur"/>
+    <figcaption>Abbildung 2. Doppelachsen-Tagesreihe: Fahrten (grün) vs. Durchschnittstemperatur (orange gestrichelt). Die Kurven verlaufen über das gesamte Jahr im Gleichtakt.</figcaption>
   </figure>
   <figure class="case-figure">
-    <img src="citi-temp-scatter.png" alt="Streudiagramm: tägliche Fahrten vs. Tagesdurchschnittstemperatur"/>
-    <figcaption>Abbildung 3. Streudiagramm: Fahrten vs. Temperatur. Die Beziehung ist monoton und stark positiv im komfortablen Fahrbereich.</figcaption>
+    <img src="citi-temp-scatter.png" alt="Streudiagramm: tägliche Fahrten vs. Tagesdurchschnittstemperatur, nach Monat eingefärbt"/>
+    <figcaption>Abbildung 3. Streudiagramm-Sicht derselben Beziehung, nach Monat eingefärbt. Die Trendlinie ist positiv und annähernd linear im komfortablen Fahrbereich; kalte Wintertage clustern unten links, Sommerhochs oben rechts.</figcaption>
   </figure>
   <div class="insight-box blue">
     <p class="insight-title">Erkenntnis — Temperatur als Planungssignal</p>
@@ -241,33 +241,21 @@
   </div>
 
   <h2>Stationskonzentration: Wo die Nachfrage sitzt</h2>
-  <p>Die Nachfrage ist stark konzentriert. Die Top-10-Startstationen erfassen einen überproportionalen Anteil aller Fahrten — vor allem an Pendler-Knoten und am Hudson-Ufer.</p>
+  <p>Die Nachfrage ist stark konzentriert. Die meistgenutzte Startstation — W 21 St &amp; 6 Ave — erzeugte 2022 <strong>128.436 Fahrten</strong>. Der Rest der Top 10 liegt in einem engen Band zwischen 94K und 122K, alle in zentralem Manhattan: von Chelsea und Tribeca durch Midtown bis zur Upper East Side.</p>
   <figure class="case-figure">
-    <img src="popular-stations-citibike.png" alt="Top 10 beliebteste Citi-Bike-Startstationen, 2022"/>
-    <figcaption>Abbildung 4. Top 10 Startstationen. Die Nachfrage ist stark zu den Top-Stationen verschoben — Rebalancing dort hat hohen Hebel.</figcaption>
+    <img src="popular-stations-citibike.png" alt="Top 10 beliebteste Citi-Bike-Startstationen 2022, nach Fahrtenanzahl sortiert"/>
+    <figcaption>Abbildung 4. Top 10 beliebteste Startstationen. Alle zehn liegen in zentralem Manhattan — hochpriorisierte Kandidaten für Dock-Kapazität und Rebalancing-Frequenz.</figcaption>
   </figure>
   <div class="insight-box yellow">
     <p class="insight-title">Erkenntnis — Rebalancing-Hebel ist konzentriert</p>
-    <p>Da Fahrtenstarts an wenigen Stationen geclustert sind, erzielen Rebalancing-Teams überproportionale Effekte, wenn sie sich auf die Top-10-Stationen konzentrieren statt gleichmäßig zu verteilen.</p>
+    <p>Da Fahrtenstarts an wenigen zentralen Manhattan-Stationen geclustert sind, erzielen Rebalancing-Teams überproportionale Effekte, wenn sie sich auf diese Top-10-Stationen konzentrieren statt gleichmäßig über das Netz zu verteilen.</p>
   </div>
 
-  <h2>Streamlit-Dashboard — Mehrseitige App</h2>
-  <p>Die vollständige Analyse wird als deploytes 6-seitiges Streamlit-Dashboard ausgeliefert mit Seitennavigation und Daten-Caching. Jede Seite adressiert eine andere Betriebsfrage.</p>
+  <h2>Räumliche Fahrtmuster</h2>
+  <p>Die Kepler.gl-Karte zeigt Bewegungsmuster, die in stationsbezogenen Aggregaten unsichtbar bleiben. Fahrtcluster konzentrieren sich auf Manhattans Geschäftskorridor und das Hudson-Ufer, mit Sekundärclustern in Lower Manhattan und Brooklyn. Die Bögen zeigen, wohin Fahrer tatsächlich fahren — nicht nur, wo sie starten.</p>
   <figure class="case-figure">
-    <img src="citi-dashboard-1.png" alt="Citi-Bike-Dashboard — Einführungsseite"/>
-    <figcaption>Abbildung 5. Einführungsseite — definiert Umfang, Datenquellen und Navigation.</figcaption>
-  </figure>
-  <figure class="case-figure">
-    <img src="citi-dashboard-2.png" alt="Citi-Bike-Dashboard — Trends und Wetter"/>
-    <figcaption>Abbildung 6. Trends und Wetter — interaktive saisonale und Temperatur-Diagramme.</figcaption>
-  </figure>
-  <figure class="case-figure">
-    <img src="citi-dashboard-3.png" alt="Citi-Bike-Dashboard — Top-Stationen"/>
-    <figcaption>Abbildung 7. Top-Stationen — Ranking der nachgefragtesten Ursprünge für die Rebalancing-Planung.</figcaption>
-  </figure>
-  <figure class="case-figure">
-    <img src="citi-dashboard-4.png" alt="Citi-Bike-Dashboard — Empfehlungen"/>
-    <figcaption>Abbildung 8. Empfehlungen — verbindet Evidenz mit operativen Maßnahmen.</figcaption>
+    <img src="citi-kepler-map.png" alt="Kepler.gl interaktive Karte der NYC Citi-Bike-Fahrten, 2022"/>
+    <figcaption>Abbildung 5. Kepler.gl-Karte: Fahrtursprünge, -ziele und -bögen über NYC. Die Dichte bestätigt das Manhattan-zentrische Muster aus dem Stationsranking und zeigt sekundäre Knotenpunkte, die das Balkendiagramm allein verbirgt.</figcaption>
   </figure>
 
   <h2>Kernergebnisse</h2>
