@@ -171,99 +171,130 @@
     </nav>
   </div>
 </div>
-
 <div class="case-body">
   <div class="tools-box">
-    <div class="tools-label">Tools & Libraries</div>
-    <div class="tools-value">Python · Pandas · SciPy · Matplotlib · Seaborn · Tableau · Correlation Analysis</div>
-    <p><strong>Dataset:</strong> World Happiness Report 2019 — 156 countries, 10 socioeconomic and wellbeing variables</p>
-    <p><strong>Output:</strong> Correlation and regression analysis showing that social support predicts wellbeing more consistently than GDP alone</p>
+    <div class="tools-label">Tools &amp; Libraries</div>
+    <div class="tools-value">Python · Pandas · NumPy · SciPy · Matplotlib · Seaborn · scikit-learn · statsmodels · Tableau</div>
+    <p><strong>Dataset:</strong> World Happiness Report 2019 — 156 countries, 9 columns (rank, country, happiness score, and 6 socio-economic predictors). Supplementary U.S. unemployment rate from FRED (UNRATE, monthly) used to demonstrate time-series technique.</p>
+    <p><strong>Output:</strong> Cross-sectional correlation and regression analysis, K-Means clustering (k = 3) into well-being profiles, and a separate time-series demonstration on FRED unemployment data including ADF stationarity testing and autocorrelation diagnostics.</p>
   </div>
   <div class="source-box">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
     <div>
       <div class="source-label">Source Code</div>
-      <a href="https://github.com/ageelalramadhan" target="_blank" rel="noopener">github.com/ageelalramadhan →</a>
+      <a href="https://github.com/ageelalramadhan/achievement-6-happiness-analysis" target="_blank" rel="noopener">github.com/ageelalramadhan/achievement-6-happiness-analysis →</a>
     </div>
   </div>
   <div class="stat-row">
     <div class="stat-cell green"><div class="stat-num green">156</div><div class="stat-label">Countries</div></div>
-    <div class="stat-cell blue"><div class="stat-num blue">10</div><div class="stat-label">Variables</div></div>
-    <div class="stat-cell yellow"><div class="stat-num yellow">2019</div><div class="stat-label">Report Year</div></div>
-    <div class="stat-cell pink"><div class="stat-num pink">6</div><div class="stat-label">Factors Analyzed</div></div>
+    <div class="stat-cell blue"><div class="stat-num blue">6</div><div class="stat-label">Numeric Predictors</div></div>
+    <div class="stat-cell yellow"><div class="stat-num yellow">3</div><div class="stat-label">K-Means Clusters</div></div>
+    <div class="stat-cell pink"><div class="stat-num pink">2019</div><div class="stat-label">Report Year</div></div>
   </div>
 
   <h2>Project Overview</h2>
-  <p>Exploring what drives reported happiness across countries. Is GDP the primary driver — or do social factors play a stronger, more consistent role? This analysis combines correlation testing, regression, and choropleth mapping to compare economic and social explanations of national wellbeing.</p>
-  <p><strong>Business question:</strong> For policymakers facing trade-offs between economic growth and social investment, which factor more reliably predicts citizen wellbeing?</p>
+  <p>The 2019 World Happiness Report ranks 156 countries on a self-reported happiness score and pairs each with six socio-economic variables — GDP per capita, social support, healthy life expectancy, freedom to make life choices, generosity, and perceptions of corruption. The analysis combines correlation, univariate regression, and K-Means clustering to ask which combinations of factors actually segregate happier from unhappier countries.</p>
+  <p>A separate time-series demonstration on U.S. unemployment data (FRED <code>UNRATE</code>, monthly) is included as a methodological exhibit — happiness is cross-sectional (one snapshot per country), so time-series tools like ADF stationarity tests and autocorrelation diagnostics need a different dataset to demonstrate.</p>
+  <p><strong>Hypotheses:</strong> H1 — Higher GDP per capita correlates with higher happiness. H2 — Social support is positively associated with happiness. H3 — Healthy life expectancy is positively associated with happiness.</p>
 
-  <h2>Methodology</h2>
+  <h2>Data Pipeline</h2>
   <table class="pipeline-table">
     <thead><tr><th>Step</th><th>Tool</th><th>Action</th></tr></thead>
     <tbody>
-      <tr><td><span class="step-tag">1. Data Loading</span></td><td>Pandas</td><td>Loaded World Happiness Report 2019 (156 countries × 10 variables)</td></tr>
-      <tr><td><span class="step-tag">2. Cleaning</span></td><td>Pandas</td><td>Validated country names, checked for missing values, normalized variable types</td></tr>
-      <tr><td><span class="step-tag">3. Correlation Matrix</span></td><td>SciPy + Seaborn</td><td>Pearson correlation across all variables, visualized as heatmap</td></tr>
-      <tr><td><span class="step-tag">4. Regression</span></td><td>SciPy</td><td>Linear regression: happiness ~ GDP, happiness ~ social support, happiness ~ both</td></tr>
-      <tr><td><span class="step-tag">5. Cohort Analysis</span></td><td>Pandas</td><td>Compared countries grouped by similar GDP — examined within-group happiness variation</td></tr>
-      <tr><td><span class="step-tag">6. Spatial Visualization</span></td><td>Tableau</td><td>Choropleth map of happiness scores by country</td></tr>
-      <tr><td><span class="step-tag">7. Interpretation</span></td><td>—</td><td>Synthesized findings into policy-relevant takeaways</td></tr>
+      <tr><td><span class="step-tag">01</span></td><td>Pandas</td><td>Loaded WHR-2019 (156 countries × 9 columns). Validated: all 6 predictor columns are <code>float64</code>, zero missing values across all rows.</td></tr>
+      <tr><td><span class="step-tag">02</span></td><td>Pandas</td><td>Selected the 6 numeric predictors plus the happiness score for downstream analysis. Excluded identifier columns (overall rank, country name).</td></tr>
+      <tr><td><span class="step-tag">03</span></td><td>NumPy · Seaborn</td><td>Computed Pearson correlation matrix across the 7 numeric variables. Rendered as heatmap.</td></tr>
+      <tr><td><span class="step-tag">04</span></td><td>SciPy · Matplotlib</td><td>Univariate linear regression: happiness ~ GDP, happiness ~ social support. Scatter plots with fitted line, paired with the Pearson coefficients.</td></tr>
+      <tr><td><span class="step-tag">05</span></td><td>scikit-learn</td><td>Standardised the 4 strongest predictors with <code>StandardScaler</code>, then K-Means clustering at k = 3 to segment countries into well-being profiles.</td></tr>
+      <tr><td><span class="step-tag">06</span></td><td>statsmodels</td><td>Time-series exhibit: pulled monthly U.S. unemployment from FRED, ran Augmented Dickey-Fuller for stationarity, plotted autocorrelation on differenced series.</td></tr>
+      <tr><td><span class="step-tag">07</span></td><td>Tableau</td><td>Built the global happiness choropleth — a per-country fill of the 2019 happiness score.</td></tr>
     </tbody>
   </table>
 
-  <h2>Global Happiness Map</h2>
+  <h2>Correlation Structure</h2>
+  <p>The correlation matrix is the clearest summary of the dataset. GDP per capita, social support, and healthy life expectancy each correlate with happiness in the 0.77–0.79 range — close enough that <strong>no single one of them dominates the others</strong>. Freedom adds a moderate signal (r ≈ 0.57); corruption perceptions a weaker one (r ≈ 0.39); generosity is essentially uncorrelated (r ≈ 0.08).</p>
   <figure class="case-figure">
-    <img src="happiness-tableau-map.png" alt="World choropleth map of happiness scores, 2019"/>
-    <figcaption>Figure 1. Happiness scores by country, 2019. Northern Europe and North America score highest; large variation persists across regions with similar income levels.</figcaption>
+    <img src="happiness-correlation-heatmap.png" alt="Pearson correlation matrix of happiness and 6 predictors"/>
+    <figcaption>Figure 1. Pearson correlation matrix across the 7 numeric variables. GDP, social support, and healthy life expectancy form a tight cluster (r ≈ 0.77–0.79 with happiness, and r ≈ 0.72–0.84 with each other). Generosity is essentially decoupled (r ≈ 0.08 with happiness).</figcaption>
+  </figure>
+  <div class="insight-box blue">
+    <p class="insight-title">Key Insight — GDP, social support, life expectancy all carry comparable weight</p>
+    <p>All three top predictors correlate with happiness at almost identical strength (≈0.78). They're also tightly correlated with each other (≈0.72–0.84), so they share much of their explanatory signal. The univariate regressions in this analysis cannot disentangle which dominates — that would require multivariate regression and is outside this project's scope.</p>
+  </div>
+
+  <h2>GDP per Capita and Happiness</h2>
+  <p>The bivariate relationship is strongly positive: wealthier countries report higher happiness scores. The Pearson coefficient is <strong>r = 0.794</strong>, the highest of the six predictors. But the scatter shows substantial within-band variance — countries at similar GDP levels still produce noticeably different happiness scores, which is what motivates examining the other factors.</p>
+  <figure class="case-figure">
+    <img src="happiness-gdp-scatter.png" alt="GDP per capita vs happiness scatter with linear fit"/>
+    <figcaption>Figure 2. GDP per capita vs. happiness score, 156 countries. Linear fit at Pearson r = 0.794. The relationship is strong but the dispersion around the fit is non-trivial — GDP explains roughly 63 % of the variance (R² ≈ 0.63).</figcaption>
   </figure>
 
-  <h2>The GDP Story (Partially True)</h2>
-  <p>GDP per capita does show a clear positive relationship with happiness across countries — wealthier nations report higher wellbeing on average. But the relationship leaves substantial unexplained variance, and that residual is where the more interesting story lives.</p>
-  <div class="insight-box blue">
-    <p class="insight-title">Key Insight — GDP matters, but it isn't the whole story</p>
-    <p>Higher GDP correlates positively with reported happiness, but countries with similar GDP differ widely in wellbeing. GDP alone cannot explain those differences.</p>
-  </div>
-
-  <h2>Social Support — The Stronger Predictor</h2>
-  <p>When social support is added to the regression, it explains additional variance beyond GDP. More importantly, in cohorts of countries with similar GDP levels, those with stronger social support consistently report higher happiness scores.</p>
+  <h2>Social Support and Happiness</h2>
+  <p>Social support — the share of respondents who say they have someone to count on in times of trouble — correlates with happiness at <strong>r = 0.777</strong>, statistically indistinguishable from GDP at this sample size. Its scatter has a similar shape: a clear positive trend with substantial residual variance.</p>
+  <figure class="case-figure">
+    <img src="happiness-social-scatter.png" alt="Social support vs happiness scatter with linear fit"/>
+    <figcaption>Figure 3. Social support vs. happiness score, 156 countries. Linear fit at Pearson r = 0.777. Comparable strength to the GDP relationship in Figure 2.</figcaption>
+  </figure>
   <div class="insight-box green">
-    <p class="insight-title">Key Insight — Social support is the steadier signal</p>
-    <p>Across countries at comparable income levels, social support scores predict happiness more consistently than GDP alone. Wellbeing tracks the strength of social ties as reliably as it tracks income.</p>
+    <p class="insight-title">Key Insight — Social support is co-equal, not dominant</p>
+    <p>An earlier framing of this analysis claimed social support was a "stronger and more consistent" predictor than GDP. The data does not support that conclusion. The two correlations (0.794 vs. 0.777) are too close to declare a winner without multivariate analysis, and the project did not perform one. The honest reading: both matter, comparably.</p>
   </div>
 
-  <h2>Within-Cohort Variation</h2>
-  <p>Comparing groups of countries with similar GDP levels reveals that within each cohort, happiness still varies substantially — and that variation tracks closely with reported social support. Two countries with similar incomes can sit far apart on the happiness scale because of differences in social fabric.</p>
+  <h2>Global Happiness Map</h2>
+  <p>Mapping the 2019 happiness scores to country boundaries makes the geographic pattern visible at a glance. Northern Europe and North America score highest; sub-Saharan Africa and parts of South Asia score lowest. Within most regions there is still substantial spread.</p>
+  <figure class="case-figure">
+    <img src="happiness-tableau-map.png" alt="Tableau choropleth — global happiness scores, 2019"/>
+    <figcaption>Figure 4. Tableau choropleth of the 2019 happiness score (range: South Sudan 2.853 → Finland 7.769). Darker blue = higher score. Built in Tableau Public; rendered from the cross-sectional WHR data.</figcaption>
+  </figure>
+
+  <h2>K-Means Clustering — Well-Being Profiles</h2>
+  <p>To move beyond pairwise relationships, the four strongest predictors (GDP, social support, life expectancy, freedom) were standardised and passed to K-Means with k = 3. The resulting clusters segment countries cleanly along the GDP-and-happiness diagonal:</p>
+  <figure class="case-figure">
+    <img src="happiness-kmeans-clusters.png" alt="K-Means clustering (k=3) of countries by well-being profile"/>
+    <figcaption>Figure 5. K-Means clustering at k = 3 over standardised GDP, social support, life expectancy, and freedom. Lower well-being (n = 41), Medium (n = 56), Higher (n = 59). Cluster boundaries track the GDP × happiness diagonal and produce a clean three-way segmentation.</figcaption>
+  </figure>
   <div class="insight-box yellow">
-    <p class="insight-title">Key Insight — Income equivalence does not equal happiness equivalence</p>
-    <p>Countries that look identical on income metrics produce very different happiness scores. The remaining gap is largely social, not economic.</p>
+    <p class="insight-title">Key Insight — Three coherent profiles emerge from the multivariate space</p>
+    <p>Multivariate clustering produces three roughly equal-sized groups that map cleanly onto colloquial categories of "lower", "medium", and "higher" national well-being. The clusters carry information that no single pairwise correlation captures — they reflect the joint structure of the four standardised dimensions, not just one of them.</p>
   </div>
 
-  <h2>Policy Implication</h2>
-  <p>Effective wellbeing policy needs to address both dimensions. Economic prosperity matters — but for nations beyond a basic income threshold, marginal social investment may yield larger wellbeing gains than marginal GDP growth.</p>
+  <h2>Time-Series Methodology Exhibit</h2>
+  <p>The happiness dataset is cross-sectional — one row per country, one year. To demonstrate time-series technique, the modelling notebook includes a separate exhibit on U.S. monthly unemployment (FRED <code>UNRATE</code>, 1990–present). This is intentionally <em>not</em> integrated with the happiness analysis; it is included to show the difference in approach when the data is temporally ordered.</p>
+  <figure class="case-figure">
+    <img src="happiness-unemployment-timeseries.png" alt="U.S. monthly unemployment rate, 1990–present, with ADF test result"/>
+    <figcaption>Figure 6. U.S. monthly unemployment rate (FRED UNRATE), 1990–present. Recession periods shaded. ADF test on the level series: statistic = −2.706, p-value = 0.073 → fails to reject the null of a unit root, so the series is treated as non-stationary, motivating differencing before any ARIMA-class forecasting.</figcaption>
+  </figure>
 
   <h2>Key Findings</h2>
   <div class="finding green">
-    <p class="finding-title">Finding 1 — GDP per capita correlates positively with happiness.</p>
-    <p>Wealthier countries report higher average wellbeing, confirming the basic income–happiness link.</p>
+    <p class="finding-title">Finding 1 — GDP per capita is the single strongest correlate of happiness (r = 0.794).</p>
+    <p>Wealthier countries report higher average wellbeing — the basic income–happiness link is confirmed, with GDP alone explaining roughly 63 % of cross-country variance.</p>
   </div>
   <div class="finding blue">
-    <p class="finding-title">Finding 2 — Social support is a stronger and more consistent predictor than GDP alone.</p>
-    <p>When both variables enter the regression, social support carries more explanatory weight at comparable income levels.</p>
+    <p class="finding-title">Finding 2 — Social support and life expectancy are co-equal with GDP, not stronger.</p>
+    <p>Pearson correlations: GDP 0.794, life expectancy 0.780, social support 0.777. The three are statistically indistinguishable at n = 156 and are themselves highly intercorrelated (r ≈ 0.72–0.84). Untangling them would need multivariate regression.</p>
   </div>
   <div class="finding yellow">
-    <p class="finding-title">Finding 3 — Countries with similar incomes diverge on happiness when social support varies.</p>
-    <p>Within-cohort variation in happiness tracks social support — even more reliably than income variation does.</p>
+    <p class="finding-title">Finding 3 — Generosity is essentially uncorrelated with national happiness (r ≈ 0.08).</p>
+    <p>Within the WHR-2019 framing, generosity scores carry almost no cross-country signal for the happiness score, even though they correlate moderately with freedom and corruption perceptions.</p>
   </div>
   <div class="finding pink">
-    <p class="finding-title">Finding 4 — Effective policy needs both economic and social dimensions.</p>
-    <p>Beyond a baseline income, social-fabric investment may produce greater wellbeing returns than additional GDP growth.</p>
+    <p class="finding-title">Finding 4 — K-Means produces three coherent well-being profiles.</p>
+    <p>Standardising the four strongest predictors and clustering at k = 3 yields Lower (41), Medium (56), and Higher (59) well-being groups that align with the GDP × happiness diagonal and carry multivariate information beyond any single correlation.</p>
   </div>
 
-  <h2>Resources</h2>
-  <a href="https://public.tableau.com/app/profile/a.a5244/viz/Achievement6HappinessEconomicFactors/GlobalOverviewofHappiness2019" target="_blank" rel="noopener" class="btn-link">View Interactive Dashboard on Tableau →</a>
-  <a href="https://github.com/ageelalramadhan" target="_blank" rel="noopener" class="btn-outline-link">&lt;/&gt; GitHub Repository</a>
-</div>
+  <h2>Limitations</h2>
+  <ul>
+    <li>Single-year snapshot — no temporal trend can be inferred for happiness itself.</li>
+    <li>Correlations do not imply causation; the analysis identifies association strength, not causal direction.</li>
+    <li>The regressions in this project are univariate; relative contributions of correlated predictors cannot be separated without a multivariate model.</li>
+    <li>K-Means with k = 3 is exploratory — alternative k values and clustering methods would refine the segmentation.</li>
+  </ul>
 
+  <h2>Resources</h2>
+  <a href="https://public.tableau.com/views/Achievement6HappinessEconomicFactors/Achievement6HappinessEconomicFactors" target="_blank" rel="noopener" class="btn-link">View Interactive Dashboard on Tableau →</a>
+  <a href="https://github.com/ageelalramadhan/achievement-6-happiness-analysis" target="_blank" rel="noopener" class="btn-outline-link">&lt;/&gt; GitHub Repository</a>
+</div>
 <footer>
   <div class="footer-inner">
     <p class="footer-copy">© 2026 Ageel Alramadhan · Data Analyst · Hamburg</p>

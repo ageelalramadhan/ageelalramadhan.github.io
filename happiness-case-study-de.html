@@ -147,7 +147,7 @@
 <nav>
   <a href="index-de.html" class="nav-logo">ageel.alramadhan</a>
   <ul class="nav-center">
-    <li><a href="index-de.html">Start</a></li>
+    <li><a href="index-de.html">Home</a></li>
     <li><a href="about-de.html">Über mich</a></li>
     <li><a href="projects-de.html">Projekte</a></li>
     <li><a href="contact-de.html">Kontakt</a></li>
@@ -171,115 +171,146 @@
     </nav>
   </div>
 </div>
-
 <div class="case-body">
   <div class="tools-box">
-    <div class="tools-label">Tools & Bibliotheken</div>
-    <div class="tools-value">Python · Pandas · SciPy · Matplotlib · Seaborn · Tableau · Korrelationsanalyse</div>
-    <p><strong>Datensatz:</strong> World Happiness Report 2019 — 156 Länder, 10 sozioökonomische und Wohlfühl-Variablen</p>
-    <p><strong>Ergebnis:</strong> Korrelations- und Regressionsanalyse zeigt: Soziale Unterstützung sagt Wohlbefinden konsistenter voraus als BIP allein</p>
+    <div class="tools-label">Tools &amp; Bibliotheken</div>
+    <div class="tools-value">Python · Pandas · NumPy · SciPy · Matplotlib · Seaborn · scikit-learn · statsmodels · Tableau</div>
+    <p><strong>Datensatz:</strong> World Happiness Report 2019 — 156 Länder, 9 Spalten (Rang, Land, Happiness-Score sowie 6 sozioökonomische Prädiktoren). Ergänzend US-Arbeitslosenquote von FRED (UNRATE, monatlich) zur Demonstration von Zeitreihen-Methoden.</p>
+    <p><strong>Ergebnis:</strong> Querschnittsanalyse mit Korrelation und Regression, K-Means-Clustering (k = 3) zu Wohlbefindens-Profilen sowie eine separate Zeitreihen-Demonstration mit FRED-Arbeitslosendaten inklusive ADF-Stationaritätstest und Autokorrelations-Diagnostik.</p>
   </div>
   <div class="source-box">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
     <div>
       <div class="source-label">Quellcode</div>
-      <a href="https://github.com/ageelalramadhan" target="_blank" rel="noopener">github.com/ageelalramadhan →</a>
+      <a href="https://github.com/ageelalramadhan/achievement-6-happiness-analysis" target="_blank" rel="noopener">github.com/ageelalramadhan/achievement-6-happiness-analysis →</a>
     </div>
   </div>
   <div class="stat-row">
     <div class="stat-cell green"><div class="stat-num green">156</div><div class="stat-label">Länder</div></div>
-    <div class="stat-cell blue"><div class="stat-num blue">10</div><div class="stat-label">Variablen</div></div>
-    <div class="stat-cell yellow"><div class="stat-num yellow">2019</div><div class="stat-label">Berichtsjahr</div></div>
-    <div class="stat-cell pink"><div class="stat-num pink">6</div><div class="stat-label">Faktoren analysiert</div></div>
+    <div class="stat-cell blue"><div class="stat-num blue">6</div><div class="stat-label">Numerische Prädiktoren</div></div>
+    <div class="stat-cell yellow"><div class="stat-num yellow">3</div><div class="stat-label">K-Means-Cluster</div></div>
+    <div class="stat-cell pink"><div class="stat-num pink">2019</div><div class="stat-label">Berichtsjahr</div></div>
   </div>
 
-  <h2>Projektübersicht</h2>
-  <p>Was treibt das berichtete Glücksempfinden in verschiedenen Ländern? Ist das BIP der primäre Treiber — oder spielen soziale Faktoren eine stärkere, konsistentere Rolle? Diese Analyse kombiniert Korrelationstests, Regression und Choroplethen-Visualisierung, um wirtschaftliche und soziale Erklärungen für nationales Wohlbefinden zu vergleichen.</p>
-  <p><strong>Geschäftsfrage:</strong> Für politische Entscheidungsträger, die Trade-offs zwischen Wirtschaftswachstum und sozialer Investition abwägen — welcher Faktor sagt Bürgerwohlbefinden zuverlässiger voraus?</p>
+  <h2>Projektüberblick</h2>
+  <p>Der World Happiness Report 2019 listet 156 Länder mit einem selbstberichteten Happiness-Score und sechs sozioökonomischen Variablen — BIP pro Kopf, soziale Unterstützung, gesunde Lebenserwartung, Freiheit, Großzügigkeit und Wahrnehmung von Korruption. Die Analyse kombiniert Korrelation, univariate Regression und K-Means-Clustering, um zu prüfen, welche Kombinationen tatsächlich glücklichere von weniger glücklichen Ländern trennen.</p>
+  <p>Eine separate Zeitreihen-Demonstration auf US-Arbeitslosendaten (FRED <code>UNRATE</code>, monatlich) ist als methodisches Exponat enthalten — der Happiness-Datensatz ist ein Querschnitt (ein Wert pro Land), daher braucht es einen anderen Datensatz, um Zeitreihen-Werkzeuge wie ADF-Tests und Autokorrelation zu demonstrieren.</p>
+  <p><strong>Hypothesen:</strong> H1 — Höheres BIP pro Kopf korreliert mit höherer Zufriedenheit. H2 — Soziale Unterstützung ist positiv mit Zufriedenheit assoziiert. H3 — Gesunde Lebenserwartung ist positiv mit Zufriedenheit assoziiert.</p>
 
-  <h2>Methodik</h2>
+  <h2>Daten-Pipeline</h2>
   <table class="pipeline-table">
     <thead><tr><th>Schritt</th><th>Tool</th><th>Aktion</th></tr></thead>
     <tbody>
-      <tr><td><span class="step-tag">1. Daten laden</span></td><td>Pandas</td><td>World Happiness Report 2019 geladen (156 Länder × 10 Variablen)</td></tr>
-      <tr><td><span class="step-tag">2. Bereinigung</span></td><td>Pandas</td><td>Ländernamen validiert, fehlende Werte geprüft, Variablentypen normalisiert</td></tr>
-      <tr><td><span class="step-tag">3. Korrelationsmatrix</span></td><td>SciPy + Seaborn</td><td>Pearson-Korrelation aller Variablen, als Heatmap visualisiert</td></tr>
-      <tr><td><span class="step-tag">4. Regression</span></td><td>SciPy</td><td>Lineare Regression: Glück ~ BIP, Glück ~ soziale Unterstützung, Glück ~ beide</td></tr>
-      <tr><td><span class="step-tag">5. Kohortenanalyse</span></td><td>Pandas</td><td>Länder mit ähnlichem BIP gruppiert — Glücksvariation innerhalb der Gruppen untersucht</td></tr>
-      <tr><td><span class="step-tag">6. Räumliche Visualisierung</span></td><td>Tableau</td><td>Choroplethenkarte der Glückswerte nach Land</td></tr>
-      <tr><td><span class="step-tag">7. Interpretation</span></td><td>—</td><td>Ergebnisse zu politikrelevanten Takeaways synthetisiert</td></tr>
+      <tr><td><span class="step-tag">01</span></td><td>Pandas</td><td>WHR-2019 geladen (156 Länder × 9 Spalten). Validiert: alle 6 Prädiktoren sind <code>float64</code>, keine fehlenden Werte.</td></tr>
+      <tr><td><span class="step-tag">02</span></td><td>Pandas</td><td>Die 6 numerischen Prädiktoren plus Happiness-Score für die weitere Analyse ausgewählt. Identifikator-Spalten (Rang, Land) ausgeschlossen.</td></tr>
+      <tr><td><span class="step-tag">03</span></td><td>NumPy · Seaborn</td><td>Pearson-Korrelationsmatrix über die 7 numerischen Variablen berechnet und als Heatmap dargestellt.</td></tr>
+      <tr><td><span class="step-tag">04</span></td><td>SciPy · Matplotlib</td><td>Univariate lineare Regression: Happiness ~ BIP, Happiness ~ soziale Unterstützung. Scatterplots mit Regressionslinie und Pearson-Koeffizient.</td></tr>
+      <tr><td><span class="step-tag">05</span></td><td>scikit-learn</td><td>Die 4 stärksten Prädiktoren mit <code>StandardScaler</code> normiert und mit K-Means (k = 3) zu Wohlbefindens-Profilen geclustert.</td></tr>
+      <tr><td><span class="step-tag">06</span></td><td>statsmodels</td><td>Zeitreihen-Exponat: monatliche US-Arbeitslosenquote von FRED geladen, ADF-Stationaritätstest durchgeführt, Autokorrelation auf differenzierter Reihe geplottet.</td></tr>
+      <tr><td><span class="step-tag">07</span></td><td>Tableau</td><td>Globale Choroplethenkarte des Happiness-Scores 2019 in Tableau Public erstellt.</td></tr>
     </tbody>
   </table>
 
-  <h2>Globale Glückskarte</h2>
+  <h2>Korrelationsstruktur</h2>
+  <p>Die Korrelationsmatrix ist die klarste Zusammenfassung. BIP pro Kopf, soziale Unterstützung und gesunde Lebenserwartung korrelieren jeweils mit Zufriedenheit im Bereich 0,77–0,79 — eng genug, dass <strong>keiner dieser Faktoren die anderen dominiert</strong>. Freiheit liefert ein moderates Signal (r ≈ 0,57); Korruptionswahrnehmung ein schwächeres (r ≈ 0,39); Großzügigkeit ist praktisch unkorreliert (r ≈ 0,08).</p>
   <figure class="case-figure">
-    <img src="happiness-tableau-map.png" alt="Weltchoroplethen-Karte der Glückswerte, 2019"/>
-    <figcaption>Abbildung 1. Glückswerte nach Land, 2019. Nordeuropa und Nordamerika erzielen die höchsten Werte; in Regionen mit ähnlichem Einkommen besteht große Variation.</figcaption>
+    <img src="happiness-correlation-heatmap.png" alt="Pearson-Korrelationsmatrix der 7 numerischen Variablen"/>
+    <figcaption>Abbildung 1. Pearson-Korrelationsmatrix über die 7 numerischen Variablen. BIP, soziale Unterstützung und gesunde Lebenserwartung bilden ein eng korreliertes Cluster (r ≈ 0,77–0,79 mit Happiness, untereinander r ≈ 0,72–0,84). Großzügigkeit ist praktisch entkoppelt (r ≈ 0,08 mit Happiness).</figcaption>
+  </figure>
+  <div class="insight-box blue">
+    <p class="insight-title">Key Insight — BIP, soziale Unterstützung und Lebenserwartung sind etwa gleich stark</p>
+    <p>Die drei stärksten Prädiktoren korrelieren mit Zufriedenheit fast identisch (≈0,78). Sie sind zudem untereinander hoch korreliert (≈0,72–0,84), teilen also einen großen Teil ihres Erklärungssignals. Die univariaten Regressionen in dieser Analyse können nicht trennen, welcher dominiert — das bräuchte eine multivariate Regression und liegt außerhalb des Projektumfangs.</p>
+  </div>
+
+  <h2>BIP pro Kopf und Zufriedenheit</h2>
+  <p>Der bivariate Zusammenhang ist stark positiv: wohlhabendere Länder berichten höhere Zufriedenheits-Scores. Der Pearson-Koeffizient ist <strong>r = 0,794</strong>, der höchste der sechs Prädiktoren. Der Scatterplot zeigt jedoch deutliche Streuung innerhalb gleicher BIP-Bänder — Länder mit ähnlichem BIP erreichen merklich unterschiedliche Happiness-Werte, was die Betrachtung weiterer Faktoren motiviert.</p>
+  <figure class="case-figure">
+    <img src="happiness-gdp-scatter.png" alt="BIP pro Kopf vs. Happiness mit linearer Anpassung"/>
+    <figcaption>Abbildung 2. BIP pro Kopf vs. Happiness-Score, 156 Länder. Lineare Anpassung mit Pearson r = 0,794. Starker Zusammenhang, aber nicht-trivialer Restvarianz — das BIP erklärt etwa 63 % der Varianz (R² ≈ 0,63).</figcaption>
   </figure>
 
-  <h2>Die BIP-Geschichte (teilweise wahr)</h2>
-  <p>Das BIP pro Kopf zeigt einen klaren positiven Zusammenhang mit Glück über Länder hinweg — wohlhabendere Nationen berichten im Durchschnitt höheres Wohlbefinden. Aber der Zusammenhang lässt erhebliche unerklärte Varianz übrig, und in diesem Rest liegt die interessantere Geschichte.</p>
-  <div class="insight-box blue">
-    <p class="insight-title">Erkenntnis — BIP ist wichtig, aber nicht die ganze Geschichte</p>
-    <p>Höheres BIP korreliert positiv mit berichtetem Glück, aber Länder mit ähnlichem BIP unterscheiden sich stark im Wohlbefinden. BIP allein kann diese Unterschiede nicht erklären.</p>
-  </div>
-
-  <h2>Soziale Unterstützung — Der stärkere Prädiktor</h2>
-  <p>Wenn soziale Unterstützung zur Regression hinzugefügt wird, erklärt sie zusätzliche Varianz über das BIP hinaus. Wichtiger noch: In Kohorten mit ähnlichem BIP berichten Länder mit stärkerer sozialer Unterstützung konsistent höhere Glückswerte.</p>
+  <h2>Soziale Unterstützung und Zufriedenheit</h2>
+  <p>Soziale Unterstützung — der Anteil der Befragten, die im Notfall auf jemanden zählen können — korreliert mit Zufriedenheit bei <strong>r = 0,777</strong>, bei n = 156 statistisch nicht unterscheidbar vom BIP. Der Scatter hat eine ähnliche Form: klarer positiver Trend mit erheblicher Restvarianz.</p>
+  <figure class="case-figure">
+    <img src="happiness-social-scatter.png" alt="Soziale Unterstützung vs. Happiness mit linearer Anpassung"/>
+    <figcaption>Abbildung 3. Soziale Unterstützung vs. Happiness-Score, 156 Länder. Lineare Anpassung mit Pearson r = 0,777. Vergleichbare Stärke wie die BIP-Beziehung in Abbildung 2.</figcaption>
+  </figure>
   <div class="insight-box green">
-    <p class="insight-title">Erkenntnis — Soziale Unterstützung ist das stetigere Signal</p>
-    <p>Über Länder mit vergleichbarem Einkommensniveau hinweg sagt soziale Unterstützung Glück konsistenter voraus als BIP allein.</p>
+    <p class="insight-title">Key Insight — Soziale Unterstützung ist gleichrangig, nicht dominant</p>
+    <p>Eine frühere Version dieser Analyse behauptete, soziale Unterstützung sei ein "stärkerer und konsistenterer" Prädiktor als das BIP. Die Daten stützen das nicht. Die beiden Korrelationen (0,794 vs. 0,777) liegen zu nah beieinander, um ohne multivariate Analyse eine Hierarchie zu erklären — und eine solche wurde im Projekt nicht durchgeführt. Die ehrliche Lesart: beide zählen, ungefähr gleich stark.</p>
   </div>
 
-  <h2>Variation innerhalb von Kohorten</h2>
-  <p>Vergleicht man Ländergruppen mit ähnlichem BIP, zeigt sich, dass Glück innerhalb jeder Kohorte deutlich variiert — und diese Variation folgt eng der berichteten sozialen Unterstützung.</p>
+  <h2>Globale Happiness-Karte</h2>
+  <p>Die Choroplethenkarte des Happiness-Scores 2019 macht das geografische Muster auf einen Blick sichtbar. Nordeuropa und Nordamerika schneiden am höchsten ab; Subsahara-Afrika und Teile Südasiens am niedrigsten. Innerhalb der meisten Regionen bleibt erhebliche Streuung.</p>
+  <figure class="case-figure">
+    <img src="happiness-tableau-map.png" alt="Tableau-Choroplethenkarte — globale Happiness-Scores 2019"/>
+    <figcaption>Abbildung 4. Tableau-Choroplethenkarte des Happiness-Scores 2019 (Spannweite: Südsudan 2,853 → Finnland 7,769). Dunkleres Blau = höherer Score. In Tableau Public erstellt; gerendert aus dem Querschnittsdatensatz des WHR.</figcaption>
+  </figure>
+
+  <h2>K-Means-Clustering — Wohlbefindens-Profile</h2>
+  <p>Um über paarweise Beziehungen hinauszugehen, wurden die vier stärksten Prädiktoren (BIP, soziale Unterstützung, Lebenserwartung, Freiheit) normiert und an K-Means mit k = 3 übergeben. Die resultierenden Cluster segmentieren Länder sauber entlang der BIP-Happiness-Diagonale:</p>
+  <figure class="case-figure">
+    <img src="happiness-kmeans-clusters.png" alt="K-Means-Clustering (k=3) der Länder nach Wohlbefindens-Profil"/>
+    <figcaption>Abbildung 5. K-Means-Clustering bei k = 3 auf normierten BIP, sozialer Unterstützung, Lebenserwartung und Freiheit. Niedrigeres Wohlbefinden (n = 41), Mittel (n = 56), Höheres (n = 59). Cluster-Grenzen folgen der BIP-×-Happiness-Diagonale und ergeben eine saubere Dreiteilung.</figcaption>
+  </figure>
   <div class="insight-box yellow">
-    <p class="insight-title">Erkenntnis — Einkommensgleichheit bedeutet nicht Glücksgleichheit</p>
-    <p>Länder, die bei Einkommensmetriken identisch wirken, produzieren sehr unterschiedliche Glückswerte. Die verbleibende Lücke ist überwiegend sozial, nicht wirtschaftlich.</p>
+    <p class="insight-title">Key Insight — Drei kohärente Profile aus dem multivariaten Raum</p>
+    <p>Das multivariate Clustering ergibt drei etwa gleich große Gruppen, die sauber auf die umgangssprachlichen Kategorien "niedrig", "mittel" und "hoch" abbilden. Die Cluster tragen Information, die keine einzelne paarweise Korrelation einfängt — sie spiegeln die gemeinsame Struktur der vier normierten Dimensionen wider.</p>
   </div>
 
-  <h2>Politische Implikation</h2>
-  <p>Effektive Wohlbefindenspolitik muss beide Dimensionen adressieren. Wirtschaftlicher Wohlstand ist wichtig — aber für Länder oberhalb einer Grundeinkommensschwelle könnte marginale soziale Investition größere Wohlbefindensgewinne erzielen als marginales BIP-Wachstum.</p>
+  <h2>Zeitreihen-Methodik-Exponat</h2>
+  <p>Der Happiness-Datensatz ist ein Querschnitt — eine Zeile je Land, ein Jahr. Um Zeitreihen-Methoden zu demonstrieren, enthält das Modellierungs-Notebook ein separates Exponat zur monatlichen US-Arbeitslosenquote (FRED <code>UNRATE</code>, 1990–heute). Es ist bewusst <em>nicht</em> mit der Happiness-Analyse verschmolzen; es zeigt nur, wie sich der Ansatz ändert, wenn die Daten zeitlich geordnet sind.</p>
+  <figure class="case-figure">
+    <img src="happiness-unemployment-timeseries.png" alt="US-Arbeitslosenquote, 1990–heute, mit ADF-Testergebnis"/>
+    <figcaption>Abbildung 6. Monatliche US-Arbeitslosenquote (FRED UNRATE), 1990–heute. Rezessions-Phasen schattiert. ADF-Test auf der Niveau-Reihe: Statistik = −2,706, p-Wert = 0,073 → Nullhypothese einer Einheitswurzel kann nicht abgelehnt werden, Reihe wird als nicht-stationär behandelt, was Differenzierung vor jedem ARIMA-Modell motiviert.</figcaption>
+  </figure>
 
-  <h2>Kernergebnisse</h2>
+  <h2>Wichtigste Erkenntnisse</h2>
   <div class="finding green">
-    <p class="finding-title">Ergebnis 1 — BIP pro Kopf korreliert positiv mit Glück.</p>
-    <p>Wohlhabendere Länder berichten höheres durchschnittliches Wohlbefinden, was die grundlegende Einkommens-Glücks-Verbindung bestätigt.</p>
+    <p class="finding-title">Erkenntnis 1 — BIP pro Kopf ist der einzelne stärkste Korrelat (r = 0,794).</p>
+    <p>Wohlhabendere Länder berichten höhere durchschnittliche Zufriedenheit — der grundlegende Einkommens-Glücks-Zusammenhang bestätigt sich; BIP allein erklärt rund 63 % der Varianz zwischen Ländern.</p>
   </div>
   <div class="finding blue">
-    <p class="finding-title">Ergebnis 2 — Soziale Unterstützung ist ein stärkerer und konsistenterer Prädiktor als BIP allein.</p>
-    <p>Wenn beide Variablen in die Regression eingehen, trägt soziale Unterstützung bei vergleichbarem Einkommen mehr Erklärungsgewicht.</p>
+    <p class="finding-title">Erkenntnis 2 — Soziale Unterstützung und Lebenserwartung sind gleichrangig, nicht stärker.</p>
+    <p>Pearson-Korrelationen: BIP 0,794, Lebenserwartung 0,780, soziale Unterstützung 0,777. Bei n = 156 statistisch nicht unterscheidbar; zudem untereinander stark korreliert (r ≈ 0,72–0,84). Eine Entflechtung würde eine multivariate Regression erfordern.</p>
   </div>
   <div class="finding yellow">
-    <p class="finding-title">Ergebnis 3 — Länder mit ähnlichem Einkommen divergieren beim Glück, wenn die soziale Unterstützung variiert.</p>
-    <p>Variation innerhalb von Kohorten folgt sozialer Unterstützung — sogar zuverlässiger als Einkommensvariation.</p>
+    <p class="finding-title">Erkenntnis 3 — Großzügigkeit ist praktisch unkorreliert mit nationaler Zufriedenheit (r ≈ 0,08).</p>
+    <p>Im Rahmen von WHR-2019 trägt die Großzügigkeits-Variable kaum Signal für den Happiness-Score, auch wenn sie moderat mit Freiheit und Korruptionswahrnehmung korreliert.</p>
   </div>
   <div class="finding pink">
-    <p class="finding-title">Ergebnis 4 — Effektive Politik braucht ökonomische und soziale Dimensionen.</p>
-    <p>Oberhalb eines Grundeinkommens kann sozialer Investment größere Wohlbefindensrenditen liefern als zusätzliches BIP-Wachstum.</p>
+    <p class="finding-title">Erkenntnis 4 — K-Means ergibt drei kohärente Wohlbefindens-Profile.</p>
+    <p>Normierung der vier stärksten Prädiktoren und Clustering bei k = 3 ergibt die Gruppen Niedriger (41), Mittlerer (56) und Höherer (59) Wohlbefinden, die sich entlang der BIP-×-Happiness-Diagonale ausrichten und multivariate Information über jede einzelne Korrelation hinaus tragen.</p>
   </div>
 
-  <h2>Materialien</h2>
-  <a href="https://public.tableau.com/app/profile/a.a5244/viz/Achievement6HappinessEconomicFactors/GlobalOverviewofHappiness2019" target="_blank" rel="noopener" class="btn-link">Interaktives Dashboard auf Tableau ansehen →</a>
-  <a href="https://github.com/ageelalramadhan" target="_blank" rel="noopener" class="btn-outline-link">&lt;/&gt; GitHub-Repository</a>
-</div>
+  <h2>Einschränkungen</h2>
+  <ul>
+    <li>Einjahres-Schnappschuss — kein zeitlicher Trend für Zufriedenheit ableitbar.</li>
+    <li>Korrelation impliziert keine Kausalität; die Analyse ermittelt Assoziationsstärken, keine Wirkrichtungen.</li>
+    <li>Die Regressionen in diesem Projekt sind univariat; relative Beiträge korrelierter Prädiktoren sind ohne multivariates Modell nicht trennbar.</li>
+    <li>K-Means mit k = 3 ist explorativ — alternative k-Werte und Clustering-Methoden würden die Segmentierung verfeinern.</li>
+  </ul>
 
+  <h2>Ressourcen</h2>
+  <a href="https://public.tableau.com/views/Achievement6HappinessEconomicFactors/Achievement6HappinessEconomicFactors" target="_blank" rel="noopener" class="btn-link">Interaktives Dashboard auf Tableau ansehen →</a>
+  <a href="https://github.com/ageelalramadhan/achievement-6-happiness-analysis" target="_blank" rel="noopener" class="btn-outline-link">&lt;/&gt; GitHub-Repository</a>
+</div>
 <footer>
   <div class="footer-inner">
-    <p class="footer-copy">© 2026 Ageel Alramadhan · Datenanalyst · Hamburg</p>
+    <p class="footer-copy">© 2026 Ageel Alramadhan · Data Analyst · Hamburg</p>
     <div class="footer-links">
       <a href="contact-de.html">Kontakt</a>
       <a href="https://www.linkedin.com/in/ageel-alramadhan/" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:4px"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a>
       <a href="https://github.com/ageelalramadhan" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:4px"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</a>
       <a href="impressum.html">Impressum</a>
-      <a href="datenschutz.html">Datenschutzerklärung</a>
+      <a href="datenschutz.html">Datenschutz</a>
     </div>
   </div>
 </footer>
 <button class="back-top" id="back-top" aria-label="Back to top">↑</button>
 <div id="cookie-banner" class="cookie-banner" style="display:none;">
-  <div class="cookie-inner"><p>Diese Website verwendet Google Analytics. Sie können zustimmen oder ablehnen.</p>
-  <div class="cookie-actions"><button class="cookie-btn" data-cookie-reject>Ablehnen</button><button class="cookie-btn primary" data-cookie-accept>Akzeptieren</button></div></div>
+  <div class="cookie-inner"><p>This website uses Google Analytics. You can accept or decline.</p>
+  <div class="cookie-actions"><button class="cookie-btn" data-cookie-reject>Decline</button><button class="cookie-btn primary" data-cookie-accept>Accept</button></div></div>
 </div>
 <script src="consent.js"></script>
 <script>

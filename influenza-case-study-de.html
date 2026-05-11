@@ -147,7 +147,7 @@
 <nav>
   <a href="index-de.html" class="nav-logo">ageel.alramadhan</a>
   <ul class="nav-center">
-    <li><a href="index-de.html">Start</a></li>
+    <li><a href="index-de.html">Home</a></li>
     <li><a href="about-de.html">Über mich</a></li>
     <li><a href="projects-de.html">Projekte</a></li>
     <li><a href="contact-de.html">Kontakt</a></li>
@@ -171,114 +171,131 @@
     </nav>
   </div>
 </div>
-
 <div class="case-body">
   <div class="tools-box">
-    <div class="tools-label">Tools & Bibliotheken</div>
-    <div class="tools-value">Excel · Tableau · Statistische Analyse · Räumliche Visualisierung</div>
-    <p><strong>Datensatz:</strong> CDC-Influenza-Sterblichkeitsdaten (2009–2017) über alle 50 US-Bundesstaaten. ~6.000 Zeilen.</p>
-    <p><strong>Ergebnis:</strong> Story-getriebenes Tableau-Dashboard, das zeigt: Sterblichkeitsrate, nicht absolute Zahlen, ist der richtige Vergleichsmaßstab</p>
+    <div class="tools-label">Tools &amp; Bibliotheken</div>
+    <div class="tools-value">Excel · Tableau · Python · Pandas · NumPy · SciPy · INDEX/VERGLEICH · Pivot-Tabellen</div>
+    <p><strong>Datensätze:</strong> CDC-Influenza-Sterbedaten nach Bundesstaat · Monat · Altersgruppe (2009–2017, 66 Tsd. Zeilen), CDC-ILI-Arztbesuche (24,9 Tsd. Zeilen), CDC-Labortests nach Stamm (14,1 Tsd. Zeilen), NIS-Impfumfrage für Kinder (28,5 Tsd. Zeilen), U.S.-Census-Bevölkerungsschätzungen pro Bundesstaat</p>
+    <p><strong>Ergebnis:</strong> Integrierter Bundesstaat-Jahr-Datensatz und dreischichtiges Tableau-Dashboard (Choroplethenkarte + Bevölkerungssymbole + Pro-Kopf-Rate als Overlay) zur Unterstützung des medizinischen Personaleinsatzes über die US-Bundesstaaten.</p>
   </div>
   <div class="source-box">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
     <div>
       <div class="source-label">Quellcode</div>
-      <a href="https://github.com/ageelalramadhan" target="_blank" rel="noopener">github.com/ageelalramadhan →</a>
+      <a href="https://github.com/ageelalramadhan/us-influenza-staffing-analysis" target="_blank" rel="noopener">github.com/ageelalramadhan/us-influenza-staffing-analysis →</a>
     </div>
   </div>
   <div class="stat-row">
-    <div class="stat-cell green"><div class="stat-num green">9</div><div class="stat-label">Jahre analysiert</div></div>
-    <div class="stat-cell blue"><div class="stat-num blue">50</div><div class="stat-label">US-Bundesstaaten</div></div>
-    <div class="stat-cell yellow"><div class="stat-num yellow">6K</div><div class="stat-label">Datensätze</div></div>
-    <div class="stat-cell pink"><div class="stat-num pink">0.012%</div><div class="stat-label">Ø Sterblichkeitsrate</div></div>
+    <div class="stat-cell green"><div class="stat-num green">9</div><div class="stat-label">Jahre (2009–2017)</div></div>
+    <div class="stat-cell blue"><div class="stat-num blue">51</div><div class="stat-label">Bundesstaaten</div></div>
+    <div class="stat-cell yellow"><div class="stat-num yellow">66K</div><div class="stat-label">CDC-Sterbefälle (Zeilen)</div></div>
+    <div class="stat-cell pink"><div class="stat-num pink">415K</div><div class="stat-label">Influenza-Todesfälle</div></div>
   </div>
 
-  <h2>Projektübersicht</h2>
-  <p>Analyse der US-Influenza-Sterblichkeit über alle 50 Bundesstaaten von 2009 bis 2017. Kernergebnis: <strong>Sterblichkeitsrate, nicht absolute Todeszahlen</strong>, ist der korrekte Maßstab für den Vergleich zwischen Staaten — eine methodische Entscheidung, die grundlegend ändert, was die Daten aussagen.</p>
-  <p><strong>Geschäftsfrage:</strong> Sind manche Staaten gefährlicher als andere für Influenza, und verändert sich die Sterblichkeit im Zeitverlauf?</p>
+  <h2>Projektüberblick</h2>
+  <p>Die Aufgabenstellung war operativ, nicht akademisch: <strong>Vorbereitung auf die Grippesaison — richtiges Personal, am richtigen Ort, zur richtigen Zeit</strong>. Anhand von Trends nach Bundesstaat und Demografie soll geplant werden, wann und in welcher Stärke medizinisches Personal über die US-Bundesstaaten eingesetzt wird.</p>
+  <p>Die analytische Schwierigkeit liegt in der Wahl der richtigen Kennzahl. Rohzahlen folgen fast vollständig der Einwohnerzahl — sie beantworten also die falsche Frage ("wo leben die meisten Menschen") statt der richtigen ("wo ist das Pro-Kopf-Risiko am höchsten"). Die Fallstudie zeigt diese Wahl und quantifiziert die daraus folgende Neuordnung der Prioritätsstaaten.</p>
+  <p><strong>Geschäftsfragen:</strong> (1) Welche Bundesstaaten weisen nach Bevölkerungsbereinigung die höchste Influenza-Belastung auf? (2) Hat sich die nationale Sterblichkeit zwischen 2009 und 2017 statistisch signifikant verändert? (3) Welche Altersgruppen sollten bei Impf- und Aufklärungsprogrammen Priorität haben?</p>
 
-  <h2>Methodik</h2>
+  <h2>Daten-Pipeline</h2>
   <table class="pipeline-table">
     <thead><tr><th>Schritt</th><th>Tool</th><th>Aktion</th></tr></thead>
     <tbody>
-      <tr><td><span class="step-tag">1. Datenerfassung</span></td><td>CDC-Quelle</td><td>2009–2017 Sterblichkeitsdaten je Bundesstaat heruntergeladen</td></tr>
-      <tr><td><span class="step-tag">2. Bereinigung</span></td><td>Excel</td><td>Staatennamen normalisiert, doppelte Jahre entfernt, Zeilensummen validiert</td></tr>
-      <tr><td><span class="step-tag">3. Bevölkerungs-Merge</span></td><td>Excel</td><td>Jährliche Bundesstaaten-Bevölkerung für Ratenberechnung verbunden</td></tr>
-      <tr><td><span class="step-tag">4. Ratenberechnung</span></td><td>Excel</td><td>deaths_per_100k = (Tote / Bevölkerung) × 100.000</td></tr>
-      <tr><td><span class="step-tag">5. Trend-Analyse</span></td><td>Excel + Tableau</td><td>Statistischer Jahresvergleich der Raten</td></tr>
-      <tr><td><span class="step-tag">6. Räumliches Mapping</span></td><td>Tableau</td><td>Choroplethen für absolute Zahlen und Raten</td></tr>
-      <tr><td><span class="step-tag">7. Storytelling</span></td><td>Tableau Story</td><td>Narrative Dashboard kontrastiert absolute vs. Ratenansicht</td></tr>
+      <tr><td><span class="step-tag">01</span></td><td>Excel</td><td>CDC-Influenza-Sterbedaten geladen (66.097 Zeilen · Bundesstaat × Jahr × Monat × Altersgruppe, 2009–2017). "Suppressed"-Zellen entsprechend der CDC-Vertraulichkeitsregel markiert.</td></tr>
+      <tr><td><span class="step-tag">02</span></td><td>Excel · Pivot</td><td>CDC-Tabelle bereinigt: "Not Stated" → "Unknown" standardisiert, Eindeutigkeit auf (State Code, Jahr, Monat, Altersgruppe) geprüft, Suppressed-Flags beibehalten statt zu imputieren.</td></tr>
+      <tr><td><span class="step-tag">03</span></td><td>Excel</td><td>U.S.-Census-Bevölkerungsschätzungen bereinigt (28.986 County-Jahr-Zeilen) und auf Bundesstaat × Jahr aggregiert.</td></tr>
+      <tr><td><span class="step-tag">04</span></td><td>Excel · INDEX/VERGLEICH</td><td>Zusammengesetzten Schlüssel <code>State|Year</code> gebildet und beide Tabellen zu einem Master-Datensatz auf Bundesstaat-Jahr-Ebene mit Population, Todesfällen und berechneter Sterblichkeitsrate verknüpft.</td></tr>
+      <tr><td><span class="step-tag">05</span></td><td>Python · NumPy</td><td>Statistische Validierung: Pearson-Korrelation zwischen Bevölkerung und Todesfällen auf Bundesstaat-Jahr-Ebene; Vergleich der Sterblichkeitsrate über die Jahre.</td></tr>
+      <tr><td><span class="step-tag">06</span></td><td>Tableau</td><td>Dreischichtiges Dashboard gebaut: Choropleth (Rohzahlen) + Bevölkerungssymbole + Symbolfarbe = Sterblichkeitsrate pro 100.000.</td></tr>
+      <tr><td><span class="step-tag">07</span></td><td>Tableau Story</td><td>Erzählerisches Dashboard, das die beiden Karten so verbindet, dass die Personaleinsatzentscheidung sichtbar von der Kennzahlwahl abhängt.</td></tr>
     </tbody>
   </table>
 
-  <h2>Zeitlicher Trend (2009–2017)</h2>
-  <p>Die jährlichen Todesfälle blieben über den gesamten Untersuchungszeitraum weitgehend stabil. Statistische Tests der Sterblichkeitsraten zeigen keine signifikante Veränderung — die Rate liegt landesweit konstant bei rund <strong>0,012 %</strong>.</p>
+  <h2>Zeitlicher Verlauf (2009–2017)</h2>
+  <p>Influenza ist ein wiederkehrendes Problem stabiler Größenordnung, kein sich verschärfendes. Die nationalen Todesfälle lagen über die neun Jahre in einer engen Spanne von 42K–50K; die bevölkerungsbereinigte Rate schwankte zwischen <strong>13,8 und 15,8 pro 100.000</strong> (Durchschnitt 14,8 pro 100k ≈ 0,015 %).</p>
   <figure class="case-figure">
-    <img src="influenza-tableau-1.png" alt="US-Influenza-Todesfälle nach Jahr, 2009–2017"/>
-    <figcaption>Abbildung 1. Jährliche influenzabedingte Todesfälle über alle US-Staaten. Die Schwankungen liegen im Rahmen normaler saisonaler Variation; kein signifikanter zeitlicher Trend.</figcaption>
+    <img src="influenza-yearly-deaths-rate.png" alt="Jährliche US-Influenza-Todesfälle und Sterblichkeitsrate pro 100k, 2009–2017"/>
+    <figcaption>Abbildung 1. Nationale Influenza-Todesfälle und bevölkerungsbereinigte Sterblichkeitsrate pro 100.000. Balken: 42K–50K. Linie: 13,8–15,8 pro 100k — scheinbare Schwankungen spiegeln vor allem das Bevölkerungswachstum wider.</figcaption>
   </figure>
   <div class="insight-box blue">
-    <p class="insight-title">Erkenntnis — Keine signifikante Veränderung im Zeitverlauf</p>
-    <p>Statistische Tests bestätigen, dass die Sterblichkeitsrate von 2009 bis 2017 im Wesentlichen konstant geblieben ist. Sichtbare Volumensteigerungen spiegeln Bevölkerungswachstum wider, nicht verschlechterte Outcomes.</p>
+    <p class="insight-title">Key Insight — Stabile Rate, wachsende Bevölkerung</p>
+    <p>Die reinen Sterbezahlen wirken volatil (2015 ≈ 50K, 2010 ≈ 43K). Nach Division durch die Bevölkerung bleibt die Rate in einem engen Band von 14–16 pro 100k. Die scheinbaren Schwankungen sind weitgehend demografisch, nicht epidemiologisch.</p>
   </div>
 
-  <h2>Räumliche Verteilung nach Bundesstaat</h2>
-  <p>Eine Karte mit absoluten Todeszahlen produziert ein irreführendes Bild: Kalifornien, Texas und New York erscheinen am gefährlichsten — schlicht weil sie die bevölkerungsreichsten Staaten sind. Der Wechsel zur Sterblichkeitsrate je 100.000 zeigt eine fundamental andere Risiko-Geografie.</p>
+  <h2>Bevölkerung steuert die Rohzahlen</h2>
+  <p>Über alle 458 Bundesstaat-Jahr-Beobachtungen sind Bevölkerung und Influenza-Todesfälle eng verknüpft — Pearson <strong>r = 0,956</strong>. Genau das macht Rohzahlen für einen Vergleich zwischen Bundesstaaten unbrauchbar: bei dieser Stärke sagt "größter Bundesstaat" fast mechanisch "die meisten Todesfälle" voraus. Die eigentliche Frage — "wo ist das Pro-Kopf-Risiko am höchsten?" — verlangt einen anderen Nenner.</p>
   <figure class="case-figure">
-    <img src="influenza-tableau-2.png" alt="Sterblichkeitsrate je 100.000 nach Bundesstaat"/>
-    <figcaption>Abbildung 2. Sterblichkeitsrate je 100.000 Einwohner. Dunkleres Rot = höheres Pro-Kopf-Risiko. Das Muster wird nicht von der Gesamtbevölkerung getrieben — es spiegelt echte Variation in Altersstruktur, Gesundheitsversorgung und Reporting wider.</figcaption>
+    <img src="influenza-pop-deaths-scatter.png" alt="Bevölkerung vs. Influenza-Todesfälle auf Bundesstaat-Jahr-Ebene"/>
+    <figcaption>Abbildung 2. Bevölkerung vs. Influenza-Todesfälle, ein Punkt je Bundesstaat-Jahr (n = 458). Lineare Anpassung mit Pearson r = 0,956 — die Bevölkerung allein erklärt die Reihenfolge der Rohzahlen über die Bundesstaaten.</figcaption>
   </figure>
-  <div class="insight-box pink">
-    <p class="insight-title">Erkenntnis — Wahl des Maßstabs ändert die Antwort</p>
-    <p>Sterblichkeitsrate statt absolute Zahlen verändert grundlegend, was die Daten aussagen — eine kritische analytische Unterscheidung mit direkten politischen Implikationen. Absolute Zahlen beantworten 'Wo passieren die meisten Todesfälle?' Raten beantworten 'Wo ist das Risiko am höchsten?'</p>
+
+  <h2>Wähle die Kennzahl, ändere die Antwort</h2>
+  <p>Die Wahl der Kennzahl ändert die Rangliste nicht um ein paar Plätze — sie ordnet sie komplett neu. Fünf der Top-10 nach Rohzahl fallen aus den Top-10 nach Rate heraus, und fünf bevölkerungsschwächere Bundesstaaten (Hawaii, Massachusetts, Missouri, Mississippi, Alabama) rücken nach oben.</p>
+  <figure class="case-figure">
+    <img src="influenza-top10-comparison.png" alt="Top-10-Bundesstaaten nach Todesfällen vs. nach Rate pro 100k"/>
+    <figcaption>Abbildung 3. Dieselben neun Jahre, zwei Rankings. Links: Top 10 nach Gesamtzahl der Todesfälle (Kalifornien, NY, TX führen — große Bevölkerung). Rechts: Top 10 nach Sterblichkeitsrate pro 100k (NY, Tennessee, Hawaii führen). Nur New York, Pennsylvania, Ohio und North Carolina erscheinen auf beiden Listen.</figcaption>
+  </figure>
+  <div class="insight-box yellow">
+    <p class="insight-title">Key Insight — Personal folgt der Rate, nicht der Zahl</p>
+    <p>Plant man nach Rohzahlen, schickt man Personal dorthin, wo die meisten Menschen ohnehin leben. Plant man nach Rate, schützt man die Bevölkerungen mit dem tatsächlich höchsten Pro-Kopf-Risiko — und das ist eine grundlegend andere Liste von Bundesstaaten.</p>
   </div>
+
+  <h2>Räumliche Verteilung — das Tableau-Dashboard</h2>
+  <p>Die dreischichtige Tableau-Karte zeigt beide Kennzahlen gleichzeitig: blaue Flächenfärbung = Gesamttodesfälle, Kreisgröße = Bevölkerung, Kreisfarbe (weiß → rot) = Sterblichkeitsrate pro 100k. Ein Jahresfilter erlaubt es Stakeholdern, durch 2009–2017 zu blättern.</p>
+  <figure class="case-figure">
+    <img src="influenza-tableau-2.png" alt="US-Influenza-Dashboard — Todesfälle, Bevölkerung, Sterblichkeitsrate pro 100k"/>
+    <figcaption>Abbildung 4. Das Tableau-Dashboard. Flächenfärbung = Gesamttodesfälle (Blau-Skala, 0–54.002). Kreisgröße = Bevölkerung (5M–339M aggregiert). Kreisfarbe = Sterblichkeitsrate pro 100k (0–23,3). Bundesstaaten, die sowohl dunkel sind <em>als auch</em> rote Kreise zeigen, haben höchste Priorität — viele Fälle <em>und</em> hohes Pro-Kopf-Risiko.</figcaption>
+  </figure>
 
   <h2>Demografisches Muster</h2>
-  <p>In jedem Bundesstaat machen Erwachsene ab <strong>75 Jahren</strong> den größten Anteil der influenzabedingten Todesfälle aus. Das ist konsistent mit der nationalen CDC-Berichterstattung und mit der Biologie der Influenzaschwere bei älteren Menschen.</p>
-  <div class="insight-box yellow">
-    <p class="insight-title">Erkenntnis — Altersstruktur formt das Risiko auf Bundesstaaten-Ebene</p>
-    <p>Staaten mit älteren Bevölkerungsprofilen zeigen durchgehend höhere Sterblichkeitsraten. Altersbereinigte Vergleiche würden die Analyse weiter verfeinern.</p>
+  <p>Influenza-Sterblichkeit ist überwältigend ein Problem der älteren Bevölkerung. Personen ab <strong>85 Jahren allein machen 51 % aller Todesfälle aus</strong>; die Gruppe 75+ zusammen 78 %; die Gruppe 65+ zusammen 91 %. Sterblichkeit unter 55 Jahren ist vernachlässigbar.</p>
+  <figure class="case-figure">
+    <img src="influenza-age-groups.png" alt="Sterblichkeit nach Altersgruppe"/>
+    <figcaption>Abbildung 5. Influenza-Todesfälle nach Zehnjahres-Altersgruppen, 2009–2017 (US-Bundesstaaten, n ≈ 415K). 85+ allein = 51,2 % aller Todesfälle; 75+ zusammen = 78,4 %; 65+ zusammen = 91,3 %.</figcaption>
+  </figure>
+  <div class="insight-box pink">
+    <p class="insight-title">Key Insight — Impf-Priorisierung ist klar</p>
+    <p>Es geht hier nicht um eine Verteilung über Altersgruppen, sondern um eine Gruppe. Impfkampagnen, Vorrat an antiviralen Medikamenten und vorab-saisonale Personalplanung für Pflegeeinrichtungen sollten den operativen Schwerpunkt bilden. Das Altersssignal ist deutlich stärker als das geografische Signal.</p>
   </div>
 
-  <h2>Kernergebnisse</h2>
+  <h2>Wichtigste Erkenntnisse</h2>
   <div class="finding green">
-    <p class="finding-title">Ergebnis 1 — Die nationale Sterblichkeitsrate ist stabil geblieben.</p>
-    <p>Statistische Tests bestätigen keine signifikante Veränderung der US-Influenza-Sterblichkeitsrate von 2009 bis 2017. Sie blieb nahe 0,012 %.</p>
+    <p class="finding-title">Erkenntnis 1 — Die nationale Sterblichkeitsrate war praktisch konstant.</p>
+    <p>2009–2017 lag die Rate im Band 13,8–15,8 pro 100k (≈0,015 %). Scheinbare Schwankungen der Todesfälle sind hauptsächlich demografisch, nicht epidemiologisch. Kein statistisch signifikanter Trend.</p>
   </div>
   <div class="finding blue">
-    <p class="finding-title">Ergebnis 2 — Die Bevölkerung korreliert stark mit absoluten Todeszahlen (r ≈ 0,96).</p>
-    <p>Die Bevölkerung allein erklärt den Großteil der Variation der absoluten Zahlen zwischen Staaten — was sie als Vergleichsmaßstab unbrauchbar macht.</p>
+    <p class="finding-title">Erkenntnis 2 — Bevölkerung korreliert fast perfekt mit Rohzahlen (r = 0,956).</p>
+    <p>Das macht Rohzahlen als Vergleichsmaß zwischen Bundesstaaten praktisch wertlos. Jede Aussage zu "am stärksten betroffenen Bundesstaaten" auf Basis von Rohzahlen reproduziert im Wesentlichen die Bevölkerungsrangliste.</p>
   </div>
   <div class="finding yellow">
-    <p class="finding-title">Ergebnis 3 — Sterblichkeitsrate, nicht absolute Zahlen, ist der korrekte Maßstab.</p>
-    <p>Der Wechsel des Maßstabs ordnet die Karte der 'gefährlichsten' Staaten vollständig neu — eine kritische Erkenntnis für Public-Health-Entscheidungen.</p>
+    <p class="finding-title">Erkenntnis 3 — Die Sterblichkeitsrate ordnet die Prioritätskarte komplett neu.</p>
+    <p>Der Wechsel der Kennzahl bringt Hawaii, Massachusetts, Missouri, Mississippi und Alabama in die Top 10 und drängt Kalifornien, Texas, Florida, Illinois und Michigan heraus. Nur New York, Pennsylvania, Ohio und North Carolina überstehen beide Listen. Personalentscheidungen sollten sich an der ratenbasierten Liste orientieren.</p>
   </div>
   <div class="finding pink">
-    <p class="finding-title">Ergebnis 4 — Erwachsene ab 75 machen den größten Anteil der Todesfälle aus.</p>
-    <p>Impfkampagnen und präventive Versorgung sollten diese Gruppe priorisieren, um den größten Effekt zu erzielen.</p>
+    <p class="finding-title">Erkenntnis 4 — Impf-Priorisierung ist altersbasiert.</p>
+    <p>Die Gruppe 85+ macht 51 % aller Influenza-Todesfälle aus; die Gruppe 75+ 78 %; die Gruppe 65+ 91 %. Aufklärung und Vorräte sollten entsprechend auf Pflegeeinrichtungen gewichtet werden.</p>
   </div>
 
-  <h2>Materialien</h2>
-  <a href="https://public.tableau.com/app/profile/a.a5244/viz/Exercise2_7InfluenzaSpatialAnalysis20092017_AA/InfluenzaStoryAkeelAlramadhan" target="_blank" rel="noopener" class="btn-link">Interaktive Story auf Tableau ansehen →</a>
-  <a href="https://github.com/ageelalramadhan" target="_blank" rel="noopener" class="btn-outline-link">&lt;/&gt; GitHub-Repository</a>
+  <h2>Ressourcen</h2>
+  <a href="https://public.tableau.com/views/Exercise2_7InfluenzaSpatialAnalysis20092017_AA/InfluenzaDeathsPopulation" target="_blank" rel="noopener" class="btn-link">Interaktives Dashboard auf Tableau ansehen →</a>
+  <a href="https://github.com/ageelalramadhan/us-influenza-staffing-analysis" target="_blank" rel="noopener" class="btn-outline-link">&lt;/&gt; GitHub-Repository</a>
 </div>
-
 <footer>
   <div class="footer-inner">
-    <p class="footer-copy">© 2026 Ageel Alramadhan · Datenanalyst · Hamburg</p>
+    <p class="footer-copy">© 2026 Ageel Alramadhan · Data Analyst · Hamburg</p>
     <div class="footer-links">
       <a href="contact-de.html">Kontakt</a>
       <a href="https://www.linkedin.com/in/ageel-alramadhan/" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:4px"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a>
       <a href="https://github.com/ageelalramadhan" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:4px"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</a>
       <a href="impressum.html">Impressum</a>
-      <a href="datenschutz.html">Datenschutzerklärung</a>
+      <a href="datenschutz.html">Datenschutz</a>
     </div>
   </div>
 </footer>
 <button class="back-top" id="back-top" aria-label="Back to top">↑</button>
 <div id="cookie-banner" class="cookie-banner" style="display:none;">
-  <div class="cookie-inner"><p>Diese Website verwendet Google Analytics. Sie können zustimmen oder ablehnen.</p>
-  <div class="cookie-actions"><button class="cookie-btn" data-cookie-reject>Ablehnen</button><button class="cookie-btn primary" data-cookie-accept>Akzeptieren</button></div></div>
+  <div class="cookie-inner"><p>This website uses Google Analytics. You can accept or decline.</p>
+  <div class="cookie-actions"><button class="cookie-btn" data-cookie-reject>Decline</button><button class="cookie-btn primary" data-cookie-accept>Accept</button></div></div>
 </div>
 <script src="consent.js"></script>
 <script>

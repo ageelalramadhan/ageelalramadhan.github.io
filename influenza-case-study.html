@@ -171,98 +171,115 @@
     </nav>
   </div>
 </div>
-
 <div class="case-body">
   <div class="tools-box">
-    <div class="tools-label">Tools & Libraries</div>
-    <div class="tools-value">Excel · Tableau · Statistical Analysis · Spatial Visualization</div>
-    <p><strong>Dataset:</strong> CDC influenza mortality records (2009–2017) across all 50 U.S. states. ~6,000 rows.</p>
-    <p><strong>Output:</strong> Story-driven Tableau dashboard demonstrating that mortality rate, not raw counts, is the correct metric for cross-state comparison</p>
+    <div class="tools-label">Tools &amp; Libraries</div>
+    <div class="tools-value">Excel · Tableau · Python · Pandas · NumPy · SciPy · INDEX/MATCH · Pivot Tables</div>
+    <p><strong>Datasets:</strong> CDC influenza mortality records by state · month · age group (2009–2017, 66K rows), CDC ILI sentinel-provider visits (24.9K rows), CDC lab-confirmed strain tests (14.1K rows), NIS childhood vaccination survey (28.5K rows), U.S. Census state population estimates</p>
+    <p><strong>Output:</strong> Integrated state-year dataset and 3-layer Tableau dashboard (state choropleth + population symbols + per-capita rate overlay) supporting medical staffing deployment recommendations across U.S. states</p>
   </div>
   <div class="source-box">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
     <div>
       <div class="source-label">Source Code</div>
-      <a href="https://github.com/ageelalramadhan" target="_blank" rel="noopener">github.com/ageelalramadhan →</a>
+      <a href="https://github.com/ageelalramadhan/us-influenza-staffing-analysis" target="_blank" rel="noopener">github.com/ageelalramadhan/us-influenza-staffing-analysis →</a>
     </div>
   </div>
   <div class="stat-row">
-    <div class="stat-cell green"><div class="stat-num green">9</div><div class="stat-label">Years Analyzed</div></div>
-    <div class="stat-cell blue"><div class="stat-num blue">50</div><div class="stat-label">U.S. States</div></div>
-    <div class="stat-cell yellow"><div class="stat-num yellow">6K</div><div class="stat-label">Records</div></div>
-    <div class="stat-cell pink"><div class="stat-num pink">0.012%</div><div class="stat-label">Avg Mortality Rate</div></div>
+    <div class="stat-cell green"><div class="stat-num green">9</div><div class="stat-label">Years (2009–2017)</div></div>
+    <div class="stat-cell blue"><div class="stat-num blue">51</div><div class="stat-label">Jurisdictions</div></div>
+    <div class="stat-cell yellow"><div class="stat-num yellow">66K</div><div class="stat-label">CDC Death Records</div></div>
+    <div class="stat-cell pink"><div class="stat-num pink">415K</div><div class="stat-label">Influenza Deaths</div></div>
   </div>
 
   <h2>Project Overview</h2>
-  <p>Analysis of U.S. influenza mortality across all 50 states from 2009 through 2017. The core insight: <strong>mortality rate, not raw death counts</strong>, is the correct metric for cross-state comparison — a methodological choice that fundamentally changes what the data communicates.</p>
-  <p><strong>Business question:</strong> Are some states more dangerous than others for influenza, and is mortality changing over time?</p>
+  <p>The project brief was operational, not academic: <strong>prepare for influenza season — right staff, right place, right time</strong>. Using past trends by state and demographics, plan when and how many medical staff to deploy across U.S. states during flu season.</p>
+  <p>The analytical challenge is choosing the metric that supports that decision. Raw death counts overwhelmingly track population, so they answer the wrong question — "where do most people live" — instead of "where is per-capita risk highest." The case study walks through that choice, then quantifies the resulting reorder of priority states.</p>
+  <p><strong>Business questions:</strong> (1) Which states have the highest influenza burden after adjusting for population? (2) Has national mortality changed significantly across 2009–2017? (3) Which age groups should vaccination and outreach programs prioritize?</p>
 
-  <h2>Methodology</h2>
+  <h2>Data Pipeline</h2>
   <table class="pipeline-table">
     <thead><tr><th>Step</th><th>Tool</th><th>Action</th></tr></thead>
     <tbody>
-      <tr><td><span class="step-tag">1. Data Collection</span></td><td>CDC source</td><td>Downloaded 2009–2017 mortality records by state</td></tr>
-      <tr><td><span class="step-tag">2. Cleaning</span></td><td>Excel</td><td>Standardized state names, removed duplicate years, validated row totals</td></tr>
-      <tr><td><span class="step-tag">3. Population Merge</span></td><td>Excel</td><td>Joined annual state population for rate calculations</td></tr>
-      <tr><td><span class="step-tag">4. Rate Calculation</span></td><td>Excel</td><td>deaths_per_100k = (deaths / population) × 100,000</td></tr>
-      <tr><td><span class="step-tag">5. Trend Analysis</span></td><td>Excel + Tableau</td><td>Year-over-year statistical comparison of rates</td></tr>
-      <tr><td><span class="step-tag">6. Spatial Mapping</span></td><td>Tableau</td><td>Choropleth maps for both raw counts and rates</td></tr>
-      <tr><td><span class="step-tag">7. Story Building</span></td><td>Tableau Story</td><td>Narrative dashboard contrasting raw vs rate views</td></tr>
+      <tr><td><span class="step-tag">01</span></td><td>Excel</td><td>Loaded CDC influenza mortality records (66,097 rows · State × Year × Month × Age Group, 2009–2017). Flagged "Suppressed" cells per CDC small-cell policy.</td></tr>
+      <tr><td><span class="step-tag">02</span></td><td>Excel · Pivot</td><td>Cleaned the CDC table: standardized "Not Stated" → "Unknown", verified no duplicates on (State Code, Year, Month, Age Group), preserved suppressed-cell flags rather than imputing.</td></tr>
+      <tr><td><span class="step-tag">03</span></td><td>Excel</td><td>Cleaned U.S. Census state-population estimates (28,986 county-year rows) and rolled them up to State × Year.</td></tr>
+      <tr><td><span class="step-tag">04</span></td><td>Excel · INDEX/MATCH</td><td>Built a <code>State|Year</code> composite key and merged the two cleaned tables into a single state-year master with population, deaths, and computed mortality rate.</td></tr>
+      <tr><td><span class="step-tag">05</span></td><td>Python · NumPy</td><td>Statistical validation: Pearson correlation of population vs. deaths at state-year grain; year-over-year mortality-rate comparison.</td></tr>
+      <tr><td><span class="step-tag">06</span></td><td>Tableau</td><td>Built the 3-layer dashboard: state-fill choropleth (raw deaths) + graduated symbols sized by population + symbol-color = mortality rate per 100k.</td></tr>
+      <tr><td><span class="step-tag">07</span></td><td>Tableau Story</td><td>Story-driven dashboard tying the raw-counts map and the rate map together so staffing decisions visibly hinge on the metric choice.</td></tr>
     </tbody>
   </table>
 
   <h2>Temporal Trend (2009–2017)</h2>
-  <p>Annual deaths remained broadly stable across the study period. Statistical testing of year-over-year mortality rates shows no significant change — the rate has hovered consistently around <strong>0.012%</strong> nationally.</p>
+  <p>Influenza is a recurring problem of stable magnitude, not a worsening one. National deaths sat in a tight 42K–50K band across the nine years; the population-adjusted rate hovered between <strong>13.8 and 15.8 per 100,000</strong>, averaging 14.8 per 100k (≈0.015%).</p>
   <figure class="case-figure">
-    <img src="influenza-tableau-1.png" alt="U.S. influenza deaths by year, 2009–2017"/>
-    <figcaption>Figure 1. Annual influenza-related deaths across all U.S. states. Year-over-year variation falls within normal seasonal fluctuation; no significant temporal trend.</figcaption>
+    <img src="influenza-yearly-deaths-rate.png" alt="Annual U.S. influenza deaths and mortality rate per 100k, 2009–2017"/>
+    <figcaption>Figure 1. National influenza-related deaths and the population-adjusted mortality rate per 100,000. Bars: 42K–50K range. Line: 13.8–15.8 per 100k — apparent year-to-year volume shifts mostly reflect population growth.</figcaption>
   </figure>
   <div class="insight-box blue">
-    <p class="insight-title">Key Insight — No significant change over time</p>
-    <p>Year-over-year statistical tests confirm mortality rate has remained essentially flat across 2009–2017. Apparent volume increases reflect population growth, not worsening outcomes.</p>
+    <p class="insight-title">Key Insight — Stable rate, growing population</p>
+    <p>The total-deaths picture looks volatile (2015 ≈ 50K, 2010 ≈ 43K). Once we divide through by population, the rate stays inside a narrow 14–16 per 100k band. The headline year-to-year swings are largely demographic, not epidemiological.</p>
   </div>
 
-  <h2>Spatial Distribution by State</h2>
-  <p>Mapping raw death counts produces a misleading picture: California, Texas, and New York appear most dangerous simply because they are the most populous. Switching the metric to mortality rate per 100,000 reveals a fundamentally different geography of risk.</p>
+  <h2>Population Drives Raw Counts</h2>
+  <p>Across all 458 state-year observations, state population and raw influenza deaths are tightly linked — Pearson <strong>r = 0.956</strong>. This is exactly what makes raw counts misleading for cross-state comparison: at this strength, "biggest state" predicts "most deaths" almost mechanically. The real question — "where is per-capita risk highest?" — needs a different denominator.</p>
   <figure class="case-figure">
-    <img src="influenza-tableau-2.png" alt="Mortality rate per 100,000 by state"/>
-    <figcaption>Figure 2. Mortality rate per 100,000 population. Darker red = higher per-capita risk. The pattern is not driven by total population — it reflects genuine state-level variation in age structure, healthcare access, and reporting.</figcaption>
+    <img src="influenza-pop-deaths-scatter.png" alt="State population vs influenza deaths at state-year grain"/>
+    <figcaption>Figure 2. State population vs. influenza deaths, one point per state-year (n = 458). Linear fit at Pearson r = 0.956 — population alone explains the cross-state ranking of raw deaths.</figcaption>
   </figure>
-  <div class="insight-box pink">
-    <p class="insight-title">Key Insight — Choose the metric, change the answer</p>
-    <p>Choosing mortality rate over raw counts fundamentally changes what the data says — a critical analytical distinction with direct policy implications. Raw counts answer 'where do most deaths happen?' Rates answer 'where is risk highest?' Only the second supports policy.</p>
+
+  <h2>Choose the Metric, Change the Answer</h2>
+  <p>The metric choice doesn't shave a few positions off the leaderboard — it reorders it entirely. Five of the top-10 states by raw count drop out of the top-10 by rate, and five lower-population states (Hawaii, Massachusetts, Missouri, Mississippi, Alabama) rise into it.</p>
+  <figure class="case-figure">
+    <img src="influenza-top10-comparison.png" alt="Top-10 states by total deaths vs by mortality rate per 100k"/>
+    <figcaption>Figure 3. Same nine years of data, two rankings. Left: top 10 by total deaths (California, NY, TX lead — large populations). Right: top 10 by mortality rate per 100k (NY, Tennessee, Hawaii lead). Only New York, Pennsylvania, Ohio and North Carolina appear on both lists.</figcaption>
+  </figure>
+  <div class="insight-box yellow">
+    <p class="insight-title">Key Insight — Staffing follows the rate, not the count</p>
+    <p>If you deploy by raw deaths, you send people to where most people already live. If you deploy by rate, you protect the populations actually carrying the highest per-capita risk — and that's a fundamentally different list of states.</p>
   </div>
+
+  <h2>Spatial Distribution — The Tableau Dashboard</h2>
+  <p>The three-layer Tableau map renders both metrics simultaneously: blue state-fill encodes total deaths, circle size encodes population, and circle color (white → red) encodes mortality rate per 100k. A Year filter lets stakeholders step through 2009–2017.</p>
+  <figure class="case-figure">
+    <img src="influenza-tableau-2.png" alt="U.S. influenza dashboard — deaths, population, mortality rate per 100k"/>
+    <figcaption>Figure 4. The Tableau dashboard. State fill = total deaths (blue scale, 0–54,002). Circle size = population (5M–339M aggregate over the period). Circle color = mortality rate per 100k (0–23.3). States that are dark <em>and</em> have red circles are the highest priority — high volume <em>and</em> high per-capita risk.</figcaption>
+  </figure>
 
   <h2>Demographic Pattern</h2>
-  <p>Within every state, adults aged <strong>75 and over</strong> account for the largest share of influenza-related deaths. This is consistent with national CDC reporting and with the underlying biology of influenza severity in elderly populations.</p>
-  <div class="insight-box yellow">
-    <p class="insight-title">Key Insight — Age structure shapes state-level risk</p>
-    <p>States with older population profiles consistently show higher mortality rates. Age-adjusted comparisons would refine the analysis further — without age adjustment, some of the apparent state-level variation is demographic, not behavioural.</p>
+  <p>Influenza mortality is overwhelmingly an elderly-population problem. Adults aged <strong>85 and older alone account for 51% of all deaths</strong>; the 75+ population together accounts for 78%; the 65+ population together accounts for 91%. Mortality below age 55 is negligible.</p>
+  <figure class="case-figure">
+    <img src="influenza-age-groups.png" alt="Mortality by age group"/>
+    <figcaption>Figure 5. Influenza-related deaths by 10-year age band, 2009–2017 (clean US-state records, n ≈ 415K). 85+ alone is 51.2% of all deaths; 75+ combined is 78.4%; 65+ combined is 91.3%.</figcaption>
+  </figure>
+  <div class="insight-box pink">
+    <p class="insight-title">Key Insight — Vaccination targeting is straightforward</p>
+    <p>This isn't a story about distributing effort across age bands — it's a story about one band. Vaccination outreach, antiviral stockpiling, and pre-season staffing for elderly-care facilities should be the dominant operational priority. The age signal is much stronger than the geographic signal.</p>
   </div>
 
   <h2>Key Findings</h2>
   <div class="finding green">
-    <p class="finding-title">Finding 1 — National mortality rate has been stable.</p>
-    <p>Statistical testing confirms no significant change in U.S. influenza mortality rate from 2009 to 2017. Rate stayed near 0.012%.</p>
+    <p class="finding-title">Finding 1 — National mortality rate has been essentially flat.</p>
+    <p>Across 2009–2017 the rate stayed in a 13.8–15.8 per 100k band (≈0.015%). Apparent year-over-year volume changes are mostly demographic, not epidemiological. No statistically significant temporal trend.</p>
   </div>
   <div class="finding blue">
-    <p class="finding-title">Finding 2 — Population strongly correlates with raw death counts (r ≈ 0.96).</p>
-    <p>Population alone explains most of the cross-state variation in raw counts — making raw counts useless as a comparative risk metric.</p>
+    <p class="finding-title">Finding 2 — Population correlates near-perfectly with raw deaths (r = 0.956).</p>
+    <p>That makes raw counts a near-useless cross-state metric. Any "most-affected states" answer built on raw counts is mostly just listing the largest states.</p>
   </div>
   <div class="finding yellow">
-    <p class="finding-title">Finding 3 — Mortality rate, not raw counts, is the correct metric for state-by-state comparison.</p>
-    <p>Switching the metric reorders the map of 'most dangerous' states entirely — a critical insight for public-health decision-making.</p>
+    <p class="finding-title">Finding 3 — Mortality rate reorders the priority map entirely.</p>
+    <p>Switching metrics moves Hawaii, Massachusetts, Missouri, Mississippi, and Alabama into the top 10, and pushes California, Texas, Florida, Illinois, and Michigan out. Only New York, Pennsylvania, Ohio, and North Carolina survive both lists. Staffing decisions should reference the rate-ranked list.</p>
   </div>
   <div class="finding pink">
-    <p class="finding-title">Finding 4 — Adults aged 75+ account for the largest share of deaths.</p>
-    <p>Vaccination campaigns and preventive healthcare prioritization should focus on this demographic for greatest impact.</p>
+    <p class="finding-title">Finding 4 — Vaccination targeting is age-driven.</p>
+    <p>The 85+ population accounts for 51% of all influenza-related deaths; the 75+ population accounts for 78%; the 65+ population accounts for 91%. Outreach and antiviral stockpiling should weight elderly-care facilities accordingly.</p>
   </div>
 
   <h2>Resources</h2>
-  <a href="https://public.tableau.com/app/profile/a.a5244/viz/Exercise2_7InfluenzaSpatialAnalysis20092017_AA/InfluenzaStoryAkeelAlramadhan" target="_blank" rel="noopener" class="btn-link">View Interactive Story on Tableau →</a>
-  <a href="https://github.com/ageelalramadhan" target="_blank" rel="noopener" class="btn-outline-link">&lt;/&gt; GitHub Repository</a>
+  <a href="https://public.tableau.com/views/Exercise2_7InfluenzaSpatialAnalysis20092017_AA/InfluenzaDeathsPopulation" target="_blank" rel="noopener" class="btn-link">View Interactive Dashboard on Tableau →</a>
+  <a href="https://github.com/ageelalramadhan/us-influenza-staffing-analysis" target="_blank" rel="noopener" class="btn-outline-link">&lt;/&gt; GitHub Repository</a>
 </div>
-
 <footer>
   <div class="footer-inner">
     <p class="footer-copy">© 2026 Ageel Alramadhan · Data Analyst · Hamburg</p>
