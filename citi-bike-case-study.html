@@ -140,6 +140,28 @@
     .btn-outline-link:hover{border-color:var(--accent);color:var(--accent);}
 
     @media(max-width:768px){.page-hero{padding:80px 20px 40px;}.case-body{padding:40px 20px 60px;}}
+  
+    /* === MOBILE FIX PATCH === */
+    @media(max-width:768px){
+      .page-title{min-height:auto;font-size:clamp(28px,8vw,44px);margin-bottom:12px;letter-spacing:1px;}
+      .page-hero{padding:70px 16px 32px;}
+      .page-subtitle{font-size:12px;line-height:1.6;margin-bottom:20px;}
+      .switcher{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:18px;}
+      .switcher a,.switcher span{padding:9px 6px;font-size:11px;text-align:center;letter-spacing:0;display:flex;align-items:center;justify-content:center;min-height:38px;border-radius:3px;}
+      .case-body{padding:36px 16px 56px;}
+      .case-body h2{font-size:22px;margin:36px 0 10px;}
+      .tools-box,.source-box{padding:14px 16px;}
+      .tools-value{font-size:13px;line-height:1.7;}
+      .source-box{flex-direction:column;align-items:flex-start;gap:6px;}
+      .pipeline-table{display:block;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;}
+      .case-figure figcaption{font-size:13px;}
+      .finding,.insight-box{padding:16px 18px;}
+      .btn-link,.btn-outline-link{display:flex;width:100%;margin:8px 0;justify-content:center;}
+    }
+    @media(max-width:380px){
+      .switcher{grid-template-columns:repeat(2,1fr);}
+    }
+
   </style>
 
 </head>
