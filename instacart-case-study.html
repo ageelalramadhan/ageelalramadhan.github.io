@@ -24,7 +24,7 @@
     .nav-right{display:flex;gap:12px;align-items:center;flex-shrink:0;width:160px;justify-content:flex-end;}
     .nav-lang{font-size:12px;color:var(--muted);text-decoration:none;border:1px solid var(--border);padding:5px 12px;transition:all 0.2s;font-family:'JetBrains Mono',monospace;white-space:nowrap;}
     .nav-lang:hover{border-color:var(--accent);color:var(--accent);}
-    @media(max-width:900px){nav{padding:0 20px;}.nav-center{display:none;}}
+    @media(max-width:900px){nav{padding:0 20px;}}
 
     /* FOOTER */
     footer{background:var(--bg2);border-top:1px solid var(--border);padding:28px 40px;}
@@ -170,6 +170,21 @@
       nav.switcher{grid-template-columns:repeat(2,1fr);}
     }
 
+  
+    /* === MOBILE NAV HAMBURGER === */
+    .nav-toggle{display:none;background:none;border:1px solid var(--border);color:var(--text);width:38px;height:38px;cursor:pointer;align-items:center;justify-content:center;flex-direction:column;gap:4px;padding:0;border-radius:3px;}
+    .nav-toggle span{display:block;width:18px;height:2px;background:currentColor;transition:transform 0.2s,opacity 0.2s;}
+    .nav-toggle.open span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+    .nav-toggle.open span:nth-child(2){opacity:0;}
+    .nav-toggle.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+    @media(max-width:900px){
+      .nav-toggle{display:flex;}
+      .nav-center{display:flex;position:fixed;top:60px;left:0;right:0;flex-direction:column;gap:0;background:rgba(15,15,15,0.98);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);transform:none;padding:8px 0;max-height:0;overflow:hidden;transition:max-height 0.25s ease;}
+      .nav-center.open{max-height:320px;}
+      .nav-center li{width:100%;}
+      .nav-center a{display:block;padding:14px 24px;font-size:15px;border-bottom:1px solid var(--border);}
+      .nav-center li:last-child a{border-bottom:none;}
+    }
   </style>
 
 </head>
@@ -185,6 +200,7 @@
   <div class="nav-right">
     <a href="instacart-case-study-de.html" class="nav-lang">🇩🇪 Deutsch</a>
   </div>
+  <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 
 <div class="page-hero">
@@ -376,6 +392,15 @@
   const btn = document.getElementById('back-top');
   window.addEventListener('scroll', () => btn.classList.toggle('visible', window.scrollY > 300));
   btn.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
+</script>
+<script>
+  (function(){
+    var t=document.querySelector('.nav-toggle'),m=document.querySelector('.nav-center');
+    if(t&&m){
+      t.addEventListener('click',function(){t.classList.toggle('open');m.classList.toggle('open');});
+      m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){t.classList.remove('open');m.classList.remove('open');});});
+    }
+  })();
 </script>
 </body>
 </html>
