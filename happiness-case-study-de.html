@@ -305,7 +305,7 @@
   <p>Um über paarweise Beziehungen hinauszugehen, wurden die vier stärksten Prädiktoren (BIP, soziale Unterstützung, Lebenserwartung, Freiheit) normiert und an K-Means mit k = 3 übergeben. Die resultierenden Cluster segmentieren Länder sauber entlang der BIP-Happiness-Diagonale:</p>
   <figure class="case-figure">
     <img src="happiness-kmeans-clusters.png" alt="K-Means-Clustering (k=3) der Länder nach Wohlbefindens-Profil"/>
-    <figcaption>Abbildung 5. K-Means-Clustering bei k = 3 auf normierten BIP, sozialer Unterstützung, Lebenserwartung und Freiheit. Niedrigeres Wohlbefinden (n = 41), Mittel (n = 56), Höheres (n = 59). Cluster-Grenzen folgen der BIP-×-Happiness-Diagonale und ergeben eine saubere Dreiteilung.</figcaption>
+    <figcaption>Abbildung 5. K-Means-Clustering bei k = 3 auf normierten BIP, sozialer Unterstützung, Lebenserwartung und Freiheit. Niedrigeres Wohlbefinden (n = 41), Mittel (n = 56), Höheres (n = 59) bei 10 zufälligen Neustarts. Hinweis: Die Grenze Mittel/Höher ist instabil; ein Lauf mit nur einer Initialisierung (random_state = 42, wie im Notebook) ergibt 47 / 41 / 68. Die Gruppe Niedrig ist in jedem Lauf stabil.</figcaption>
   </figure>
   <div class="insight-box yellow">
     <p class="insight-title">Key Insight — Drei kohärente Profile aus dem multivariaten Raum</p>
@@ -334,7 +334,7 @@
   </div>
   <div class="finding pink">
     <p class="finding-title">Erkenntnis 4 — K-Means ergibt drei kohärente Wohlbefindens-Profile.</p>
-    <p>Normierung der vier stärksten Prädiktoren und Clustering bei k = 3 ergibt die Gruppen Niedriger (41), Mittlerer (56) und Höherer (59) Wohlbefinden, die sich entlang der BIP-×-Happiness-Diagonale ausrichten und multivariate Information über jede einzelne Korrelation hinaus tragen.</p>
+    <p>Normierung der vier stärksten Prädiktoren und Clustering bei k = 3 ergibt die Gruppen Niedriger (41), Mittlerer (56) und Höherer (59) Wohlbefinden, die sich entlang der BIP-×-Happiness-Diagonale ausrichten. Die Gruppe Niedrig ist über alle Initialisierungen stabil, die Trennung Mittel/Höher nicht. Nur das Segment mit niedrigem Wohlbefinden sollte daher als belastbares Ergebnis gelten.</p>
   </div>
 
   <h2>Einschränkungen</h2>

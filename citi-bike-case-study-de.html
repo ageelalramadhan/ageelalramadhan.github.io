@@ -230,7 +230,7 @@
   <div class="tools-box">
     <div class="tools-label">Tools & Bibliotheken</div>
     <div class="tools-value">Python · Pandas · NumPy · Plotly · Seaborn · Matplotlib · Streamlit · Kepler.gl</div>
-    <p><strong>Datenquelle:</strong> NYC Citi Bike Systemdaten (2022) — 12 monatliche ZIP-Dateien, ~1,7 Millionen Einzelfahrten</p>
+    <p><strong>Datenquelle:</strong> NYC Citi Bike Systemdaten (2022) — 12 monatliche ZIP-Dateien, ~29,8 Millionen Einzelfahrten</p>
     <p><strong>Wetterdaten:</strong> NOAA GHCND Tägliche Zusammenfassungen, Station USW00014732 (LaGuardia Airport) — über API abgerufen (TAVG, TMIN, TMAX, PRCP)</p>
     <p><strong>Ergebnis:</strong> Vollständig deploytes Streamlit-Dashboard mit mehreren Seiten zu saisonalen Trends, Temperaturkorrelation, Stationsnachfrage und geografischen Trip-Clustern</p>
   </div>
@@ -243,13 +243,13 @@
   </div>
   <div class="stat-row">
     <div class="stat-cell green"><div class="stat-num green">5</div><div class="stat-label">Notebooks</div></div>
-    <div class="stat-cell blue"><div class="stat-num blue">1.7M</div><div class="stat-label">Fahrtdaten</div></div>
-    <div class="stat-cell yellow"><div class="stat-num yellow">365</div><div class="stat-label">Tage zusammengeführt</div></div>
+    <div class="stat-cell blue"><div class="stat-num blue">29,8 Mio.</div><div class="stat-label">Fahrtdaten</div></div>
+    <div class="stat-cell yellow"><div class="stat-num yellow">364</div><div class="stat-label">Tage zusammengeführt</div></div>
     <div class="stat-cell pink"><div class="stat-num pink">6</div><div class="stat-label">Dashboard-Seiten</div></div>
   </div>
 
   <h2>Projektübersicht</h2>
-  <p>Citi Bike generiert jedes Jahr Millionen von Fahrtdatensätzen, aber Rohdaten zeigen nicht, wann Betriebsteams die Versorgung skalieren, welche Stationen Priorität haben oder wie saisonale Schwankungen geplant werden sollen. Dieses Projekt nimmt 1,7 Millionen Einzelfahrten, fügt sie mit NOAA-Tageswetterdaten vom LaGuardia Airport zusammen und macht den kombinierten Datensatz zu einem interaktiven Dashboard für Betriebsentscheidungen.</p>
+  <p>Citi Bike generiert jedes Jahr Millionen von Fahrtdatensätzen, aber Rohdaten zeigen nicht, wann Betriebsteams die Versorgung skalieren, welche Stationen Priorität haben oder wie saisonale Schwankungen geplant werden sollen. Dieses Projekt nimmt 29,8 Millionen Einzelfahrten, fügt sie mit NOAA-Tageswetterdaten vom LaGuardia Airport zusammen und macht den kombinierten Datensatz zu einem interaktiven Dashboard für Betriebsentscheidungen.</p>
   <p><strong>Geschäftsfrage:</strong> Wie sollte Citi Bike die Fahrradversorgung und Rebalancing-Operationen über das Jahr skalieren — und welche Stationen, Jahreszeiten und Umweltfaktoren treiben diese Entscheidung?</p>
 
   <h2>Datenpipeline</h2>
@@ -259,7 +259,7 @@
       <tr><td><span class="step-tag">1. Erfassen</span></td><td>citi_bike_weather_2022</td><td>12 monatliche Citi-Bike-ZIP-Dateien + NOAA-API-Wetterdaten via Pagination heruntergeladen</td></tr>
       <tr><td><span class="step-tag">2. Extrahieren</span></td><td>citi_bike_weather_2022</td><td>ZIPs mit Pythons zipfile entpackt; alle 12 CSVs via Generator in pd.concat() kombiniert</td></tr>
       <tr><td><span class="step-tag">3. Bereinigen</span></td><td>citi_bike_weather_2022</td><td>Zeitstempel geparst, auf 2022 gefiltert, Null-Datetimes entfernt, NOAA long→wide via pivot()</td></tr>
-      <tr><td><span class="step-tag">4. Aggregieren</span></td><td>citi_bike_weather_2022</td><td>1,7 Mio. Fahrtenzeilen zu täglichen Fahrtenanzahlen gruppiert; Stationsdaten für Top-10-Ranking aggregiert</td></tr>
+      <tr><td><span class="step-tag">4. Aggregieren</span></td><td>citi_bike_weather_2022</td><td>29,8 Mio. Fahrtenzeilen (nur 2022) zu täglichen Fahrtenanzahlen gruppiert; Stationsdaten für Top-10-Ranking aggregiert</td></tr>
       <tr><td><span class="step-tag">5. Mergen</span></td><td>citi_bike_weather_2022</td><td>Inner-Join der täglichen Fahrtenanzahl mit NOAA-Wetter nach Datum → citibike_2022_daily_with_weather.csv</td></tr>
       <tr><td><span class="step-tag">6. Visualisieren</span></td><td>exercise_2_3 / exercise_2_4</td><td>EDA mit Matplotlib und Seaborn: Zeitreihe, Doppelachsen-Diagramm, Streudiagramm, Verteilungen</td></tr>
       <tr><td><span class="step-tag">7. Geografisch</span></td><td>exercise_2_5</td><td>Kepler.gl Trip-Ursprungskarte — räumliche Clusteranalyse der Fahrnachfrage 2022</td></tr>
@@ -331,7 +331,7 @@
   </div>
 
   <h2>Materialien</h2>
-  <a href="https://citi-bike-weather-2022-mqakahbcukpsktnvkukyaa.streamlit.app/" target="_blank" rel="noopener" class="btn-link">Live-Streamlit-Dashboard ansehen →</a>
+  <a href="https://citi-bike-weather-2022-f2zr3j3vwcsduf7c5vd84m.streamlit.app/" target="_blank" rel="noopener" class="btn-link">Live-Streamlit-Dashboard ansehen →</a>
   <a href="https://github.com/ageelalramadhan/citi-bike-weather-2022" target="_blank" rel="noopener" class="btn-outline-link">&lt;/&gt; GitHub-Repository</a>
 </div>
 

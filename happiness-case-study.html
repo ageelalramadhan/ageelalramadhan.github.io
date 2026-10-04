@@ -305,7 +305,7 @@
   <p>To move beyond pairwise relationships, the four strongest predictors (GDP, social support, life expectancy, freedom) were standardised and passed to K-Means with k = 3. The resulting clusters segment countries cleanly along the GDP-and-happiness diagonal:</p>
   <figure class="case-figure">
     <img src="happiness-kmeans-clusters.png" alt="K-Means clustering (k=3) of countries by well-being profile"/>
-    <figcaption>Figure 5. K-Means clustering at k = 3 over standardised GDP, social support, life expectancy, and freedom. Lower well-being (n = 41), Medium (n = 56), Higher (n = 59). Cluster boundaries track the GDP × happiness diagonal and produce a clean three-way segmentation.</figcaption>
+    <figcaption>Figure 5. K-Means clustering at k = 3 over standardised GDP, social support, life expectancy, and freedom. Lower well-being (n = 41), Medium (n = 56), Higher (n = 59) with 10 random restarts. Note: the Medium/Higher boundary is unstable; a single-initialisation run (random_state = 42, as in the notebook) gives 47 / 41 / 68. The Lower group is stable in every run.</figcaption>
   </figure>
   <div class="insight-box yellow">
     <p class="insight-title">Key Insight — Three coherent profiles emerge from the multivariate space</p>
@@ -334,7 +334,7 @@
   </div>
   <div class="finding pink">
     <p class="finding-title">Finding 4 — K-Means produces three coherent well-being profiles.</p>
-    <p>Standardising the four strongest predictors and clustering at k = 3 yields Lower (41), Medium (56), and Higher (59) well-being groups that align with the GDP × happiness diagonal and carry multivariate information beyond any single correlation.</p>
+    <p>Standardising the four strongest predictors and clustering at k = 3 yields Lower (41), Medium (56), and Higher (59) well-being groups that align with the GDP × happiness diagonal. The Lower group is stable across initialisations; the Medium/Higher split is not, so only the low-well-being segment should be treated as a robust finding.</p>
   </div>
 
   <h2>Limitations</h2>
