@@ -267,7 +267,7 @@
     <tbody>
       <tr><td><span class="step-tag">1. Import</span></td><td>4.2</td><td>orders.csv + products.csv importieren, profilen und vorschauen</td></tr>
       <tr><td><span class="step-tag">2. Wrangling</span></td><td>4.3</td><td>Spalten umbenennen, Teilmengen erstellen, bereinigte Daten exportieren</td></tr>
-      <tr><td><span class="step-tag">3. Konsistenz</span></td><td>4.4</td><td>Gemischte Typen korrigieren, 260K fehlende Werte behandeln</td></tr>
+      <tr><td><span class="step-tag">3. Konsistenz</span></td><td>4.4</td><td>Gemischte Typen korrigieren, 206.209 fehlende Werte behandeln</td></tr>
       <tr><td><span class="step-tag">4. Merging</span></td><td>4.5</td><td>orders + order_products + products zu einem DataFrame verbinden</td></tr>
       <tr><td><span class="step-tag">5. Abgeleitete Vars</span></td><td>4.6</td><td>price_label, busiest_day, busiest_period_of_day erstellen</td></tr>
       <tr><td><span class="step-tag">6. Gruppierung</span></td><td>4.7</td><td>Loyalitäts-Flag, Ausgaben-Flag, Bestellhäufigkeits-Flag</td></tr>
@@ -280,7 +280,7 @@
   <h2>Datenqualität</h2>
   <div class="insight-box blue">
     <p class="insight-title">Erkenntnis — Fehlende Werte</p>
-    <p>260.290 fehlende Werte in days_since_prior_order sind <strong>erwartet</strong>, nicht fehlerhaft — sie entsprechen ersten Bestellungen ohne vorherige Bestellung. Das Auffüllen mit 0 erhält die semantische Bedeutung.</p>
+    <p>206.209 fehlende Werte in days_since_prior_order sind <strong>erwartet</strong>, nicht fehlerhaft. Die Zahl entspricht exakt der Kundenanzahl (206.209), also ist jeder fehlende Wert die erste Bestellung eines Kunden. Das Auffüllen mit 0 erhält die Bedeutung.</p>
   </div>
 
   <h2>Bestellzeit-Analyse</h2>
@@ -302,17 +302,17 @@
   <h2>Loyalitätssegmentierung</h2>
   <figure class="case-figure">
     <img src="instacart-loyalty.png" alt="Loyalitätsverteilung"/>
-    <figcaption>Abbildung 4. Drei-Stufen-Loyalität (Neu, Regulär, Loyal). Reguläre Kunden sind die größte Gruppe — höchster Hebel für Retention.</figcaption>
+    <figcaption>Abbildung 4. Drei-Stufen-Loyalität nach mittlerer Bestellnummer je Kunde (Neu ≤ 10, Regulär 10–20, Loyal &gt; 20). Neukunden stellen die meisten Bestellzeilen (12,1 Mio., 37 %), Loyal 10,9 Mio. (34 %), Regulär 9,4 Mio. (29 %). Der Median-Artikelpreis liegt in allen drei Gruppen bei 7,4.</figcaption>
   </figure>
 
   <h2>Demografie</h2>
   <figure class="case-figure">
     <img src="instacart-age-group.png" alt="Altersgruppen-Verteilung"/>
-    <figcaption>Abbildung 5. Erwachsene (30–49) dominieren — das Familiensegment ist die Kernzielgruppe der Plattform.</figcaption>
+    <figcaption>Abbildung 5. Erwachsene (30–49) sind die größte Gruppe (50.981 Kunden, 31 %), Senioren (65+) die zweitgrößte (43.250, 27 %). Gezählt werden Kunden mit 5+ Bestellungen.</figcaption>
   </figure>
   <figure class="case-figure">
     <img src="instacart-income-group.png" alt="Einkommensverteilung"/>
-    <figcaption>Abbildung 6. Mittelschicht-Haushalte (40k–80k) sind das größte Einkommenssegment, konsistent mit dem Lebensmittel-Use-Case.</figcaption>
+    <figcaption>Abbildung 6. Haushalte mit hohem Einkommen (&gt; 80.000 $) sind mit Abstand die größte Gruppe: 98.524 Kunden (61 %), gegenüber 51.484 mit mittlerem und 12.625 mit niedrigem Einkommen.</figcaption>
   </figure>
   <figure class="case-figure">
     <img src="instacart-age-income.png" alt="Alter vs. Einkommen Streudiagramm"/>
@@ -336,11 +336,11 @@
 
   <figure class="case-figure">
     <img src="instacart-order-frequency.png" alt="Verteilung der Bestellhäufigkeit"/>
-    <figcaption>Abbildung 8. Hochfrequenz-Kunden (20+ Bestellungen) sind die größte Gruppe — wiederkehrende Käufer treiben den Umsatz.</figcaption>
+    <figcaption>Abbildung 8. Nach Kundenanzahl sind die drei Häufigkeitsstufen ähnlich groß (60.937 / 50.965 / 50.731). Nach Volumen nicht: Hochfrequenz-Kunden sind 31 % der Kunden, aber 64 % aller Bestellzeilen (19,9 von 31,0 Mio.).</figcaption>
   </figure>
   <figure class="case-figure">
     <img src="instacart-profile-heatmap.png" alt="Kundenprofil-Heatmap"/>
-    <figcaption>Abbildung 9. Kundenanzahl nach Altersgruppe × Bestellhäufigkeit. Erwachsene und Mittelalter-Hochfrequenz-Kunden sind die wertvollsten Segmente.</figcaption>
+    <figcaption>Abbildung 9. Die fünf häufigsten kombinierten Profile. Alle fünf sind Hochfrequenz-Haushalte mit kleiner Familie; Einkommen und Lebensphase variieren. Verhalten, nicht Demografie, definiert die Spitze der Kundenbasis.</figcaption>
   </figure>
 
   <div class="insight-box pink">
@@ -358,20 +358,20 @@
     <p>Zeitabhängige Preisanreize ändern das Ausgabeverhalten kaum. Aktionen sollten Segmente, nicht Stunden, ansprechen.</p>
   </div>
   <div class="finding yellow">
-    <p class="finding-title">Ergebnis 3 — Reguläre Kunden generieren das größte Bestellvolumen.</p>
-    <p>Eine Loyalitäts-Konversionsstrategie — Regulär zu Loyal — bietet das höchste Umsatzpotenzial.</p>
+    <p class="finding-title">Ergebnis 3 — Neukunden stellen weiterhin die meisten Bestellzeilen (37 %).</p>
+    <p>Der Artikelpreis ist über alle Loyalitätsstufen gleich (Median 7,4). Der Hebel ist also die Bestellhäufigkeit (Neu zu Regulär, Regulär zu Loyal), nicht der Warenkorbwert.</p>
   </div>
   <div class="finding pink">
-    <p class="finding-title">Ergebnis 4 — Erwachsene (30–49) sind das dominante Segment.</p>
-    <p>Marketing sollte auf Familienphase-Kaufverhalten optimieren: Haushaltsbedarf, Frischeprodukte, Essensplanung.</p>
+    <p class="finding-title">Ergebnis 4 — Erwachsene (30–49) sind die größte Altersgruppe, Senioren die zweitgrößte.</p>
+    <p>Senioren sind 27 % der aktiven Kunden und führen das häufigste Hochfrequenz-Profil an. Kampagnen, die von einer jungen Familienzielgruppe ausgehen, würden über ein Viertel der aktiven Kunden verfehlen.</p>
   </div>
   <div class="finding green">
-    <p class="finding-title">Ergebnis 5 — Mittelschicht-Kunden sind die Kernzielgruppe.</p>
-    <p>Kernkatalog-Preise sollten für Mittelschicht-Haushalte zugänglich bleiben, Premium-Platzierungen gezielt für hohe Einkommen.</p>
+    <p class="finding-title">Ergebnis 5 — Haushalte mit hohem Einkommen sind die Kernzielgruppe (61 %).</p>
+    <p>Das Einkommen ist für den Großteil der Basis nicht die Grenze. Premium-Platzierungen haben eine große Zielgruppe, preisgetriebene Aktionen eine kleine (8 % niedriges Einkommen).</p>
   </div>
   <div class="finding blue">
-    <p class="finding-title">Ergebnis 6 — Hochfrequenz-Kunden sind die größte Einzelgruppe.</p>
-    <p>Retention-Strategien (Abos, Treueprämien) haben eine größere adressierbare Basis als Akquise — höherer ROI.</p>
+    <p class="finding-title">Ergebnis 6 — Hochfrequenz-Kunden erzeugen 64 % der Bestellzeilen.</p>
+    <p>Ein Drittel der Kunden erzeugt zwei Drittel des Volumens. Die mittlere Stufe (10–19 Bestellungen, 50.965 Kunden) eine Stufe nach oben zu bewegen, ist der Retention-Test mit dem größten Hebel.</p>
   </div>
 
   <h2>Materialien</h2>

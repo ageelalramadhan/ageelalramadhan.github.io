@@ -267,7 +267,7 @@
     <tbody>
       <tr><td><span class="step-tag">1. Import</span></td><td>4.2</td><td>Import orders.csv + products.csv, profile and preview</td></tr>
       <tr><td><span class="step-tag">2. Wrangling</span></td><td>4.3</td><td>Rename columns, create subsets, export cleaned data</td></tr>
-      <tr><td><span class="step-tag">3. Consistency</span></td><td>4.4</td><td>Fix mixed types, handle 260K missing values</td></tr>
+      <tr><td><span class="step-tag">3. Consistency</span></td><td>4.4</td><td>Fix mixed types, handle 206,209 missing values</td></tr>
       <tr><td><span class="step-tag">4. Merging</span></td><td>4.5</td><td>Merge orders + order_products + products into one dataframe</td></tr>
       <tr><td><span class="step-tag">5. Derived Vars</span></td><td>4.6</td><td>Create price_label, busiest_day, busiest_period_of_day</td></tr>
       <tr><td><span class="step-tag">6. Grouping</span></td><td>4.7</td><td>Loyalty flag, spending flag, order frequency flag</td></tr>
@@ -280,7 +280,7 @@
   <h2>Data Quality</h2>
   <div class="insight-box blue">
     <p class="insight-title">Key Insight — Missing Values</p>
-    <p>260,290 missing values in days_since_prior_order are <strong>expected</strong>, not corrupt — they correspond to first-ever orders where no prior order exists. Filling with 0 preserves the semantic meaning.</p>
+    <p>206,209 missing values in days_since_prior_order are <strong>expected</strong>, not corrupt. The count equals the number of customers exactly (206,209), so each null is a customer's first order. Filling with 0 preserves the meaning.</p>
   </div>
 
   <h2>Order Timing Analysis</h2>
@@ -302,17 +302,17 @@
   <h2>Loyalty Segmentation</h2>
   <figure class="case-figure">
     <img src="instacart-loyalty.png" alt="Loyalty distribution"/>
-    <figcaption>Figure 4. Three-tier loyalty (New, Regular, Loyal) based on order count. Regular customers are the largest cohort — making them the highest-leverage retention target.</figcaption>
+    <figcaption>Figure 4. Three-tier loyalty based on each customer's mean order number (New ≤ 10, Regular 10–20, Loyal &gt; 20). New customers account for the most order lines (12.1M, 37%), Loyal 10.9M (34%), Regular 9.4M (29%). Median item price is 7.4 in all three groups, so loyalty does not change what people pay per item.</figcaption>
   </figure>
 
   <h2>Demographics</h2>
   <figure class="case-figure">
     <img src="instacart-age-group.png" alt="Age group distribution"/>
-    <figcaption>Figure 5. Adults (30–49) dominate the customer base — the family-stage segment is the platform's core demographic.</figcaption>
+    <figcaption>Figure 5. Adults (30–49) are the largest group (50,981 customers, 31%), seniors (65+) the second largest (43,250, 27%). Counts are customers with 5+ orders.</figcaption>
   </figure>
   <figure class="case-figure">
     <img src="instacart-income-group.png" alt="Income distribution"/>
-    <figcaption>Figure 6. Middle-income households (40k–80k) are the largest single income segment, consistent with the grocery-shopping use case.</figcaption>
+    <figcaption>Figure 6. High-income households (&gt; $80k) are the largest income group by far: 98,524 customers (61%), against 51,484 middle income and 12,625 low income.</figcaption>
   </figure>
   <figure class="case-figure">
     <img src="instacart-age-income.png" alt="Age vs income scatter"/>
@@ -336,11 +336,11 @@
 
   <figure class="case-figure">
     <img src="instacart-order-frequency.png" alt="Order frequency distribution"/>
-    <figcaption>Figure 8. High-frequency customers (20+ orders) are the largest group — repeat buyers drive Instacart revenue.</figcaption>
+    <figcaption>Figure 8. By customer count the three frequency tiers are similar (60,937 / 50,965 / 50,731). By volume they are not: high-frequency customers are 31% of customers but 64% of all order lines (19.9M of 31.0M).</figcaption>
   </figure>
   <figure class="case-figure">
     <img src="instacart-profile-heatmap.png" alt="Customer profile heatmap"/>
-    <figcaption>Figure 9. Customer count by age group × order frequency. Adults and Middle-Aged high-frequency customers are the highest-value segments.</figcaption>
+    <figcaption>Figure 9. The five most common combined profiles. All five are high-frequency, small-family households; income and life stage vary. Behaviour, not demographics, defines the top of the base.</figcaption>
   </figure>
 
   <div class="insight-box pink">
@@ -358,20 +358,20 @@
     <p>Time-based pricing incentives are unlikely to change spending behavior. Promotions should target segments, not hours.</p>
   </div>
   <div class="finding yellow">
-    <p class="finding-title">Finding 3 — Regular customers generate the most order volume.</p>
-    <p>A loyalty conversion strategy — moving Regular to Loyal — offers the highest revenue upside, as Loyal customers have higher per-order value.</p>
+    <p class="finding-title">Finding 3 — New customers still account for the most order lines (37%).</p>
+    <p>Per-item spend is the same across loyalty tiers (median 7.4), so the lever is converting New to Regular and Regular to Loyal on frequency, not on basket price.</p>
   </div>
   <div class="finding pink">
-    <p class="finding-title">Finding 4 — Adults (30–49) are the dominant segment.</p>
-    <p>Marketing campaigns should optimize for family-stage purchasing behavior: household staples, fresh produce, and meal planning.</p>
+    <p class="finding-title">Finding 4 — Adults (30–49) are the largest age group, seniors are second.</p>
+    <p>Seniors are 27% of active customers and lead the single most common high-frequency profile. Campaigns that assume a young, family-stage base would miss more than a quarter of the active customers.</p>
   </div>
   <div class="finding green">
-    <p class="finding-title">Finding 5 — Middle-income customers are the core demographic.</p>
-    <p>Core catalog pricing should remain accessible to Middle income households, while premium placement targets High income segments specifically.</p>
+    <p class="finding-title">Finding 5 — High-income households are the core demographic (61%).</p>
+    <p>Income is not the constraint for most of the base. Premium placement has a large addressable audience; price-led promotions have a small one (8% low income).</p>
   </div>
   <div class="finding blue">
-    <p class="finding-title">Finding 6 — High-frequency customers are the largest single group.</p>
-    <p>Retention strategies (subscriptions, loyalty rewards) have a larger addressable base than acquisition campaigns — making them higher ROI.</p>
+    <p class="finding-title">Finding 6 — High-frequency customers drive 64% of order lines.</p>
+    <p>A third of the customers generate two thirds of the volume. Moving the medium tier (10–19 orders, 50,965 customers) up one band is the highest-leverage retention test.</p>
   </div>
 
   <h2>Resources</h2>
