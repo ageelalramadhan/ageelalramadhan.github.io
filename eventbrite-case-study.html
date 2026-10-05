@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Eventbrite UK Blog Content Operations | Ageel Alramadhan</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="consent.css"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    :root{--bg:#0f0f0f;--bg2:#161616;--surface:#1e1e1e;--border:#2e2e2e;--text:#f0f0f0;--muted:#888;--accent:#3dd68c;--accent2:#00d4ff;--yellow:#ffd166;--pink:#ff4d6d;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(15,15,15,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;}
+    .nav-logo{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--accent);text-decoration:none;letter-spacing:1px;flex-shrink:0;width:160px;}
+    .nav-center{display:flex;gap:28px;list-style:none;align-items:center;position:absolute;left:50%;transform:translateX(-50%);}
+    .nav-center a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;transition:color 0.2s;}
+    .nav-center a:hover{color:var(--text);}
+    .nav-right{display:flex;gap:12px;align-items:center;flex-shrink:0;width:160px;justify-content:flex-end;}
+    .nav-lang{font-size:12px;color:var(--muted);text-decoration:none;border:1px solid var(--border);padding:5px 12px;transition:all 0.2s;font-family:'JetBrains Mono',monospace;white-space:nowrap;}
+    .nav-lang:hover{border-color:var(--accent);color:var(--accent);}
+    @media(max-width:900px){nav{padding:0 20px;}}
+
+    /* FOOTER */
+    footer{background:var(--bg2);border-top:1px solid var(--border);padding:28px 40px;}
+    .footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;}
+    .footer-copy{font-size:13px;color:var(--muted);font-family:'JetBrains Mono',monospace;}
+    .footer-links{display:flex;gap:20px;align-items:center;flex-wrap:wrap;}
+    .footer-links a{color:var(--muted);text-decoration:none;font-size:13px;font-family:'JetBrains Mono',monospace;display:flex;align-items:center;transition:color 0.2s;}
+    .footer-links a:hover{color:var(--accent);}
+    @media(max-width:768px){.footer-inner{flex-direction:column;align-items:flex-start;}.footer-links{gap:14px;}}
+
+    /* BACK TO TOP */
+    .back-top{position:fixed;bottom:28px;right:28px;z-index:200;width:44px;height:44px;background:var(--accent);color:#0f0f0f;border:none;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s,transform 0.2s;border-radius:50%;}
+    .back-top.visible{opacity:1;pointer-events:auto;}
+    .back-top:hover{transform:translateY(-3px);}
+
+    /* PAGE HERO (identical across all case studies) */
+    .page-hero{padding:100px 40px 52px;background:var(--bg2);border-bottom:1px solid var(--border);}
+    .page-hero-inner{max-width:900px;margin:0 auto;}
+    .page-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:16px;}
+    .page-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,5vw,60px);letter-spacing:2px;line-height:1.1;margin-bottom:14px;min-height:66px;display:flex;align-items:flex-end;}
+    .page-subtitle{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);margin-bottom:28px;}
+
+    /* SWITCHER (identical across all) */
+    .switcher{display:flex;gap:3px;flex-wrap:wrap;margin-top:16px;position:relative;z-index:1;}
+    /* switcher must not inherit top-navbar nav{} styles */
+    nav.switcher{position:static;height:auto;z-index:auto;background:none;backdrop-filter:none;border-bottom:none;padding:0;}
+
+    .switcher a,.switcher span{padding:7px 14px;font-family:'JetBrains Mono',monospace;font-size:13px;text-decoration:none;border:1px solid var(--border);color:var(--muted);transition:all 0.2s;}
+    .switcher a:hover{border-color:var(--accent);color:var(--accent);}
+    .switcher span.active{background:var(--accent);color:#0f0f0f;border-color:var(--accent);font-weight:600;}
+
+    /* CASE BODY */
+    .case-body{max-width:900px;margin:0 auto;padding:60px 40px 100px;}
+    .case-body h2{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:1px;margin:48px 0 14px;color:var(--text);}
+    .case-body h3{font-size:18px;font-weight:600;margin:32px 0 10px;color:var(--text);}
+    .case-body p{font-size:16px;color:#c0c0c0;line-height:1.8;margin-bottom:16px;}
+    .case-body ul{margin:0 0 20px 20px;}
+    .case-body li{font-size:16px;color:#c0c0c0;line-height:1.8;margin-bottom:8px;}
+    .case-body strong{color:var(--text);}
+
+    /* TOOLS BOX */
+    .tools-box{background:var(--bg2);border:1px solid var(--border);padding:20px 24px;margin-bottom:16px;}
+    .tools-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+    .tools-value{font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--accent);margin-bottom:8px;}
+    .tools-box p{font-size:15px;color:#b0b0b0;margin-bottom:6px;}
+    .tools-box p:last-child{margin-bottom:0;}
+
+    /* SOURCE-CODE BOX */
+    .source-box{background:var(--surface);border:1px solid var(--border);padding:14px 20px;margin:16px 0 28px;display:flex;align-items:center;gap:14px;}
+    .source-box svg{flex-shrink:0;color:var(--text);}
+    .source-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+    .source-box a{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--accent);text-decoration:none;}
+    .source-box a:hover{text-decoration:underline;}
+
+    /* STAT TILES (4-column on desktop) */
+    .stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-bottom:40px;}
+    .stat-cell{background:var(--surface);border:1px solid var(--border);padding:20px;text-align:center;}
+    .stat-cell.green{border-top:3px solid var(--accent);}
+    .stat-cell.blue{border-top:3px solid var(--accent2);}
+    .stat-cell.yellow{border-top:3px solid var(--yellow);}
+    .stat-cell.pink{border-top:3px solid var(--pink);}
+    .stat-num{font-family:'Bebas Neue',sans-serif;font-size:40px;line-height:1;}
+    .stat-num.green{color:var(--accent);}
+    .stat-num.blue{color:var(--accent2);}
+    .stat-num.yellow{color:var(--yellow);}
+    .stat-num.pink{color:var(--pink);}
+    .stat-label{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-top:6px;}
+    @media(max-width:600px){.stat-row{grid-template-columns:1fr 1fr;}}
+
+    /* FIGURES */
+    .case-figure{margin:20px 0 28px;}
+    .case-figure img{width:100%;display:block;border:1px solid var(--border);}
+    .case-figure figcaption{font-size:14px;color:var(--muted);margin-top:10px;font-style:italic;line-height:1.6;}
+
+    /* CODE BLOCKS */
+    pre.code-block,pre.sql-block{background:var(--surface);border:1px solid var(--border);padding:20px 24px;font-family:'JetBrains Mono',monospace;font-size:13px;color:#c0c0c0;overflow-x:auto;line-height:1.7;margin:16px 0 24px;white-space:pre;}
+
+    /* PIPELINE TABLE (uniform style for all data tables) */
+    .pipeline-table{width:100%;border-collapse:collapse;margin:16px 0 28px;font-size:14px;}
+    .pipeline-table th{background:var(--accent);color:#0f0f0f;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:1px;padding:10px 14px;text-align:left;}
+    .pipeline-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:#c0c0c0;vertical-align:top;font-size:14px;}
+    .pipeline-table tr:last-child td{border-bottom:none;}
+    .pipeline-table tr:nth-child(even) td{background:var(--bg2);}
+    .pipeline-table tr:nth-child(odd) td{background:var(--surface);}
+    .step-tag{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent2);}
+
+    /* INSIGHT BOX (callout for key insights) */
+    .insight-box{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent2);padding:20px 24px;margin:24px 0;}
+    .insight-box .insight-title{color:var(--accent2);font-weight:600;margin-bottom:6px;}
+    .insight-box.green{border-left-color:var(--accent);}
+    .insight-box.green .insight-title{color:var(--accent);}
+    .insight-box.yellow{border-left-color:var(--yellow);}
+    .insight-box.yellow .insight-title{color:var(--yellow);}
+    .insight-box.pink{border-left-color:var(--pink);}
+    .insight-box.pink .insight-title{color:var(--pink);}
+    .insight-box p{margin-bottom:6px;}
+    .insight-box p:last-child{margin-bottom:0;}
+
+    /* FINDING BOX (numbered findings list) */
+    .finding{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);padding:20px 24px;margin-bottom:8px;}
+    .finding.green{border-left-color:var(--accent);}
+    .finding.blue{border-left-color:var(--accent2);}
+    .finding.yellow{border-left-color:var(--yellow);}
+    .finding.pink{border-left-color:var(--pink);}
+    .finding-title{font-weight:600;margin-bottom:6px;}
+    .finding.green .finding-title{color:var(--accent);}
+    .finding.blue .finding-title{color:var(--accent2);}
+    .finding.yellow .finding-title{color:var(--yellow);}
+    .finding.pink .finding-title{color:var(--pink);}
+    .finding p{margin-bottom:0;}
+
+    /* BUTTONS */
+    .btn-link{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;font-family:'JetBrains Mono',monospace;font-size:14px;text-decoration:none;background:var(--accent);color:#0f0f0f;font-weight:600;margin:16px 8px 16px 0;transition:all 0.2s;}
+    .btn-link:hover{background:#4df0a0;}
+    .btn-outline-link{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:1px;text-decoration:none;color:var(--text);background:transparent;border:1px solid var(--border);transition:all 0.2s;margin-right:8px;}
+    .btn-outline-link:hover{border-color:var(--accent);color:var(--accent);}
+
+    @media(max-width:768px){.page-hero{padding:92px 20px 40px;}.case-body{padding:40px 20px 60px;}}
+    @media(max-width:380px){
+      .switcher{grid-template-columns:repeat(2,1fr);}
+    }
+    @media(max-width:380px){
+      .switcher{grid-template-columns:repeat(2,1fr);}
+    }
+
+  
+    /* === MOBILE FIX PATCH === */
+    @media(max-width:768px){
+      .page-title{min-height:auto;font-size:clamp(28px,8vw,44px);margin-bottom:12px;letter-spacing:1px;}
+      .page-hero{padding:92px 16px 32px;}
+      .page-hero-inner{width:100%;box-sizing:border-box;}
+      .page-subtitle{font-size:12px;line-height:1.6;margin-bottom:20px;}
+      nav.switcher{padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:18px;width:100%;box-sizing:border-box;}
+      .switcher a,.switcher span{padding:9px 4px;font-size:11px;text-align:center;letter-spacing:0;display:flex;align-items:center;justify-content:center;min-height:38px;border-radius:3px;box-sizing:border-box;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+      .case-body{padding:36px 16px 56px;}
+      .case-body h2{font-size:22px;margin:36px 0 10px;}
+      .tools-box,.source-box{padding:14px 16px;}
+      .tools-value{font-size:13px;line-height:1.7;}
+      .source-box{flex-direction:column;align-items:flex-start;gap:6px;}
+      .pipeline-table{display:block;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;}
+      .case-figure figcaption{font-size:13px;}
+      .finding,.insight-box{padding:16px 18px;}
+      .btn-link,.btn-outline-link{display:flex;width:100%;margin:8px 0;justify-content:center;}
+    }
+    @media(max-width:380px){
+      nav.switcher{grid-template-columns:repeat(2,1fr);}
+    }
+
+  
+    /* === MOBILE NAV HAMBURGER === */
+    .nav-toggle{display:none;background:none;border:1px solid var(--border);color:var(--text);width:38px;height:38px;cursor:pointer;align-items:center;justify-content:center;flex-direction:column;gap:4px;padding:0;border-radius:3px;}
+    .nav-toggle span{display:block;width:18px;height:2px;background:currentColor;transition:transform 0.2s,opacity 0.2s;}
+    .nav-toggle.open span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+    .nav-toggle.open span:nth-child(2){opacity:0;}
+    .nav-toggle.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+    @media(max-width:900px){
+      .nav-toggle{display:flex;}
+      .nav-center{display:flex;position:fixed;top:60px;left:0;right:0;flex-direction:column;gap:0;background:rgba(15,15,15,0.98);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);transform:none;padding:8px 0;max-height:0;overflow:hidden;transition:max-height 0.25s ease;}
+      .nav-center.open{max-height:320px;}
+      .nav-center li{width:100%;}
+      .nav-center a{display:block;padding:14px 24px;font-size:15px;border-bottom:1px solid var(--border);}
+      .nav-center li:last-child a{border-bottom:none;}
+    }
+  
+    /* prose links inside case body — readable accent color */
+    .case-body p a{color:var(--accent);text-decoration:underline;text-underline-offset:2px;transition:opacity 0.2s;}
+    .case-body p a:hover{opacity:0.75;}
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">ageel.alramadhan</a>
+  <ul class="nav-center">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-right"><a href="eventbrite-case-study-de.html" class="nav-lang">🇩🇪 Deutsch</a></div>
+  <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-eyebrow">Marketing Case Study</div>
+    <h1 class="page-title">Eventbrite UK Blog: 176 Articles in Seven Months</h1>
+    <nav class="switcher"><span class="active">Eventbrite</span><a href="tajaddawa-case-study.html">Tajaddawa</a><a href="instacart-case-study.html">Data projects →</a></nav>
+  </div>
+</div>
+<div class="case-body">
+  <div class="tools-box">
+    <div class="tools-label">Tools & Systems</div>
+    <div class="tools-value">WordPress (Block Editor) · Rank Math SEO · Google Search Console · Google Sheets · Google Docs · Asana · hreflang / translation groups</div>
+    <p><strong>Client:</strong> Eventbrite, via AS Marketing Agency (Hamburg, remote). My role: Sr. Digital Marketing &amp; WordPress Manager, March to September 2024.</p>
+    <p><strong>Brief:</strong> Localise and update Eventbrite's US blog content for the UK blog, 25 articles per month including images, inside a team workflow with writers, an image editor, a project lead and the client's own content team.</p>
+    <p><strong>My part:</strong> every article's last mile: WordPress upload, US-to-UK localisation checks, images and CTAs, permalinks, hreflang tags, Rank Math SEO checks, and the revision rounds after client QA.</p>
+  </div>
+  <div class="source-box"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+    <div>
+      <div class="source-label">Live examples</div>
+      <a href="https://www.eventbrite.co.uk/blog/unique-fundraising-event-ideas-ds00/" target="_blank" rel="noopener">eventbrite.co.uk/blog/unique-fundraising-event-ideas-ds00 →</a>
+    </div>
+  </div>
+  <div class="stat-row">
+    <div class="stat-cell green"><div class="stat-num green">176</div><div class="stat-label">Articles published</div></div>
+    <div class="stat-cell blue"><div class="stat-num blue">25</div><div class="stat-label">Per month, 7 months</div></div>
+    <div class="stat-cell yellow"><div class="stat-num yellow">82</div><div class="stat-label">Median Rank Math score</div></div>
+    <div class="stat-cell pink"><div class="stat-num pink">25 → 0</div><div class="stat-label">Revision requests, Mar → Aug</div></div>
+  </div>
+
+  <h2>What the job actually was</h2>
+  <p>Eventbrite publishes the same guides for several markets. The US blog gets the new content first; the UK blog lagged behind, with older versions, US examples, dollar prices and links into the .com site. AS Marketing was contracted to close that gap: 25 US articles a month, rewritten for UK readers and republished on eventbrite.co.uk.</p>
+  <p>Six people touched every article: a writer produced the UK copy from a content brief, a second reviewer checked it, an image editor localised screenshots and graphics, I built the page in WordPress, the project lead ran the agency QA, and Eventbrite's content team did the final QA and published. The shared workflow sheet had one row per article and one column per hand-off, so at any moment everyone could see where each of the 25 pieces was stuck.</p>
+
+  <h2>Monthly workflow</h2>
+  <table class="pipeline-table">
+    <thead><tr><th>Step</th><th>Owner</th><th>What happened</th></tr></thead>
+    <tbody>
+      <tr><td><span class="step-tag">1. Plan</span></td><td>Project lead + client</td><td>Keyword map for the month: which US articles to localise, which UK posts to refresh, focus keyword and search volume per piece, approval by Eventbrite.</td></tr>
+      <tr><td><span class="step-tag">2. Brief</span></td><td>Project lead</td><td>Content brief per article in Google Docs: title, word count, pillar, goal, localisation notes (UK examples, GBP prices, UK sources).</td></tr>
+      <tr><td><span class="step-tag">3. Copy</span></td><td>Writer, second reviewer</td><td>UK draft written and reviewed; image brief raised where US screenshots or graphics carried dollar signs or US spelling.</td></tr>
+      <tr><td><span class="step-tag">4. Images</span></td><td>Image editor</td><td>Localised or new images saved to a shared Drive folder, named per article.</td></tr>
+      <tr><td><span class="step-tag">5. Build</span></td><td><strong>Me</strong></td><td>Page built in WordPress on the UK blog: copy, headings, table of contents, images in the positions of the US original, mid-text and closing CTAs with UK links, permalink matching the brief, tags trimmed, author set. Rank Math focus keyword and meta checked, hreflang added by linking the UK post to its US counterpart via post ID.</td></tr>
+      <tr><td><span class="step-tag">6. QA</span></td><td>Project lead, then Eventbrite</td><td>Agency quality check, then client QA in the shared sheet. Revision notes came back per article: CTA wording, missing images, formatting, broken links.</td></tr>
+      <tr><td><span class="step-tag">7. Fix &amp; index</span></td><td><strong>Me</strong></td><td>Requested edits applied, live URL recorded, indexing requested in Google Search Console, completion sheet updated for the client.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Output and revision rounds</h2>
+  <figure class="case-figure">
+    <img src="eventbrite-monthly-output.png" alt="Articles per month and client revision requests" loading="lazy"/>
+    <figcaption>Figure 1. Articles published per month (green) and articles that came back with client revision requests (red). March, the first month, had notes on all 25: CTA copy, image placement, double CTAs, caption formatting. From April on, the same checks were built into the upload step. August had none; September's four were mostly a WordPress outage on one day (JSON errors during upload) rather than content issues.</figcaption>
+  </figure>
+  <p>The revision notes in March were the useful part. They were specific and repetitive: remove the first of two CTAs, add an image before each main heading, lower-case CTA captions, no full stop in the caption, replace US screenshots. I turned that list into a pre-upload checklist and applied it to every article before it reached the client. That is the whole story behind the drop from 25 to 0.</p>
+
+  <h2>SEO checks per article</h2>
+  <figure class="case-figure">
+    <img src="eventbrite-rankmath-audit.png" alt="Rank Math score per article in the July re-audit" loading="lazy"/>
+    <figcaption>Figure 2. In July 2024 I re-audited the 25 April articles in Rank Math and logged score and error count per article in the workflow sheet. Median 82; 16 of 25 had zero basic-SEO errors. The remaining errors were almost always the focus keyword missing from the URL slug or the meta description, which I fixed in the same pass. One outlier (score 27) was a page whose focus keyword no longer matched the brief.</figcaption>
+  </figure>
+  <p>Rank Math is a plugin score, not a ranking. I used it as a consistency gate: if 25 articles a month go live, a cheap automated check that every one of them has the focus keyword in title, URL, meta description and first paragraph is worth more than a careful manual review of three of them.</p>
+
+  <h2>What I learned</h2>
+  <div class="finding green">
+    <p class="finding-title">Finding 1 — Consistency beats brilliance at 25 articles a month.</p>
+    <p>Nothing about a single article was difficult. Getting 176 of them through six hands without losing one was the job. The shared sheet with one column per hand-off did more for quality than any individual edit.</p>
+  </div>
+  <div class="finding blue">
+    <p class="finding-title">Finding 2 — Client revision notes are a free specification.</p>
+    <p>The first month's 25 sets of notes contained maybe eight distinct rules. Written down once and applied before upload, they removed the revision round almost entirely.</p>
+  </div>
+  <div class="finding yellow">
+    <p class="finding-title">Finding 3 — Localisation is mostly links and examples, not words.</p>
+    <p>Spelling was the easy part. The real UK work was replacing US event examples, dollar prices, US-only tools (Keela → NeonCRM), US downloadables with no UK equivalent, and every internal link that pointed into eventbrite.com.</p>
+  </div>
+  <div class="finding pink">
+    <p class="finding-title">Finding 4 — Know what you cannot claim.</p>
+    <p>Eventbrite's own team owned the SEO report and the rankings. I never had access to the UK blog's Search Console, so this case study shows process and quality metrics, not traffic. Where I do have the traffic data, I show it: see the Tajaddawa case study.</p>
+  </div>
+
+  <h2>Resources</h2>
+  <a href="tajaddawa-case-study.html" class="btn-outline-link">→ Tajaddawa: the case with the traffic numbers</a>
+  <div class="insight-box">
+    <p class="insight-title">Source note</p>
+    <p>Figures come from the project's Asana tasks, the Eventbrite Team Workflow sheet and the client-facing Completed Content sheet (March to September 2024). Article counts are rows with a live URL. Revision counts are rows with a non-empty client notes field. Internal keyword maps, briefs and team names are not reproduced here.</p>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <p class="footer-copy">© 2026 Ageel Alramadhan · Performance Marketer & Data Analytics · Hamburg</p>
+    <div class="footer-links">
+      <a href="contact.html">Contact</a>
+      <a href="https://www.linkedin.com/in/ageel-alramadhan/" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:4px"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a>
+      <a href="https://github.com/ageelalramadhan" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:4px"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</a>
+      <a href="impressum-en.html">Legal Notice</a>
+      <a href="datenschutz-en.html">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
+<button class="back-top" id="back-top" aria-label="Back to top">↑</button>
+<div id="cookie-banner" class="cookie-banner" style="display:none;">
+  <div class="cookie-inner"><p>This website uses Google Analytics. You can accept or decline.</p>
+  <div class="cookie-actions"><button class="cookie-btn" data-cookie-reject>Decline</button><button class="cookie-btn primary" data-cookie-accept>Accept</button></div></div>
+</div>
+<script src="consent.js"></script>
+<script>
+  const btn = document.getElementById('back-top');
+  window.addEventListener('scroll', () => btn.classList.toggle('visible', window.scrollY > 300));
+  btn.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
+</script>
+<script>
+  (function(){
+    var t=document.querySelector('.nav-toggle'),m=document.querySelector('.nav-center');
+    if(t&&m){
+      t.addEventListener('click',function(){t.classList.toggle('open');m.classList.toggle('open');});
+      m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){t.classList.remove('open');m.classList.remove('open');});});
+    }
+  })();
+</script>
+</body>
+</html>
