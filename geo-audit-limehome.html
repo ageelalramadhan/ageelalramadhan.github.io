@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>AI Search Visibility Audit: Limehome, October 2026 | Ageel Alramadhan</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="consent.css"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    :root{--bg:#0f0f0f;--bg2:#161616;--surface:#1e1e1e;--border:#2e2e2e;--text:#f0f0f0;--muted:#888;--accent:#3dd68c;--accent2:#00d4ff;--yellow:#ffd166;--pink:#ff4d6d;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(15,15,15,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;}
+    .nav-logo{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--accent);text-decoration:none;letter-spacing:1px;flex-shrink:0;width:160px;}
+    .nav-center{display:flex;gap:28px;list-style:none;align-items:center;position:absolute;left:50%;transform:translateX(-50%);}
+    .nav-center a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;transition:color 0.2s;}
+    .nav-center a:hover{color:var(--text);}
+    .nav-right{display:flex;gap:12px;align-items:center;flex-shrink:0;width:160px;justify-content:flex-end;}
+    .nav-lang{font-size:12px;color:var(--muted);text-decoration:none;border:1px solid var(--border);padding:5px 12px;transition:all 0.2s;font-family:'JetBrains Mono',monospace;white-space:nowrap;}
+    .nav-lang:hover{border-color:var(--accent);color:var(--accent);}
+    @media(max-width:900px){nav{padding:0 20px;}}
+
+    /* FOOTER */
+    footer{background:var(--bg2);border-top:1px solid var(--border);padding:28px 40px;}
+    .footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;}
+    .footer-copy{font-size:13px;color:var(--muted);font-family:'JetBrains Mono',monospace;}
+    .footer-links{display:flex;gap:20px;align-items:center;flex-wrap:wrap;}
+    .footer-links a{color:var(--muted);text-decoration:none;font-size:13px;font-family:'JetBrains Mono',monospace;display:flex;align-items:center;transition:color 0.2s;}
+    .footer-links a:hover{color:var(--accent);}
+    @media(max-width:768px){.footer-inner{flex-direction:column;align-items:flex-start;}.footer-links{gap:14px;}}
+
+    /* BACK TO TOP */
+    .back-top{position:fixed;bottom:28px;right:28px;z-index:200;width:44px;height:44px;background:var(--accent);color:#0f0f0f;border:none;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s,transform 0.2s;border-radius:50%;}
+    .back-top.visible{opacity:1;pointer-events:auto;}
+    .back-top:hover{transform:translateY(-3px);}
+
+    /* PAGE HERO (identical across all case studies) */
+    .page-hero{padding:100px 40px 52px;background:var(--bg2);border-bottom:1px solid var(--border);}
+    .page-hero-inner{max-width:900px;margin:0 auto;}
+    .page-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:16px;}
+    .page-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,5vw,60px);letter-spacing:2px;line-height:1.1;margin-bottom:14px;min-height:66px;display:flex;align-items:flex-end;}
+    .page-subtitle{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);margin-bottom:28px;}
+
+    /* SWITCHER (identical across all) */
+    .switcher{display:flex;gap:3px;flex-wrap:wrap;margin-top:16px;position:relative;z-index:1;}
+    /* switcher must not inherit top-navbar nav{} styles */
+    nav.switcher{position:static;height:auto;z-index:auto;background:none;backdrop-filter:none;border-bottom:none;padding:0;}
+
+    .switcher a,.switcher span{padding:7px 14px;font-family:'JetBrains Mono',monospace;font-size:13px;text-decoration:none;border:1px solid var(--border);color:var(--muted);transition:all 0.2s;}
+    .switcher a:hover{border-color:var(--accent);color:var(--accent);}
+    .switcher span.active{background:var(--accent);color:#0f0f0f;border-color:var(--accent);font-weight:600;}
+
+    /* CASE BODY */
+    .case-body{max-width:900px;margin:0 auto;padding:60px 40px 100px;}
+    .case-body h2{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:1px;margin:48px 0 14px;color:var(--text);}
+    .case-body h3{font-size:18px;font-weight:600;margin:32px 0 10px;color:var(--text);}
+    .case-body p{font-size:16px;color:#c0c0c0;line-height:1.8;margin-bottom:16px;}
+    .case-body ul{margin:0 0 20px 20px;}
+    .case-body li{font-size:16px;color:#c0c0c0;line-height:1.8;margin-bottom:8px;}
+    .case-body strong{color:var(--text);}
+
+    /* TOOLS BOX */
+    .tools-box{background:var(--bg2);border:1px solid var(--border);padding:20px 24px;margin-bottom:16px;}
+    .tools-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+    .tools-value{font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--accent);margin-bottom:8px;}
+    .tools-box p{font-size:15px;color:#b0b0b0;margin-bottom:6px;}
+    .tools-box p:last-child{margin-bottom:0;}
+
+    /* SOURCE-CODE BOX */
+    .source-box{background:var(--surface);border:1px solid var(--border);padding:14px 20px;margin:16px 0 28px;display:flex;align-items:center;gap:14px;}
+    .source-box svg{flex-shrink:0;color:var(--text);}
+    .source-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+    .source-box a{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--accent);text-decoration:none;}
+    .source-box a:hover{text-decoration:underline;}
+
+    /* STAT TILES (4-column on desktop) */
+    .stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-bottom:40px;}
+    .stat-cell{background:var(--surface);border:1px solid var(--border);padding:20px;text-align:center;}
+    .stat-cell.green{border-top:3px solid var(--accent);}
+    .stat-cell.blue{border-top:3px solid var(--accent2);}
+    .stat-cell.yellow{border-top:3px solid var(--yellow);}
+    .stat-cell.pink{border-top:3px solid var(--pink);}
+    .stat-num{font-family:'Bebas Neue',sans-serif;font-size:40px;line-height:1;}
+    .stat-num.green{color:var(--accent);}
+    .stat-num.blue{color:var(--accent2);}
+    .stat-num.yellow{color:var(--yellow);}
+    .stat-num.pink{color:var(--pink);}
+    .stat-label{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-top:6px;}
+    @media(max-width:600px){.stat-row{grid-template-columns:1fr 1fr;}}
+
+    /* FIGURES */
+    .case-figure{margin:20px 0 28px;}
+    .case-figure img{width:100%;display:block;border:1px solid var(--border);}
+    .case-figure figcaption{font-size:14px;color:var(--muted);margin-top:10px;font-style:italic;line-height:1.6;}
+
+    /* CODE BLOCKS */
+    pre.code-block,pre.sql-block{background:var(--surface);border:1px solid var(--border);padding:20px 24px;font-family:'JetBrains Mono',monospace;font-size:13px;color:#c0c0c0;overflow-x:auto;line-height:1.7;margin:16px 0 24px;white-space:pre;}
+
+    /* PIPELINE TABLE (uniform style for all data tables) */
+    .pipeline-table{width:100%;border-collapse:collapse;margin:16px 0 28px;font-size:14px;}
+    .pipeline-table th{background:var(--accent);color:#0f0f0f;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:1px;padding:10px 14px;text-align:left;}
+    .pipeline-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:#c0c0c0;vertical-align:top;font-size:14px;}
+    .pipeline-table tr:last-child td{border-bottom:none;}
+    .pipeline-table tr:nth-child(even) td{background:var(--bg2);}
+    .pipeline-table tr:nth-child(odd) td{background:var(--surface);}
+    .step-tag{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent2);}
+
+    /* INSIGHT BOX (callout for key insights) */
+    .insight-box{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent2);padding:20px 24px;margin:24px 0;}
+    .insight-box .insight-title{color:var(--accent2);font-weight:600;margin-bottom:6px;}
+    .insight-box.green{border-left-color:var(--accent);}
+    .insight-box.green .insight-title{color:var(--accent);}
+    .insight-box.yellow{border-left-color:var(--yellow);}
+    .insight-box.yellow .insight-title{color:var(--yellow);}
+    .insight-box.pink{border-left-color:var(--pink);}
+    .insight-box.pink .insight-title{color:var(--pink);}
+    .insight-box p{margin-bottom:6px;}
+    .insight-box p:last-child{margin-bottom:0;}
+
+    /* FINDING BOX (numbered findings list) */
+    .finding{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);padding:20px 24px;margin-bottom:8px;}
+    .finding.green{border-left-color:var(--accent);}
+    .finding.blue{border-left-color:var(--accent2);}
+    .finding.yellow{border-left-color:var(--yellow);}
+    .finding.pink{border-left-color:var(--pink);}
+    .finding-title{font-weight:600;margin-bottom:6px;}
+    .finding.green .finding-title{color:var(--accent);}
+    .finding.blue .finding-title{color:var(--accent2);}
+    .finding.yellow .finding-title{color:var(--yellow);}
+    .finding.pink .finding-title{color:var(--pink);}
+    .finding p{margin-bottom:0;}
+
+    /* BUTTONS */
+    .btn-link{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;font-family:'JetBrains Mono',monospace;font-size:14px;text-decoration:none;background:var(--accent);color:#0f0f0f;font-weight:600;margin:16px 8px 16px 0;transition:all 0.2s;}
+    .btn-link:hover{background:#4df0a0;}
+    .btn-outline-link{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:1px;text-decoration:none;color:var(--text);background:transparent;border:1px solid var(--border);transition:all 0.2s;margin-right:8px;}
+    .btn-outline-link:hover{border-color:var(--accent);color:var(--accent);}
+
+    @media(max-width:768px){.page-hero{padding:92px 20px 40px;}.case-body{padding:40px 20px 60px;}}
+    @media(max-width:380px){
+      .switcher{grid-template-columns:repeat(2,1fr);}
+    }
+    @media(max-width:380px){
+      .switcher{grid-template-columns:repeat(2,1fr);}
+    }
+
+  
+    /* === MOBILE FIX PATCH === */
+    @media(max-width:768px){
+      .page-title{min-height:auto;font-size:clamp(28px,8vw,44px);margin-bottom:12px;letter-spacing:1px;}
+      .page-hero{padding:92px 16px 32px;}
+      .page-hero-inner{width:100%;box-sizing:border-box;}
+      .page-subtitle{font-size:12px;line-height:1.6;margin-bottom:20px;}
+      nav.switcher{padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:18px;width:100%;box-sizing:border-box;}
+      .switcher a,.switcher span{padding:9px 4px;font-size:11px;text-align:center;letter-spacing:0;display:flex;align-items:center;justify-content:center;min-height:38px;border-radius:3px;box-sizing:border-box;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+      .case-body{padding:36px 16px 56px;}
+      .case-body h2{font-size:22px;margin:36px 0 10px;}
+      .tools-box,.source-box{padding:14px 16px;}
+      .tools-value{font-size:13px;line-height:1.7;}
+      .source-box{flex-direction:column;align-items:flex-start;gap:6px;}
+      .pipeline-table{display:block;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;}
+      .case-figure figcaption{font-size:13px;}
+      .finding,.insight-box{padding:16px 18px;}
+      .btn-link,.btn-outline-link{display:flex;width:100%;margin:8px 0;justify-content:center;}
+    }
+    @media(max-width:380px){
+      nav.switcher{grid-template-columns:repeat(2,1fr);}
+    }
+
+  
+    /* === MOBILE NAV HAMBURGER === */
+    .nav-toggle{display:none;background:none;border:1px solid var(--border);color:var(--text);width:38px;height:38px;cursor:pointer;align-items:center;justify-content:center;flex-direction:column;gap:4px;padding:0;border-radius:3px;}
+    .nav-toggle span{display:block;width:18px;height:2px;background:currentColor;transition:transform 0.2s,opacity 0.2s;}
+    .nav-toggle.open span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+    .nav-toggle.open span:nth-child(2){opacity:0;}
+    .nav-toggle.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+    @media(max-width:900px){
+      .nav-toggle{display:flex;}
+      .nav-center{display:flex;position:fixed;top:60px;left:0;right:0;flex-direction:column;gap:0;background:rgba(15,15,15,0.98);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);transform:none;padding:8px 0;max-height:0;overflow:hidden;transition:max-height 0.25s ease;}
+      .nav-center.open{max-height:320px;}
+      .nav-center li{width:100%;}
+      .nav-center a{display:block;padding:14px 24px;font-size:15px;border-bottom:1px solid var(--border);}
+      .nav-center li:last-child a{border-bottom:none;}
+    }
+  
+    /* prose links inside case body — readable accent color */
+    .case-body p a{color:var(--accent);text-decoration:underline;text-underline-offset:2px;transition:opacity 0.2s;}
+    .case-body p a:hover{opacity:0.75;}
+  </style>
+  <meta property="og:type" content="article"/>
+  <meta property="og:title" content="AI search visibility audit: Limehome, October 2026"/>
+  <meta property="og:description" content="20 customer questions, 4 AI engines, 80 answers. Limehome named in 4. Who gets named instead, why, and three fixes."/>
+  <meta property="og:image" content="https://ageelalramadhan.github.io/geo-limehome-chart.png"/>
+  <meta property="og:url" content="https://ageelalramadhan.github.io/geo-audit-limehome.html"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <style>.chart-wrap{background:var(--surface);border:1px solid var(--border);padding:8px;margin:16px 0 8px;}.chart-wrap svg{display:block;}.small{font-size:14px;color:var(--muted);}.case-figure figcaption a{color:var(--accent);text-decoration:underline;text-underline-offset:2px;}</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">ageel.alramadhan</a>
+  <ul class="nav-center">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-right"></div>
+  <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-eyebrow">AI Search Audit</div>
+    <h1 class="page-title">AI Search Visibility Audit: Limehome, October 2026</h1>
+    <p class="page-subtitle">20 customer questions · 4 AI engines · 80 answers · 28 October 2026</p>
+    <nav class="switcher"><span class="active">Limehome</span><a href="geo-audit-method.html">Method</a><a href="eventbrite-case-study.html">Marketing case studies →</a></nav>
+  </div>
+</div>
+<div class="case-body">
+  <div class="tools-box">
+    <div class="tools-label">What was tested</div>
+    <div class="tools-value">ChatGPT (logged out) · Claude (new free account, memory paused) · Perplexity (logged out) · Google AI Overview (personalisation off)</div>
+    <p><strong>Company:</strong> Limehome, a serviced-apartment operator based in Munich with 107 locations in Europe (own website, 28.10.2026). Not a client. This is a public test of public pages.</p>
+    <p><strong>Question:</strong> when a traveller asks an AI assistant where to stay, does the answer name Limehome? If not, who does it name, and what do their pages have that Limehome's pages do not?</p>
+    <p><strong>How:</strong> I wrote 20 questions a real guest would ask, without any brand name in them (for example "serviced apartment in Munich for one month with self check-in"). I asked each question once in each of four AI engines, as a guest with no history, and recorded every brand the answer named and every website it cited. Then I opened the pages of the three most-named operators and three Limehome city pages and compared them.</p>
+  </div>
+  <div class="source-box"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+    <div>
+      <div class="source-label">Results sheet (all 80 answers, view-only)</div>
+      <a href="https://docs.google.com/spreadsheets/d/1vG8rhBeIKV3HwnkiLInOj-0UTGZETEeXlTyJMsqATJY/edit" target="_blank" rel="noopener">GEO audits 2026, tab Limehome →</a>
+    </div>
+  </div>
+  <div class="stat-row">
+    <div class="stat-cell green"><div class="stat-num green">4 / 80</div><div class="stat-label">Answers naming Limehome</div></div>
+    <div class="stat-cell blue"><div class="stat-num blue">18</div><div class="stat-label">Answers naming Adina, the most</div></div>
+    <div class="stat-cell yellow"><div class="stat-num yellow">3 / 64</div><div class="stat-label">Answers naming Limehome in the 16 cities where it operates</div></div>
+    <div class="stat-cell pink"><div class="stat-num pink">1 of 4</div><div class="stat-label">Mentions sourced from limehome.com</div></div>
+  </div>
+
+  <h2>The result</h2>
+  <p>Limehome was named in 4 of the 80 answers, each time inside a list, never as the recommendation for a city. The four are shown below with proof.</p>
+  <p>By engine: ChatGPT 1 of 20, Google AI Overview 1 of 20, Claude 2 of 20, Perplexity 0 of 20.</p>
+  <p>17 of the 20 questions name a city. Limehome operates in 16 of them (all except Zurich; for the Italy question it has Florence but not Bologna). In those 16 cities, 64 answers, it was named 3 times: Munich twice, Vienna once. Madrid, its largest city with 15 properties: 0 of 4 answers. Berlin, 12 properties, two questions: 0 of 8. The fourth mention came on a Germany-wide question with no city.</p>
+
+  <h2>The four mentions, with proof</h2>
+  <p>Every "yes" in the sheet has a screenshot taken at the moment of the answer, with the Limehome line highlighted. The ChatGPT and Claude answers can also be opened by anyone via their share links. The shared ChatGPT page shows the answer but not the prompt, so the prompt is given in the caption; the shared Claude pages show both.</p>
+  <figure class="case-figure">
+    <img src="geo-limehome-q11-chatgpt.jpg" alt="ChatGPT answer listing Limehome third of seven serviced apartment providers in Germany" loading="lazy"/>
+    <figcaption>Mention 1 of 4. ChatGPT, logged out, 28.10.2026. Prompt: "best serviced apartment providers in Germany for business travellers". Limehome listed 3rd of 7, source cited: limehome.com. <a href="https://chatgpt.com/s/t_6ae2130329c081918a7d643e4a59bdaf" target="_blank" rel="noopener">Open the shared answer →</a></figcaption>
+  </figure>
+  <figure class="case-figure">
+    <img src="geo-limehome-q9-google.jpg" alt="Google AI Overview naming Limehome in a list of popular options in Munich" loading="lazy"/>
+    <figcaption>Mention 2 of 4. Google AI Overview, personalisation off, 28.10.2026. Query: "hotel or serviced apartment for a 10-night stay in Munich, which is better". One line: "Popular Options in Munich: Adina Apartment Hotel Munich, Living Hotel Das Viktualienmarkt, Limehome, or Rioca", cited to Tripadvisor. A rerun the same day kept Limehome but reworded the line. No frozen link exists for AI Overviews.</figcaption>
+  </figure>
+  <figure class="case-figure">
+    <img src="geo-limehome-q1-claude.jpg" alt="Claude answer naming Limehome among Munich self check-in options" loading="lazy"/>
+    <figcaption>Mention 3 of 4. Claude (Sonnet 5.5, new free account, memory paused), 28.10.2026. Prompt: "serviced apartment in Munich for one month with self check-in". One line at the end of a list: "Others on Booking.com: DD Suites, Limehome and kalm stay (Munich East) all offer self check-in", source label routard. <a href="https://claude.ai/share/20d90998-4d1a-43f7-836b-179e5611f067" target="_blank" rel="noopener">Open the shared chat (prompt and answer) →</a></figcaption>
+  </figure>
+  <figure class="case-figure">
+    <img src="geo-limehome-q6-claude.jpg" alt="Claude answer listing Limehome Vienna Hietzinger Hauptstrasse under fully keyless, no front desk" loading="lazy"/>
+    <figcaption>Mention 4 of 4. Claude (same account and settings), 28.10.2026. Prompt: "aparthotel in Vienna with contactless check-in for a weekend". "Limehome Vienna Hietzinger Hauptstraße" listed under "Fully keyless, no front desk", rated 9.4, source label bookabach. Reproduced in two runs. <a href="https://claude.ai/share/8d7524ce-961a-4e06-bbf8-078b2958328b" target="_blank" rel="noopener">Open the shared chat (prompt and answer) →</a></figcaption>
+  </figure>
+  <p class="small">The other 76 answers are recorded in the sheet with the brands named and the sources shown. All 20 ChatGPT answers and all 20 Claude answers have public share links there. Perplexity guest threads cannot be shared and were not screenshotted; this is a limit of the test, stated below.</p>
+
+  <h2>Who gets named instead</h2>
+  <div class="chart-wrap"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 526" width="100%" role="img" aria-labelledby="ct cd" font-family="Inter,Arial,sans-serif">
+<title id="ct">Brand named in AI answers, 20 questions x 4 engines</title>
+<desc id="cd">Horizontal bars, count of answers out of 80 in which each brand was named. Limehome 4.</desc>
+<rect width="860" height="526" fill="#1e1e1e"/>
+<text x="170" y="28" fill="#f0f0f0" font-size="15" font-weight="600">Answers in which the brand was named (of 80)</text>
+<text x="170" y="48" fill="#888" font-size="12">20 customer questions x ChatGPT, Claude, Perplexity, Google AI Overview, 28.10.2026, logged out / memory paused</text>
+<text x="158" y="85" fill="#c0c0c0" font-size="13" text-anchor="end" font-weight="400">Adina</text>
+<path d="M170,70 h563.0 a4,4 0 0 1 4,4 v12 a4,4 0 0 1 -4,4 h-563.0 z" fill="#4f7fbf"><title>Adina: named in 18 of 80 answers</title></path>
+<text x="745.0" y="85" fill="#c0c0c0" font-size="13">18</text>
+<text x="158" y="115" fill="#c0c0c0" font-size="13" text-anchor="end" font-weight="400">Brera</text>
+<path d="M170,100 h374.0 a4,4 0 0 1 4,4 v12 a4,4 0 0 1 -4,4 h-374.0 z" fill="#4f7fbf"><title>Brera: named in 12 of 80 answers</title></path>
+<text x="556.0" y="115" fill="#c0c0c0" font-size="13">12</text>
+<text x="158" y="145" fill="#c0c0c0" font-size="13" text-anchor="end" font-weight="400">Wunderflats</text>
+<path d="M170,130 h374.0 a4,4 0 0 1 4,4 v12 a4,4 0 0 1 -4,4 h-374.0 z" fill="#4f7fbf"><title>Wunderflats: named in 12 of 80 answers</title></path>
+<text x="556.0" y="145" fill="#c0c0c0" font-size="13">12</text>
+<text x="158" y="175" fill="#c0c0c0" font-size="13" text-anchor="end" font-weight="400">Numa</text>
+<path d="M170,160 h279.5 a4,4 0 0 1 4,4 v12 a4,4 0 0 1 -4,4 h-279.5 z" fill="#4f7fbf"><title>Numa: named in 9 of 80 answers</title></path>
+<text x="461.5" y="175" fill="#c0c0c0" font-size="13">9</text>
+<text x="158" y="205" fill="#c0c0c0" font-size="13" text-anchor="end" font-weight="400">Flatio</text>
+<path d="M170,190 h279.5 a4,4 0 0 1 4,4 v12 a4,4 0 0 1 -4,4 h-279.5 z" fill="#4f7fbf"><title>Flatio: named in 9 of 80 answers</title></path>
+<text x="461.5" y="205" fill="#c0c0c0" font-size="13">9</text>
+<text x="158" y="235" fill="#c0c0c0" font-size="13" text-anchor="end" font-weight="400">Citadines</text>
+<path d="M170,220 h248.0 a4,4 0 0 1 4,4 v12 a4,4 0 0 1 -4,4 h-248.0 z" fill="#4f7fbf"><title>Citadines: named in 8 of 80 answers</title></path>
+<text x="430.0" y="235" fill="#c0c0c0" font-size="13">8</text>
+<text x="158" y="265" fill="#c0c0c0" font-size="13" text-anchor="end" font-weight="400">Blueground</text>
+<path d="M170,250 h216.5 a4,4 0 0 1 4,4 v12 a4,4 0 0 1 -4,4 h-216.5 z" fill="#4f7fbf"><title>Blueground: named in 7 of 80 answers</title></path>
+<text x="398.5" y="265" fill="#c0c0c0" font-size="13">7</text>
+<text x="158" y="295" fill="#c0c0c0" font-size="13" text-anchor="end" font-weight="400">Capri by Fraser</text>
+<path d="M170,280 h216.5 a4,4 0 0 1 4,4 v12 a4,4 0 0 1 -4,4 h-216.5 z" fill="#4f7fbf"><title>Capri by Fraser: named in 7 of 80 answers</title></path>
+<text x="398.5" y="295" fill="#c0c0c0" font-size="13">7</text>
+<text x="158" y="325" fill="#c0c0c0" font-size="13" text-anchor="end" font-weight="400">Adagio</text>
+<path d="M170,310 h185.0 a4,4 0 0 1 4,4 v12 a4,4 0 0 1 -4,4 h-185.0 z" fill="#4f7fbf"><title>Adagio: named in 6 of 80 answers</title></path>
+<text x="367.0" y="325" fill="#c0c0c0" font-size="13">6</text>
+<text x="158" y="355" fill="#c0c0c0" font-size="13" text-anchor="end" font-weight="400">Apartmentservice</text>
+<path d="M170,340 h185.0 a4,4 0 0 1 4,4 v12 a4,4 0 0 1 -4,4 h-185.0 z" fill="#4f7fbf"><title>Apartmentservice: named in 6 of 80 answers</title></path>
+<text x="367.0" y="355" fill="#c0c0c0" font-size="13">6</text>
+<text x="158" y="385" fill="#c0c0c0" font-size="13" text-anchor="end" font-weight="400">Smartments</text>
+<path d="M170,370 h185.0 a4,4 0 0 1 4,4 v12 a4,4 0 0 1 -4,4 h-185.0 z" fill="#4f7fbf"><title>Smartments: named in 6 of 80 answers</title></path>
+<text x="367.0" y="385" fill="#c0c0c0" font-size="13">6</text>
+<text x="158" y="415" fill="#c0c0c0" font-size="13" text-anchor="end" font-weight="400">ipartment</text>
+<path d="M170,400 h153.5 a4,4 0 0 1 4,4 v12 a4,4 0 0 1 -4,4 h-153.5 z" fill="#4f7fbf"><title>ipartment: named in 5 of 80 answers</title></path>
+<text x="335.5" y="415" fill="#c0c0c0" font-size="13">5</text>
+<text x="158" y="445" fill="#c0c0c0" font-size="13" text-anchor="end" font-weight="400">STAYERY</text>
+<path d="M170,430 h153.5 a4,4 0 0 1 4,4 v12 a4,4 0 0 1 -4,4 h-153.5 z" fill="#4f7fbf"><title>STAYERY: named in 5 of 80 answers</title></path>
+<text x="335.5" y="445" fill="#c0c0c0" font-size="13">5</text>
+<text x="158" y="475" fill="#f0f0f0" font-size="13" text-anchor="end" font-weight="600">Limehome</text>
+<path d="M170,460 h122.0 a4,4 0 0 1 4,4 v12 a4,4 0 0 1 -4,4 h-122.0 z" fill="#2aa96d"><title>Limehome: named in 4 of 80 answers</title></path>
+<text x="304.0" y="475" fill="#c0c0c0" font-size="13">4</text>
+<text x="170" y="500" fill="#888" font-size="11">Count A: brand named in the answer text, once per answer. Adina is a chain present in most cities asked.</text>
+<text x="170" y="516" fill="#888" font-size="11">Source: GEO audits 2026 results sheet (link on the page).</text>
+</svg></div>
+  <p class="small">Figure 1. Count A: the number of answers, out of 80, in which each brand was named, counted once per answer. Adina is a chain present in almost every city asked, so part of its count is geography. The sheet lists every answer and every name.</p>
+  <p>Three types of site win: operators with a written page per city (Adina, Brera, ipartment, STAYERY, Numa), marketplaces (Wunderflats, Flatio, Blueground, Booking.com), and third-party lists and review sites (Tripadvisor, Apartmentservice, travel blogs).</p>
+
+  <h2>Where the engines get their information</h2>
+  <div class="chart-wrap"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 526" width="100%" role="img" aria-labelledby="ct2 cd2" font-family="Inter,Arial,sans-serif">
+<title id="ct2">Websites the engines cited as sources, 60 answers</title>
+<desc id="cd2">Horizontal bars, number of answers out of 60 in which each website was cited as a source. limehome.com 1.</desc>
+<rect width="860" height="526" fill="#1e1e1e"/>
+<text x="190" y="28" fill="#f0f0f0" font-size="15" font-weight="600">Answers in which the website was cited as a source (of 60)</text>
+<text x="190" y="48" fill="#888" font-size="12">ChatGPT, Perplexity, Google AI Overview, 28.10.2026. Claude excluded (partial source labels).</text>
+<text x="178" y="85" fill="#c0c0c0" font-size="13" text-anchor="end" font-weight="400">brera.de</text>
+<path d="M190,70 h504.33333333333337 a4,4 0 0 1 4,4 v12 a4,4 0 0 1 -4,4 h-504.33333333333337 z" fill="#4f7fbf"><title>brera.de: cited in 10 of 60 answers</title></path>
+<text x="706.3333333333334" y="85" fill="#c0c0c0" font-size="13">10</text>
+<text x="178" y="115" fill="#c0c0c0" font-size="13" text-anchor="end" font-weight="400">booking.com</text>
+<path d="M190,100 h453.5 a4,4 0 0 1 4,4 v12 a4,4 0 0 1 -4,4 h-453.5 z" fill="#4f7fbf"><title>booking.com: cited in 9 of 60 answers</title></path>
+<text x="655.5" y="115" fill="#c0c0c0" font-size="13">9</text>
+<text x="178" y="145" fill="#c0c0c0" font-size="13" text-anchor="end" font-weight="400">wunderflats.com</text>
+<path d="M190,130 h402.6666666666667 a4,4 0 0 1 4,4 v12 a4,4 0 0 1 -4,4 h-402.6666666666667 z" fill="#4f7fbf"><title>wunderflats.com: cited in 8 of 60 answers</title></path>
+<text x="604.6666666666667" y="145" fill="#c0c0c0" font-size="13">8</text>
+<text x="178" y="175" fill="#c0c0c0" font-size="13" text-anchor="end" font-weight="400">adinahotels.com</text>
+<path d="M190,160 h402.6666666666667 a4,4 0 0 1 4,4 v12 a4,4 0 0 1 -4,4 h-402.6666666666667 z" fill="#4f7fbf"><title>adinahotels.com: cited in 8 of 60 answers</title></path>
+<text x="604.6666666666667" y="175" fill="#c0c0c0" font-size="13">8</text>
+<text x="178" y="205" fill="#c0c0c0" font-size="13" text-anchor="end" font-weight="400">apartmentservice.de</text>
+<path d="M190,190 h351.83333333333337 a4,4 0 0 1 4,4 v12 a4,4 0 0 1 -4,4 h-351.83333333333337 z" fill="#4f7fbf"><title>apartmentservice.de: cited in 7 of 60 answers</title></path>
+<text x="553.8333333333334" y="205" fill="#c0c0c0" font-size="13">7</text>
+<text x="178" y="235" fill="#c0c0c0" font-size="13" text-anchor="end" font-weight="400">theblueground.com</text>
+<path d="M190,220 h351.83333333333337 a4,4 0 0 1 4,4 v12 a4,4 0 0 1 -4,4 h-351.83333333333337 z" fill="#4f7fbf"><title>theblueground.com: cited in 7 of 60 answers</title></path>
+<text x="553.8333333333334" y="235" fill="#c0c0c0" font-size="13">7</text>
+<text x="178" y="265" fill="#c0c0c0" font-size="13" text-anchor="end" font-weight="400">airbnb.com</text>
+<path d="M190,250 h301.0 a4,4 0 0 1 4,4 v12 a4,4 0 0 1 -4,4 h-301.0 z" fill="#4f7fbf"><title>airbnb.com: cited in 6 of 60 answers</title></path>
+<text x="503.0" y="265" fill="#c0c0c0" font-size="13">6</text>
+<text x="178" y="295" fill="#c0c0c0" font-size="13" text-anchor="end" font-weight="400">tripadvisor.com</text>
+<path d="M190,280 h301.0 a4,4 0 0 1 4,4 v12 a4,4 0 0 1 -4,4 h-301.0 z" fill="#4f7fbf"><title>tripadvisor.com: cited in 6 of 60 answers</title></path>
+<text x="503.0" y="295" fill="#c0c0c0" font-size="13">6</text>
+<text x="178" y="325" fill="#c0c0c0" font-size="13" text-anchor="end" font-weight="400">ipartment.de</text>
+<path d="M190,310 h301.0 a4,4 0 0 1 4,4 v12 a4,4 0 0 1 -4,4 h-301.0 z" fill="#4f7fbf"><title>ipartment.de: cited in 6 of 60 answers</title></path>
+<text x="503.0" y="325" fill="#c0c0c0" font-size="13">6</text>
+<text x="178" y="355" fill="#c0c0c0" font-size="13" text-anchor="end" font-weight="400">flatio.com</text>
+<path d="M190,340 h301.0 a4,4 0 0 1 4,4 v12 a4,4 0 0 1 -4,4 h-301.0 z" fill="#4f7fbf"><title>flatio.com: cited in 6 of 60 answers</title></path>
+<text x="503.0" y="355" fill="#c0c0c0" font-size="13">6</text>
+<text x="178" y="385" fill="#c0c0c0" font-size="13" text-anchor="end" font-weight="400">numastays.com</text>
+<path d="M190,370 h250.16666666666669 a4,4 0 0 1 4,4 v12 a4,4 0 0 1 -4,4 h-250.16666666666669 z" fill="#4f7fbf"><title>numastays.com: cited in 5 of 60 answers</title></path>
+<text x="452.1666666666667" y="385" fill="#c0c0c0" font-size="13">5</text>
+<text x="178" y="415" fill="#c0c0c0" font-size="13" text-anchor="end" font-weight="400">frasershospitality.com</text>
+<path d="M190,400 h250.16666666666669 a4,4 0 0 1 4,4 v12 a4,4 0 0 1 -4,4 h-250.16666666666669 z" fill="#4f7fbf"><title>frasershospitality.com: cited in 5 of 60 answers</title></path>
+<text x="452.1666666666667" y="415" fill="#c0c0c0" font-size="13">5</text>
+<text x="178" y="445" fill="#c0c0c0" font-size="13" text-anchor="end" font-weight="400">hotels.com</text>
+<path d="M190,430 h250.16666666666669 a4,4 0 0 1 4,4 v12 a4,4 0 0 1 -4,4 h-250.16666666666669 z" fill="#4f7fbf"><title>hotels.com: cited in 5 of 60 answers</title></path>
+<text x="452.1666666666667" y="445" fill="#c0c0c0" font-size="13">5</text>
+<text x="178" y="475" fill="#f0f0f0" font-size="13" text-anchor="end" font-weight="600">limehome.com</text>
+<path d="M190,460 h46.833333333333336 a4,4 0 0 1 4,4 v12 a4,4 0 0 1 -4,4 h-46.833333333333336 z" fill="#2aa96d"><title>limehome.com: cited in 1 of 60 answers</title></path>
+<text x="248.83333333333334" y="475" fill="#c0c0c0" font-size="13">1</text>
+<text x="190" y="500" fill="#888" font-size="11">Count B: website shown as a source, once per answer, from visible citation badges. Hidden "+N" sources not counted.</text>
+<text x="190" y="516" fill="#888" font-size="11">Not the same count as Figure 1: a brand can be named without its own site being the source.</text>
+</svg></div>
+  <p class="small">Figure 2. Count B: the number of answers, out of 60, in which each website was shown as a source. ChatGPT, Perplexity and Google AI Overview only (Claude shows sources as partial labels, see limits). A different count from Figure 1 with a different base; read side by side, never ranked against each other.</p>
+  <p><strong>Why this matters.</strong> Figure 1 says how often a brand is named. Figure 2 says where the engine got the words it used. The gap between the two is the finding. Brera is named in 12 of 80 answers, and brera.de is shown as a source in 10 of 60: the engines read Brera's own pages and repeat what they say. Limehome is named in 4 of 80, and limehome.com is a source in 1 of 60; the other three mentions came through Tripadvisor, routard and bookabach. When an engine learns about you from a third-party site, you do not control the description, the price, the facts, or whether you appear at all. When it learns from your own page, you do. The page comparison below shows why Limehome's own site is almost never the source.</p>
+
+  <h2>Where Limehome was absent, and who was named</h2>
+  <table class="pipeline-table">
+    <thead><tr><th>Question</th><th>Limehome has</th><th>Named instead (across the 4 engines)</th></tr></thead>
+    <tbody>
+      <tr><td>Monthly stay in Madrid in a serviced apartment</td><td>15 properties</td><td>Blueground, Be Casa, Adagio, Citadines, Numa, Flipco, Spotahome, Flatio</td></tr>
+      <tr><td>Apartment hotel in Berlin with a kitchen for a two-week business trip</td><td>12 properties</td><td>Adina (all four engines), Capri by Fraser, Citadines, Adagio, STAYERY, Numa, Wilde</td></tr>
+      <tr><td>Family apartment in Barcelona for 10 days with a kitchen</td><td>5 properties</td><td>MH Apartments, Sata, Citadines Ramblas, Eric Vökel, Habitat, Lugaris</td></tr>
+      <tr><td>Pet-friendly apartment hotel in Leipzig for two weeks</td><td>3 properties</td><td>Capri by Fraser (three engines), Adina, Brera, SchlafGut, Leipzig Suites</td></tr>
+      <tr><td>Digital check-in apartments in Lisbon for remote work for a month</td><td>4 properties</td><td>Numa, Locke, Flatio, Outsite, Blueground, Ukio</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Why: the pages</h2>
+  <p>Three competitor city pages and three Limehome city pages, five checks each: first paragraph answers the question, FAQ, prices, question words in the headings (self check-in, kitchen, monthly stay), reviews.</p>
+  <table class="pipeline-table">
+    <thead><tr><th>Page</th><th>Score</th><th>What is on it</th></tr></thead>
+    <tbody>
+      <tr><td>ipartment, Cologne</td><td>5 of 5</td><td>First sentence: "Your hotel alternative in Cologne with two locations, from €49 per night. Stay for one night or up to six months." Headings for 24-hour check-in, full equipment, guest reviews, business apartments.</td></tr>
+      <tr><td>Adina, Berlin Checkpoint Charlie</td><td>4 of 5</td><td>Five apartment types, a ratings block, an on-page FAQ with questions as headings ("Do you have laundry facilities?" with the answer underneath).</td></tr>
+      <tr><td>Brera, Munich Schwabing</td><td>3 of 5</td><td>Welcome text first, but "Easy Self Check-In" and "Winter Longstay" are headings with full paragraphs, plus an FAQ page.</td></tr>
+      <tr><td>Limehome, Munich</td><td>0 of 5</td><td>A booking search result: "5 Limehomes in Munich", a date picker, a map, five property cards. No paragraph of text at all.</td></tr>
+      <tr><td>Limehome, Berlin</td><td>0 of 5</td><td>Same template, "12 Limehomes in Berlin".</td></tr>
+      <tr><td>Limehome, Madrid</td><td>0 of 5</td><td>Same template, "15 Limehomes in Madrid".</td></tr>
+    </tbody>
+  </table>
+  <figure class="case-figure">
+    <img src="geo-limehome-pages.png" alt="Brera Munich page with self check-in heading and text, next to Limehome Munich page showing only a search-result list" loading="lazy"/>
+    <figcaption>Figure 3. Left: Brera's Munich page has a heading "Easy Self Check-In" with a paragraph an AI can quote. Right: Limehome's Munich page is a search result with no text. Limehome offers self check-in and kitchens in every property; its pages just do not say so in words.</figcaption>
+  </figure>
+  <div class="insight-box green">
+    <p class="insight-title">The cause in one sentence</p>
+    <p>AI engines quote text. The operators that get named have a written page per city that answers the guest's question; Limehome's city pages are search results with no text, so there is nothing to quote, and the few mentions it gets come through booking sites instead.</p>
+  </div>
+
+  <h2>Three fixes</h2>
+  <div class="finding green">
+    <p class="finding-title">1. A written city page for Madrid, Berlin and Munich first, then the rest.</p>
+    <p>One first sentence that answers the guest's question, headings that use the guest's words (self check-in, kitchen, monthly stay, washing machine, pets), an FAQ block, guest reviews. Model: ipartment's Cologne page. Applies to limehome.com/listings/properties?city=82 (Madrid), ?city=32 (Berlin), ?city=45 (Munich).</p>
+  </div>
+  <div class="finding blue">
+    <p class="finding-title">2. Be on the lists the engines read.</p>
+    <p>Three of Limehome's four mentions came via Tripadvisor, routard and bookabach, none via Apartmentservice or business-travel roundups, the sources behind the Brera, ipartment and STAYERY mentions in the business-traveller question. A listing and a reviews profile on those sites costs little and is read by every engine.</p>
+  </div>
+  <div class="finding yellow">
+    <p class="finding-title">3. One page for stays of weeks to months.</p>
+    <p>13 of the 20 questions were about stays of two weeks or longer (52 answers). Limehome was named in 1 of them, at the end of a list. The names that came back were Brera, Wunderflats, Blueground, Adina, Flatio and, for company bookings, ProjektStay and MA-Flats. A page that says weekly cleaning, kitchen, washing machine, company invoicing and monthly rates would give the engines a reason to name Limehome for these questions.</p>
+  </div>
+
+  <h2>Limits of this test</h2>
+  <p>One run per question per engine, one day. Answers vary between runs: Google reworded the Munich answer on a rerun, Claude's first pass differed on five questions. ChatGPT and Claude answers can be checked by anyone via the share links in the sheet. Perplexity guest threads cannot be shared, so only the sheet rows exist for them. Google links re-run the search rather than freeze the answer, and the Google run came from a signed-in browser located in Munich, not a clean guest session.</p>
+  <p>Claude is included in the brand count (Count A, 80 answers). It is excluded from the count of source websites (Count B, 60 answers) because its interface shows sources as short labels with hidden extra sources, so a domain count from it would be incomplete. Claude's first pass was run with memory switched on and was discarded after memory carried Limehome from one question into the next; all 20 questions were rerun with memory paused, and only the rerun is in the sheet. Source domains for Perplexity and Google come from the visible citation badges; hidden sources are not counted.</p>
+  <p>Nothing on this page claims an effect on traffic or bookings. It shows what the engines said on one day and what the pages contain.</p>
+
+  <h2>Resources</h2>
+  <a href="geo-audit-method.html" class="btn-outline-link">→ How the audit was run (method)</a>
+  <a href="https://docs.google.com/spreadsheets/d/1vG8rhBeIKV3HwnkiLInOj-0UTGZETEeXlTyJMsqATJY/edit" target="_blank" rel="noopener" class="btn-outline-link">→ Results sheet</a>
+  <div class="insight-box">
+    <p class="insight-title">Source note</p>
+    <p>Every number on this page is a row in the results sheet. Brand mentions were counted from the recorded answer text, once per answer. Limehome's locations and the competitor pages were read on 28 and 29 October 2026. No person at any company is named or quoted. If a company named here wants a correction or removal, write to me and it is done the same day.</p>
+  </div>
+</div>
+<footer>
+  <div class="footer-inner">
+    <p class="footer-copy">© 2026 Ageel Alramadhan · Performance Marketer & Data Analytics · Hamburg</p>
+    <div class="footer-links">
+      <a href="contact.html">Contact</a>
+      <a href="https://www.linkedin.com/in/ageel-alramadhan/" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:4px"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a>
+      <a href="https://github.com/ageelalramadhan" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:4px"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</a>
+      <a href="impressum-en.html">Legal Notice</a>
+      <a href="datenschutz-en.html">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
+<button class="back-top" id="back-top" aria-label="Back to top">↑</button>
+<div id="cookie-banner" class="cookie-banner" style="display:none;">
+  <div class="cookie-inner"><p>This website uses Google Analytics. You can accept or decline.</p>
+  <div class="cookie-actions"><button class="cookie-btn" data-cookie-reject>Decline</button><button class="cookie-btn primary" data-cookie-accept>Accept</button></div></div>
+</div>
+<script src="consent.js"></script>
+<script>
+  const btn = document.getElementById('back-top');
+  window.addEventListener('scroll', () => btn.classList.toggle('visible', window.scrollY > 300));
+  btn.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
+</script>
+<script>
+  (function(){
+    var t=document.querySelector('.nav-toggle'),m=document.querySelector('.nav-center');
+    if(t&&m){
+      t.addEventListener('click',function(){t.classList.toggle('open');m.classList.toggle('open');});
+      m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){t.classList.remove('open');m.classList.remove('open');});});
+    }
+  })();
+</script>
+</body>
+</html>
